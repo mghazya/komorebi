@@ -280,3 +280,30 @@ export function checkAnswer(item, kind, answer) {
   }
   return { correct: false, message: `Reading: ${(item.readings || []).map(readingText).join(' / ')}` };
 }
+
+/** Library search: matches a character, any meaning, or any reading (case-insensitive). */
+export function matchesSearch(item, query = '') {
+  const q = String(query || '').trim().toLowerCase();
+  if (!q) return true;
+  return `${item.character} ${(item.meanings || []).join(' ')} ${(item.readings || []).join(' ')}`.toLowerCase().includes(q);
+}
+
+/**
+ * Free-practice pool. Uses the visible library list (type filter + search) when it has
+ * subjects; a leftover search that matches nothing is ignored so practice never fails
+ * because of a stale query. Returns at most `limit` items.
+ */
+export function practicePool(items, filter = 'all', query = '', limit = 10) {
+  const ofType = items.filter((i) => filter === 'all' || i.type === filter);
+  const matches = ofType.filter((i) => matchesSearch(i, query));
+  return (matches.length ? matches : ofType.length ? ofType : items).slice(0, limit);
+}
+
+/** App views that have their own browser-history entry (#library, #guide, #settings). */
+export const VIEWS = Object.freeze(['dashboard', 'library', 'guide', 'settings']);
+
+/** Maps a location hash to a view. Supabase auth fragments and unknown hashes return null. */
+export function viewFromHash(hash = '') {
+  const name = String(hash || '').replace(/^#\/?/, '');
+  return VIEWS.includes(name) ? name : null;
+}

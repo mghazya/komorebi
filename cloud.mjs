@@ -19,6 +19,15 @@ export function validateNewPassword(password, confirmation) {
   return '';
 }
 
+/** Checks for the signed-in Change password form (current + new + confirmation). */
+export function validatePasswordChange(currentPassword, password, confirmation) {
+  if (typeof currentPassword !== 'string' || !currentPassword) return 'Enter your current password.';
+  const invalid = validateNewPassword(password, confirmation);
+  if (invalid) return invalid;
+  if (password === currentPassword) return 'Choose a new password that is different from your current password.';
+  return '';
+}
+
 const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
 const defaultStorage = () => { try { return globalThis.localStorage; } catch { return null; } };
 const safeUser = (user) => user && typeof user.id === 'string' && user.id ? user : null;
@@ -55,6 +64,8 @@ function authMessage(data, status) {
     over_email_send_rate_limit: 'Too many emails requested. Please wait before trying again.',
     over_request_rate_limit: 'Too many requests. Please wait before trying again.',
     reauthentication_needed: 'Sign in again before changing your password.',
+    current_password_invalid: 'Current password is incorrect.',
+    current_password_required: 'Enter your current password.',
   };
   return known[code] || (status === 429 ? 'Too many requests. Please wait before trying again.' : 'Unable to complete authentication. Check your details and try again.');
 }
@@ -145,7 +156,11 @@ export function createCloudClient(config, dependencies = {}) {
     if (!response.ok) {
       if (response.status === 409 || data?.code === 'PT409') throw new CloudError('CONFLICT', 'Progress changed on another device. Load the latest cloud progress before saving again.', response.status);
       if (response.status === 401 && !auth) throw new CloudError('AUTH_REQUIRED', 'Your session has expired. Please sign in again.', response.status);
-      if (auth) throw new CloudError('AUTH_ERROR', authMessage(data, response.status), response.status);
+      if (auth) {
+        const error = new CloudError('AUTH_ERROR', authMessage(data, response.status), response.status);
+        error.reason = String(data?.error_code || data?.code || '');
+        throw error;
+      }
       throw new CloudError('REQUEST_ERROR', response.status === 429 ? 'Too many requests. Please wait and retry.' : 'Cloud progress could not be loaded or saved. Please retry. If this continues, check the Supabase setup.', response.status);
     }
     return data ?? null;
@@ -290,6 +305,52 @@ export function createCloudClient(config, dependencies = {}) {
     return persistSession({ ...getSession(), user });
   }
 
+  /**
+   * Signed-in password change that requires the current password, with no email step.
+   * 1. Verifies the current password with a fresh password grant for the signed-in email.
+   * 2. Updates the password with that fresh session, also sending current_password so the
+   *    server enforces it when "Require current password when updating" is enabled
+   *    (GoTrue ignores the field when the setting is off).
+   * 3. Swaps in the fresh session: GoTrue revokes every other session on a password change,
+   *    including the previous one on this device. Same user ID, so cloud progress is untouched.
+   * A failed update revokes the unused verification session and keeps the current one.
+   */
+  async function changePassword(currentPassword, newPassword) {
+    const invalid = validatePasswordChange(currentPassword, newPassword, newPassword);
+    if (invalid) throw new CloudError('INVALID_PASSWORD', invalid);
+    const session = await ensureSession();
+    const email = session.user.email;
+    if (!email) throw new CloudError('AUTH_ERROR', 'This account has no email address, so its password can’t be changed here.');
+    let fresh;
+    try {
+      fresh = sessionFrom(await request('/auth/v1/token?grant_type=password', {
+        method: 'POST', auth: true, body: { email, password: currentPassword },
+      }));
+    } catch (error) {
+      if (error.code === 'AUTH_ERROR' && error.status === 400 && (!error.reason || error.reason === 'invalid_credentials' || error.reason === 'invalid_grant')) {
+        throw new CloudError('CURRENT_PASSWORD_INVALID', 'Current password is incorrect.', error.status);
+      }
+      throw error;
+    }
+    if (fresh.user.id !== session.user.id) throw new CloudError('AUTH_CHANGED', 'The signed-in account changed. Reload before continuing.');
+    sameAccount(session.user.id);
+    let user;
+    try {
+      user = await request('/auth/v1/user', {
+        method: 'PUT', auth: true, token: fresh.access_token,
+        body: { password: newPassword, current_password: currentPassword },
+      });
+      if (!safeUser(user) || user.id !== session.user.id) throw new CloudError('AUTH_ERROR', 'The password update returned an unexpected response. Please sign in again.');
+    } catch (error) {
+      // Best effort: do not leave the unused verification session behind.
+      try { await request('/auth/v1/logout?scope=local', { method: 'POST', token: fresh.access_token, auth: true }); } catch { /* ignore */ }
+      if (error.reason === 'current_password_invalid') throw new CloudError('CURRENT_PASSWORD_INVALID', 'Current password is incorrect.', error.status);
+      throw error;
+    }
+    sameAccount(session.user.id);
+    return persistSession({ ...fresh, user });
+  }
+
   async function initializeFromUrl() {
     const params = new URLSearchParams(String(location?.hash || '').replace(/^#/, ''));
     const hasAuth = ['access_token', 'refresh_token', 'error', 'error_code', 'error_description'].some((key) => params.has(key));
@@ -314,5 +375,5 @@ export function createCloudClient(config, dependencies = {}) {
     return { session: clone(session), recovery: params.get('type') === 'recovery' };
   }
 
-  return Object.freeze({ isConfigured, signUp, signIn, signOut, getSession, loadProfile, saveProfile, requestPasswordReset, updatePassword, initializeFromUrl });
+  return Object.freeze({ isConfigured, signUp, signIn, signOut, getSession, loadProfile, saveProfile, requestPasswordReset, updatePassword, changePassword, initializeFromUrl });
 }

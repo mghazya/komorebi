@@ -1,6 +1,6 @@
-import { STAGE_NAMES, newProfile, availableLessons, dueReviews, startLearning, completeReview, statusFor, stats, toHiragana, checkAnswer } from './engine.mjs';
+import { STAGE_NAMES, newProfile, availableLessons, dueReviews, startLearning, completeReview, statusFor, stats, toHiragana, checkAnswer, matchesSearch, practicePool, viewFromHash } from './engine.mjs';
 
-import { createCloudClient, AUTH_STORAGE_KEY, validateNewPassword, MIN_PASSWORD_LENGTH } from './cloud.mjs';
+import { createCloudClient, AUTH_STORAGE_KEY, validateNewPassword, validatePasswordChange, MIN_PASSWORD_LENGTH } from './cloud.mjs';
 import { CLOUD_CONFIG } from './config.js';
 const cloud = createCloudClient(CLOUD_CONFIG);
 let cloudProfile = null, cloudRevision = 0, cloudError = '', cloudErrorCode = '', busy = false, pendingCloud = null;
@@ -82,6 +82,7 @@ async function updateProfile(p) {
 function render() {
  const p=profile(), s=stats(items,p,Date.now());
  $('#app').innerHTML=`
+ <a class="skip-link" href="#main">Skip to main content</a>
  <aside class="sidebar">
   <a class="brand" href="#dashboard" aria-label="Komorebi dashboard"><span class="brand-mark">木</span><span>komorebi<small>YOUR DAILY JAPANESE</small></span></a>
   <div class="workspace-label">YOUR STUDY SPACE</div>
@@ -118,7 +119,7 @@ function upcoming(p) {
  return `<div class="forecast">${spans.map((s,index)=>{const count=Object.values(p.progress).filter(x=>x.stage<9 && (x.availableAt-now)/36e5>s.min && (x.availableAt-now)/36e5<=s.max).length;return `<div class="forecast-row"><span>${s.label}</span><div class="forecast-track"><span style="width:${count?Math.max(12,count/80*100):0}%"></span></div><strong>${count}</strong></div>`;}).join('')}</div>`;
 }
 function library() {
- const filtered=items.filter(i=>(filter==='all'||i.type===filter) && `${i.character} ${i.meanings.join(' ')} ${i.readings.join(' ')}`.toLowerCase().includes(search.toLowerCase()));
+ const filtered=items.filter(i=>(filter==='all'||i.type===filter) && matchesSearch(i,search));
  return `<section class="page-intro"><div><div class="eyebrow">A PLACE TO EXPLORE</div><h1>Study library</h1><p>Get to know all 80 subjects in Level 1.</p></div><button class="button secondary" data-action="practice">${icon('play')} Free practice</button></section><section class="panel library-panel"><div class="library-toolbar"><div class="type-tabs">${[['all','All subjects'],...Object.entries(TYPES)].map(([t,l])=>`<button data-filter="${t}" class="${filter===t?'selected':''}">${l}</button>`).join('')}</div><label class="search-box"><span class="sr-only">Search subjects</span><input id="search" type="search" placeholder="Search characters or meanings…" value="${esc(search)}"></label></div><div class="library-list">${filtered.map(i=>{const st=statusFor(i,profile(),Date.now());return `<button class="library-row" data-item="${esc(i.id)}"><span class="library-character ${i.type}" lang="ja">${esc(i.character)}</span><span class="library-meaning"><strong>${esc(i.meaning)}</strong><small>${i.type==='radical'?'Radical · building block':esc(i.readings.join(' / '))}</small></span><span class="subject-label ${i.type}">${i.type}</span><span class="status-label">${st.state==='locked'?'Locked':st.state==='lesson'?'Ready to learn':esc(st.stageName)}</span>${icon('chevron')}</button>`}).join('')||'<div class="empty-state">No subjects found. Try a character, meaning, or reading.</div>'}</div></section><p class="page-note">Free practice explores the library without changing your review schedule.</p>`;
 }
 function guide() {
@@ -143,12 +144,33 @@ function openProfiles() {
  modal.querySelectorAll('[data-profile]').forEach(b=>b.onclick=()=>{if(!leaveSession())return;if(persist({...state,activeProfileId:b.dataset.profile})){session=null;modal.close();render();}});
  $('#add-profile',modal).onsubmit=e=>{e.preventDefault();if(!leaveSession())return;const name=$('#new-name').value.trim();if(!name)return;const p=newProfile(name);if(persist({...state,activeProfileId:p.id,profiles:[...state.profiles,p]})){session=null;modal.close();render();toast(`Welcome, ${name}. Your journey starts here.`);}};
 }
-function leaveSession(){return !session || session.phase==='done' || window.confirm('Leave this session? Completed review items are saved. An unfinished lesson batch or review item will need to be repeated.');}
+const LEAVE_MESSAGE='Leave this session? Completed review items are saved. An unfinished lesson batch or review item will need to be repeated.';
+function leaveSession(){return !session || session.phase==='done' || window.confirm(LEAVE_MESSAGE);}
+// Browser history: each view has an entry (#library, #guide, #settings; the dashboard has no hash).
+// A lesson/review/practice session gets its own entry, so Back asks before leaving it.
+const urlForView=v=>`${location.pathname}${location.search}${v==='dashboard'?'':'#'+v}`;
+function historyCall(method,data,url){try{history[method](data,'',url);}catch{}}
+function setView(next){if(view==='library'&&next!=='library')search='';view=next;if(view==='dashboard'&&filter==='all')filter='radical';}
+function go(next){
+ if(!leaveSession())return false;
+ const fromSession=Boolean(history.state?.session);session=null;
+ if(fromSession)historyCall('replaceState',{view:next},urlForView(next));
+ else if(next!==view)historyCall('pushState',{view:next},urlForView(next));
+ setView(next);render();window.scrollTo(0,0);return true;
+}
+window.addEventListener('popstate',e=>{
+ if(!state)return;
+ const target=e.state?.view||viewFromHash(location.hash)||'dashboard';
+ // Stay put while a save is running, or when the learner cancels leaving an active session.
+ if(busy||(session&&session.phase!=='done'&&!window.confirm(LEAVE_MESSAGE))){historyCall('pushState',session?{view,session:true}:{view},urlForView(view));return;}
+ session=null;if($('#modal').open)$('#modal').close();setView(target);render();window.scrollTo(0,0);
+});
 function begin(mode) {
  if (busy || (cloudProfile && cloudError)) {toast('Resolve cloud sync first so your progress can be saved safely.');return;}
- const p=profile();let selected=mode==='lesson'?availableLessons(items,p).slice(0,p.settings.batchSize):mode==='review'?dueReviews(items,p,Date.now()):items.filter(i=>(filter==='all'||i.type===filter)&&`${i.character} ${i.meanings.join(' ')}`.toLowerCase().includes(search.toLowerCase())).slice(0,10);
+ const p=profile();let selected=mode==='lesson'?availableLessons(items,p).slice(0,p.settings.batchSize):mode==='review'?dueReviews(items,p,Date.now()):practicePool(items,filter,search,10);
  if(!selected.length){toast(mode==='review'?'You’re all caught up. Come back when reviews are due.':'No subjects are available for this session.');return;}
  session={mode,phase:mode==='lesson'?'learn':'quiz',selected,position:0,queue:[],mistakes:{},finished:[],feedback:null,answers:0,correct:0,startedAt:Date.now()};
+ if(history.state?.session)historyCall('replaceState',{view,session:true},urlForView(view));else historyCall('pushState',{view,session:true},urlForView(view));
  if(mode!=='lesson')makeQuiz();render();window.scrollTo(0,0);
 }
 function makeQuiz(){session.phase='quiz';session.queue=session.selected.flatMap(i=>[{id:i.id,kind:'meaning'},...(i.type==='radical'?[]:[{id:i.id,kind:'reading'}])]);session.totalQuestions=session.queue.length;}
@@ -184,8 +206,9 @@ async function continueAnswer(){
 function exportProgress(){const blob=new Blob([JSON.stringify({app:'komorebi',version:1,exportedAt:new Date().toISOString(),profile:profile()},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`komorebi-${profile().name.replace(/[^a-z0-9_-]/gi,'-')}-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Your progress backup is ready.');}
 async function importProgress(file){if(!file)return;try{if(file.size>2000000)throw Error('Please choose a Komorebi backup smaller than 2 MB.');const data=JSON.parse(await file.text());if(data.app!=='komorebi'||data.version!==1)throw Error('Please choose a Komorebi progress backup.');const p=validateProfile(data.profile);if(cloud.getSession()){if(Object.keys(profile().progress).length)throw Error('Import is only available for an empty cloud account. Export the existing progress first.');p.id=cloud.getSession().user.id;if(await updateProfile(p)){render();toast('Backup saved to your cloud account.');}return;}p.id=crypto.randomUUID();p.name=p.name.slice(0,38)+' (imported)';if(persist({...state,activeProfileId:p.id,profiles:[...state.profiles,p]})){render();toast('Backup imported as a new learner profile.');}}catch(error){toast(error.message||'That backup could not be imported. Your progress is unchanged.');}}
 function bind(){
- document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>{if(!leaveSession())return;session=null;view=b.dataset.nav;if(view==='dashboard'&&filter==='all')filter='radical';render();window.scrollTo(0,0);});
- $('.brand').onclick=e=>{e.preventDefault();if(!leaveSession())return;session=null;view='dashboard';if(filter==='all')filter='radical';render();};
+ document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>go(b.dataset.nav));
+ $('.brand').onclick=e=>{e.preventDefault();go('dashboard');};
+ $('.skip-link').onclick=e=>{e.preventDefault();const main=$('#main');main.focus();main.scrollIntoView({block:'start'});};
  document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;render();});
  document.querySelectorAll('[data-item]').forEach(b=>b.onclick=()=>openSubject(b.dataset.item));
  document.querySelectorAll('[data-batch]').forEach(b=>b.onclick=async()=>{if(await updateProfile({...profile(),settings:{...profile().settings,batchSize:Number(b.dataset.batch)}}))render();});
@@ -206,7 +229,7 @@ function bind(){
   if(action==='previous-lesson'&&session.position>0){session.position--;render();window.scrollTo(0,0);}
   if(action==='continue-answer')continueAnswer();
   if(action==='dont-know')submitAnswer(true);
-  if(action==='finish'||action==='exit-session'){if(action==='exit-session'&&!leaveSession())return;session=null;view='dashboard';render();window.scrollTo(0,0);}
+  if(action==='finish'||action==='exit-session'){if(action==='exit-session'&&!leaveSession())return;session=null;go('dashboard');}
  });
  if($('#answer-form'))$('#answer-form').onsubmit=e=>{e.preventDefault();submitAnswer();};
  if($('#answer')&&session.queue[0]?.kind==='reading')$('#answer').oninput=e=>{$('#kana-preview').textContent=e.target.value?toHiragana(e.target.value):'Romaji is converted to hiragana when you answer.';};
@@ -260,14 +283,17 @@ function openAccount(mode='signin'){
   modal.innerHTML=`<button class="modal-close" data-close aria-label="Close accounts">${icon('close')}</button><span class="eyebrow">YOUR PROGRESS, WHEREVER YOU ARE</span><h2 id="modal-title">One account. Your own journey.</h2><p>Email/password accounts will keep each learner’s progress separate and let you continue on another device.</p><div class="auth-note">Cloud accounts are waiting for the app owner to connect the backend. You can try the full Level 1 learning flow with a guest profile today.</div><button class="button primary full-width" id="continue-guest">Continue as a guest ${icon('arrow')}</button>`;
   modal.showModal();$('[data-close]',modal).onclick=()=>modal.close();$('#continue-guest').onclick=()=>modal.close();return;
  }
- if(mode==='new-password'&&!auth){toast('Sign in to change your password.');mode='signin';}
- if(auth&&mode!=='new-password'){
+ if((mode==='new-password'||mode==='recovery')&&!auth){toast('Sign in to change your password.');mode='signin';}
+ if(auth&&mode!=='new-password'&&mode!=='recovery'){
   modal.innerHTML=`<button class="modal-close" data-close aria-label="Close account">${icon('close')}</button><span class="eyebrow">YOUR OWN STUDY SPACE</span><h2 id="modal-title">${esc(profile().name)}</h2><p>${esc(auth.user.email)}</p><div class="auth-note">${cloudError?esc(cloudError):'Your completed lessons and reviews are saved to this account. Sign in with the same email on another device to continue.'}</div><button class="button secondary full-width" id="refresh-cloud">Refresh from cloud</button><button class="button secondary full-width" id="cloud-export">Export progress backup</button><button class="button secondary full-width" id="change-password">${icon('lock')} Change password</button><button class="button primary full-width" id="signout">Sign out on this device</button><p id="auth-error" class="auth-error" role="alert"></p>`;
   modal.showModal();$('[data-close]',modal).onclick=()=>modal.close();$('#cloud-export').onclick=exportProgress;$('#change-password').onclick=()=>openAccount('new-password');$('#refresh-cloud').onclick=async()=>{if(!leaveSession())return;modal.close();await reloadCloud();};
   $('#signout').onclick=async()=>{if(!leaveSession())return;if(pendingCloud){$('#auth-error').textContent='Sync or export your pending progress before signing out.';return;}$('#signout').disabled=true;try{await cloud.signOut();cloudProfile=null;cloudRevision=0;cloudError='';session=null;modal.close();render();toast('Signed out. Your cloud progress is safe.');}catch(error){$('#auth-error').textContent=error.message;$('#signout').disabled=false;}};return;
  }
- const signup=mode==='signup',reset=mode==='reset',change=mode==='new-password';
- modal.innerHTML=`<button class="modal-close" data-close aria-label="Close sign in">${icon('close')}</button><span class="eyebrow">A LITTLE GROWTH, EVERYWHERE</span><h2 id="modal-title">${change?'Set a new password':reset?'Reset your password':signup?'Start your own journey':'Welcome back.'}</h2><p>${change?`Choose a new password of at least ${MIN_PASSWORD_LENGTH} characters for ${esc(auth?.user.email||'your account')}.`:reset?'We’ll send a password reset link to your email.':'Keep your lessons and reviews in sync on every device.'}</p><form class="auth-form" id="auth-form">${change?'':`<label class="field-label" for="auth-email">Email address</label><input id="auth-email" type="email" autocomplete="email" required placeholder="you@example.com">`}${reset?'':`<label class="field-label" for="auth-password">${change?'New password':'Password'}</label><input id="auth-password" type="password" autocomplete="${signup||change?'new-password':'current-password'}" ${signup||change?'minlength="8"':''} required placeholder="${signup||change?'At least 8 characters':'Your password'}">${change?`<label class="field-label" for="auth-password-confirm">Confirm new password</label><input id="auth-password-confirm" type="password" autocomplete="new-password" minlength="${MIN_PASSWORD_LENGTH}" required placeholder="Type it again">`:''}`}<p id="auth-error" class="auth-error" role="alert"></p><button class="button primary full-width" id="auth-submit">${change?'Save new password':reset?'Send reset link':signup?'Create account':'Sign in'} ${icon('arrow')}</button></form><div class="auth-links">${change?'':`<button class="text-button" id="toggle-auth">${signup||reset?'Back to sign in':'Create an account'}</button>${!signup&&!reset?'<button class="text-button" id="reset-auth">Forgot password?</button>':''}`}</div>`;
+ // 'new-password' = signed-in change (current password required, no email). 'recovery' = arriving from a
+ // Supabase recovery link (no current password known). 'reset' sends a reset email; its UI is hidden while
+ // the project has no SMTP, but the code path is kept.
+ const signup=mode==='signup',reset=mode==='reset',recovery=mode==='recovery',change=mode==='new-password'||recovery;
+ modal.innerHTML=`<button class="modal-close" data-close aria-label="Close sign in">${icon('close')}</button><span class="eyebrow">A LITTLE GROWTH, EVERYWHERE</span><h2 id="modal-title">${recovery?'Set a new password':change?'Change your password':reset?'Reset your password':signup?'Start your own journey':'Welcome back.'}</h2><p>${recovery?`Choose a new password of at least ${MIN_PASSWORD_LENGTH} characters for ${esc(auth?.user.email||'your account')}.`:change?`Enter your current password, then choose a new one of at least ${MIN_PASSWORD_LENGTH} characters for ${esc(auth?.user.email||'your account')}.`:reset?'We’ll send a password reset link to your email.':'Keep your lessons and reviews in sync on every device.'}</p><form class="auth-form" id="auth-form">${change?'':`<label class="field-label" for="auth-email">Email address</label><input id="auth-email" type="email" autocomplete="email" required placeholder="you@example.com">`}${change&&!recovery?`<label class="field-label" for="auth-current-password">Current password</label><input id="auth-current-password" type="password" autocomplete="current-password" required placeholder="Your current password">`:''}${reset?'':`<label class="field-label" for="auth-password">${change?'New password':'Password'}</label><input id="auth-password" type="password" autocomplete="${signup||change?'new-password':'current-password'}" ${signup||change?'minlength="8"':''} required placeholder="${signup||change?'At least 8 characters':'Your password'}">${change?`<label class="field-label" for="auth-password-confirm">Confirm new password</label><input id="auth-password-confirm" type="password" autocomplete="new-password" minlength="${MIN_PASSWORD_LENGTH}" required placeholder="Type it again">`:''}`}<p id="auth-error" class="auth-error" role="alert"></p><button class="button primary full-width" id="auth-submit">${change?'Save new password':reset?'Send reset link':signup?'Create account':'Sign in'} ${icon('arrow')}</button></form><div class="auth-links">${change?'':`<button class="text-button" id="toggle-auth">${signup||reset?'Back to sign in':'Create an account'}</button>`}</div>${!change&&!signup&&!reset?'<p class="small-note forgot-note">Forgot your password? Ask the family admin to reset it.</p>':''}`;
  modal.showModal();$('[data-close]',modal).onclick=()=>modal.close();$('#toggle-auth')?.addEventListener('click',()=>openAccount(signup||reset?'signin':'signup'));$('#reset-auth')?.addEventListener('click',()=>openAccount('reset'));
  $('#auth-form').onsubmit=async e=>{
   e.preventDefault();if(!leaveSession())return;const submit=$('#auth-submit');submit.disabled=true;$('#auth-error').textContent='';
@@ -275,10 +301,12 @@ function openAccount(mode='signin'){
    const email=$('#auth-email')?.value.trim(),password=$('#auth-password')?.value,redirect=location.origin+location.pathname;
    if(reset){await cloud.requestPasswordReset(email,redirect);$('#auth-error').textContent='If this account exists, a reset link will be sent. Check your inbox and spam folder.';submit.disabled=false;return;}
    if(change){
-    const invalid=validateNewPassword(password,$('#auth-password-confirm')?.value);
+    const current=$('#auth-current-password')?.value,confirmation=$('#auth-password-confirm')?.value;
+    const invalid=recovery?validateNewPassword(password,confirmation):validatePasswordChange(current,password,confirmation);
     if(invalid){$('#auth-error').textContent=invalid;submit.disabled=false;return;}
-    try{await cloud.updatePassword(password);}
+    try{if(recovery)await cloud.updatePassword(password);else await cloud.changePassword(current,password);}
     catch(error){
+     if(error.code==='CURRENT_PASSWORD_INVALID'){$('#auth-error').textContent='Current password is incorrect.';submit.disabled=false;$('#auth-current-password').value='';$('#auth-current-password').focus();return;}
      if(error.code!=='AUTH_REQUIRED')throw error;
      if(cloudProfile){cloudError='Your session has expired. Please sign in again.';cloudErrorCode='AUTH_REQUIRED';}
      render();toast('Your session has expired. Sign in again, then change your password.');openAccount('signin');
@@ -305,9 +333,13 @@ try {
  const response=await fetch('./data/level-1.json');if(!response.ok)throw Error('Study data could not be loaded.');
  const data=await response.json();items=Array.isArray(data)?data:data.items;
  if(!Array.isArray(items)||items.length!==80)throw Error('Level 1 data is incomplete.');
- state=readState();if(!savedRaw&&storageOK)persist(state);render();
+ state=readState();if(!savedRaw&&storageOK)persist(state);
+ // Restore the view from #library/#guide/#settings. Supabase auth fragments are left for initializeFromUrl().
+ const startView=viewFromHash(location.hash);if(startView)view=startView;
+ historyCall('replaceState',{view},startView||!location.hash?urlForView(view):location.href);
+ render();
  if(cloud.isConfigured){
-  try{const incoming=await cloud.initializeFromUrl();if(cloud.getSession())await connectCloud();if(incoming?.recovery)openAccount('new-password');}
+  try{const incoming=await cloud.initializeFromUrl();if(cloud.getSession())await connectCloud();if(incoming?.recovery)openAccount('recovery');}
   catch(error){cloudError=error.message;cloudErrorCode=error.code;render();toast(error.message);}
  }
 } catch(error) {$('#app').innerHTML=`<div class="loading"><span class="brand-mark">木</span><h1>Let’s get your study space ready.</h1><p>${esc(error.message)}</p><p>Run this app through its local server or a web host, then reload.</p><button class="button primary" id="reload">Try again</button></div>`;$('#reload').onclick=()=>location.reload();}
