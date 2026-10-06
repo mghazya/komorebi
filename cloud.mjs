@@ -10,6 +10,15 @@ export class CloudError extends Error {
   }
 }
 
+export const MIN_PASSWORD_LENGTH = 8;
+
+/** Client-side checks for a new password; returns '' when valid, otherwise a friendly message. */
+export function validateNewPassword(password, confirmation) {
+  if (typeof password !== 'string' || password.length < MIN_PASSWORD_LENGTH) return `Use at least ${MIN_PASSWORD_LENGTH} characters for your new password.`;
+  if (password !== confirmation) return 'The two passwords don’t match. Please type the same password twice.';
+  return '';
+}
+
 const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
 const defaultStorage = () => { try { return globalThis.localStorage; } catch { return null; } };
 const safeUser = (user) => user && typeof user.id === 'string' && user.id ? user : null;
@@ -265,7 +274,17 @@ export function createCloudClient(config, dependencies = {}) {
 
   async function updatePassword(password) {
     const session = await ensureSession();
-    const user = await request('/auth/v1/user', { method: 'PUT', auth: true, token: session.access_token, body: { password } });
+    let user;
+    try {
+      user = await request('/auth/v1/user', { method: 'PUT', auth: true, token: session.access_token, body: { password } });
+    } catch (error) {
+      // A rejected access token means the session was revoked or expired server-side.
+      if (error.code === 'AUTH_ERROR' && [401, 403].includes(error.status)) {
+        if (getSession()?.user.id === session.user.id) persistSession(null);
+        throw new CloudError('AUTH_REQUIRED', 'Your session has expired. Please sign in again.', error.status);
+      }
+      throw error;
+    }
     sameAccount(session.user.id);
     if (!safeUser(user) || user.id !== session.user.id) throw new CloudError('AUTH_ERROR', 'The password update returned an unexpected response. Please sign in again.');
     return persistSession({ ...getSession(), user });
