@@ -1,0 +1,3441 @@
+[
+  {
+    "id": "radical:barb",
+    "type": "radical",
+    "level": 1,
+    "character": "亅",
+    "meaning": "Barb",
+    "meanings": [
+      "Barb"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This radical is shaped like a barb . Kind of like the barb you'd see on a barbed fishing hook. Imagine that thing getting stuck in your arm or something. Not exactly pleasant. Say out loud, \"Oh dang, I got a barb stuck in me!\" Alright, relax, it's only a little barb.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/barb"
+  },
+  {
+    "id": "radical:big",
+    "type": "radical",
+    "level": 1,
+    "character": "大",
+    "meaning": "Big",
+    "meanings": [
+      "Big"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This radical looks just like a stick figure—more specifically, a really big guy with his arms stretched out nice and big. When you see this radical, just think big, because this guy is really BIG!",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/big"
+  },
+  {
+    "id": "radical:construction",
+    "type": "radical",
+    "level": 1,
+    "character": "工",
+    "meaning": "Construction",
+    "meanings": [
+      "Construction"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "You know those big steel girders that are used for the frame of big buildings? This is like the end of one of those, and has a very distinct shape, just like this radical. These girders are used in construction, which is why this radical means construction . Funny thing is, you use these girders to put together buildings just like you're going to use this radical to put together kanji!",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/construction"
+  },
+  {
+    "id": "radical:cross",
+    "type": "radical",
+    "level": 1,
+    "character": "十",
+    "meaning": "Cross",
+    "meanings": [
+      "Cross"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This radical looks like a cross . I mean, just look at it. Two bars going through each other = a cross!",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/cross"
+  },
+  {
+    "id": "radical:drop",
+    "type": "radical",
+    "level": 1,
+    "character": "丶",
+    "meaning": "Drop",
+    "meanings": [
+      "Drop"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This little radical is a drop , maybe of water or some other liquid. Notice how it's only one drop? Sometimes radicals and kanji will have more than one drop in them, but don't let that throw you off.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/drop"
+  },
+  {
+    "id": "radical:enter",
+    "type": "radical",
+    "level": 1,
+    "character": "入",
+    "meaning": "Enter",
+    "meanings": [
+      "Enter"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "Watch out! This isn't the person radical, it's something else. What's the difference? The right side is longer than the left. This radical also has that extra part sticking out at the top. See it? It kind of looks like a person lowering their head to go inside a tent or something. That's why this radical is enter .",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/enter"
+  },
+  {
+    "id": "radical:fins",
+    "type": "radical",
+    "level": 1,
+    "character": "ハ",
+    "meaning": "Fins",
+    "meanings": [
+      "Fins"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "These look like fins . What's a pair of disembodied fins doing here?! Some fish must have left them here by accident. Bet they're really missing these fins right about now.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/fins"
+  },
+  {
+    "id": "radical:ground",
+    "type": "radical",
+    "level": 1,
+    "character": "一",
+    "meaning": "Ground",
+    "meanings": [
+      "Ground"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This radical consists of a single, horizontal stroke. What's the biggest, single, horizontal stroke? That's the ground . Look at the ground, look at this radical, now look at the ground again. Kind of the same, right?",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/ground"
+  },
+  {
+    "id": "radical:gun",
+    "type": "radical",
+    "level": 1,
+    "character": "𠂉",
+    "meaning": "Gun",
+    "meanings": [
+      "Gun"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This looks a lot like a gun pointing to the right. You have a handle on the left, and the barrel pointing to the right. Imagine it hanging in a case on the wall in a museum.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/gun"
+  },
+  {
+    "id": "radical:lid",
+    "type": "radical",
+    "level": 1,
+    "character": "亠",
+    "meaning": "Lid",
+    "meanings": [
+      "Lid"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This looks like something you'd put on a kettle or a pot, right? It even has a little handle to make sure you don't burn yourself. This is some kind of lid .",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/lid"
+  },
+  {
+    "id": "radical:mountain",
+    "type": "radical",
+    "level": 1,
+    "character": "山",
+    "meaning": "Mountain",
+    "meanings": [
+      "Mountain"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This is a mountain . See the big peak in the middle and the smaller ones on either side? This totally looks like a mountain.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/mountain"
+  },
+  {
+    "id": "radical:mouth",
+    "type": "radical",
+    "level": 1,
+    "character": "口",
+    "meaning": "Mouth",
+    "meanings": [
+      "Mouth"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "A big, gaping, square hole represents someone opening their giant mouth to tell you something stupid.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/mouth"
+  },
+  {
+    "id": "radical:nine",
+    "type": "radical",
+    "level": 1,
+    "character": "九",
+    "meaning": "Nine",
+    "meanings": [
+      "Nine"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "If you look at this radical in just the right way, you'll notice that it kind of looks like the letters \"n\" and \"i\" (the \"i\" comes from the little flippy-up stroke on the right side). What do the letters \"n\" and \"i\" start spelling? Why, the word nine .",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/nine"
+  },
+  {
+    "id": "radical:person",
+    "type": "radical",
+    "level": 1,
+    "character": "人",
+    "meaning": "Person",
+    "meanings": [
+      "Person"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This is a person . They're standing with their arms down at their sides and their legs spread out, which kind of makes them look like a torso with a pair of legs. Think of 人 as highlighting the bipedal nature of people. Walking on two legs? Probably a person.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/person"
+  },
+  {
+    "id": "radical:power",
+    "type": "radical",
+    "level": 1,
+    "character": "力",
+    "meaning": "Power",
+    "meanings": [
+      "Power"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "Imagine a guy flexing his arm downward to show off his steroid-pumped arm. It's huge. It's so full of power . RARRRWWWRRR!!",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/power"
+  },
+  {
+    "id": "radical:prison",
+    "type": "radical",
+    "level": 1,
+    "character": "勹",
+    "meaning": "Prison",
+    "meanings": [
+      "Prison"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This looks like an enclosure of sorts — that's why it's a prison . Imagine a tiny prisoner curled up inside, staring off into space, completely convinced they're trapped forever. Ironically this prison is actually wide open. They're just so consumed with self-pity that they haven't realized they've been free to leave all along.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/prison"
+  },
+  {
+    "id": "radical:river",
+    "type": "radical",
+    "level": 1,
+    "character": "川",
+    "meaning": "River",
+    "meanings": [
+      "River"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This radical already looks like a river . See how the lines represent the flow of the river? There's even a slight bend in this river. So when you see this radical, you should think \"river.\"",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/river"
+  },
+  {
+    "id": "radical:seven",
+    "type": "radical",
+    "level": 1,
+    "character": "七",
+    "meaning": "Seven",
+    "meanings": [
+      "Seven"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "What does this radical look like? Hmm, nothing much. What about if you turn it upside down? Now does it look like a 7 with a line through it? Close enough to help you to remember that this radical is seven , right? Just remember, when you see this radical, flip it over and see what number it looks like. If you can do that, you can remember the meaning!",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/seven"
+  },
+  {
+    "id": "radical:slide",
+    "type": "radical",
+    "level": 1,
+    "character": "丿",
+    "meaning": "Slide",
+    "meanings": [
+      "Slide"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "Close your eyes and imagine you're a kid again. Now open them and... look! It's a slide ! Imagine little you sliding down this slide over and over, having a great time. Imagination + emotion makes for good memorization!",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/slide"
+  },
+  {
+    "id": "radical:stick",
+    "type": "radical",
+    "level": 1,
+    "character": "丨",
+    "meaning": "Stick",
+    "meanings": [
+      "Stick"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This is a stick , sticking straight up. It even looks like a stick.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/stick"
+  },
+  {
+    "id": "radical:sun",
+    "type": "radical",
+    "level": 1,
+    "character": "日",
+    "meaning": "Sun",
+    "meanings": [
+      "Sun"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "Since there are no circles in Japanese characters, sometimes rectangles or squares have to make do. In this case, this big rectangle is the sun . The middle line is a cloud, moving across the sun. Picture it, but don't actually look at the sun and burn your eyes!",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/sun"
+  },
+  {
+    "id": "radical:toe",
+    "type": "radical",
+    "level": 1,
+    "character": "ト",
+    "meaning": "Toe",
+    "meanings": [
+      "Toe"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This radical kind of looks like a toe . See the one weird toe coming off the side of it? This also looks like the katakana character ト (to), which sounds like the word \"toe.\" So whenever you see ト , just think toe.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/toe"
+  },
+  {
+    "id": "radical:tree",
+    "type": "radical",
+    "level": 1,
+    "character": "木",
+    "meaning": "Tree",
+    "meanings": [
+      "Tree"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "Do you see the tree in here? It has branches, and then it has the foliage coming down diagonally from it, spreading out like a tree would. That's why this radical is a tree.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/tree"
+  },
+  {
+    "id": "radical:two",
+    "type": "radical",
+    "level": 1,
+    "character": "二",
+    "meaning": "Two",
+    "meanings": [
+      "Two"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "One line plus another line equals two lines. This radical represents the number two. Pretty simple, right? Can you guess what three looks like? I bet you can...",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/two"
+  },
+  {
+    "id": "radical:woman",
+    "type": "radical",
+    "level": 1,
+    "character": "女",
+    "meaning": "Woman",
+    "meanings": [
+      "Woman"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This radical looks like a curtsying woman . Another way to think of it could be as two stacked Xs, since women generally have XX chromosomes. That's why this is the woman radical.",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/woman"
+  },
+  {
+    "id": "kanji:上",
+    "type": "kanji",
+    "level": 1,
+    "character": "上",
+    "meaning": "Above",
+    "meanings": [
+      "Above",
+      "Up",
+      "Over"
+    ],
+    "readings": [
+      "じょう"
+    ],
+    "otherReadings": [
+      "うえ",
+      "あ",
+      "のぼ",
+      "うわ",
+      "かみ"
+    ],
+    "meaningMnemonic": "You find a toe on the ground . It's weird, because it's above the ground, not where toes belong. Hints Focus your imagination on how body parts should be buried, not above ground like this. Sure, finding a toe is a little strange, but finding a toe above the ground? Downright silly.",
+    "readingMnemonic": "Of course when you find a toe above the ground, you want to know where the toe came from. When you examine it, you see a name written on there. This toe belongs to the local clumsy farmhand, Joe ( じょう ). Hints Try to remember Joe, the local farmhand. He is a recurring character that will come up anytime the reading for a kanji is じょう . He is a very big man, and he wears farmer's clothes. It's important to imagine your version of Joe as very big, because it will help us to differentiate him from Jo-Anne, who is the character associated with the similar, but shorter reading (and character) じょ . Although Joe will develop as you go through all the じょう reading kanji, for now, just imagine him as a big, kinda slow dude, who works for a local farmer. Also, he only has nine or fewer toes, apparently.",
+    "components": [
+      {
+        "character": "ト",
+        "name": "Toe",
+        "id": "radical:toe"
+      },
+      {
+        "character": "一",
+        "name": "Ground",
+        "id": "radical:ground"
+      }
+    ],
+    "dependencies": [
+      "radical:toe",
+      "radical:ground"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E4%B8%8A"
+  },
+  {
+    "id": "kanji:下",
+    "type": "kanji",
+    "level": 1,
+    "character": "下",
+    "meaning": "Below",
+    "meanings": [
+      "Below",
+      "Down",
+      "Under",
+      "Beneath"
+    ],
+    "readings": [
+      "か",
+      "げ"
+    ],
+    "otherReadings": [
+      "した",
+      "さ",
+      "くだ",
+      "お",
+      "しも",
+      "もと"
+    ],
+    "meaningMnemonic": "There's the ground , and there's a toe just below it. Yep, you know this means \"below\" because the ground has a toe below it in this kanji. Hints Where's that toe again? Below the ground. Maybe it's your toe. Imagine digging it out and thinking, Ugh, why does it have to be under the ground like this? So irritating. Will I be able to sew it back on in time to save it?",
+    "readingMnemonic": "You keep digging in the ground for the toe below , but instead you hit something hard and metallic. You try to dig around it, but it's huge. Turns out it's a car ( か ). Keep digging until you unearth the car below. (Inside, you find the toe you were looking for.) Hints There's another useful on'yomi reading that just isn't useful enough for you to learn now. That reading is げ , but we're only going to worry about that much, much later when you have to learn one or two vocab words that read 下 as げ . That's the problem with really common kanji — too many readings.",
+    "components": [
+      {
+        "character": "一",
+        "name": "Ground",
+        "id": "radical:ground"
+      },
+      {
+        "character": "ト",
+        "name": "Toe",
+        "id": "radical:toe"
+      }
+    ],
+    "dependencies": [
+      "radical:ground",
+      "radical:toe"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E4%B8%8B"
+  },
+  {
+    "id": "kanji:大",
+    "type": "kanji",
+    "level": 1,
+    "character": "大",
+    "meaning": "Big",
+    "meanings": [
+      "Big",
+      "Large"
+    ],
+    "readings": [
+      "たい",
+      "だい"
+    ],
+    "otherReadings": [
+      "おお",
+      "ひろ"
+    ],
+    "meaningMnemonic": "The big radical and the big kanji are exactly the same! Hints So, if you know the radical, you know the meaning of this kanji as well.",
+    "readingMnemonic": "There's this big guy (that's how you remember the radical, remember?), and he's wearing a huge Tie Dye ( たい , だい ) shirt. Because he's so huge, the tie dye shirt is also super huge. Everything about him is pretty big, but the tie dye stands out more than anything. Hints When you look at the big guy in your head, imagine him covered in tie dye head to toe. Think about how ridiculous it looks on him, especially since he's such a big guy. Shirt. Sweatpants. Hat. Shoes... it goes on and on.",
+    "components": [
+      {
+        "character": "大",
+        "name": "Big",
+        "id": "radical:big"
+      }
+    ],
+    "dependencies": [
+      "radical:big"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%A4%A7"
+  },
+  {
+    "id": "kanji:工",
+    "type": "kanji",
+    "level": 1,
+    "character": "工",
+    "meaning": "Construction",
+    "meanings": [
+      "Construction",
+      "Industry"
+    ],
+    "readings": [
+      "こう",
+      "く"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The construction radical and the construction kanji are the same! This kanji also means industry , which is what construction is, if you think about it. It's all part of the construction industry. Hints Know your radicals and you'll know this kanji's meaning.",
+    "readingMnemonic": "Every time a kanji uses the こう reading (there are a lot!), we'll use the character こういち . He's one of the people who started this website, so we'll do our best in the mnemonics to embarrass him as much as possible. Like this: You see some construction in front of you. There, standing shirtless (only suspenders and a hard hat) is こう いち , looking back at you. Hints If こういち as a construction worker somehow doesn't make your legs tremble, that's okay. Just make sure you take this story to a ridiculous enough level to construct a memory in that brain of yours. Be mad at him for not following construction site regulations — where's his shirt, shoes, and pants, and why is he using the bulldozer like that?! Alternatively, say you really like what you see (you're going to have to imagine a much better-looking version of こういち 's face, though). You and こういち make eye contact a little too long. He nods, puts his cigarette out, and takes off his hard hat, letting his long Fabio-esque locks flow. You beckon him over and he comes. What happens next is up to you and your own imagination. My guess is you have a very deep conversation about kanji and the best ways to learn it. Anyway, when you see 工 in a kanji, it will often take the こう reading. Make sure to remember that, because it comes up quite a bit!",
+    "components": [
+      {
+        "character": "工",
+        "name": "Construction",
+        "id": "radical:construction"
+      }
+    ],
+    "dependencies": [
+      "radical:construction"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%B7%A5"
+  },
+  {
+    "id": "kanji:八",
+    "type": "kanji",
+    "level": 1,
+    "character": "八",
+    "meaning": "Eight",
+    "meanings": [
+      "Eight"
+    ],
+    "readings": [
+      "はち"
+    ],
+    "otherReadings": [
+      "や",
+      "よう"
+    ],
+    "meaningMnemonic": "This isn't exactly the same as the fins radical, but it's close. Sometimes this will happen (where we have to use a slightly \"modified radical\" version of the original), so it's good to understand that now, early on. In this case, we have fins. How many fins? Eight fins. How do you know that? Because you caught four fish with two fins each. Hints Count the fins out in front of you, all the way from one to eight. It'll help if you actually do this. Now smell each fin, and think \"Wow, I have to smell all eight of these?\" Yes, you do.",
+    "readingMnemonic": "After you count and smell all eight of your fins, it's time to put them away. You open a large hatch ( はち ) and put them in. This is where you keep your fins, always putting in eight at a time because that's what the boss wants. Hints You've asked him why you can only put eight fins at a time in the hatch, but he never wants to answer. What could be down in the hole that the hatch covers? Why is there a hatch at all? What's with numbers and hatches being mysterious?",
+    "components": [
+      {
+        "character": "ハ",
+        "name": "Fins",
+        "id": "radical:fins"
+      }
+    ],
+    "dependencies": [
+      "radical:fins"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%85%AB"
+  },
+  {
+    "id": "kanji:入",
+    "type": "kanji",
+    "level": 1,
+    "character": "入",
+    "meaning": "Enter",
+    "meanings": [
+      "Enter"
+    ],
+    "readings": [
+      "にゅう"
+    ],
+    "otherReadings": [
+      "はい",
+      "い"
+    ],
+    "meaningMnemonic": "The kanji and the radical are the same, so remembering the meaning of this kanji is as simple as making sure you know the radical for enter first! If you know the radical, you know this kanji means enter as well. Hints Make sure you know those radicals, yo!",
+    "readingMnemonic": "Turns out, after you enter the tent (remember how the person in the radical is entering one?), you're given a new ( にゅう ) one! Why? No idea, but hey — it's new! Hints Imagine lights turning on and flashing, and an entire audience inside. You're at a game show, and the announcer announces the neeeeew tent in his announcey voice. Feel the surprise. Feel the happiness. Feel the excitement. A beautiful new tent all for you!",
+    "components": [
+      {
+        "character": "入",
+        "name": "Enter",
+        "id": "radical:enter"
+      }
+    ],
+    "dependencies": [
+      "radical:enter"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%85%A5"
+  },
+  {
+    "id": "kanji:山",
+    "type": "kanji",
+    "level": 1,
+    "character": "山",
+    "meaning": "Mountain",
+    "meanings": [
+      "Mountain"
+    ],
+    "readings": [
+      "さん"
+    ],
+    "otherReadings": [
+      "やま"
+    ],
+    "meaningMnemonic": "The mountain radical and the mountain kanji are the same. Hints Make sure you're studying your radicals. If you are, then you're studying your kanji as well!",
+    "readingMnemonic": "Think about mountains talking to each other, calling each other by their names and adding the Japanese name-ender san ( さん ) to each of their names. \"Hello, Everest- san .\" \"Oh hi, Fuji- san .\" Hints Be sure to imagine this vividly. The more absurdly you can imagine it, the more likely you are to remember the reading, san .",
+    "components": [
+      {
+        "character": "山",
+        "name": "Mountain",
+        "id": "radical:mountain"
+      }
+    ],
+    "dependencies": [
+      "radical:mountain"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%B1%B1"
+  },
+  {
+    "id": "kanji:口",
+    "type": "kanji",
+    "level": 1,
+    "character": "口",
+    "meaning": "Mouth",
+    "meanings": [
+      "Mouth"
+    ],
+    "readings": [
+      "こう",
+      "く"
+    ],
+    "otherReadings": [
+      "くち"
+    ],
+    "meaningMnemonic": "The mouth radical and the mouth kanji are exactly the same! Hints If you learned your radicals — which the WaniKani system forces you to do (unless you're cheating) — you'll already know the meaning of the kanji.",
+    "readingMnemonic": "Do you remember seeing the construction worker こういち earlier in the 工 mnemonic? If you haven't yet, not to worry! For kanji with こう readings (there are a lot of them!) we will use the character こういち every time. He's one of the people who started this website, so we'll do our best in the mnemonics to embarrass him as much as possible. Anyways, remember that whenever you see こう , think こういち . Everyone agrees, the mouth is こう いち 's best feature. You stare at it lovingly as he whispers sweet kanji readings to you. Hints You just can't forget all the cool things about kanji learning he said from that mouth. What a great mouth こういち has. How are the lips of his mouth both so skinny and fat at the same time?",
+    "components": [
+      {
+        "character": "口",
+        "name": "Mouth",
+        "id": "radical:mouth"
+      }
+    ],
+    "dependencies": [
+      "radical:mouth"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%8F%A3"
+  },
+  {
+    "id": "kanji:九",
+    "type": "kanji",
+    "level": 1,
+    "character": "九",
+    "meaning": "Nine",
+    "meanings": [
+      "Nine"
+    ],
+    "readings": [
+      "く",
+      "きゅう"
+    ],
+    "otherReadings": [
+      "ここの"
+    ],
+    "meaningMnemonic": "Nice! This kanji is the same as the radical that looks just like it (down to the meaning, even!). The radical is nine and the kanji is nine , making the meaning of this kanji really easy to remember as long as you know the radical first. Hints If you know your radicals well, this kanji will be a breeze!",
+    "readingMnemonic": "Although this kanji has two on'yomi to learn, the pronunciations of those two on'yomi are very similar, so that should make them easier to remember. When you were nine your favorite foods were coo kies ( く ) and cu cumbers ( きゅう ). Yum yum! Hints Picture nine-year-old you, lining up nine cookies and nine cucumbers. You dip a cookie in milk and bite into it, then dip a cucumber in and take a bite. Nine bites each until they're all gone. Ah, you miss being nine.",
+    "components": [
+      {
+        "character": "九",
+        "name": "Nine",
+        "id": "radical:nine"
+      }
+    ],
+    "dependencies": [
+      "radical:nine"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E4%B9%9D"
+  },
+  {
+    "id": "kanji:一",
+    "type": "kanji",
+    "level": 1,
+    "character": "一",
+    "meaning": "One",
+    "meanings": [
+      "One"
+    ],
+    "readings": [
+      "いち",
+      "いつ"
+    ],
+    "otherReadings": [
+      "ひと",
+      "かず"
+    ],
+    "meaningMnemonic": "Lying on the ground is something that looks just like the ground, the number One . Why is this One lying down? It's been shot by the number two. It's lying there, bleeding out and dying. The number One doesn't have long to live. Hints To remember the meaning of One , imagine yourself there at the scene of the crime. You grab One in your arms, trying to prop it up, trying to hear its last words. Instead, it just splatters some blood on your face. \"Who did this to you?\" you ask. The number One points weakly, and you see number Two running off into an alleyway. He's always been jealous of number One and knows he can be number one now that he's taken the real number one out.",
+    "readingMnemonic": "As you're sitting there next to One , holding him up, you start feeling a weird sensation all over your skin. From the wound comes a fine powder (obviously coming from the special bullet used to kill One) that causes the person it touches to get extremely itchy ( いち ). Hints Make sure you feel the ridiculously itchy sensation covering your body. It climbs from your hands, where you're holding the number One up, and then goes through your arms, crawls up your neck, goes down your body, and then covers everything. It becomes uncontrollable, and you're scratching everywhere, writhing on the ground. It's so itchy that it's the most painful thing you've ever experienced (you should imagine this vividly, so you remember the reading of this kanji).",
+    "components": [
+      {
+        "character": "一",
+        "name": "Ground",
+        "id": "radical:ground"
+      }
+    ],
+    "dependencies": [
+      "radical:ground"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E4%B8%80"
+  },
+  {
+    "id": "kanji:人",
+    "type": "kanji",
+    "level": 1,
+    "character": "人",
+    "meaning": "Person",
+    "meanings": [
+      "Person"
+    ],
+    "readings": [
+      "にん",
+      "じん"
+    ],
+    "otherReadings": [
+      "ひと",
+      "と"
+    ],
+    "meaningMnemonic": "Remember how the radical version of this kanji meant person because it looks like a person with their arms down and their legs spread out? Well this is a person too! Hints Know the radicals, and you shall know the kanji.",
+    "readingMnemonic": "Only one person at Nin tendo ( にん ) complained about the new jean s ( じん ) policy, and that person was you. Hints Imagine how angry you were about the policy. You'll have to come up with something to be angry about yourself (pick something that would actually make you angry, like maybe you're only allowed to wear cut off short-shorts jeans at Nintendo now), but if you pick something good, you'll definitely remember the two readings for this. Just remember you're working at Nintendo, and the policy has to be something about jeans. Then, imagine yourself as the only person complaining and everyone else in their dumb jeans (or lack-thereof) shaking their head at you because you're being a fool.",
+    "components": [
+      {
+        "character": "人",
+        "name": "Person",
+        "id": "radical:person"
+      }
+    ],
+    "dependencies": [
+      "radical:person"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E4%BA%BA"
+  },
+  {
+    "id": "kanji:力",
+    "type": "kanji",
+    "level": 1,
+    "character": "力",
+    "meaning": "Power",
+    "meanings": [
+      "Power",
+      "Strength",
+      "Ability"
+    ],
+    "readings": [
+      "りょく",
+      "りき"
+    ],
+    "otherReadings": [
+      "ちから"
+    ],
+    "meaningMnemonic": "The radical and the meaning of this kanji are the same. Both are power . Hints If you know the radical, you should be feeling fine… No, you should feel powerful!",
+    "readingMnemonic": "Who has the most power of anyone? It's the Power Rangers. They are battling their arch enemy Ricky ( りき ). They defeat him and lock ( りょく ) him up, so that he can't hurt anyone ever again. Hints Know anyone named Ricky ( りき ), even a famous person like Ricky Ricardo or Ricky Gervais? Imagine that person's face on the monster the Power Rangers are fighting. Now, imagine the Power Rangers lock ing ( りょく ) him up. He looks much less scary once he's locked up. Phew.",
+    "components": [
+      {
+        "character": "力",
+        "name": "Power",
+        "id": "radical:power"
+      }
+    ],
+    "dependencies": [
+      "radical:power"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%8A%9B"
+  },
+  {
+    "id": "kanji:川",
+    "type": "kanji",
+    "level": 1,
+    "character": "川",
+    "meaning": "River",
+    "meanings": [
+      "River"
+    ],
+    "readings": [
+      "かわ"
+    ],
+    "otherReadings": [
+      "せん"
+    ],
+    "meaningMnemonic": "The river radical and the river kanji are the same as each other! Hints So, if you know the radical you know the kanji as well.",
+    "readingMnemonic": "You're standing next to a river that's actually used as a ca r wa sh ( かわ ). Hints Imagine standing by the river, watching all those cars floating by. They start off really dirty, but the river washes them all clean.",
+    "components": [
+      {
+        "character": "川",
+        "name": "River",
+        "id": "radical:river"
+      }
+    ],
+    "dependencies": [
+      "radical:river"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%B7%9D"
+  },
+  {
+    "id": "kanji:七",
+    "type": "kanji",
+    "level": 1,
+    "character": "七",
+    "meaning": "Seven",
+    "meanings": [
+      "Seven"
+    ],
+    "readings": [
+      "しち"
+    ],
+    "otherReadings": [
+      "なな",
+      "なの"
+    ],
+    "meaningMnemonic": "Lucky for you (as is the case with many of the lower-stroke kanji), this kanji is the same as the radical you've already learned. The radical that makes up this kanji is seven and the kanji (which is exactly the same) is also seven . So, if you know the radical, you know the meaning of the kanji as well. Hints Make sure you know your radicals well and you'll be A-Okay on this one!",
+    "readingMnemonic": "You know this kanji means seven , so let's use that to remember the reading too. Seven is a lucky number, usually, but this time it isn't so good: Seven percent is all she got on her test after she chea ted ( しち ) on it. Hints How unbelievable is it that someone got seven percent on a test, especially if you try to cheat? Imagine the girl you loathe the most from school, and imagine her cheating on the test (it's important it's a girl, because of the \"she\" part in she chea ted ( しち ). Then, imagine your happiness when she's super upset about getting seven percent on it. Serves her right, obviously.",
+    "components": [
+      {
+        "character": "七",
+        "name": "Seven",
+        "id": "radical:seven"
+      }
+    ],
+    "dependencies": [
+      "radical:seven"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E4%B8%83"
+  },
+  {
+    "id": "kanji:十",
+    "type": "kanji",
+    "level": 1,
+    "character": "十",
+    "meaning": "Ten",
+    "meanings": [
+      "Ten"
+    ],
+    "readings": [
+      "じゅう"
+    ],
+    "otherReadings": [
+      "とお"
+    ],
+    "meaningMnemonic": "This cross is the symbol for the number ten . A good way to remember this is to think about all the religions that have crosses and also important sets of tens. Hints If you're familiar with Christianity, they have a cross and ten commandments. Cross = ten, you see?",
+    "readingMnemonic": "This cross in particular has ten jew els ( じゅう ) on it. Two on each arm and two in the middle. That's ten jewels! Hints Picture the jewels on this cross. Maybe draw it out on a piece of paper so the visual really sticks. Each cross is really a symbol for different sets of ten things, and in this case, it's ten jewels.",
+    "components": [
+      {
+        "character": "十",
+        "name": "Cross",
+        "id": "radical:cross"
+      }
+    ],
+    "dependencies": [
+      "radical:cross"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%8D%81"
+  },
+  {
+    "id": "kanji:三",
+    "type": "kanji",
+    "level": 1,
+    "character": "三",
+    "meaning": "Three",
+    "meanings": [
+      "Three"
+    ],
+    "readings": [
+      "さん"
+    ],
+    "otherReadings": [
+      "み"
+    ],
+    "meaningMnemonic": "This kanji is made up of the ground radical (which also happens to be the kanji for \"one\") and the radical for two. Combine one and two together and what do you get? Three ! Hints This one should be pretty self explanatory! Even easier, you can look at this kanji and see it has three straight lines. You know what one looks like. You know what two looks like. So... this is three!",
+    "readingMnemonic": "Three is the number of chances you get with San ta-san ( さん ). He has a list, and when you get to three \"naughty things\" lines, that's it. You're on Santa-san's three strikes and you're out list. Hints Picture Santa-san sitting at his desk at the North Pole, eating cookies, and marking one, two, then finally three lines next to names. Once the third line appears, the kid doesn't get presents anymore.",
+    "components": [
+      {
+        "character": "一",
+        "name": "Ground",
+        "id": "radical:ground"
+      },
+      {
+        "character": "二",
+        "name": "Two",
+        "id": "radical:two"
+      }
+    ],
+    "dependencies": [
+      "radical:ground",
+      "radical:two"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E4%B8%89"
+  },
+  {
+    "id": "kanji:二",
+    "type": "kanji",
+    "level": 1,
+    "character": "二",
+    "meaning": "Two",
+    "meanings": [
+      "Two"
+    ],
+    "readings": [
+      "に"
+    ],
+    "otherReadings": [
+      "ふた"
+    ],
+    "meaningMnemonic": "The kanji two and the radical two are the exact same things. Therefore, you know the kanji for two already! Hints More simply put, you can just know that this kanji is the double of one. It's two lines, that's not all that hard to remember!",
+    "readingMnemonic": "How do you count to two ? Just use someone's knee ( に ), and then their other knee. There — two knees! Hints Imagine asking to borrow the two knees of a stranger in the street, just so you can count to two. They're confused at first, but then they present each knee to you in a loving sort of way. Yep, that's two knees alright.",
+    "components": [
+      {
+        "character": "二",
+        "name": "Two",
+        "id": "radical:two"
+      }
+    ],
+    "dependencies": [
+      "radical:two"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E4%BA%8C"
+  },
+  {
+    "id": "kanji:女",
+    "type": "kanji",
+    "level": 1,
+    "character": "女",
+    "meaning": "Woman",
+    "meanings": [
+      "Woman"
+    ],
+    "readings": [
+      "じょ",
+      "にょ",
+      "にょう"
+    ],
+    "otherReadings": [
+      "おんな",
+      "め"
+    ],
+    "meaningMnemonic": "The radical for woman and the kanji for woman are exactly the same. Hints That means if you know your radicals well, you know the meaning of this kanji as well! How swell.",
+    "readingMnemonic": "When you think of a woman , think of Jo -Anne ( じょ ), though she usually goes by just \"Jo.\" Hints Whenever the reading じょ comes up, we will use the character Jo-Anne. She's quite a short woman, which is to help us differentiate じょ from じょう (who is the giant, oafish farmhand Joe). じょ is a smaller lady, じょう is a giant man.",
+    "components": [
+      {
+        "character": "女",
+        "name": "Woman",
+        "id": "radical:woman"
+      }
+    ],
+    "dependencies": [
+      "radical:woman"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%A5%B3"
+  },
+  {
+    "id": "vocabulary:上",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "上",
+    "meaning": "Above",
+    "meanings": [
+      "Above",
+      "Up",
+      "Over"
+    ],
+    "readings": [
+      "うえ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab word is a single kanji and alone, it tends to steal the meaning from the kanji. Same goes for this one too. It means above or up .",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it's usually going to use the kun'yomi. Since you learned the on'yomi reading of the kanji, we'll need to use a mnemonic to learn the reading of this vocabulary word. Above you is a huge weight. You're holding it up and struggling (it's heavy!). You look up and try to crane your neck to see how much it weigh s ( うえ ), but you can't see the numbers on the side of it. How long can you hold it above your head like this?",
+    "components": [
+      {
+        "character": "上",
+        "name": "Above",
+        "id": "kanji:上"
+      }
+    ],
+    "dependencies": [
+      "kanji:上"
+    ],
+    "sentences": [
+      {
+        "japanese": "上にある",
+        "english": "to be on top, to be upstairs"
+      },
+      {
+        "japanese": "上にいる",
+        "english": "to be upstairs"
+      },
+      {
+        "japanese": "上におく",
+        "english": "to put on top"
+      },
+      {
+        "japanese": "テーブルの上",
+        "english": "on the table"
+      },
+      {
+        "japanese": "ベッドの上",
+        "english": "on the bed"
+      },
+      {
+        "japanese": "人の上",
+        "english": "superior to other people"
+      },
+      {
+        "japanese": "上の二つ",
+        "english": "the top two"
+      },
+      {
+        "japanese": "上のレベル",
+        "english": "the level above"
+      },
+      {
+        "japanese": "上の人",
+        "english": "superior, person who lives upstairs"
+      },
+      {
+        "japanese": "山の上でヨガをしたいね。",
+        "english": "I want to do yoga on top of a mountain."
+      },
+      {
+        "japanese": "上のフロアにキッチンがあります。",
+        "english": "There is a kitchen on the floor above."
+      },
+      {
+        "japanese": "リビングルームの上にロフトがあります。",
+        "english": "There is a loft above the living room."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%8A"
+  },
+  {
+    "id": "vocabulary:大人",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "大人",
+    "meaning": "Adult",
+    "meanings": [
+      "Adult",
+      "Mature"
+    ],
+    "readings": [
+      "おとな"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word combines big and person . If you're a child, how do you think of adults? You just think of them like big people. That's why this combination of kanji means adult , and when used like an adjective, it means mature .",
+    "readingMnemonic": "Sometimes kanji have exceptional readings that are neither on’yomi, nor kun’yomi, and this is one of them. So here’s a mnemonic to help you remember this reading: \"I'm an adult , which means I have adult responsibilities, like… oh, toner ( おとな )!\" Are you an adult with your own toner printer? Ohhhh, toner…",
+    "components": [
+      {
+        "character": "大",
+        "name": "Big",
+        "id": "kanji:大"
+      },
+      {
+        "character": "人",
+        "name": "Person",
+        "id": "kanji:人"
+      }
+    ],
+    "dependencies": [
+      "kanji:大",
+      "kanji:人"
+    ],
+    "sentences": [
+      {
+        "japanese": "大人になりたい",
+        "english": "want to become an adult, want to become mature"
+      },
+      {
+        "japanese": "大人になる",
+        "english": "become an adult, become mature"
+      },
+      {
+        "japanese": "大人のマナー",
+        "english": "adult manners"
+      },
+      {
+        "japanese": "大人の人",
+        "english": "an adult"
+      },
+      {
+        "japanese": "大人の女",
+        "english": "an adult woman"
+      },
+      {
+        "japanese": "大人なイメージ",
+        "english": "a mature impression"
+      },
+      {
+        "japanese": "大人な女",
+        "english": "a mature woman"
+      },
+      {
+        "japanese": "大人な人",
+        "english": "a mature person"
+      },
+      {
+        "japanese": "大人だけ",
+        "english": "adults only"
+      },
+      {
+        "japanese": "大人たち",
+        "english": "adults"
+      },
+      {
+        "japanese": "大人っぽい",
+        "english": "adult-like, mature"
+      },
+      {
+        "japanese": "大人のチケット下さい。",
+        "english": "A ticket for an adult, please."
+      },
+      {
+        "japanese": "PG-18は大人のためのコンテンツです。",
+        "english": "PG-18 is content for adults."
+      },
+      {
+        "japanese": "わたしは「大人の女」をテーマにしたファッションマガジンのモデルです。",
+        "english": "I am a model for a fashion magazine that caters to \"mature women.\""
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%A4%A7%E4%BA%BA"
+  },
+  {
+    "id": "vocabulary:一人",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "一人",
+    "meaning": "Alone",
+    "meanings": [
+      "Alone",
+      "One Person"
+    ],
+    "readings": [
+      "ひとり"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When there's one person , what are they? Well, they're either just going to be simply one person or alone .",
+    "readingMnemonic": "The reading for this vocab doesn't follow any rules you learned previously. It's an exception, which means you have to learn the reading separately too. Spend a few moments trying to remember this word, look away for 10 seconds, and then try to recall its reading. Could you do it? Try again, this time in thirty seconds. Did you do it again? Okay, go ahead and move on. You may know it now, though you'll need to recall it again in the next 5-10 minutes if you want to remember it for good. Alternatively, if you know the reading for the vocab word 一つ (in the same level as this word), you can know that it uses the same reading!",
+    "components": [
+      {
+        "character": "一",
+        "name": "One",
+        "id": "kanji:一"
+      },
+      {
+        "character": "人",
+        "name": "Person",
+        "id": "kanji:人"
+      }
+    ],
+    "dependencies": [
+      "kanji:一",
+      "kanji:人"
+    ],
+    "sentences": [
+      {
+        "japanese": "一人でいる",
+        "english": "to be by oneself"
+      },
+      {
+        "japanese": "一人でできる",
+        "english": "to be able to do something alone"
+      },
+      {
+        "japanese": "一人でする",
+        "english": "to do something alone"
+      },
+      {
+        "japanese": "一人の人",
+        "english": "one person"
+      },
+      {
+        "japanese": "一人の力",
+        "english": "the strength of one person"
+      },
+      {
+        "japanese": "一人の女",
+        "english": "one woman"
+      },
+      {
+        "japanese": "一人でカラオケにいきました。",
+        "english": "I went to karaoke alone."
+      },
+      {
+        "japanese": "一人なので、カウンターでもいいですよ。",
+        "english": "I'm by myself, so I'm fine with a counter seat."
+      },
+      {
+        "japanese": "はじめて一人でドライブにいった。",
+        "english": "For the first time, I went for a drive alone."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%80%E4%BA%BA"
+  },
+  {
+    "id": "vocabulary:人工",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "人工",
+    "meaning": "Artificial",
+    "meanings": [
+      "Artificial",
+      "Man Made",
+      "Human Made"
+    ],
+    "readings": [
+      "じんこう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A person of industry makes a lot of things by hand, so everything they make is artificial , and also means it's man made .",
+    "readingMnemonic": "This is a jukugo word, which usually means on'yomi readings from the kanji. Since 人 has two on'yomi readings, here's a mnemonic to help you remember which one to use: Remember this by thinking about how jean s ( じん ) are artificial . You've never seen jeans growing on trees, right? Nope, jeans are 100% man made .",
+    "components": [
+      {
+        "character": "人",
+        "name": "Person",
+        "id": "kanji:人"
+      },
+      {
+        "character": "工",
+        "name": "Construction",
+        "id": "kanji:工"
+      }
+    ],
+    "dependencies": [
+      "kanji:人",
+      "kanji:工"
+    ],
+    "sentences": [
+      {
+        "japanese": "人工の山",
+        "english": "artificial mountain"
+      },
+      {
+        "japanese": "人工のダム",
+        "english": "man-made dam"
+      },
+      {
+        "japanese": "人工の川",
+        "english": "man-made river"
+      },
+      {
+        "japanese": "これ、ほんとうに人工コアラ？",
+        "english": "Is this really an artificial koala?"
+      },
+      {
+        "japanese": "この川は、人工の川です。",
+        "english": "This river is man-made."
+      },
+      {
+        "japanese": "このクオリティ、人工のバラだとはおもえない！",
+        "english": "With this quality it's unbelievable that these are artificial roses!"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%BA%BA%E5%B7%A5"
+  },
+  {
+    "id": "vocabulary:下",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "下",
+    "meaning": "Below",
+    "meanings": [
+      "Below",
+      "Under",
+      "Beneath",
+      "Down"
+    ],
+    "readings": [
+      "した"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab is a single kanji with no okurigana (that's hiragana attached to the kanji) it tends to steal the meaning of the kanji it comes from. So, this one is below or under .",
+    "readingMnemonic": "When a vocab is a single kanji and is alone it tends to use the kun'yomi reading. You learned the on'yomi reading for this kanji, so now it's time to learn the kun'yomi reading to learn this vocabulary word. What's below you? What's below your foot? Oh no. The worst thing possible: It's した .",
+    "components": [
+      {
+        "character": "下",
+        "name": "Below",
+        "id": "kanji:下"
+      }
+    ],
+    "dependencies": [
+      "kanji:下"
+    ],
+    "sentences": [
+      {
+        "japanese": "ベッドの下",
+        "english": "under the bed"
+      },
+      {
+        "japanese": "ページの下",
+        "english": "bottom of the page"
+      },
+      {
+        "japanese": "テーブルの下",
+        "english": "under the table"
+      },
+      {
+        "japanese": "下にある",
+        "english": "to be under, to be downstairs"
+      },
+      {
+        "japanese": "下にいる",
+        "english": "to be under, to be downstairs"
+      },
+      {
+        "japanese": "下におく",
+        "english": "to put something under something, to put something on the ground"
+      },
+      {
+        "japanese": "下のほう",
+        "english": "the lower part"
+      },
+      {
+        "japanese": "下のイメージ",
+        "english": "the image below"
+      },
+      {
+        "japanese": "下のグラフ",
+        "english": "the graph below"
+      },
+      {
+        "japanese": "あ、テーブルの下にハムスターがいる！",
+        "english": "Oh, there's a hamster under the table!"
+      },
+      {
+        "japanese": "下のフロアに、きてください。",
+        "english": "Please come downstairs."
+      },
+      {
+        "japanese": "山の下に大きいレストランがあるよ。",
+        "english": "There's a large restaurant down the mountain."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%8B"
+  },
+  {
+    "id": "vocabulary:大きい",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "大きい",
+    "meaning": "Big",
+    "meanings": [
+      "Big",
+      "Large"
+    ],
+    "readings": [
+      "おおきい"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This is the adjective form of big . It has the same meaning, though it is a word for describing. Words that end with い are often adjectives, remember that for future words as well. So, as long as you know the meaning of this kanji, you can transfer that to the meaning of this word. It's the adjective big , or large .",
+    "readingMnemonic": "What do you do when you see something really, really big ? You say おお because you can't believe your eyes. Imagine something really large and say おお out loud to help seal the memory in that brain of yours.",
+    "components": [
+      {
+        "character": "大",
+        "name": "Big",
+        "id": "kanji:大"
+      }
+    ],
+    "dependencies": [
+      "kanji:大"
+    ],
+    "sentences": [
+      {
+        "japanese": "大きいヌイグルミ",
+        "english": "a big stuffed animal"
+      },
+      {
+        "japanese": "大きいサイズ",
+        "english": "a large size"
+      },
+      {
+        "japanese": "大きいレモン",
+        "english": "a big lemon"
+      },
+      {
+        "japanese": "サイズが大きい",
+        "english": "the size is large"
+      },
+      {
+        "japanese": "メリットが大きい",
+        "english": "the benefits are great"
+      },
+      {
+        "japanese": "リスクが大きい",
+        "english": "the risk is high"
+      },
+      {
+        "japanese": "大きいメロンを下さい。",
+        "english": "A large melon, please."
+      },
+      {
+        "japanese": "このサンダルは大きすぎる。",
+        "english": "These sandals are too big."
+      },
+      {
+        "japanese": "これよりも大きいサイズありますか？",
+        "english": "Does this come in a larger size?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%A4%A7%E3%81%8D%E3%81%84"
+  },
+  {
+    "id": "vocabulary:八",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "八",
+    "meaning": "Eight",
+    "meanings": [
+      "Eight"
+    ],
+    "readings": [
+      "はち"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab is a single kanji it usually steals its meaning from its kanji as well. Same goes for this vocab word. It means eight .",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it's usually going to use the kun'yomi. But, because this is a number (exception) it uses the on'yomi instead, meaning you already know the reading from when you learned the kanji!",
+    "components": [
+      {
+        "character": "八",
+        "name": "Eight",
+        "id": "kanji:八"
+      }
+    ],
+    "dependencies": [
+      "kanji:八"
+    ],
+    "sentences": [
+      {
+        "japanese": "八人",
+        "english": "eight people"
+      },
+      {
+        "japanese": "八ミリ",
+        "english": "eight millimeters"
+      },
+      {
+        "japanese": "八メートル",
+        "english": "eight meters"
+      },
+      {
+        "japanese": "これは八ページのエッセイです。",
+        "english": "This is an eight-page essay."
+      },
+      {
+        "japanese": "トイレットペーパーが八ロールしかない。",
+        "english": "There are only eight rolls of toilet paper."
+      },
+      {
+        "japanese": "パパは八トントラックのドライバーなんです。",
+        "english": "Dad is an eight-ton truck driver."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%85%AB"
+  },
+  {
+    "id": "vocabulary:八つ",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "八つ",
+    "meaning": "Eight Things",
+    "meanings": [
+      "Eight Things"
+    ],
+    "readings": [
+      "やっつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word follows the \"number of things\" pattern where there's a kanji for a number plus つ on the end. Whenever you see this, you know the word means \"____ things.\" Knowing that, as long as you know the kanji (which you do) you can figure out what number of things it is. For this one, it's the kanji for eight plus つ . So, this one is eight things .",
+    "readingMnemonic": "Since all the \"number of things\" words follow the same pattern (number + つ ), you just have to remember the part before the つ . All their readings use kun'yomi. So far you've only seen the on'yomi reading for this kanji though, so here's a mnemonic to help you remember it: Can you think of eight things that start with the sound \"ya\"? Yah ( や ), you can. Try listing them out loud. Even if you don't manage it, you'll remember the connection between eight and \"ya.\" Oh, and see that small っ in the middle of the reading ( やっつ )? It puts a little emphasis on the consonant that follows it, like yattttttsu . OK, not that much emphasis. More like yattsu .",
+    "components": [
+      {
+        "character": "八",
+        "name": "Eight",
+        "id": "kanji:八"
+      }
+    ],
+    "dependencies": [
+      "kanji:八"
+    ],
+    "sentences": [
+      {
+        "japanese": "八つの山",
+        "english": "eight mountains"
+      },
+      {
+        "japanese": "八つのキーワード",
+        "english": "eight keywords"
+      },
+      {
+        "japanese": "八つのタイプ",
+        "english": "eight types"
+      },
+      {
+        "japanese": "このカレーにはじゃがいもが八つ入っています。",
+        "english": "This curry has eight potatoes in it."
+      },
+      {
+        "japanese": "キットカットが八つ、口に入ってます。",
+        "english": "There are eight KitKats in my mouth."
+      },
+      {
+        "japanese": "うちのおばあちゃんはインスタグラムだけで八つもアカウントをもってるんだ。",
+        "english": "My grandma has eight accounts on Instagram alone."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%85%AB%E3%81%A4"
+  },
+  {
+    "id": "vocabulary:入り口",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "入り口",
+    "meaning": "Entrance",
+    "meanings": [
+      "Entrance"
+    ],
+    "readings": [
+      "いりぐち"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A mouth that you enter is an entrance .",
+    "readingMnemonic": "This word is really two separate words put together to form one, so let's look at it in two parts: The kanji 入 has り attached to it as okurigana (hiragana that comes after a kanji), so you can bet that 入り will use a kun'yomi reading for the kanji. You haven't learned this reading yet, so here's a mnemonic to help you: The entrance you're going through is really eerie ( いり ). It has cobwebs and creepy figures carved into it, and it just gives you a really eerie feeling. Since 入り uses the kun'yomi, you can guess that 口 will follow suit. You learned this reading with the vocabulary, but the く in くち changes to ぐ due to something called rendaku. Think of it as an eerie entrance into the Gucci ( ぐち ) store.",
+    "components": [
+      {
+        "character": "入",
+        "name": "Enter",
+        "id": "kanji:入"
+      },
+      {
+        "character": "口",
+        "name": "Mouth",
+        "id": "kanji:口"
+      }
+    ],
+    "dependencies": [
+      "kanji:入",
+      "kanji:口"
+    ],
+    "sentences": [
+      {
+        "japanese": "トンネルの入り口",
+        "english": "entrance to the tunnel"
+      },
+      {
+        "japanese": "ビルの入り口",
+        "english": "entrance to the building"
+      },
+      {
+        "japanese": "ホテルの入り口",
+        "english": "entrance to the hotel"
+      },
+      {
+        "japanese": "入り口にある",
+        "english": "to be at the entrance"
+      },
+      {
+        "japanese": "入り口におく",
+        "english": "to put something at the entrance"
+      },
+      {
+        "japanese": "入り口にいる",
+        "english": "to be at the entrance"
+      },
+      {
+        "japanese": "入り口の一つ",
+        "english": "one of the entrances"
+      },
+      {
+        "japanese": "入り口のドア",
+        "english": "entrance door"
+      },
+      {
+        "japanese": "入り口の人",
+        "english": "the person at the entrance"
+      },
+      {
+        "japanese": "入り口は、どこ？",
+        "english": "Where is the entrance?"
+      },
+      {
+        "japanese": "入り口が三つあります。",
+        "english": "There are three entrances."
+      },
+      {
+        "japanese": "まず、あなたのアパートの入り口のドアの大きさをおしえて。",
+        "english": "First, tell me the size of the entryway door of your apartment."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%85%A5%E3%82%8A%E5%8F%A3"
+  },
+  {
+    "id": "vocabulary:大した",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "大した",
+    "meaning": "Great",
+    "meanings": [
+      "Great",
+      "Considerable",
+      "Important",
+      "Big Deal"
+    ],
+    "readings": [
+      "たいした"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "した is the past tense form of する (which means \"to do\"). So, essentially this word is \"did big.\" What is something that \"did big\"? It's something that's great or considerable .",
+    "readingMnemonic": "The reading for the 大 part is actually the on'yomi reading you learned when learning this kanji. Since 大 has two on'yomi readings, here's a mnemonic to help you remember which one to use: When something's great and important , you'd better wear a tie ( たい ) for it. No showing up without a tie to anything that's a big deal , okay?",
+    "components": [
+      {
+        "character": "大",
+        "name": "Big",
+        "id": "kanji:大"
+      }
+    ],
+    "dependencies": [
+      "kanji:大"
+    ],
+    "sentences": [
+      {
+        "japanese": "大したことはない",
+        "english": "not a big deal"
+      },
+      {
+        "japanese": "大した女だ",
+        "english": "she's a great woman, you're a great woman"
+      },
+      {
+        "japanese": "大したものだ",
+        "english": "quite a feat"
+      },
+      {
+        "japanese": "大したことじゃないよ。",
+        "english": "It's no big deal."
+      },
+      {
+        "japanese": "えっ！？コウイチが、メジャーリーグに入る？ それは、大したものだ！",
+        "english": "What!? Koichi's entering the major league? That's a big deal!"
+      },
+      {
+        "japanese": "このオレをふるなんて、大した女だったよ。",
+        "english": "She had considerable nerve, dumping me."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%A4%A7%E3%81%97%E3%81%9F"
+  },
+  {
+    "id": "vocabulary:山",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "山",
+    "meaning": "Mountain",
+    "meanings": [
+      "Mountain"
+    ],
+    "readings": [
+      "やま"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A vocab made of a single kanji all alone with no okurigana (hiragana attached to the kanji) usually has the same exact meaning as the kanji it's made from. So by that you know that this vocab's meaning is mountain .",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it's usually going to use the kun'yomi, which you didn't learn when you learned the kanji. To remember this word's reading we'll use a mnemonic. What are you doing going up into the mountain s? You're hunting for yam s ( やま ). Go ahead, imagine yourself doing just that, climbing up the mountain (it's hard work!) and then digging in the ground with your hands, then pulling up that sweet, delicious yam! Mmm!",
+    "components": [
+      {
+        "character": "山",
+        "name": "Mountain",
+        "id": "kanji:山"
+      }
+    ],
+    "dependencies": [
+      "kanji:山"
+    ],
+    "sentences": [
+      {
+        "japanese": "山ガール",
+        "english": "a young woman who likes mountain climbing"
+      },
+      {
+        "japanese": "山ぶどう",
+        "english": "wild grapes"
+      },
+      {
+        "japanese": "山のぼり",
+        "english": "mountain climbing"
+      },
+      {
+        "japanese": "山のむこう",
+        "english": "over the mountain"
+      },
+      {
+        "japanese": "山のふもと",
+        "english": "the foot of a mountain"
+      },
+      {
+        "japanese": "山のなまえ",
+        "english": "the name of the mountain"
+      },
+      {
+        "japanese": "山にのぼる",
+        "english": "to climb a mountain"
+      },
+      {
+        "japanese": "山に入る",
+        "english": "to go into the mountains"
+      },
+      {
+        "japanese": "山にいる",
+        "english": "to be in the mountains"
+      },
+      {
+        "japanese": "カードの山",
+        "english": "a pile of cards"
+      },
+      {
+        "japanese": "ゴミの山",
+        "english": "a heap of garbage"
+      },
+      {
+        "japanese": "がれきの山",
+        "english": "a heap of rubble"
+      },
+      {
+        "japanese": "山をのぼる",
+        "english": "to climb a mountain"
+      },
+      {
+        "japanese": "山をこえる",
+        "english": "to cross a mountain, to surmount a difficulty"
+      },
+      {
+        "japanese": "山をあるく",
+        "english": "to walk in the mountains"
+      },
+      {
+        "japanese": "これは人工の山だ。",
+        "english": "This is an artificial mountain."
+      },
+      {
+        "japanese": "フランス一大きい山はモンブランです。",
+        "english": "France's number one biggest mountain is Mont Blanc."
+      },
+      {
+        "japanese": "ゴミの山かとおもったら、下にベッドがあった。",
+        "english": "I thought it was a mountain of trash, then I realized there was a bed underneath.."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%B1%B1"
+  },
+  {
+    "id": "vocabulary:口",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "口",
+    "meaning": "Mouth",
+    "meanings": [
+      "Mouth"
+    ],
+    "readings": [
+      "くち"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab is made up of a single kanji with no okurigana (hiragana attached to the kanji) it's generally going to have the same meaning as the kanji it came from. From that, you know this word's meaning is mouth .",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it's usually going to use the kun'yomi, which you did not learn from learning the kanji. To remember this word, you should use a mnemonic. With your mouth , make a \" kuchi kuchi kou\" ( くち ) sound. Go ahead, make it. Focus on your mouth and try to imagine each shape it makes while zooming in on it. You're talking to a baby, which is why you're making all these ridiculous noises. Also, instead of \"coo\" at the end, you're saying \"kou,\" because that's the reading of the kanji ( こう ). くちくちこう！くちくちこう！ Sounds like something from Arrested Development, actually.",
+    "components": [
+      {
+        "character": "口",
+        "name": "Mouth",
+        "id": "kanji:口"
+      }
+    ],
+    "dependencies": [
+      "kanji:口"
+    ],
+    "sentences": [
+      {
+        "japanese": "口にくわえる",
+        "english": "to put something in one's mouth"
+      },
+      {
+        "japanese": "口に入る",
+        "english": "to enter one's mouth, to get something in one's mouth"
+      },
+      {
+        "japanese": "口にする",
+        "english": "to mention, to eat, to drink"
+      },
+      {
+        "japanese": "口をそろえる",
+        "english": "to protest in chorus, to speak in unison"
+      },
+      {
+        "japanese": "口をあける",
+        "english": "to open one's mouth"
+      },
+      {
+        "japanese": "口をひらく",
+        "english": "to open one's mouth to speak"
+      },
+      {
+        "japanese": "ワニの口",
+        "english": "crocodile's mouth"
+      },
+      {
+        "japanese": "バッグの口",
+        "english": "the opening of a bag"
+      },
+      {
+        "japanese": "ペットボトルの口",
+        "english": "the mouth of a plastic bottle"
+      },
+      {
+        "japanese": "口のまわり",
+        "english": "around one's mouth"
+      },
+      {
+        "japanese": "口のケア",
+        "english": "oral care"
+      },
+      {
+        "japanese": "口のトラブル",
+        "english": "oral problems"
+      },
+      {
+        "japanese": "口にソースがついていますよ。",
+        "english": "There is some sauce on your mouth."
+      },
+      {
+        "japanese": "これを口に入れてください。",
+        "english": "Please put this in your mouth."
+      },
+      {
+        "japanese": "このペットボトルは口が大きすぎる。",
+        "english": "The mouth of this plastic bottle is too large."
+      },
+      {
+        "japanese": "ちゃんと口のケアをしないと、女にモテないだろ。",
+        "english": "If you don't take good care of your mouth, you won't have much luck with women."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%8F%A3"
+  },
+  {
+    "id": "vocabulary:ふじ山",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "ふじ山",
+    "meaning": "Mt Fuji",
+    "meanings": [
+      "Mt Fuji",
+      "Mount Fuji",
+      "Mt. Fuji"
+    ],
+    "readings": [
+      "ふじさん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Just look at this word. What do you think it means? That's right - it's a name (Fuji) plus the kanji for mountain . Put those together, and you have Mount Fuji . In English the \"Mount(ain)\" part comes first. In Japanese, it comes at the end, sort of like the name ender さん , ちゃん , and so on. You can add 山 to the end of any mountain's name too, not just Mount Fuji.",
+    "readingMnemonic": "Normally ふじ would be in kanji, but I wanted you to see this kanji use in action since it's more useful than just being used on Mount Fuji. This is treated like a jukugo word (combo kanji word). In the case of jukugo, usually the on'yomi reading is used, meaning you just have to remember the on'yomi reading of 山 . Luckily, you learned this when you were learning the kanji, so you should already know it!",
+    "components": [
+      {
+        "character": "山",
+        "name": "Mountain",
+        "id": "kanji:山"
+      }
+    ],
+    "dependencies": [
+      "kanji:山"
+    ],
+    "sentences": [
+      {
+        "japanese": "ふじ山のふもと",
+        "english": "the foot of Mt. Fuji"
+      },
+      {
+        "japanese": "ふじ山のイラスト",
+        "english": "an illustration of Mt. Fuji"
+      },
+      {
+        "japanese": "ふじ山のポストカード",
+        "english": "a postcard of Mt. Fuji"
+      },
+      {
+        "japanese": "ふじ山について",
+        "english": "about Mt. Fuji"
+      },
+      {
+        "japanese": "ふじ山にいる",
+        "english": "to be at Mt. Fuji"
+      },
+      {
+        "japanese": "ふじ山にのぼる",
+        "english": "to climb Mt. Fuji"
+      },
+      {
+        "japanese": "あっ、ふじ山だ！",
+        "english": "Oh, it's Mt. Fuji!"
+      },
+      {
+        "japanese": "エベレスト山は、ふじ山より大きいですか？",
+        "english": "Is Mt. Everest bigger than Mt. Fuji?"
+      },
+      {
+        "japanese": "いつかガールフレンドにふじ山の上でプロポーズをしたいんです。",
+        "english": "I want to propose to my girlfriend on the top of Mt. Fuji someday."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E3%81%B5%E3%81%98%E5%B1%B1"
+  },
+  {
+    "id": "vocabulary:九",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "九",
+    "meaning": "Nine",
+    "meanings": [
+      "Nine"
+    ],
+    "readings": [
+      "きゅう",
+      "く"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab is made up of a single kanji with no okurigana (hiragana attached to the kanji), it often has the same meaning as the kanji it's based off of. Same goes for the word 九 , as well. It has the same meaning as its kanji counterpart.",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it's usually going to use the kun'yomi. Numbers are the exception, as you might already know. When they're alone with no okurigana they're the on'yomi reading, which you should already know from learning the kanji that makes up this word.",
+    "components": [
+      {
+        "character": "九",
+        "name": "Nine",
+        "id": "kanji:九"
+      }
+    ],
+    "dependencies": [
+      "kanji:九"
+    ],
+    "sentences": [
+      {
+        "japanese": "九インチ",
+        "english": "nine inches"
+      },
+      {
+        "japanese": "九ドル",
+        "english": "nine dollars"
+      },
+      {
+        "japanese": "九セット",
+        "english": "nine sets"
+      },
+      {
+        "japanese": "ガソリンスタンドまで九マイルです。",
+        "english": "It is nine miles to the gas station."
+      },
+      {
+        "japanese": "九ページをひらいてください。",
+        "english": "Please open to page 9."
+      },
+      {
+        "japanese": "このビルには九フロアあります。",
+        "english": "There are nine floors in this building."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B9%9D"
+  },
+  {
+    "id": "vocabulary:九つ",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "九つ",
+    "meaning": "Nine Things",
+    "meanings": [
+      "Nine Things"
+    ],
+    "readings": [
+      "ここのつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word follows the \"number of things\" pattern where there's a kanji for a number plus つ on the end. Whenever you see this, you know the word means \"____ things.\" Knowing that, as long as you know the kanji (which you do) you can figure out what number of things it is. For this one, it's the kanji for nine plus つ . So, this one is nine things .",
+    "readingMnemonic": "Since all of the \"number of things\" words all follow the same pattern (number plus つ ), you really just have to remember the part before the つ (and then remember that the つ is in all of these). All of the readings are the kun'yomi reading, which means we'll have to use a mnemonic to remember them (you know the on'yomi reading of the kanji portion). What thing do you have nine of? The nine things you have are nine cocono ts ( ここの ). As you can guess from the spelling, coconots are not coconuts. Think of them as… fake coconuts. Imagine yourself juggling nine coconots in the air. Try counting them as you do, arriving at nine things. Then arrange them into a square on the ground. Three coconots by three. Now you should remember how to read 九つ .",
+    "components": [
+      {
+        "character": "九",
+        "name": "Nine",
+        "id": "kanji:九"
+      }
+    ],
+    "dependencies": [
+      "kanji:九"
+    ],
+    "sentences": [
+      {
+        "japanese": "九つ下",
+        "english": "nine years younger"
+      },
+      {
+        "japanese": "九つ上",
+        "english": "nine years older"
+      },
+      {
+        "japanese": "九つくらい",
+        "english": "nine or so"
+      },
+      {
+        "japanese": "九つのグループ",
+        "english": "nine groups"
+      },
+      {
+        "japanese": "九つの山",
+        "english": "nine mountains"
+      },
+      {
+        "japanese": "九つのジャンル",
+        "english": "nine genres"
+      },
+      {
+        "japanese": "このエリアに九つの山がある。",
+        "english": "There are nine mountains in this area."
+      },
+      {
+        "japanese": "ドーナツを九つもらった。",
+        "english": "I got nine donuts."
+      },
+      {
+        "japanese": "三人しかいないのに、大きいベッドを九つもオーダーしてしまった。",
+        "english": "There are only three of us, but I accidentally ordered nine large beds."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B9%9D%E3%81%A4"
+  },
+  {
+    "id": "vocabulary:一",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "一",
+    "meaning": "One",
+    "meanings": [
+      "One"
+    ],
+    "readings": [
+      "いち"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "As is the case with most vocab words that consist of a single kanji, this vocab word has the same meaning as the kanji it parallels, which is one .",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it's usually going to use the kun'yomi. Numbers are an exception, however. When a number is all alone, with no kanji or okurigana, it is going to be the on'yomi reading, which you learned with the kanji.  Just remember this exception for alone numbers and you'll be able to read future number-related vocab to come.",
+    "components": [
+      {
+        "character": "一",
+        "name": "One",
+        "id": "kanji:一"
+      }
+    ],
+    "dependencies": [
+      "kanji:一"
+    ],
+    "sentences": [
+      {
+        "japanese": "一ドル",
+        "english": "one dollar"
+      },
+      {
+        "japanese": "一ページ",
+        "english": "one page"
+      },
+      {
+        "japanese": "一グラム",
+        "english": "one gram"
+      },
+      {
+        "japanese": "このレモン、一キログラム！？大きいですね！",
+        "english": "This lemon weighs a kilogram!? That's big!"
+      },
+      {
+        "japanese": "レベル一です。",
+        "english": "It's level 1."
+      },
+      {
+        "japanese": "このメロンはアメリカ一の大きさです。",
+        "english": "This is the largest size melon in the United States."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%80"
+  },
+  {
+    "id": "vocabulary:一つ",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "一つ",
+    "meaning": "One Thing",
+    "meanings": [
+      "One Thing"
+    ],
+    "readings": [
+      "ひとつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word follows the \"number of things\" pattern where there's a kanji for a number plus つ on the end. Whenever you see this, you know the word means \"____ things.\" Knowing that, as long as you know the kanji (which you do) you can figure out what number of things it is. For this one, it's the kanji for one plus つ . So, this one is one thing .",
+    "readingMnemonic": "Since all of the \"number of things\" words all follow the same pattern (number plus つ ), you really just have to remember the part before the つ (and then remember that the つ is in all of these). All of the readings are the kun'yomi reading, which means we'll have to use a mnemonic to remember them (you know the on'yomi reading of the kanji portion). So, you have one thing . What one thing do you have? You have one of He-Man's Toes, aka a single He-Toe ( ひと ). So what's the thing you have only one of? You have one He-Toe. Imagine He-Man walking around with one missing toe, trying to find you so he can get it back. At least you'll be able to run faster than him now.",
+    "components": [
+      {
+        "character": "一",
+        "name": "One",
+        "id": "kanji:一"
+      }
+    ],
+    "dependencies": [
+      "kanji:一"
+    ],
+    "sentences": [
+      {
+        "japanese": "一つ一つ",
+        "english": "one by one"
+      },
+      {
+        "japanese": "その一つ",
+        "english": "one of them"
+      },
+      {
+        "japanese": "もう一つ",
+        "english": "one more thing"
+      },
+      {
+        "japanese": "レモン、一つ下さい。",
+        "english": "A lemon, please."
+      },
+      {
+        "japanese": "二つの川が、一つの大きな川になる。",
+        "english": "The two rivers become one big river."
+      },
+      {
+        "japanese": "一つだけバニラにして下さい。",
+        "english": "Please make one a vanilla."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%80%E3%81%A4"
+  },
+  {
+    "id": "vocabulary:人",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "人",
+    "meaning": "Person",
+    "meanings": [
+      "Person"
+    ],
+    "readings": [
+      "ひと"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab is a single kanji all alone, it usually has the same meaning as its kanji parent. That goes for this vocab word as well. Person is person .",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it's usually going to use the kun'yomi. Since you don't know the kun'yomi reading for this kanji yet, let's use a mnemonic to learn it. What does a person hate more than anything? They hate extreme heat ( ひと ). You can always put on more clothes to stay warm, but when the heat gets too high, you can only take off so much.",
+    "components": [
+      {
+        "character": "人",
+        "name": "Person",
+        "id": "kanji:人"
+      }
+    ],
+    "dependencies": [
+      "kanji:人"
+    ],
+    "sentences": [
+      {
+        "japanese": "あそこの人",
+        "english": "the person over there"
+      },
+      {
+        "japanese": "ほとんどの人",
+        "english": "most people"
+      },
+      {
+        "japanese": "たくさんの人",
+        "english": "many people"
+      },
+      {
+        "japanese": "人がいない",
+        "english": "there are no people"
+      },
+      {
+        "japanese": "人がいる",
+        "english": "there are people"
+      },
+      {
+        "japanese": "人がいい",
+        "english": "good-natured"
+      },
+      {
+        "japanese": "人それぞれ",
+        "english": "each to their own"
+      },
+      {
+        "japanese": "この人がコウイチです。",
+        "english": "This person is Koichi."
+      },
+      {
+        "japanese": "あの人はクリーニングの人ですか？",
+        "english": "Is that person a cleaning person?"
+      },
+      {
+        "japanese": "ふじ山の上には、たくさん人がいましたよ。",
+        "english": "There were many people on Mt. Fuji."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%BA%BA"
+  },
+  {
+    "id": "vocabulary:下さい",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "下さい",
+    "meaning": "Please Give Me",
+    "meanings": [
+      "Please Give Me",
+      "Please"
+    ],
+    "readings": [
+      "ください"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "You know that the kanji 下 means down , and さい sounds like the word \"sigh.\" You need to ask someone for something, so you look down, sigh, and say please give me that thing. You're ashamed that you have to ask. But you still need it. Please , please give it to me! You only use this kanji version of ください when asking for something, which is why this is \"please give me.\" If you're just saying \"please,\" you don't need the kanji at all!",
+    "readingMnemonic": "The reading for 下 here is one you haven't learned. Just think about how it kind of sounds like you're saying please , could I ( くだ ) have this thing? Pretty please, could I have it? Alternatively, if you already knew the word ください beforehand, this shouldn't be too hard!",
+    "components": [
+      {
+        "character": "下",
+        "name": "Below",
+        "id": "kanji:下"
+      }
+    ],
+    "dependencies": [
+      "kanji:下"
+    ],
+    "sentences": [
+      {
+        "japanese": "メールを下さい",
+        "english": "please email me"
+      },
+      {
+        "japanese": "それを下さい",
+        "english": "please give me that one"
+      },
+      {
+        "japanese": "アドバイスを下さい",
+        "english": "please give me advice"
+      },
+      {
+        "japanese": "みそラーメン下さい。",
+        "english": "A miso ramen, please."
+      },
+      {
+        "japanese": "りんごを七つ下さい。",
+        "english": "May I have seven apples?"
+      },
+      {
+        "japanese": "どうか、力を下さい。",
+        "english": "Please, give me some help."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%8B%E3%81%95%E3%81%84"
+  },
+  {
+    "id": "vocabulary:人口",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "人口",
+    "meaning": "Population",
+    "meanings": [
+      "Population"
+    ],
+    "readings": [
+      "じんこう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The amount of people with mouths (that you have to feed) is the population that you have to feed.",
+    "readingMnemonic": "This is a jukugo word, which usually means on'yomi readings from the kanji. Since 人 has two on'yomi readings, here's a mnemonic to help you remember which one to use: Here at Tofugu, we measure population in jean s ( じん ). Each of us has just one pair of jeans, so if you know the jean count you know the population.",
+    "components": [
+      {
+        "character": "人",
+        "name": "Person",
+        "id": "kanji:人"
+      },
+      {
+        "character": "口",
+        "name": "Mouth",
+        "id": "kanji:口"
+      }
+    ],
+    "dependencies": [
+      "kanji:人",
+      "kanji:口"
+    ],
+    "sentences": [
+      {
+        "japanese": "人口の二人に一人",
+        "english": "one out of two of the population"
+      },
+      {
+        "japanese": "人口のほとんど",
+        "english": "most of the population"
+      },
+      {
+        "japanese": "人口の三パーセント",
+        "english": "three percent of the population"
+      },
+      {
+        "japanese": "人口がおおい",
+        "english": "the population is large"
+      },
+      {
+        "japanese": "人口がへる",
+        "english": "the population decreases"
+      },
+      {
+        "japanese": "人口がふえる",
+        "english": "the population increases"
+      },
+      {
+        "japanese": "このエリアの人口は、たったの一人です。",
+        "english": "The population of this area is only one person."
+      },
+      {
+        "japanese": "こちらの人口はどのくらいですか？",
+        "english": "How large is the population around here?"
+      },
+      {
+        "japanese": "人口の70%くらいはシャイなんだって。",
+        "english": "Apparently, about 70% of the population is shy."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%BA%BA%E5%8F%A3"
+  },
+  {
+    "id": "vocabulary:力",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "力",
+    "meaning": "Power",
+    "meanings": [
+      "Power",
+      "Strength",
+      "Ability"
+    ],
+    "readings": [
+      "ちから"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab word is made up of a single kanji and that's it, it almost always takes the meaning from its parent kanji. So, this vocab word also means power .",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it usually uses the kun'yomi reading. You didn't learn the kun'yomi reading with the kanji, so for this vocab word, we'll use a mnemonic: The martial art that requires the most power is chee se kara te ( ちから ). Practitioners of cheese karate channel all their power into karate chopping large blocks of cheese. Cheese doesn't break as easily as bricks or tiles, so this actually requires a lot of strength and ability to do well.",
+    "components": [
+      {
+        "character": "力",
+        "name": "Power",
+        "id": "kanji:力"
+      }
+    ],
+    "dependencies": [
+      "kanji:力"
+    ],
+    "sentences": [
+      {
+        "japanese": "力がつく",
+        "english": "to gain strength"
+      },
+      {
+        "japanese": "力が入る",
+        "english": "to be filled with strength"
+      },
+      {
+        "japanese": "力がある",
+        "english": "to be strong"
+      },
+      {
+        "japanese": "力をつける",
+        "english": "to build up strength, to acquire ability"
+      },
+      {
+        "japanese": "力をいれる",
+        "english": "to put in effort"
+      },
+      {
+        "japanese": "力をもらう",
+        "english": "to get strength"
+      },
+      {
+        "japanese": "みんなの力",
+        "english": "everyone's power"
+      },
+      {
+        "japanese": "人の力",
+        "english": "people's strength, people's ability"
+      },
+      {
+        "japanese": "一人一人の力",
+        "english": "the power of each person"
+      },
+      {
+        "japanese": "力の大きさが、ちがう。",
+        "english": "The size of the forces is different."
+      },
+      {
+        "japanese": "うちではママが大きな力をもってるんですよ。",
+        "english": "At my house, my mom has a lot of power."
+      },
+      {
+        "japanese": "リラックスしたいのに、どうしても力が入ってしまう。",
+        "english": "I want to relax, but I somehow get tense."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%8A%9B"
+  },
+  {
+    "id": "vocabulary:川",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "川",
+    "meaning": "River",
+    "meanings": [
+      "River"
+    ],
+    "readings": [
+      "かわ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab is made up of a single kanji with no okurigana (hiragana attached to the kanji) it will usually take the same meaning as the kanji it comes from. So, from that you know that this word means river .",
+    "readingMnemonic": "You're in luck — the reading you learned with the kanji is the same as the one you have to learn for this vocab!",
+    "components": [
+      {
+        "character": "川",
+        "name": "River",
+        "id": "kanji:川"
+      }
+    ],
+    "dependencies": [
+      "kanji:川"
+    ],
+    "sentences": [
+      {
+        "japanese": "川のながれ",
+        "english": "the current of a river"
+      },
+      {
+        "japanese": "川のせせらぎ",
+        "english": "the gurgling of a river"
+      },
+      {
+        "japanese": "川のむこう",
+        "english": "the other side of the river"
+      },
+      {
+        "japanese": "川に入る",
+        "english": "to get into a river"
+      },
+      {
+        "japanese": "川にいる",
+        "english": "to be in a river"
+      },
+      {
+        "japanese": "川にながす",
+        "english": "to float something on a river"
+      },
+      {
+        "japanese": "川をのぼる",
+        "english": "to go upstream"
+      },
+      {
+        "japanese": "川をわたる",
+        "english": "to cross a river"
+      },
+      {
+        "japanese": "川をくだる",
+        "english": "to go downstream"
+      },
+      {
+        "japanese": "この川はアマゾン川です。",
+        "english": "This river is the Amazon River."
+      },
+      {
+        "japanese": "川でバーベキューしたいなぁ。",
+        "english": "I want to BBQ by the river."
+      },
+      {
+        "japanese": "えっ。そのビキニで川に入るの？",
+        "english": "Oh. Are you going into the river in that bikini?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%B7%9D"
+  },
+  {
+    "id": "vocabulary:七",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "七",
+    "meaning": "Seven",
+    "meanings": [
+      "Seven"
+    ],
+    "readings": [
+      "なな",
+      "しち"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab is alone with no okurigana (that's hiragana attached to a kanji) it usually has the same meaning as the kanji too. That goes for this word as well. So, if you know the kanji's meaning ( seven ) you'll know the vocab's meaning ( seven ).",
+    "readingMnemonic": "Most single-kanji all-alone vocab words like this use the kun'yomi reading. Numbers are an exception to this rule. That being said, four and seven are exceptions to this exception to the rule (because the on'yomi readings sound too much like the word for \"death\"). You should learn both readings for this word, though we're going to go with なな for the main one here. You can remember that because you had seven nana s after you.",
+    "components": [
+      {
+        "character": "七",
+        "name": "Seven",
+        "id": "kanji:七"
+      }
+    ],
+    "dependencies": [
+      "kanji:七"
+    ],
+    "sentences": [
+      {
+        "japanese": "七人",
+        "english": "seven people"
+      },
+      {
+        "japanese": "七パーセント",
+        "english": "seven percent"
+      },
+      {
+        "japanese": "七キロ",
+        "english": "seven kilos, seven kilometers"
+      },
+      {
+        "japanese": "コウイチのラッキーナンバーは七です。",
+        "english": "Koichi's lucky number is seven."
+      },
+      {
+        "japanese": "このパスタは、たったの七ステップでできますよ。",
+        "english": "You can make this pasta in just seven steps."
+      },
+      {
+        "japanese": "七カラットのダイアモンドを下さい。",
+        "english": "I would like a seven-carat diamond."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%83"
+  },
+  {
+    "id": "vocabulary:七つ",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "七つ",
+    "meaning": "Seven Things",
+    "meanings": [
+      "Seven Things"
+    ],
+    "readings": [
+      "ななつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word follows the \"number of things\" pattern where there's a kanji for a number plus つ on the end. Whenever you see this, you know the word means \"____ things.\" Knowing that, as long as you know the kanji (which you do) you can figure out what number of things it is. For this one, it's the kanji for seven plus つ . So, this one is seven things .",
+    "readingMnemonic": "Since all of the \"number of things\" words all follow the same pattern (number plus つ ), you really just have to remember the part before the つ (and then remember that the つ is in all of these). All of the readings are the kun'yomi reading, which means we'll have to use a mnemonic to remember them (you know the on'yomi reading of the kanji portion). What thing do you have seven of? The seven things that you have are seven Nana s ( なな ). These are your grandmas, cloned. Just think, \"It's lucky to have seven nanas. They can all cook my favorite foods for me!\" What's more, you have one nana for every day of the week, so you'll get your favorite food every day.",
+    "components": [
+      {
+        "character": "七",
+        "name": "Seven",
+        "id": "kanji:七"
+      }
+    ],
+    "dependencies": [
+      "kanji:七"
+    ],
+    "sentences": [
+      {
+        "japanese": "七つのルール",
+        "english": "seven rules"
+      },
+      {
+        "japanese": "七つの山",
+        "english": "seven mountains"
+      },
+      {
+        "japanese": "七つのカテゴリー",
+        "english": "seven categories"
+      },
+      {
+        "japanese": "そのクッキー、七つ下さい。",
+        "english": "Seven of those cookies, please."
+      },
+      {
+        "japanese": "テイクアウトで、うどんを七つオーダーしました。",
+        "english": "I ordered seven udon to-go."
+      },
+      {
+        "japanese": "ドラゴンボールは七つある。",
+        "english": "There are seven Dragon Balls."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%83%E3%81%A4"
+  },
+  {
+    "id": "vocabulary:大きさ",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "大きさ",
+    "meaning": "Size",
+    "meanings": [
+      "Size"
+    ],
+    "readings": [
+      "おおきさ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "In Japanese, さ on the end of a word is often the equivalent of \"-ness\" in English. In other words, if you replace the い on the end of an い -adjective with さ , you have a noun. In this case, the adjective is 大きい (big) and the noun 大きさ means \"bigness\", aka size .",
+    "readingMnemonic": "When a vocab has okurigana (hiragana attached to the kanji) it is probably going to be the kun'yomi reading. Since you learned the on'yomi reading with the kanji 大 , we'll have to use a mnemonic to remember this word. When you saw the size of (pick something surprising), you said \" おお *#$@!\" Really imagine something surprising. Say the おお part out loud, as well. Think about the size of whatever you're looking at, too, and how big it is.",
+    "components": [
+      {
+        "character": "大",
+        "name": "Big",
+        "id": "kanji:大"
+      }
+    ],
+    "dependencies": [
+      "kanji:大"
+    ],
+    "sentences": [
+      {
+        "japanese": "ベッドの大きさ",
+        "english": "the size of the bed"
+      },
+      {
+        "japanese": "スーツケースの大きさ",
+        "english": "the size of the suitcase"
+      },
+      {
+        "japanese": "アメリカの大きさ",
+        "english": "the size of the USA"
+      },
+      {
+        "japanese": "このサンダルの大きさは、28センチです。",
+        "english": "These sandals are size 28 cm."
+      },
+      {
+        "japanese": "アメリカでビックリしたこと？それはドリンクの大きさですよ。",
+        "english": "What surprised me about the United States? The size of the drinks."
+      },
+      {
+        "japanese": "このチェストフリーザーは二人くらい入る大きさですよ。",
+        "english": "This chest freezer is big enough for two people or so."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%A4%A7%E3%81%8D%E3%81%95"
+  },
+  {
+    "id": "vocabulary:十",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "十",
+    "meaning": "Ten",
+    "meanings": [
+      "Ten"
+    ],
+    "readings": [
+      "じゅう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab is alone like this with no okurigana (hiragana attached to the kanji) it tends to steal its meaning from the kanji it came from. That means this vocab word also means ten .",
+    "readingMnemonic": "When a vocab is alone and consists of a single kanji like this, usually it uses the kun'yomi reading for the kanji. But, numbers are an exception and they use the on'yomi reading (which you learned when you learned the kanji). That means you know that this word's reading is じゅう already.",
+    "components": [
+      {
+        "character": "十",
+        "name": "Ten",
+        "id": "kanji:十"
+      }
+    ],
+    "dependencies": [
+      "kanji:十"
+    ],
+    "sentences": [
+      {
+        "japanese": "十マイル",
+        "english": "ten miles"
+      },
+      {
+        "japanese": "十リットル",
+        "english": "ten liters"
+      },
+      {
+        "japanese": "十ドル",
+        "english": "ten dollars"
+      },
+      {
+        "japanese": "バターを十グラム下さい。",
+        "english": "Ten grams of butter, please."
+      },
+      {
+        "japanese": "十までカウントするよ。一、二、三...",
+        "english": "I'll count to ten. One, two, three..."
+      },
+      {
+        "japanese": "川で、たこを十メートルまで上げた。",
+        "english": "At the river, I flew a kite up to ten meters high."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%8D%81"
+  },
+  {
+    "id": "vocabulary:三",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "三",
+    "meaning": "Three",
+    "meanings": [
+      "Three"
+    ],
+    "readings": [
+      "さん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab is a single kanji and alone like this, it usually steals its meaning from the parent kanji. That goes for this word too, making the meaning of this word three .",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it's usually going to use the kun'yomi. Numbers are an exception, though, and use the on'yomi reading. You learned the on'yomi reading when you learned this kanji, so you already know that the reading for this vocab is さん .",
+    "components": [
+      {
+        "character": "三",
+        "name": "Three",
+        "id": "kanji:三"
+      }
+    ],
+    "dependencies": [
+      "kanji:三"
+    ],
+    "sentences": [
+      {
+        "japanese": "三チーム",
+        "english": "three teams"
+      },
+      {
+        "japanese": "三パック",
+        "english": "three packs"
+      },
+      {
+        "japanese": "三グラム",
+        "english": "three grams"
+      },
+      {
+        "japanese": "三ドルです。",
+        "english": "It's three dollars."
+      },
+      {
+        "japanese": "はじめの三レッスンまではトライアルです。",
+        "english": "Up to the first three lessons is a trial."
+      },
+      {
+        "japanese": "このキッチンには三タイプあります。",
+        "english": "There are three types of this kitchen model."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%89"
+  },
+  {
+    "id": "vocabulary:三人",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "三人",
+    "meaning": "Three People",
+    "meanings": [
+      "Three People",
+      "Three Persons"
+    ],
+    "readings": [
+      "さんにん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "You have the kanji for three and person . Common sense will tell you what this word is. It's three people .",
+    "readingMnemonic": "This is a jukugo (kanji compound) word, which usually means on'yomi readings from the kanji. Since 人 has two on'yomi readings, here's a mnemonic to help you remember which one to use: Apparently, there are three people working as San ta-san at Nin tendo ( さんにん )! It's a big company, so obviously they need three Santas.",
+    "components": [
+      {
+        "character": "三",
+        "name": "Three",
+        "id": "kanji:三"
+      },
+      {
+        "character": "人",
+        "name": "Person",
+        "id": "kanji:人"
+      }
+    ],
+    "dependencies": [
+      "kanji:三",
+      "kanji:人"
+    ],
+    "sentences": [
+      {
+        "japanese": "三人のおじさん",
+        "english": "three middle-aged men"
+      },
+      {
+        "japanese": "三人のため",
+        "english": "for the three people, for the three of us"
+      },
+      {
+        "japanese": "三人のランナー",
+        "english": "three runners"
+      },
+      {
+        "japanese": "三人のルームメイトがいます。",
+        "english": "I have three roommates."
+      },
+      {
+        "japanese": "三人のテーブルありますか？",
+        "english": "Is there a table for three?"
+      },
+      {
+        "japanese": "ニコラス・ケイジ、キアヌ・リーブス、トム・クルーズ。この三人で、だれがタイプ？",
+        "english": "Nicholas Cage, Keanu Reeves, and Tom Cruise. Out of these three, who's your type?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%89%E4%BA%BA"
+  },
+  {
+    "id": "vocabulary:三つ",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "三つ",
+    "meaning": "Three Things",
+    "meanings": [
+      "Three Things"
+    ],
+    "readings": [
+      "みっつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word follows the \"number of things\" pattern where there's a kanji for a number plus つ on the end. Whenever you see this, you know the word means \"____ things.\" Knowing that, as long as you know the kanji (which you do) you can figure out what number of things it is. For this one, it's the kanji for three plus つ . So, this one is three things .",
+    "readingMnemonic": "Since all of the \"number of things\" words all follow the same pattern (number plus つ ), you really just have to remember the part before the つ (and then remember that the つ is in all of these). All of the readings are the kun'yomi reading, which means we'll have to use a mnemonic to remember them (you know the on'yomi reading of the kanji portion). What thing do you have three of? The three things that you have are actually three versions of yourself. \"Who is the real one?\" you ask yourself. \"It's me !\" \"Wait, no, it's me !\" Just remember that there are three of you, and they're all saying \"me me me me me\" to try and prove that they're the real you.",
+    "components": [
+      {
+        "character": "三",
+        "name": "Three",
+        "id": "kanji:三"
+      }
+    ],
+    "dependencies": [
+      "kanji:三"
+    ],
+    "sentences": [
+      {
+        "japanese": "三つのグループ",
+        "english": "three groups"
+      },
+      {
+        "japanese": "三つのポイント",
+        "english": "three points"
+      },
+      {
+        "japanese": "三つのタイプ",
+        "english": "three types"
+      },
+      {
+        "japanese": "このスーツケースにはメロンが三つ入る。",
+        "english": "This suitcase can fit three melons."
+      },
+      {
+        "japanese": "ここにボールを三つ入るよ。",
+        "english": "You can fit three balls in here."
+      },
+      {
+        "japanese": "チーズバーガーを三つオーダーしたけど、一人で三つたべます。",
+        "english": "I ordered three cheeseburgers, and I will eat all three of them by myself."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%89%E3%81%A4"
+  },
+  {
+    "id": "vocabulary:入る",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "入る",
+    "meaning": "To Enter",
+    "meanings": [
+      "To Enter",
+      "To Go In"
+    ],
+    "readings": [
+      "はいる"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This vocab word has okurigana, which is the hiragana part that comes after the kanji. When a vocab's okurigana makes an \" う /oo\" sound (in this case, we have a る ), it's often going to be a verb. So in this case, the kanji 入 is enter . The vocab 入る is to enter . We're just taking the kanji and using it in a verb!",
+    "readingMnemonic": "When a vocab is a single kanji with okurigana, chances are it's going to be the kun'yomi reading, which you don't usually learn in the kanji (you usually learn the on'yomi reading). So, let's learn the kun'yomi reading for this word using its meaning. When you enter the room, what do you do? You say \" Hi \" ( はい ) to everyone to the point of absurdity. \"Hi there. Oh hi Frank. Oh hi there Susan. Oh hi there lamp.\"",
+    "components": [
+      {
+        "character": "入",
+        "name": "Enter",
+        "id": "kanji:入"
+      }
+    ],
+    "dependencies": [
+      "kanji:入"
+    ],
+    "sentences": [
+      {
+        "japanese": "プールに入る",
+        "english": "to get into the pool"
+      },
+      {
+        "japanese": "コンビニに入る",
+        "english": "to go into a convenience store"
+      },
+      {
+        "japanese": "うちに入る",
+        "english": "to go inside"
+      },
+      {
+        "japanese": "ひびが入る",
+        "english": "to crack"
+      },
+      {
+        "japanese": "人が入る",
+        "english": "people enter"
+      },
+      {
+        "japanese": "力が入る",
+        "english": "to be filled with strength"
+      },
+      {
+        "japanese": "ジェニーはもうすぐインターナショナルスクールに入る。",
+        "english": "Jenny will go to an international school soon."
+      },
+      {
+        "japanese": "マイケルは一人でカラオケに入った。",
+        "english": "Michael went into karaoke alone."
+      },
+      {
+        "japanese": "スキーのクラブに入ったんです。",
+        "english": "I joined the ski club."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%85%A5%E3%82%8B"
+  },
+  {
+    "id": "vocabulary:上げる",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "上げる",
+    "meaning": "To Lift Something",
+    "meanings": [
+      "To Lift Something",
+      "To Raise Something",
+      "To Increase Something"
+    ],
+    "readings": [
+      "あげる"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word consists of kanji with hiragana attached. Because the hiragana ends with an う sound, you know this word is a verb. The kanji itself means above and this verb is related to that meaning. It means to lift something or to raise something . It's a transitive verb, meaning that you do something to something else. You raise something. Like your hands!",
+    "readingMnemonic": "Since this word has okurigana (hiragana attached to the kanji) you know that it's probably going to use the kun'yomi reading, which you didn't learn with the kanji. Here's a mnemonic to help you: When you want to lift something , you always shout \" Ah ( あ )!\" to get the extra power you need. Especially when you want to lift something over your head. Go ahead, try it now. Lift something up and shout \"Ah!\" Makes you feel powerful, right?",
+    "components": [
+      {
+        "character": "上",
+        "name": "Above",
+        "id": "kanji:上"
+      }
+    ],
+    "dependencies": [
+      "kanji:上"
+    ],
+    "sentences": [
+      {
+        "japanese": "スピードを上げる",
+        "english": "to increase speed"
+      },
+      {
+        "japanese": "モチベーションを上げる",
+        "english": "to increase motivation"
+      },
+      {
+        "japanese": "レベルを上げる",
+        "english": "to raise the level"
+      },
+      {
+        "japanese": "大きいブランケットをロフトに上げる。",
+        "english": "I lift a large blanket up to the loft."
+      },
+      {
+        "japanese": "「スピーカーのボリューム、上げる？」「うん。」",
+        "english": "\"Should I turn up the volume on the speaker?\" \"Yeah.\""
+      },
+      {
+        "japanese": "ピカチュウのレベルを上げるには、どうしたらいいですか？",
+        "english": "What can I do to raise Pikachu's level?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%8A%E3%81%92%E3%82%8B"
+  },
+  {
+    "id": "vocabulary:下げる",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "下げる",
+    "meaning": "To Lower Something",
+    "meanings": [
+      "To Lower Something",
+      "To Hang Something"
+    ],
+    "readings": [
+      "さげる"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word consists of kanji with hiragana attached. Because the hiragana ends with an う sound, you know this word is a verb. The kanji itself means below so the verb version of that is when you put something below you. It's to lower something . It can also mean to hang something , such as a lamp from the ceiling. This is a transitive verb, which means that the verb is done by one entity onto another. In other words, you lower something . Like your impossibly high expectations for yourself. Take it easy!",
+    "readingMnemonic": "Since this word has okurigana (hiragana attached to the kanji) you know that it's probably going to be the kun'yomi reading, which you didn't learn with the kanji. Here's a mnemonic to help you: You want to lower something . In this case, it's a tree, so you need a saw ( さ ). Lower the tree to the ground gently while you slowly saw it down!",
+    "components": [
+      {
+        "character": "下",
+        "name": "Below",
+        "id": "kanji:下"
+      }
+    ],
+    "dependencies": [
+      "kanji:下"
+    ],
+    "sentences": [
+      {
+        "japanese": "ボリュームを下げる",
+        "english": "to lower the volume"
+      },
+      {
+        "japanese": "コストを下げる",
+        "english": "to lower the cost"
+      },
+      {
+        "japanese": "レベルを下げる",
+        "english": "to lower the level"
+      },
+      {
+        "japanese": "力いっぱいレバーを下げて！",
+        "english": "Lower the lever as hard as you can!"
+      },
+      {
+        "japanese": "一つレベルを下げよう。",
+        "english": "Let's lower it one level."
+      },
+      {
+        "japanese": "あっ、このロープ、ベーコンを下げるのにちょうどいい。",
+        "english": "Oh, this rope is perfect for hanging bacon."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%8B%E3%81%92%E3%82%8B"
+  },
+  {
+    "id": "vocabulary:二",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "二",
+    "meaning": "Two",
+    "meanings": [
+      "Two"
+    ],
+    "readings": [
+      "に"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a vocab word is a single kanji without okurigana (hiragana attached to the kanji) it usually has the same meaning as the kanji it's spawned from. If you know the kanji meaning you'll also know the vocab meaning. It's two !",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it's usually going to use the kun'yomi. Numbers are an exception to this though. Numbers use the on'yomi reading, which you've already learned by learning the kanji's reading! How nice!",
+    "components": [
+      {
+        "character": "二",
+        "name": "Two",
+        "id": "kanji:二"
+      }
+    ],
+    "dependencies": [
+      "kanji:二"
+    ],
+    "sentences": [
+      {
+        "japanese": "二パターン",
+        "english": "two patterns"
+      },
+      {
+        "japanese": "二セント",
+        "english": "two cents"
+      },
+      {
+        "japanese": "二ドル",
+        "english": "two dollars"
+      },
+      {
+        "japanese": "エントリーナンバーは二です。",
+        "english": "The entry number is two."
+      },
+      {
+        "japanese": "二ゲームとも、アメリカにポイントが入った。",
+        "english": "The United States got points in both games."
+      },
+      {
+        "japanese": "どうしよう。トイレットペーパーが二メートルしかないよ。",
+        "english": "Oh, my. We only have two meters of toilet paper left."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%BA%8C"
+  },
+  {
+    "id": "vocabulary:二人",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "二人",
+    "meaning": "Two People",
+    "meanings": [
+      "Two People",
+      "Pair",
+      "Couple",
+      "Two Persons"
+    ],
+    "readings": [
+      "ふたり"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When you have two and person and then put them together, what do you get? You get a pair or two people .",
+    "readingMnemonic": "The reading for this word is quite strange. If you know 二つ 's reading, you can use that to remember the 二 part ( ふた ). But, the り that is the 人 is a total exception, something you won't see too often (though you may have seen it in 一人 ). If you can use the reading of 一人 (aka if you've learned it already) then definitely use that. If not, do your best to remember the reading on your own. It's a strange one that doesn't connect to much else.",
+    "components": [
+      {
+        "character": "二",
+        "name": "Two",
+        "id": "kanji:二"
+      },
+      {
+        "character": "人",
+        "name": "Person",
+        "id": "kanji:人"
+      }
+    ],
+    "dependencies": [
+      "kanji:二",
+      "kanji:人"
+    ],
+    "sentences": [
+      {
+        "japanese": "二人のむすめ",
+        "english": "two daughters, the couple's daughter"
+      },
+      {
+        "japanese": "二人のむすこ",
+        "english": "two sons, the couple's son"
+      },
+      {
+        "japanese": "二人のため",
+        "english": "for the two people, for the two of us"
+      },
+      {
+        "japanese": "二人きり",
+        "english": "just the two of them, just the two of us"
+      },
+      {
+        "japanese": "二人いっしょ",
+        "english": "two of them together, two of us together"
+      },
+      {
+        "japanese": "二人づつ",
+        "english": "two by two people"
+      },
+      {
+        "japanese": "このアパートは二人には大きい。",
+        "english": "This apartment is too big for two people."
+      },
+      {
+        "japanese": "あの二人はバドミントンのダブルスのパートナーです。",
+        "english": "Those two people are badminton doubles partners."
+      },
+      {
+        "japanese": "せっかく二人のためにオーダーしたケーキなのに、なんで一人でたべちゃったの？",
+        "english": "Why did you eat it alone when I ordered a cake for the two of us?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%BA%8C%E4%BA%BA"
+  },
+  {
+    "id": "vocabulary:二つ",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "二つ",
+    "meaning": "Two Things",
+    "meanings": [
+      "Two Things"
+    ],
+    "readings": [
+      "ふたつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word follows the \"number of things\" pattern where there's a kanji for a number plus つ on the end. Whenever you see this, you know the word means \"____ things.\" Knowing that, as long as you know the kanji (which you do) you can figure out what number of things it is. For this one, it's the kanji for two plus つ . So, this one is two things .",
+    "readingMnemonic": "Since all of the \"number of things\" words all follow the same pattern (number plus つ ), you really just have to remember the part before the つ (and then remember that the つ is in all of these). All of the readings are the kun'yomi reading, which means we'll have to use a mnemonic to remember them (you know the on'yomi reading of the kanji portion). So what thing do you have two of? The two things you have are 2- foo t ta cos ( ふた ). How lucky are you, that your two things are 2-foot tacos? Other people only have two foot-tacos... And trust me, you don't want to eat those.",
+    "components": [
+      {
+        "character": "二",
+        "name": "Two",
+        "id": "kanji:二"
+      }
+    ],
+    "dependencies": [
+      "kanji:二"
+    ],
+    "sentences": [
+      {
+        "japanese": "二つのグループ",
+        "english": "two groups"
+      },
+      {
+        "japanese": "二つのタイプ",
+        "english": "two types"
+      },
+      {
+        "japanese": "二つのパターン",
+        "english": "two patterns"
+      },
+      {
+        "japanese": "二つ上",
+        "english": "two years older"
+      },
+      {
+        "japanese": "二つとも",
+        "english": "both things"
+      },
+      {
+        "japanese": "二つ下",
+        "english": "two years younger"
+      },
+      {
+        "japanese": "ビルが二つあります。",
+        "english": "There are two buildings."
+      },
+      {
+        "japanese": "メロンが二つ川に入った。",
+        "english": "Two melons went into the river."
+      },
+      {
+        "japanese": "二つのラーメンを三人でシェアした。",
+        "english": "Three of us shared two bowls of ramen."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%BA%8C%E3%81%A4"
+  },
+  {
+    "id": "vocabulary:力いっぱい",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "力いっぱい",
+    "meaning": "With All One's Strength",
+    "meanings": [
+      "With All One's Strength",
+      "Full Power",
+      "As Hard As One Can"
+    ],
+    "readings": [
+      "ちからいっぱい"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "You've hopefully already learned that 力 means \"power.\" You might have also heard the word いっぱい , because it's used a lot in conversation. It has a few meanings (you'll learn more of them later) but the important one here is \"full\" or \"a lot.\" Put these two words together and you have full power , with all one's strength , and as hard as one can . Remember this one with all your strength! Just a side note: いっぱい can also be written in kanji, which you'll learn later on! However, in simple words like this one it's usually written in kana.",
+    "readingMnemonic": "力 uses the same reading as you learned with the vocabulary. That's because this is basically two separate words stuck together.",
+    "components": [
+      {
+        "character": "力",
+        "name": "Power",
+        "id": "kanji:力"
+      }
+    ],
+    "dependencies": [
+      "kanji:力"
+    ],
+    "sentences": [
+      {
+        "japanese": "力いっぱいハグをする",
+        "english": "to give a big hug"
+      },
+      {
+        "japanese": "力いっぱいがんばる",
+        "english": "to do one's best"
+      },
+      {
+        "japanese": "力いっぱいひっぱる",
+        "english": "to pull with all one's strength"
+      },
+      {
+        "japanese": "力いっぱいがんばりました！",
+        "english": "We did our best!"
+      },
+      {
+        "japanese": "ドアを力いっぱいおしてください。",
+        "english": "Please push on the door as hard as you can."
+      },
+      {
+        "japanese": "リレーでは力いっぱいはしりました。",
+        "english": "I ran as fast as I could in the relay."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%8A%9B%E3%81%84%E3%81%A3%E3%81%B1%E3%81%84"
+  },
+  {
+    "id": "vocabulary:女",
+    "type": "vocabulary",
+    "level": 1,
+    "character": "女",
+    "meaning": "Woman",
+    "meanings": [
+      "Woman",
+      "Female"
+    ],
+    "readings": [
+      "おんな"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "When a kanji is alone and doesn't have any okurigana (hiragana attached to the kanji) it's usually going to take the same meaning as the kanji it comes from. So in this case, you know that this word means woman . But watch out! Using 女 on its own can often come off as blunt and disrespectful, especially in casual chats. We’ll introduce you to neutral equivalents soon!",
+    "readingMnemonic": "When a vocab is a single kanji and all alone like this, it's usually going to use the kun'yomi. You didn't learn the kun'yomi reading when you learned the kanji itself, so let's use a mnemonic to remember it: Think about how this woman is onna ( おんな ) roll. She's winning left, right and center. She's unstoppable. Yep, she's truly onna roll!",
+    "components": [
+      {
+        "character": "女",
+        "name": "Woman",
+        "id": "kanji:女"
+      }
+    ],
+    "dependencies": [
+      "kanji:女"
+    ],
+    "sentences": [
+      {
+        "japanese": "女の人",
+        "english": "a woman"
+      },
+      {
+        "japanese": "女のコスメ",
+        "english": "women's cosmetics"
+      },
+      {
+        "japanese": "女の力",
+        "english": "the power of women"
+      },
+      {
+        "japanese": "女ともだち",
+        "english": "female friends"
+      },
+      {
+        "japanese": "女スパイ",
+        "english": "a female spy"
+      },
+      {
+        "japanese": "女どうし",
+        "english": "between women"
+      },
+      {
+        "japanese": "バーに三人の女がいる。",
+        "english": "There are three women at the bar."
+      },
+      {
+        "japanese": "「く + ノ + 一 = 女」なので、女のニンジャのことを「クノイチ」というんです。",
+        "english": "Since \"く + ノ + 一 = 女,\" a female ninja is called \"kunoichi.\""
+      },
+      {
+        "japanese": "あの女は、とても力のある女スパイだ。",
+        "english": "That woman is a very powerful female spy."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%A5%B3"
+  }
+]
