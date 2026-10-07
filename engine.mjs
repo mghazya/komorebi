@@ -1,10 +1,14 @@
 /**
  * Komorebi's WaniKani-inspired learning engine. No storage or DOM dependencies.
  *
- * Levels 1–2 use accelerated early reviews. Delays below are the waiting time
- * AFTER entering each stage, not the cumulative time since the lesson.
- * Month-length intervals are fixed at 30 and 120 days. An item must reach
- * Guru once to unlock its dependents; later mistakes never undo that unlock.
+ * SRS timing follows WaniKani's published stages (knowledge.wanikani.com/wanikani/srs-stages/,
+ * checked 2026-10-06): subjects from Levels 1–2 use accelerated Apprentice waits
+ * (2h, 4h, 8h, 1d); later levels use 4h, 8h, 1d, 2d. Guru onward is shared: 1 week,
+ * 2 weeks, 1 month (fixed at 30 days), 4 months (fixed at 120 days). Delays are the
+ * wait AFTER entering each stage. The timing is chosen by the subject's own level at
+ * the moment a lesson/review is recorded; stored due dates are never recomputed.
+ * An item must reach Guru once to unlock its dependents; later mistakes never undo that
+ * unlock. A level unlocks once ceil(90%) of the previous level's kanji reached Guru once.
  * Meaning + reading form one review. Pass mistakes for both questions combined.
  */
 export const STAGE_NAMES = Object.freeze([
@@ -14,10 +18,33 @@ export const STAGE_NAMES = Object.freeze([
 
 const HOUR = 60 * 60 * 1000;
 const DAY = 24 * HOUR;
+/** Accelerated schedule (Levels 1–2). Kept under its historical name for compatibility. */
 export const STAGE_INTERVALS = Object.freeze([
   0, 2 * HOUR, 4 * HOUR, 8 * HOUR, DAY, 7 * DAY,
   14 * DAY, 30 * DAY, 120 * DAY, null,
 ]);
+export const ACCELERATED_INTERVALS = STAGE_INTERVALS;
+/** Standard schedule (Level 3 and above). */
+export const STANDARD_INTERVALS = Object.freeze([
+  0, 4 * HOUR, 8 * HOUR, DAY, 2 * DAY, 7 * DAY,
+  14 * DAY, 30 * DAY, 120 * DAY, null,
+]);
+export const ACCELERATED_MAX_LEVEL = 2;
+export const LEVEL_UNLOCK_RATIO = 0.9;
+export const HISTORY_LIMIT = 5000;
+
+/** Wait after entering `stage` for a subject of `level`. Unknown level → accelerated (legacy Level 1 behaviour). */
+export function intervalFor(stage, level) {
+  const table = Number.isInteger(level) && level > ACCELERATED_MAX_LEVEL ? STANDARD_INTERVALS : ACCELERATED_INTERVALS;
+  return table[stage] ?? null;
+}
+
+const levelFrom = (levelOf, id) => {
+  const value = typeof levelOf === 'function' ? levelOf(id) : levelOf && typeof levelOf === 'object' ? levelOf[id] : undefined;
+  return Number.isInteger(value) ? value : undefined;
+};
+const historyOf = (profile) => Array.isArray(profile?.history) ? profile.history : [];
+const appendHistory = (profile, entry) => [...historyOf(profile), entry].slice(-HISTORY_LIMIT);
 
 export function newProfile(name = 'Learner', id) {
   return {
@@ -31,27 +58,93 @@ export function newProfile(name = 'Learner', id) {
 }
 
 const progressOf = (profile) => profile?.progress || {};
-const hasPassed = (record) => Boolean(record && (record.stage >= 5 || record.passedAt != null));
+export const hasPassed = (record) => Boolean(record && (record.stage >= 5 || record.passedAt != null));
+const depId = (dep) => typeof dep === 'string' ? dep : dep?.id;
 
-export function statusFor(item, profile, now = Date.now()) {
+/**
+ * ctx.maxLevel (optional): the learner's actual level. A not-yet-started subject above it is
+ * locked (levelLocked). Started subjects are never re-locked. Dependencies are global IDs, so
+ * prerequisites from other levels are checked through the shared progress map.
+ */
+export function statusFor(item, profile, now = Date.now(), ctx = {}) {
   const record = progressOf(profile)[item.id];
   const stage = record?.stage || 0;
-  const unmetDependencies = (item.dependencies || []).filter((id) => !hasPassed(progressOf(profile)[id]));
+  const unmetDependencies = (item.dependencies || []).map(depId).filter((id) => id && !hasPassed(progressOf(profile)[id]));
+  const levelLocked = stage === 0 && Number.isInteger(ctx?.maxLevel) && Number.isInteger(item.level) && item.level > ctx.maxLevel;
   let state;
   if (stage >= 9) state = 'burned';
   else if (stage > 0) state = record.availableAt <= now ? 'review' : 'learning';
-  else state = unmetDependencies.length ? 'locked' : 'lesson';
+  else state = unmetDependencies.length || levelLocked ? 'locked' : 'lesson';
   return {
     state,
     stage,
     stageName: STAGE_NAMES[stage] || STAGE_NAMES[0],
     availableAt: stage > 0 && stage < 9 ? record.availableAt : null,
     unmetDependencies,
+    levelLocked,
   };
 }
 
-export function availableLessons(items, profile) {
-  return items.filter((item) => statusFor(item, profile).state === 'lesson');
+/** Kanji progress of one level and the number needed (ceil 90%) to unlock the next level. */
+export function levelProgress(items, profile, level) {
+  const kanji = items.filter((item) => item.type === 'kanji' && item.level === level);
+  const kanjiPassed = kanji.filter((item) => hasPassed(progressOf(profile)[item.id])).length;
+  return { level, kanjiTotal: kanji.length, kanjiPassed, required: levelUnlockThreshold(kanji.length) };
+}
+
+/** ceil(90%): 17 of 18, 27 of 30, 0 of 0. */
+export function levelUnlockThreshold(kanjiTotal) {
+  // Integer arithmetic avoids floating-point surprises such as 0.9 * 10 = 9.000000000000002.
+  return Math.ceil((kanjiTotal * 9) / 10);
+}
+
+const storedLevel = (profile) => Number.isInteger(profile?.unlockedLevel) ? profile.unlockedLevel : 0;
+
+/**
+ * The learner's actual level. Walks the available levels in order: the next level is unlocked
+ * when it was recorded as earned (profile.unlockedLevel, permanent) or when the current level's
+ * kanji meet the 90 % rule. Guru is judged by passedAt/stage>=5, so later demotion never re-locks.
+ * A level whose data failed to load cannot be judged; only a recorded unlock passes it.
+ * options.levels: available level numbers (default: levels present in items).
+ * options.loadedLevels: levels whose data loaded (default: levels present in items).
+ */
+export function learnerLevel(items, profile, options = {}) {
+  const present = [...new Set(items.map((item) => item.level).filter(Number.isInteger))].sort((a, b) => a - b);
+  const levels = (options.levels?.length ? [...options.levels] : present).filter(Number.isInteger).sort((a, b) => a - b);
+  if (!levels.length) return 1;
+  const loaded = options.loadedLevels ? new Set(options.loadedLevels) : new Set(present);
+  const stored = storedLevel(profile);
+  let level = levels[0];
+  for (let i = 0; i < levels.length - 1; i++) {
+    const next = levels[i + 1];
+    let unlocked = stored >= next;
+    if (!unlocked && loaded.has(levels[i])) {
+      const progress = levelProgress(items, profile, levels[i]);
+      unlocked = progress.kanjiPassed >= progress.required;
+    }
+    if (!unlocked) break;
+    level = next;
+  }
+  return level;
+}
+
+/** Record an earned level permanently. Returns the same object when nothing changes. */
+export function recordLevelUnlock(profile, level) {
+  if (!Number.isInteger(level) || level <= 1 || level <= storedLevel(profile)) return profile;
+  return { ...profile, unlockedLevel: level };
+}
+
+/**
+ * Lessons whose prerequisites are met, from levels up to ctx.maxLevel (default: the derived
+ * learner level for these items), lower levels first.
+ */
+export function availableLessons(items, profile, ctx) {
+  const maxLevel = Number.isInteger(ctx?.maxLevel) ? ctx.maxLevel : learnerLevel(items, profile);
+  return items
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => statusFor(item, profile, Date.now(), { maxLevel }).state === 'lesson')
+    .sort((a, b) => ((a.item.level ?? 0) - (b.item.level ?? 0)) || (a.index - b.index))
+    .map(({ item }) => item);
 }
 
 export function dueReviews(items, profile, now = Date.now()) {
@@ -60,15 +153,18 @@ export function dueReviews(items, profile, now = Date.now()) {
     .sort((a, b) => progressOf(profile)[a.id].availableAt - progressOf(profile)[b.id].availableAt);
 }
 
-/** Start only quiz-completed lessons. The caller supplies available subject IDs. */
-export function startLearning(profile, itemIds, now = Date.now()) {
+/**
+ * Start only quiz-completed lessons. The caller supplies available subject IDs.
+ * levelOf (optional): id → subject level (function or map) to choose the SRS timing.
+ */
+export function startLearning(profile, itemIds, now = Date.now(), levelOf) {
   const freshIds = [...new Set(itemIds)].filter((id) => !progressOf(profile)[id]?.stage);
   if (!freshIds.length) return profile;
   const progress = { ...progressOf(profile) };
   for (const id of freshIds) {
     progress[id] = {
       stage: 1,
-      availableAt: now + STAGE_INTERVALS[1],
+      availableAt: now + intervalFor(1, levelFrom(levelOf, id)),
       startedAt: now,
       lastReviewedAt: null,
       correctReviews: 0,
@@ -79,7 +175,7 @@ export function startLearning(profile, itemIds, now = Date.now()) {
   return {
     ...profile,
     progress,
-    history: [...(profile.history || []), { type: 'lesson', at: now, itemIds: freshIds }],
+    history: appendHistory(profile, { type: 'lesson', at: now, itemIds: freshIds }),
   };
 }
 
@@ -88,7 +184,7 @@ export function startLearning(profile, itemIds, now = Date.now()) {
  * stages while Apprentice, twice that many from Guru onward, with a floor of 1.
  * Calling this again before the next due time is an intentional no-op.
  */
-export function completeReview(profile, id, { mistakes = 0 } = {}, now = Date.now()) {
+export function completeReview(profile, id, { mistakes = 0, level } = {}, now = Date.now()) {
   const previous = progressOf(profile)[id];
   if (!previous || previous.stage < 1 || previous.stage >= 9 || previous.availableAt > now) return profile;
   if (!Number.isInteger(mistakes) || mistakes < 0) throw new RangeError('mistakes must be a non-negative integer');
@@ -98,7 +194,7 @@ export function completeReview(profile, id, { mistakes = 0 } = {}, now = Date.no
   const next = {
     ...previous,
     stage,
-    availableAt: stage === 9 ? null : now + STAGE_INTERVALS[stage],
+    availableAt: stage === 9 ? null : now + intervalFor(stage, Number.isInteger(level) ? level : undefined),
     lastReviewedAt: now,
     correctReviews: (previous.correctReviews || 0) + Number(correct),
     incorrectReviews: (previous.incorrectReviews || 0) + Number(!correct),
@@ -107,21 +203,21 @@ export function completeReview(profile, id, { mistakes = 0 } = {}, now = Date.no
   return {
     ...profile,
     progress: { ...progressOf(profile), [id]: next },
-    history: [...(profile.history || []), {
+    history: appendHistory(profile, {
       type: 'review', at: now, itemId: id,
       fromStage: previous.stage, toStage: stage, mistakes, correct,
-    }],
+    }),
   };
 }
 
-export function stats(items, profile, now = Date.now()) {
+export function stats(items, profile, now = Date.now(), ctx = {}) {
   const result = {
     total: items.length, lessons: 0, reviews: 0, locked: 0, learned: 0,
     burned: 0, stages: Array(10).fill(0), nextReviewAt: null,
     byType: {}, correctReviews: 0, incorrectReviews: 0, accuracy: null,
   };
   for (const item of items) {
-    const status = statusFor(item, profile, now);
+    const status = statusFor(item, profile, now, ctx);
     const group = result.byType[item.type] ||= { total: 0, learned: 0, passed: 0, burned: 0 };
     group.total += 1;
     result.stages[status.stage] += 1;
@@ -285,7 +381,7 @@ export function checkAnswer(item, kind, answer) {
 export function matchesSearch(item, query = '') {
   const q = String(query || '').trim().toLowerCase();
   if (!q) return true;
-  return `${item.character} ${(item.meanings || []).join(' ')} ${(item.readings || []).join(' ')}`.toLowerCase().includes(q);
+  return `${item.character || ''} ${item.meaning || ''} ${(item.meanings || []).join(' ')} ${(item.readings || []).join(' ')}`.toLowerCase().includes(q);
 }
 
 /**
