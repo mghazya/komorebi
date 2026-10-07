@@ -315,3 +315,11 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
   .quiz-prompt.vocabulary .quiz-character{font-size:40px}
   .answer-input{font-size:20px;min-height:56px}
 }
+
+
+/* Placement + Already know this */
+.placement-panel { margin: 0 0 1.25rem; }
+.placement-panel p { margin: 0.5rem 0 1rem; color: var(--muted-aa, var(--muted)); }
+.know-actions { margin: 1rem 0; display: grid; gap: 0.5rem; }
+.know-inline { margin: 0.75rem auto 0; display: block; text-align: center; }
+.session-done .button.secondary { margin-top: 0.75rem; }

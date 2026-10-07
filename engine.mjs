@@ -210,6 +210,157 @@ export function completeReview(profile, id, { mistakes = 0, level } = {}, now = 
   };
 }
 
+
+/** Guru I stage index. Reaching this (or setting passedAt) permanently unlocks dependents. */
+export const GURU_STAGE = 5;
+
+/**
+ * Mark one subject as already known: Guru I (stage 5), with the Guru review interval.
+ * Never demotes a higher stage or Burned. Sets passedAt so dependents unlock permanently
+ * (same as reaching Guru via reviews). Idempotent when already Guru+.
+ * levelOf via options.level chooses accelerated vs standard Guru wait.
+ */
+export function markAsGuru(profile, id, { level } = {}, now = Date.now()) {
+  if (!id) return profile;
+  const previous = progressOf(profile)[id];
+  const fromStage = previous?.stage || 0;
+  if (fromStage >= GURU_STAGE) {
+    // Already Guru or higher — keep stage/schedule; only fill missing passedAt.
+    if (previous.passedAt != null) return profile;
+    return {
+      ...profile,
+      progress: {
+        ...progressOf(profile),
+        [id]: { ...previous, passedAt: now },
+      },
+      history: appendHistory(profile, {
+        type: 'mark-known', at: now, itemId: id, fromStage, toStage: fromStage, alreadyPassed: true,
+      }),
+    };
+  }
+  const next = {
+    stage: GURU_STAGE,
+    availableAt: now + intervalFor(GURU_STAGE, Number.isInteger(level) ? level : undefined),
+    startedAt: previous?.startedAt ?? now,
+    lastReviewedAt: previous?.lastReviewedAt ?? null,
+    correctReviews: previous?.correctReviews || 0,
+    incorrectReviews: previous?.incorrectReviews || 0,
+    passedAt: previous?.passedAt ?? now,
+  };
+  return {
+    ...profile,
+    progress: { ...progressOf(profile), [id]: next },
+    history: appendHistory(profile, {
+      type: 'mark-known', at: now, itemId: id, fromStage, toStage: GURU_STAGE,
+    }),
+  };
+}
+
+/** Bulk mark-known. levelOf: id → level (function or map). Skips empty ids. Does not demote. */
+export function markAsGuruMany(profile, ids, levelOf, now = Date.now()) {
+  let next = profile;
+  for (const id of [...new Set(ids || [])]) {
+    if (!id) continue;
+    next = markAsGuru(next, id, { level: levelFrom(levelOf, id) }, now);
+  }
+  return next;
+}
+
+/** Default placement quiz size (subjects). Keeps the session short on mobile. */
+export const PLACEMENT_SAMPLE_SIZE = 10;
+/** Pass when at least this fraction of questions in the batch are correct. */
+export const PLACEMENT_PASS_RATIO = 0.9;
+/** Alternate pass: this many consecutive correct answers (early strong streak). */
+export const PLACEMENT_STREAK_PASS = 8;
+
+/**
+ * Pick subjects for a placement quiz from levels 1..maxLevel that are not yet Guru+.
+ * Prefers the learner's current maxLevel, then fills from lower levels. Mixes types.
+ * Includes locked subjects so a fluent learner can place without grinding unlocks first.
+ * random: () => [0,1) for tests.
+ */
+export function selectPlacementSample(items, profile, { maxLevel = 1, size = PLACEMENT_SAMPLE_SIZE, random = Math.random } = {}) {
+  const cap = Number.isInteger(maxLevel) && maxLevel >= 1 ? maxLevel : 1;
+  const pool = items.filter((item) => Number.isInteger(item.level) && item.level >= 1 && item.level <= cap && !hasPassed(progressOf(profile)[item.id]));
+  if (!pool.length) return [];
+  const byLevel = new Map();
+  for (const item of pool) {
+    const list = byLevel.get(item.level) || [];
+    list.push(item);
+    byLevel.set(item.level, list);
+  }
+  const shuffle = (arr) => {
+    const out = [...arr];
+    for (let i = out.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [out[i], out[j]] = [out[j], out[i]];
+    }
+    return out;
+  };
+  const picked = [];
+  const levels = [...byLevel.keys()].sort((a, b) => b - a); // current level first
+  for (const level of levels) {
+    if (picked.length >= size) break;
+    for (const item of shuffle(byLevel.get(level))) {
+      if (picked.length >= size) break;
+      picked.push(item);
+    }
+  }
+  return picked;
+}
+
+/**
+ * Score a placement attempt.
+ * answers: [{ id, kind, correct: boolean }, ...] in order asked.
+ * Passes when correct/total >= PLACEMENT_PASS_RATIO, or a consecutive correct streak
+ * of PLACEMENT_STREAK_PASS appears. Subjects to grant: those with every asked part correct.
+ */
+export function scorePlacement(answers = []) {
+  const list = Array.isArray(answers) ? answers : [];
+  const total = list.length;
+  const correctCount = list.filter((a) => a && a.correct).length;
+  let streak = 0;
+  let bestStreak = 0;
+  for (const a of list) {
+    if (a?.correct) { streak += 1; bestStreak = Math.max(bestStreak, streak); }
+    else streak = 0;
+  }
+  const ratio = total ? correctCount / total : 0;
+  const passed = total > 0 && (ratio >= PLACEMENT_PASS_RATIO || bestStreak >= PLACEMENT_STREAK_PASS);
+  const byId = new Map();
+  for (const a of list) {
+    if (!a?.id) continue;
+    const entry = byId.get(a.id) || { id: a.id, parts: 0, correctParts: 0 };
+    entry.parts += 1;
+    if (a.correct) entry.correctParts += 1;
+    byId.set(a.id, entry);
+  }
+  const grantIds = [...byId.values()].filter((e) => e.parts > 0 && e.correctParts === e.parts).map((e) => e.id);
+  return {
+    total,
+    correct: correctCount,
+    ratio,
+    bestStreak,
+    passed,
+    grantIds,
+  };
+}
+
+/**
+ * Subjects on `level` that are currently lesson-ready (deps met, not level-locked) and not yet Guru.
+ * Used when offering to graduate the rest of a cleared level after a strong placement.
+ */
+export function graduateLevelCandidates(items, profile, level, ctx = {}) {
+  if (!Number.isInteger(level)) return [];
+  const maxLevel = Number.isInteger(ctx?.maxLevel) ? ctx.maxLevel : level;
+  return items.filter((item) => {
+    if (item.level !== level) return false;
+    if (hasPassed(progressOf(profile)[item.id])) return false;
+    const st = statusFor(item, profile, Date.now(), { maxLevel });
+    return st.state === 'lesson' || st.state === 'review' || st.state === 'learning';
+  });
+}
+
 export function stats(items, profile, now = Date.now(), ctx = {}) {
   const result = {
     total: items.length, lessons: 0, reviews: 0, locked: 0, learned: 0,
