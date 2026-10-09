@@ -1,0 +1,4661 @@
+[
+  {
+    "id": "radical:below",
+    "type": "radical",
+    "level": 59,
+    "character": "下",
+    "meaning": "Below",
+    "meanings": [
+      "Below"
+    ],
+    "readings": [],
+    "otherReadings": [],
+    "meaningMnemonic": "This radical is the same as the kanji. It means below .",
+    "readingMnemonic": "",
+    "components": [],
+    "dependencies": [],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/radicals/below"
+  },
+  {
+    "id": "kanji:亜",
+    "type": "kanji",
+    "level": 59,
+    "character": "亜",
+    "meaning": "Asia",
+    "meanings": [
+      "Asia",
+      "Sub-"
+    ],
+    "readings": [
+      "あ"
+    ],
+    "otherReadings": [
+      "つ"
+    ],
+    "meaningMnemonic": "The kanji and the radical that look like this are exactly the same. They are both Asia . This can also mean sub- . As in subtropics, subspecies, subhuman… That kind of sub-! When it's not in a place name, 亜 will usually be using its sub- meaning. Hints 亜 is associated with Asia because of its あ reading, but sometimes you might see it used as ateji for other place names as well. And don't forget that sub- meaning!",
+    "readingMnemonic": "What's the first sound in Asia ? It's A ( あ ). Nice and easy! Hints A is for Asia!",
+    "components": [
+      {
+        "character": "亜",
+        "name": "Asia",
+        "id": "radical:asia"
+      }
+    ],
+    "dependencies": [
+      "radical:asia"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E4%BA%9C"
+  },
+  {
+    "id": "kanji:屯",
+    "type": "kanji",
+    "level": 59,
+    "character": "屯",
+    "meaning": "Barracks",
+    "meanings": [
+      "Barracks"
+    ],
+    "readings": [
+      "とん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The barracks radical and the barracks kanji are the same! Hints Know your radicals, yo!",
+    "readingMnemonic": "Barracks are pretty big, so they weigh a ton ( とん ). And they probably take tons of materials to build. Hints Imagine trying to lift some barracks. They weigh a ton! How are you supposed to do this? Why would you even try to lift something that obviously weighs a couple tons?!",
+    "components": [
+      {
+        "character": "屯",
+        "name": "Barracks",
+        "id": "radical:barracks"
+      }
+    ],
+    "dependencies": [
+      "radical:barracks"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%B1%AF"
+  },
+  {
+    "id": "kanji:岬",
+    "type": "kanji",
+    "level": 59,
+    "character": "岬",
+    "meaning": "Cape",
+    "meanings": [
+      "Cape"
+    ],
+    "readings": [
+      "みさき"
+    ],
+    "otherReadings": [
+      "こう"
+    ],
+    "meaningMnemonic": "You see a mountain in the shape of a turtle shell sticking out into the ocean. It's a cape ! No, not the kind you wear, the geographical kind. When you're on land, most capes look like turtle shell mountains sticking out into the sea. Do you know any capes like that near where you live? Hints Picture the turtle shell shaped cape. Feel the salty wind in your hair!",
+    "readingMnemonic": "You decide to walk along this cape because it looks like the perfect place to get rid of your old me at sack ( みさき ). It's starting to smell, but the ocean breeze from the cape pulls the meat sack out of your hands and off into the sky (then probably into the sea too). Hints The next time you go to the cape, remember to bring your old, used meat sack. You can toss it right into the ocean and it won't bother you ever again! Just make sure no one sees you.",
+    "components": [
+      {
+        "character": "山",
+        "name": "Mountain",
+        "id": "radical:mountain"
+      },
+      {
+        "character": "甲",
+        "name": "Turtle Shell",
+        "id": "radical:turtle-shell"
+      }
+    ],
+    "dependencies": [
+      "radical:mountain",
+      "radical:turtle-shell"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%B2%AC"
+  },
+  {
+    "id": "kanji:鋳",
+    "type": "kanji",
+    "level": 59,
+    "character": "鋳",
+    "meaning": "Cast",
+    "meanings": [
+      "Cast",
+      "Casting"
+    ],
+    "readings": [
+      "ちゅう"
+    ],
+    "otherReadings": [
+      "い"
+    ],
+    "meaningMnemonic": "You pour molten gold down three slide s while taking measurement s in order to make a cast of something. Whatever it is you're casting, it requires a lot of gold (three slides' worth!) and some very precise measurements. Hints Imagine yourself carefully pouring the gold down each of your three slides. Really be careful — the measurements need to be exact, or the cast won't come out right.",
+    "readingMnemonic": "At last, you reveal what you've cast : a gold statue of Chew bacca ( ちゅう ). It's a life-size cast, which is why you needed so much gold and such exact measurements. Hints Picture your majestic Chewbacca cast. You place it outside your front door to guard the entrance to your house. Wraaaaaaarrrrrrr!",
+    "components": [
+      {
+        "character": "金",
+        "name": "Gold",
+        "id": "radical:gold"
+      },
+      {
+        "character": "三",
+        "name": "Three",
+        "id": "radical:three"
+      },
+      {
+        "character": "丿",
+        "name": "Slide",
+        "id": "radical:slide"
+      },
+      {
+        "character": "寸",
+        "name": "Measurement",
+        "id": "radical:measurement"
+      }
+    ],
+    "dependencies": [
+      "radical:gold",
+      "radical:three",
+      "radical:slide",
+      "radical:measurement"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E9%8B%B3"
+  },
+  {
+    "id": "kanji:拙",
+    "type": "kanji",
+    "level": 59,
+    "character": "拙",
+    "meaning": "Clumsy",
+    "meanings": [
+      "Clumsy",
+      "Unskillful"
+    ],
+    "readings": [
+      "せつ"
+    ],
+    "otherReadings": [
+      "つたな"
+    ],
+    "meaningMnemonic": "You have to use your fingers to make an exit because you're so clumsy . You can't seem to get the door to open, your hands just slip around on the knob uselessly. Instead, you take your fingers and stick them into the door frame, pulling the whole thing off the hinges so you can leave. Hints Of course, you're too clumsy to do that right either, you accidentally threw the door backwards and hurt some people...",
+    "readingMnemonic": "After you make your clumsy mistake you realize that these doors come in sets ( せつ ). And now you have to try to open another door. And another door. So many sets of doors! Hints Imagine trying to use your clumsy fingers all over the sets of doors. You keep falling over and hurting yourself. Why is it so hard to leave?!",
+    "components": [
+      {
+        "character": "扌",
+        "name": "Fingers",
+        "id": "radical:fingers"
+      },
+      {
+        "character": "出",
+        "name": "Exit",
+        "id": "radical:exit"
+      }
+    ],
+    "dependencies": [
+      "radical:fingers",
+      "radical:exit"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E6%8B%99"
+  },
+  {
+    "id": "kanji:詠",
+    "type": "kanji",
+    "level": 59,
+    "character": "詠",
+    "meaning": "Compose",
+    "meanings": [
+      "Compose",
+      "Recite"
+    ],
+    "readings": [
+      "えい"
+    ],
+    "otherReadings": [
+      "よ",
+      "うた"
+    ],
+    "meaningMnemonic": "If you want to say how eternity sounds you have to compose a poem. Or an essay. Or a song. Recite those deep thoughts about eternity and impress everyone who hears it. Hints Try to compose a poem about eternity right now. Just jot it down somewhere.",
+    "readingMnemonic": "You decide to compose a poem about an a corn ( えい ). The tiny acorn is the perfect vessel for you to say how eternity feels to you. Hints Let me recite the acorn poem to you now: Acorns start small Grow up big and tall Spread their baby acorns for all Live on for all eternity",
+    "components": [
+      {
+        "character": "言",
+        "name": "Say",
+        "id": "radical:say"
+      },
+      {
+        "character": "永",
+        "name": "Eternity",
+        "id": "radical:eternity"
+      }
+    ],
+    "dependencies": [
+      "radical:say",
+      "radical:eternity"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E8%A9%A0"
+  },
+  {
+    "id": "kanji:慶",
+    "type": "kanji",
+    "level": 59,
+    "character": "慶",
+    "meaning": "Congratulate",
+    "meanings": [
+      "Congratulate"
+    ],
+    "readings": [
+      "けい"
+    ],
+    "otherReadings": [
+      "よろこ"
+    ],
+    "meaningMnemonic": "If a pilot manages to land under a canopy with a helicopter that's pierced with a sideways barb in the heart of winter you should congratulate them! People should always be congratulated for doing good things, and this is one of the best things you've ever heard of! Hints Can you imagine how difficult landing a helicopter is in just one of these horrible conditions? Congratulate them!",
+    "readingMnemonic": "Congratulate the pilot with ca ke ( けい )! Hints Cake is always the appropriate celebratory food.",
+    "components": [
+      {
+        "character": "广",
+        "name": "Canopy",
+        "id": "radical:canopy"
+      },
+      {
+        "character": "覀",
+        "name": "Helicopter",
+        "id": "radical:helicopter"
+      },
+      {
+        "character": "亅",
+        "name": "Barb",
+        "id": "radical:barb"
+      },
+      {
+        "character": "心",
+        "name": "Heart",
+        "id": "radical:heart"
+      },
+      {
+        "character": "夂",
+        "name": "Winter",
+        "id": "radical:winter"
+      }
+    ],
+    "dependencies": [
+      "radical:canopy",
+      "radical:helicopter",
+      "radical:barb",
+      "radical:heart",
+      "radical:winter"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E6%85%B6"
+  },
+  {
+    "id": "kanji:酪",
+    "type": "kanji",
+    "level": 59,
+    "character": "酪",
+    "meaning": "Dairy",
+    "meanings": [
+      "Dairy"
+    ],
+    "readings": [
+      "らく"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "You can only give a kiss of alcohol to dairy . If you add anymore than a kiss the dairy will curdle and you won't be able to drink it anymore. Bleh. Hints Imagine trying to give more than a kiss of alcohol to dairy and watch it bubble and curdle and get all gross and chunky.",
+    "readingMnemonic": "Dairy isn't kept with other drinks, it needs to be placed on a rack ( らく ). I hope you've been using your dairy rack to store your dairy. If you haven't you should get one right away! Hints Look at all your dairy products: milk, yogurt, cheese, all of it sitting nicely on your dairy rack.",
+    "components": [
+      {
+        "character": "酉",
+        "name": "Alcohol",
+        "id": "radical:alcohol"
+      },
+      {
+        "character": "各",
+        "name": "Kiss",
+        "id": "radical:kiss"
+      }
+    ],
+    "dependencies": [
+      "radical:alcohol",
+      "radical:kiss"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E9%85%AA"
+  },
+  {
+    "id": "kanji:篤",
+    "type": "kanji",
+    "level": 59,
+    "character": "篤",
+    "meaning": "Deliberate",
+    "meanings": [
+      "Deliberate"
+    ],
+    "readings": [
+      "とく"
+    ],
+    "otherReadings": [
+      "あつ"
+    ],
+    "meaningMnemonic": "If someone makes a bamboo horse , you know it's deliberate . You can't accidentally make an entire horse out of bamboo. Hints Someone sat down and deliberately planned the entire horse out, collected the materials, and made it by hand.",
+    "readingMnemonic": "As you admire all the deliberate details in this bamboo horse, the ghost of Toku gawa ( とく ) Ieyasu appears before you! \"I deliberately made this horse to show you how important being deliberate is. You should be absolutely certain and decisive about your decisions.\" Hints Tokugawa Ieyasu then poofs out of existence and so does the bamboo horse.",
+    "components": [
+      {
+        "character": "竹",
+        "name": "Bamboo",
+        "id": "radical:bamboo"
+      },
+      {
+        "character": "馬",
+        "name": "Horse",
+        "id": "radical:horse"
+      }
+    ],
+    "dependencies": [
+      "radical:bamboo",
+      "radical:horse"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E7%AF%A4"
+  },
+  {
+    "id": "kanji:侮",
+    "type": "kanji",
+    "level": 59,
+    "character": "侮",
+    "meaning": "Despise",
+    "meanings": [
+      "Despise"
+    ],
+    "readings": [
+      "ぶ"
+    ],
+    "otherReadings": [
+      "あなず",
+      "あなど"
+    ],
+    "meaningMnemonic": "Every leader will come to despise their followers. In the beginning everything is fine and dandy, but eventually the leader's followers will ask for more and more things, eventually ridiculous things, and the leader will really despise them for it. Hints Imagine yourself as a leader who's come to despise every single one of their followers. Look down at them in disgust as they ask you to grant them all a pony.",
+    "readingMnemonic": "The more you despise them, the more boo ze ( ぶ ) you drink. This is not smart or healthy, but it's what this kind of hate does to people. Hints This is not a healthy way to handle things! If you despise someone you should talk to them, don't turn to booze. Don't be like every leader that's come before you.",
+    "components": [
+      {
+        "character": "ｲ",
+        "name": "Leader",
+        "id": "radical:leader"
+      },
+      {
+        "character": "毎",
+        "name": "Every",
+        "id": "radical:every"
+      }
+    ],
+    "dependencies": [
+      "radical:leader",
+      "radical:every"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E4%BE%AE"
+  },
+  {
+    "id": "kanji:堪",
+    "type": "kanji",
+    "level": 59,
+    "character": "堪",
+    "meaning": "Endure",
+    "meanings": [
+      "Endure"
+    ],
+    "readings": [
+      "こら",
+      "た"
+    ],
+    "otherReadings": [
+      "かん",
+      "たん"
+    ],
+    "meaningMnemonic": "If there is dirt in a crab trap , it's a lot for the crabs to endure . Hints Imagine a little crab getting stuck in a crab trap with dirt and other crabs. Endure the horror as long as you can, little friend.",
+    "readingMnemonic": "You decide to make the little crab that endure d being stuck in a dirty crab trap your pet, and put a colla r ( こら ) round its little neck. Hints Imagine yourself putting a collar around the crab's neck, then adding a leash and taking your crab for a walk around your neighborhood.",
+    "components": [
+      {
+        "character": "土",
+        "name": "Dirt",
+        "id": "radical:dirt"
+      },
+      {
+        "character": "甚",
+        "name": "Crab Trap",
+        "id": "radical:crab-trap"
+      }
+    ],
+    "dependencies": [
+      "radical:dirt",
+      "radical:crab-trap"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%A0%AA"
+  },
+  {
+    "id": "kanji:禍",
+    "type": "kanji",
+    "level": 59,
+    "character": "禍",
+    "meaning": "Evil",
+    "meanings": [
+      "Evil",
+      "Misfortune"
+    ],
+    "readings": [
+      "か"
+    ],
+    "otherReadings": [
+      "わざわい"
+    ],
+    "meaningMnemonic": "A spirit wearing two mustache s must be evil . Everyone knows a mustache makes you evil, but two? And on a spirit? Yup, definitely evil. Hints Look at the evil spirit with two mustaches on its spirit face. Imagine its face in detail, especially those mustaches.",
+    "readingMnemonic": "You're watching the evil mustache spirit when it starts to float toward your ca r ( か ). And it's... hey! It's trashing your car! You knew this guy was evil! Hints Imagine running around, flailing your arms, trying to get the spirit to stop ruining your car. But your hands go right through him and his two mustaches. You can't stop his evil doings.",
+    "components": [
+      {
+        "character": "ネ",
+        "name": "Spirit",
+        "id": "radical:spirit"
+      },
+      {
+        "character": "冋",
+        "name": "Mustache",
+        "id": "radical:mustache"
+      }
+    ],
+    "dependencies": [
+      "radical:spirit",
+      "radical:mustache"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E7%A6%8D"
+  },
+  {
+    "id": "kanji:雌",
+    "type": "kanji",
+    "level": 59,
+    "character": "雌",
+    "meaning": "Female",
+    "meanings": [
+      "Female"
+    ],
+    "readings": [
+      "めす",
+      "め",
+      "めん"
+    ],
+    "otherReadings": [
+      "し"
+    ],
+    "meaningMnemonic": "If you can stop a turkey by putting a spoon in its face you'll know it's a female turkey. A male turkey will peck the spoon out of your hand and run away. But a female turkey will wonder why you're putting a spoon there, stop, and look up at you wondering if you're okay. Hints Picture the female turkey stopping when it sees you holding out a spoon. Why are you doing that human? it thinks. Are you sick?",
+    "readingMnemonic": "The female turkey then runs around making a mess ( めす ) of things trying to figure out what's wrong with you. She kicks around her hay, water bowl, and scratches at your pants, making more mess marks on them. But you don't move and she gets even more worried. Hints Imagine watching a female turkey make a mess of her own cage because she thinks you need help. How sweet.",
+    "components": [
+      {
+        "character": "止",
+        "name": "Stop",
+        "id": "radical:stop"
+      },
+      {
+        "character": "匕",
+        "name": "Spoon",
+        "id": "radical:spoon"
+      },
+      {
+        "character": "隹",
+        "name": "Turkey",
+        "id": "radical:turkey"
+      }
+    ],
+    "dependencies": [
+      "radical:stop",
+      "radical:spoon",
+      "radical:turkey"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E9%9B%8C"
+  },
+  {
+    "id": "kanji:睦",
+    "type": "kanji",
+    "level": 59,
+    "character": "睦",
+    "meaning": "Friendly",
+    "meanings": [
+      "Friendly"
+    ],
+    "readings": [
+      "ぼく",
+      "もく"
+    ],
+    "otherReadings": [
+      "むつ"
+    ],
+    "meaningMnemonic": "If you see someone eye ing your womb you're probably going to be weirded out by how friendly they're acting. You only let people who are really, really close to you look at your womb. So if this guy is acting that friendly he should have introduced himself first. Hints Imagine having someone you aren't friendly with trying to have a look at your womb. No thank you.",
+    "readingMnemonic": "This friendly guy comes up to you and start to introduce himself, \" ぼく -\" but you stop him. He's been getting way too friendly with your womb and you don't want to hear who he is. He can ぼく at someone else, you're out. Hints Imagine only letting this guy start to introduce himself with ぼく before walking the heck outta there. Just because he was acting friendly doesn't mean he was actually your friend.",
+    "components": [
+      {
+        "character": "目",
+        "name": "Eye",
+        "id": "radical:eye"
+      },
+      {
+        "character": "坴",
+        "name": "Womb",
+        "id": "radical:womb"
+      }
+    ],
+    "dependencies": [
+      "radical:eye",
+      "radical:womb"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E7%9D%A6"
+  },
+  {
+    "id": "kanji:胆",
+    "type": "kanji",
+    "level": 59,
+    "character": "胆",
+    "meaning": "Guts",
+    "meanings": [
+      "Guts",
+      "Gallbladder"
+    ],
+    "readings": [
+      "たん"
+    ],
+    "otherReadings": [
+      "きも"
+    ],
+    "meaningMnemonic": "If you stay up so long that you see the moon go down and the dawn come, people will say you have serious guts . It takes guts to stay up that late. More specifically, it takes a powerful gallbladder . Your gallbladder is sensitive to sleep changes, you know, so you risk a lot by staying up like that. Hints Imagine the guts you'd need to have to stay up so late that you see the moon and the sun switch places! And to risk gallbladder damage?! That takes guts!",
+    "readingMnemonic": "You stayed awake outside for so long, just to prove you had guts and powerful gallbladder , that you also got a sweet tan ( たん ) out of it! Hints Imagine the deep tan you'd get after staying awake outside for such a long time. Tanning is also bad for your gallbladder! Man, you've really got guts to be getting tans like that.",
+    "components": [
+      {
+        "character": "月",
+        "name": "Moon",
+        "id": "radical:moon"
+      },
+      {
+        "character": "旦",
+        "name": "Dawn",
+        "id": "radical:dawn"
+      }
+    ],
+    "dependencies": [
+      "radical:moon",
+      "radical:dawn"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E8%83%86"
+  },
+  {
+    "id": "kanji:擬",
+    "type": "kanji",
+    "level": 59,
+    "character": "擬",
+    "meaning": "Imitate",
+    "meanings": [
+      "Imitate"
+    ],
+    "readings": [
+      "ぎ"
+    ],
+    "otherReadings": [
+      "まが",
+      "もど"
+    ],
+    "meaningMnemonic": "You try to use your fingers to cast doubt on people by using them to imitate each other. Right now you're using your fingers as finger puppets, imitating one of your friends to the others. Hints Picture your angry friend standing up next to your fingers, shouting, \"I'm the real me! That's just an imitation!\" The rest of your friends look nervously at each other. They doubt this person is real now.",
+    "readingMnemonic": "Everyone thinks the friend you were trying to imitate is the imitation now and they have them in a gui llotine ( ぎ ). You even doubt if they're an imitation or if your fingers are the imitation. Hints Okay, so that's a lie, Your fingers are definitely imitating them, but you don't want to end up in the guillotine so you keep your mouth shut.",
+    "components": [
+      {
+        "character": "扌",
+        "name": "Fingers",
+        "id": "radical:fingers"
+      },
+      {
+        "character": "疑",
+        "name": "Doubt",
+        "id": "radical:doubt"
+      }
+    ],
+    "dependencies": [
+      "radical:fingers",
+      "radical:doubt"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E6%93%AC"
+  },
+  {
+    "id": "kanji:梓",
+    "type": "kanji",
+    "level": 59,
+    "character": "梓",
+    "meaning": "Japanese Birch",
+    "meanings": [
+      "Japanese Birch",
+      "Birch"
+    ],
+    "readings": [
+      "あずさ"
+    ],
+    "otherReadings": [
+      "し"
+    ],
+    "meaningMnemonic": "What kind of tree is spicy ? A Japanese birch , or birch , obviously. There's nothing spicier than a Japanese birch! Hints Imagine licking the trunk of a Japanese birch tree and feeling the heat on your tongue.",
+    "readingMnemonic": "You can only cut down a Japanese birch using a zoo saw ( あずさ ) because a regular saw can't handle how spicy these trees are. Hints Imagine using a zoo saw to cut down a Japanese birch tree. What's a zoo saw? It's a saw that's used in zoos, to build all the animal enclosures. And to cut down spicy trees.",
+    "components": [
+      {
+        "character": "木",
+        "name": "Tree",
+        "id": "radical:tree"
+      },
+      {
+        "character": "辛",
+        "name": "Spicy",
+        "id": "radical:spicy"
+      }
+    ],
+    "dependencies": [
+      "radical:tree",
+      "radical:spicy"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E6%A2%93"
+  },
+  {
+    "id": "kanji:漆",
+    "type": "kanji",
+    "level": 59,
+    "character": "漆",
+    "meaning": "Lacquer",
+    "meanings": [
+      "Lacquer",
+      "Varnish"
+    ],
+    "readings": [
+      "しつ"
+    ],
+    "otherReadings": [
+      "うるし"
+    ],
+    "meaningMnemonic": "A tsunami hits a tree and your hat protects you from the water , but the hat itself is now covered in lacquer . You take it off and see that it's shiny and hard and protected. Hints Picture your hat and all of the other things the tsunami + tree water touched. It's all been hardened with a thick coating of the lacquer.",
+    "readingMnemonic": "You decide to scoop up the rest of the lacquer water and use it on your furniture to protect it from your shih tzu ( しつ ). Now it can't bite or scratch or ruin any of your things anymore! Hints Watch as your shih tzu tries to bite your now lacquered chair. It gets its teeth around the leg, but it's hard as a rock. The shih tzu starts sneezing and spitting, letting go. Looks like it tastes bad too. Perfect!",
+    "components": [
+      {
+        "character": "氵",
+        "name": "Tsunami",
+        "id": "radical:tsunami"
+      },
+      {
+        "character": "木",
+        "name": "Tree",
+        "id": "radical:tree"
+      },
+      {
+        "character": "𠆢",
+        "name": "Hat",
+        "id": "radical:hat"
+      },
+      {
+        "character": "水",
+        "name": "Water",
+        "id": "radical:water"
+      }
+    ],
+    "dependencies": [
+      "radical:tsunami",
+      "radical:tree",
+      "radical:hat",
+      "radical:water"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E6%BC%86"
+  },
+  {
+    "id": "kanji:閑",
+    "type": "kanji",
+    "level": 59,
+    "character": "閑",
+    "meaning": "Leisure",
+    "meanings": [
+      "Leisure"
+    ],
+    "readings": [
+      "かん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "You see a gate with a tree growing through it and it reminds you that you need more leisure time. You walk up to the gate tree and curl up under its branches. No one will bother you because the tree is blocking the gate from being used. Hints Imagine spending your leisure time curled up under a tree that's growing through a gate. It's so cozy and secluded!",
+    "readingMnemonic": "As you leisure ly nap, you hear a gruff voice, \"Ah, you're done too, huh?\" It's Genghis Khan ( かん )! He's spending his leisure time relaxing under this abandoned gate just like you. Hints But wait. Isn't Genghis Khan dead now? He winks at you, \"Leisure time is for the dead.\" He smiles, and fades away, disappearing into the tree.",
+    "components": [
+      {
+        "character": "門",
+        "name": "Gate",
+        "id": "radical:gate"
+      },
+      {
+        "character": "木",
+        "name": "Tree",
+        "id": "radical:tree"
+      }
+    ],
+    "dependencies": [
+      "radical:gate",
+      "radical:tree"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E9%96%91"
+  },
+  {
+    "id": "kanji:卑",
+    "type": "kanji",
+    "level": 59,
+    "character": "卑",
+    "meaning": "Lowly",
+    "meanings": [
+      "Lowly",
+      "Base"
+    ],
+    "readings": [
+      "ひ"
+    ],
+    "otherReadings": [
+      "いや"
+    ],
+    "meaningMnemonic": "You drop to the ground in a rice paddy , and then drop down in front of the cross you keep on you because you're trying to make yourself as lowly as you can in front of God. He said to lower yourself and this is the only way you can interpret that. Hints Imagine dropping down in a rice paddy, then again in front of your cross. Be as lowly as you can make yourself.",
+    "readingMnemonic": "The only problem about being lowly is the he at ( ひ ). Everyone always told you that heat rises, but not here. The rice paddy is incredibly hot... unless oh no. Is that the heat of hell? Hints You tried to make yourself lowly in front of God but this heat is probably a sign that you didn't do it well enough.",
+    "components": [
+      {
+        "character": "丶",
+        "name": "Drop",
+        "id": "radical:drop"
+      },
+      {
+        "character": "田",
+        "name": "Rice Paddy",
+        "id": "radical:rice-paddy"
+      },
+      {
+        "character": "十",
+        "name": "Cross",
+        "id": "radical:cross"
+      }
+    ],
+    "dependencies": [
+      "radical:drop",
+      "radical:rice-paddy",
+      "radical:cross"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%8D%91"
+  },
+  {
+    "id": "kanji:姻",
+    "type": "kanji",
+    "level": 59,
+    "character": "姻",
+    "meaning": "Marry",
+    "meanings": [
+      "Marry"
+    ],
+    "readings": [
+      "いん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "You meet a woman whose mouth is big and you instantly know this is the person you want to marry . Hints When you think about the person you want to marry, picture their mouth wide in a big, beautiful smile, a wide-open laugh. That's the lady for you, alright!",
+    "readingMnemonic": "You marry this woman right away and you both go straight to an inn ( いん ) together! Hints When you get to the inn all you do is make her laugh and smile so you can bask in her bright, big, mouth smiles.",
+    "components": [
+      {
+        "character": "女",
+        "name": "Woman",
+        "id": "radical:woman"
+      },
+      {
+        "character": "口",
+        "name": "Mouth",
+        "id": "radical:mouth"
+      },
+      {
+        "character": "大",
+        "name": "Big",
+        "id": "radical:big"
+      }
+    ],
+    "dependencies": [
+      "radical:woman",
+      "radical:mouth",
+      "radical:big"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%A7%BB"
+  },
+  {
+    "id": "kanji:峠",
+    "type": "kanji",
+    "level": 59,
+    "character": "峠",
+    "meaning": "Mountain Pass",
+    "meanings": [
+      "Mountain Pass",
+      "The Worst"
+    ],
+    "readings": [
+      "とうげ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If there are mountain s above and below you, that means you're on a mountain pass . Hints Imagine yourself walking along a mountain pass. Look up at the mountains above you, and down at the mountains below you.",
+    "readingMnemonic": "It's only on this type of mountain pass that you'll be able to find the rare and adorable To kyo ge cko ( とうげ ). These tiny little critters can only be found on the ridges going above and below the mountains in Tokyo. There are like six mountains in Tokyo, so the next time you're scaling the ridges keep your eyes open for the Tokyo gecko! Hints Picture yourself hiking along a mountain pass in Tokyo and spotting a little Tokyo gecko run up and down on them. It's adorable and totally worth the climb.",
+    "components": [
+      {
+        "character": "山",
+        "name": "Mountain",
+        "id": "radical:mountain"
+      },
+      {
+        "character": "上",
+        "name": "Above",
+        "id": "radical:above"
+      },
+      {
+        "character": "下",
+        "name": "Below",
+        "id": "radical:below"
+      }
+    ],
+    "dependencies": [
+      "radical:mountain",
+      "radical:above",
+      "radical:below"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%B3%A0"
+  },
+  {
+    "id": "kanji:忌",
+    "type": "kanji",
+    "level": 59,
+    "character": "忌",
+    "meaning": "Mourning",
+    "meanings": [
+      "Mourning"
+    ],
+    "readings": [
+      "き"
+    ],
+    "otherReadings": [
+      "い"
+    ],
+    "meaningMnemonic": "If you only let oneself (yourself) into your heart , you'll end up mourning all of the loves and friendships you could have had but didn't let in. Hints Picture yourself all alone. You never let anyone into your heart but yourself, and now you're mourning the life and friends you could have had.",
+    "readingMnemonic": "While you're in mourning , you feel a sharp pain in your crying eyes. A key ( き ) comes sliding out with your tears. You look around wildly, but you're still alone. Is this... the key of mourning? Hints You try to push the key back into your body. Back into your eye, you even try to swallow it, but it comes back out. Finally you look down at your mourning heart and try the key there. It clicks. And opens.",
+    "components": [
+      {
+        "character": "己",
+        "name": "Oneself",
+        "id": "radical:oneself"
+      },
+      {
+        "character": "心",
+        "name": "Heart",
+        "id": "radical:heart"
+      }
+    ],
+    "dependencies": [
+      "radical:oneself",
+      "radical:heart"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%BF%8C"
+  },
+  {
+    "id": "kanji:曹",
+    "type": "kanji",
+    "level": 59,
+    "character": "曹",
+    "meaning": "Official",
+    "meanings": [
+      "Official"
+    ],
+    "readings": [
+      "そう",
+      "ぞう"
+    ],
+    "otherReadings": [
+      "つかさ",
+      "ともがら",
+      "へや"
+    ],
+    "meaningMnemonic": "When under ground music makes it out into the light of the sun (the public), it finally becomes official . Music isn't really real unless people hear it outside of those secret underground concerts. Hints Think of all that music you listened to underground but not in the light of the sun. None of that was official music. None of it!",
+    "readingMnemonic": "Once the music is official , you'll feel it in your sou l ( そう ). When you listen to it outside, under the bright sun, your soul gets to finally hear it too. Hints The official music penetrates into your soul, instead of just your ears, and it's affecting everyone else's souls too! Oh no... wait that's too many people. This was your song! No, it's too popular now, stop your souls from liking it! Ahhh!",
+    "components": [
+      {
+        "character": "一",
+        "name": "Ground",
+        "id": "radical:ground"
+      },
+      {
+        "character": "曲",
+        "name": "Music",
+        "id": "radical:music"
+      },
+      {
+        "character": "日",
+        "name": "Sun",
+        "id": "radical:sun"
+      }
+    ],
+    "dependencies": [
+      "radical:ground",
+      "radical:music",
+      "radical:sun"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E6%9B%B9"
+  },
+  {
+    "id": "kanji:吟",
+    "type": "kanji",
+    "level": 59,
+    "character": "吟",
+    "meaning": "Recital",
+    "meanings": [
+      "Recital"
+    ],
+    "readings": [
+      "ぎん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "We want you to say things with your mouth right now because it's recital time! That poem you've been learning all week? Well it's time to recite it now, so hopefully you've learned it properly. Hints Open your mouth and start reciting now, it's recital time!",
+    "readingMnemonic": "You've forgotten all the words to the poem you are meant to recite. To help with your recital , your guin ea ( ぎん ) pig hops onto your shoulder and whispers the words into your ear. Hints Picture your pet guinea pig hopping onto your shoulder, helping you and making sure the recital of your poem goes well.",
+    "components": [
+      {
+        "character": "口",
+        "name": "Mouth",
+        "id": "radical:mouth"
+      },
+      {
+        "character": "今",
+        "name": "Now",
+        "id": "radical:now"
+      }
+    ],
+    "dependencies": [
+      "radical:mouth",
+      "radical:now"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%90%9F"
+  },
+  {
+    "id": "kanji:礁",
+    "type": "kanji",
+    "level": 59,
+    "character": "礁",
+    "meaning": "Reef",
+    "meanings": [
+      "Reef"
+    ],
+    "readings": [
+      "しょう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The stone that looks like a turkey boil ing underwater is just a reef . Hints It may seem like there are a bunch of turkeys under there, but it's just the shape the reef takes. Though I guess if you're looking from above the water it really does look like a bunch of turkeys freaking out.",
+    "readingMnemonic": "The reef is the Shou gun's ( しょう ) favorite place to be nowadays. He sits next to the water, and stares down into it for hours. Hints You don't know if the Shougun likes the reef because he likes the beauty of the ocean, or if he's fantasizing about turkeys boiling. He's a... complex man.",
+    "components": [
+      {
+        "character": "石",
+        "name": "Stone",
+        "id": "radical:stone"
+      },
+      {
+        "character": "隹",
+        "name": "Turkey",
+        "id": "radical:turkey"
+      },
+      {
+        "character": "灬",
+        "name": "Boil",
+        "id": "radical:boil"
+      }
+    ],
+    "dependencies": [
+      "radical:stone",
+      "radical:turkey",
+      "radical:boil"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E7%A4%81"
+  },
+  {
+    "id": "kanji:沙",
+    "type": "kanji",
+    "level": 59,
+    "character": "沙",
+    "meaning": "Sand",
+    "meanings": [
+      "Sand"
+    ],
+    "readings": [
+      "さ",
+      "しゃ"
+    ],
+    "otherReadings": [
+      "すな",
+      "よなげる"
+    ],
+    "meaningMnemonic": "People think tsunami s are only made of water but they have a few pieces of sand in there too. There's actually more sand in the ocean than most people think. And tsunamis can't just have water and sharks in them. A few grains of sand will always slip in. Hints Imagine how those few grains of sand feel to get swept up into a tsunami. They didn't ask for this. They just wanted to stay at the bottom of the sea.",
+    "readingMnemonic": "You already learnt the reading for 砂 , the other kanji for sand . It should be easy to remember this one too, since it's also さ ! Hints As long as you remember 砂 , you can remember さ .",
+    "components": [
+      {
+        "character": "氵",
+        "name": "Tsunami",
+        "id": "radical:tsunami"
+      },
+      {
+        "character": "少",
+        "name": "Few",
+        "id": "radical:few"
+      }
+    ],
+    "dependencies": [
+      "radical:tsunami",
+      "radical:few"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E6%B2%99"
+  },
+  {
+    "id": "kanji:蔑",
+    "type": "kanji",
+    "level": 59,
+    "character": "蔑",
+    "meaning": "Scorn",
+    "meanings": [
+      "Scorn",
+      "Neglect"
+    ],
+    "readings": [
+      "べつ"
+    ],
+    "otherReadings": [
+      "さげす"
+    ],
+    "meaningMnemonic": "By putting flowers in a net , you manage to catch a canine ! But this just makes everyone scorn you. Hints Your scorn is well deserved — an upstanding member of society doesn't go around snatching up innocent flower-loving canines with a net. Go to the pet store and buy one like a normal person.",
+    "readingMnemonic": "You notice everyone's scorn and respond by saying: \"I bets ( べつ ) you I can catch me another one. I bets you I can.\" Hints Mistakenly assuming everyone is scorning you for not having caught enough canines, you go out to snatch up some more. Uh oh — I bets everyone is really gonna scorn you now!",
+    "components": [
+      {
+        "character": "艹",
+        "name": "Flowers",
+        "id": "radical:flowers"
+      },
+      {
+        "character": "罒",
+        "name": "Net",
+        "id": "radical:net"
+      },
+      {
+        "character": "戌",
+        "name": "Canine",
+        "id": "radical:canine"
+      }
+    ],
+    "dependencies": [
+      "radical:flowers",
+      "radical:net",
+      "radical:canine"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E8%94%91"
+  },
+  {
+    "id": "kanji:汰",
+    "type": "kanji",
+    "level": 59,
+    "character": "汰",
+    "meaning": "Select",
+    "meanings": [
+      "Select"
+    ],
+    "readings": [
+      "た",
+      "たい"
+    ],
+    "otherReadings": [
+      "おご",
+      "にご",
+      "よな"
+    ],
+    "meaningMnemonic": "If the tsunami that's heading for your village is fat you should try to select a different one to hit instead. You don't want to select fat tsunamis because they do more damage. Hints Imagine being at the tsunami store and selecting the least fat one there.",
+    "readingMnemonic": "If you're having trouble select ing which one is the least fat just check to see which tsunamis are eating ta cos ( た ). Only fat tsunamis will be eating them, so just look for one without a taco. Hints While you select the tsunami that's right for you. Keep an eye out for those fat taco-eating ones. And then stay away from them!",
+    "components": [
+      {
+        "character": "氵",
+        "name": "Tsunami",
+        "id": "radical:tsunami"
+      },
+      {
+        "character": "太",
+        "name": "Fat",
+        "id": "radical:fat"
+      }
+    ],
+    "dependencies": [
+      "radical:tsunami",
+      "radical:fat"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E6%B1%B0"
+  },
+  {
+    "id": "kanji:紡",
+    "type": "kanji",
+    "level": 59,
+    "character": "紡",
+    "meaning": "Spinning",
+    "meanings": [
+      "Spinning",
+      "Spin"
+    ],
+    "readings": [
+      "ぼう"
+    ],
+    "otherReadings": [
+      "つむ"
+    ],
+    "meaningMnemonic": "Move thread in the right direction and you'll end up spinning it into yarn. Then you can spin that yarn into a sweater or a scarf with your favorite half tofu half fugu mascot on it! Hints Imagine spinning thread into whatever your imagination wants.",
+    "readingMnemonic": "While you're spinning you realize that you've always wanted to make your own bow ling ( ぼう ) ball. And bowling ball cover. And bowling ball shoes. Hints Picture all of these thread-made bowling items. You're a really big bowling fan, huh?",
+    "components": [
+      {
+        "character": "糸",
+        "name": "Thread",
+        "id": "radical:thread"
+      },
+      {
+        "character": "方",
+        "name": "Direction",
+        "id": "radical:direction"
+      }
+    ],
+    "dependencies": [
+      "radical:thread",
+      "radical:direction"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E7%B4%A1"
+  },
+  {
+    "id": "kanji:遷",
+    "type": "kanji",
+    "level": 59,
+    "character": "遷",
+    "meaning": "Transition",
+    "meanings": [
+      "Transition"
+    ],
+    "readings": [
+      "せん"
+    ],
+    "otherReadings": [
+      "うつ",
+      "みやこがえ"
+    ],
+    "meaningMnemonic": "Going from a scooter to a helicopter that's big even for yourself ( oneself ), is a huge transition . Hints It's an upward transition, so that's nice, but it's still going to take you a long time to get used to using a big helicopter instead of a scooter.",
+    "readingMnemonic": "You decide one transition isn't enough, so you transition to a cen taur ( せん ) too. Now you're a big half horse-half human creature and you'll fit in the big helicopter better. Hints A centaur is just a human halfway between transitioning into a horse, so it isn't even that hard to do!",
+    "components": [
+      {
+        "character": "⻌",
+        "name": "Scooter",
+        "id": "radical:scooter"
+      },
+      {
+        "character": "覀",
+        "name": "Helicopter",
+        "id": "radical:helicopter"
+      },
+      {
+        "character": "大",
+        "name": "Big",
+        "id": "radical:big"
+      },
+      {
+        "character": "己",
+        "name": "Oneself",
+        "id": "radical:oneself"
+      }
+    ],
+    "dependencies": [
+      "radical:scooter",
+      "radical:helicopter",
+      "radical:big",
+      "radical:oneself"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E9%81%B7"
+  },
+  {
+    "id": "kanji:甚",
+    "type": "kanji",
+    "level": 59,
+    "character": "甚",
+    "meaning": "Very",
+    "meanings": [
+      "Very",
+      "Great"
+    ],
+    "readings": [
+      "じん"
+    ],
+    "otherReadings": [
+      "はなは"
+    ],
+    "meaningMnemonic": "Making a mnemonic for a crab trap is VERY hard. So hard that I couldn't come up with one. But it's very possible that one of you will! Hints How hard is it to come up with a good mnemonic for a crab trap? Very hard!",
+    "readingMnemonic": "You know what else is very something? Jean s ( じん ). Jeans are very expensive. Jeans are very tight. Jeans are very popular. Jeans are very a lot of things. Hints How many sentences can you make with very and jeans? More than me I hope.",
+    "components": [
+      {
+        "character": "甚",
+        "name": "Crab Trap",
+        "id": "radical:crab-trap"
+      }
+    ],
+    "dependencies": [
+      "radical:crab-trap"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E7%94%9A"
+  },
+  {
+    "id": "kanji:浪",
+    "type": "kanji",
+    "level": 59,
+    "character": "浪",
+    "meaning": "Wander",
+    "meanings": [
+      "Wander"
+    ],
+    "readings": [
+      "ろう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The tsunami that is good . This fabled creature has never been seen, but you wander the lands in search of it. Hints You wander everywhere, with no particular direction in mind.",
+    "readingMnemonic": "As you wander , you come across a clue. It is fish roe ( ろう ). Hints Wherever the good tsunami goes, it leaves delicious fish roe behind. That's what makes it a good tsunami.",
+    "components": [
+      {
+        "character": "氵",
+        "name": "Tsunami",
+        "id": "radical:tsunami"
+      },
+      {
+        "character": "良",
+        "name": "Good",
+        "id": "radical:good"
+      }
+    ],
+    "dependencies": [
+      "radical:tsunami",
+      "radical:good"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E6%B5%AA"
+  },
+  {
+    "id": "kanji:崇",
+    "type": "kanji",
+    "level": 59,
+    "character": "崇",
+    "meaning": "Worship",
+    "meanings": [
+      "Worship",
+      "Revere"
+    ],
+    "readings": [
+      "すう"
+    ],
+    "otherReadings": [
+      "あが"
+    ],
+    "meaningMnemonic": "In the side of a mountain , you carve out a roof with your jackhammer so you can worship the gods. Basically, you've created a little alcove where you can set up an altar and worship like some kind of mountain ascetic. Hints Worshippers of ages past had to spend years chipping away at the mountainside with pickaxes and shovels to build roofed spaces like this. Your jackhammer allowed you to save precious time and get right to worshipping.",
+    "readingMnemonic": "What's the object of your worship ? Sou p ( すう )! There's a whole pantheon of soup gods, and you've come to the mountains to spend your days worshipping each and every one of them. Hints The Gazpacho Goddess, the Borscht Bodhisattva, the Minestrone Messiah… Each major soup variety has its own deity, so your worship schedule is pretty tight.",
+    "components": [
+      {
+        "character": "山",
+        "name": "Mountain",
+        "id": "radical:mountain"
+      },
+      {
+        "character": "宀",
+        "name": "Roof",
+        "id": "radical:roof"
+      },
+      {
+        "character": "示",
+        "name": "Jackhammer",
+        "id": "radical:jackhammer"
+      }
+    ],
+    "dependencies": [
+      "radical:mountain",
+      "radical:roof",
+      "radical:jackhammer"
+    ],
+    "sentences": [],
+    "sourceUrl": "https://www.wanikani.com/kanji/%E5%B4%87"
+  },
+  {
+    "id": "vocabulary:環礁",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "環礁",
+    "meaning": "Atoll",
+    "meanings": [
+      "Atoll",
+      "Circular Coral Reef"
+    ],
+    "readings": [
+      "かんしょう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A reef in the shape of a loop is an atoll . If you don't know what that is, it's a circular coral reef .",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "環",
+        "name": "Loop",
+        "id": "kanji:環"
+      },
+      {
+        "character": "礁",
+        "name": "Reef",
+        "id": "kanji:礁"
+      }
+    ],
+    "dependencies": [
+      "kanji:環",
+      "kanji:礁"
+    ],
+    "sentences": [
+      {
+        "japanese": "その時、日本のマグロ漁船「第五福竜丸」がたまたまビキニ環礁を航行しており、乗組員が被ばくしてしまった。",
+        "english": "The Japanese tuna boat \"S.S. Lucky Dragon 5\" accidentally sailed around Bikini Atoll and the crew was exposed to radiation."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E7%92%B0%E7%A4%81"
+  },
+  {
+    "id": "vocabulary:一遍に",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "一遍に",
+    "meaning": "At Once",
+    "meanings": [
+      "At Once",
+      "At One Time"
+    ],
+    "readings": [
+      "いっぺんに"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Remember how you learned that 一遍 means \"once?\" Well if you add に and make it an adverb, it becomes at once .",
+    "readingMnemonic": "This has the same reading you learned with 一遍 so you should be able to remember this too!",
+    "components": [
+      {
+        "character": "一",
+        "name": "One",
+        "id": "kanji:一"
+      },
+      {
+        "character": "遍",
+        "name": "Universal",
+        "id": "kanji:遍"
+      }
+    ],
+    "dependencies": [
+      "kanji:一",
+      "kanji:遍"
+    ],
+    "sentences": [
+      {
+        "japanese": "一遍にいろんなことを言われても、分からないわ。",
+        "english": "If you say a bunch of things at once I won’t understand."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%80%E9%81%8D%E3%81%AB"
+  },
+  {
+    "id": "vocabulary:慶事",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "慶事",
+    "meaning": "Auspicious Event",
+    "meanings": [
+      "Auspicious Event",
+      "Joyous Occasion"
+    ],
+    "readings": [
+      "けいじ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you can congratulate someone for an occurrence in their life, it must be an auspicious event . You'll remember this happy event for a long, long time. 慶事 is a very formal word used to refer to an auspicious event, such as a wedding, the birth of a child, or other significant celebrations. You might encounter 慶事 in official announcements or formal congratulatory messages.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "慶",
+        "name": "Congratulate",
+        "id": "kanji:慶"
+      },
+      {
+        "character": "事",
+        "name": "Occurrence",
+        "id": "kanji:事"
+      }
+    ],
+    "dependencies": [
+      "kanji:慶",
+      "kanji:事"
+    ],
+    "sentences": [
+      {
+        "japanese": "親しい友人の慶事は自分のことの様にうれしい。",
+        "english": "The happy events my close friends have make me as happy as if they were my own."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%85%B6%E4%BA%8B"
+  },
+  {
+    "id": "vocabulary:梓川",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "梓川",
+    "meaning": "Azusa River",
+    "meanings": [
+      "Azusa River",
+      "Azusagawa"
+    ],
+    "readings": [
+      "あずさがわ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Japanese birch river is Azusa River or simply Azusagawa . Azusagawa is both the Japanese name for the Azusa River, and a Japanese family name.",
+    "readingMnemonic": "You learned both of these readings with the kanji. You just need to remember that rendaku turns かわ into がわ .",
+    "components": [
+      {
+        "character": "梓",
+        "name": "Japanese Birch",
+        "id": "kanji:梓"
+      },
+      {
+        "character": "川",
+        "name": "River",
+        "id": "kanji:川"
+      }
+    ],
+    "dependencies": [
+      "kanji:梓",
+      "kanji:川"
+    ],
+    "sentences": [
+      {
+        "japanese": "普段の梓川はとても穏やかです。",
+        "english": "The Azusa River is usually very calm."
+      },
+      {
+        "japanese": "週末は梓川の水の透明感に癒やされてきました。",
+        "english": "At the weekend, I was soothed by the clarity of the water in Azusa River."
+      },
+      {
+        "japanese": "梓川さんの歌唱力が高いのは勿論だけど、曲の歌詞もすごくいいんだよね。",
+        "english": "Of course, Azusagawa-san is a talented singer, but the lyrics of her songs are also really good."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%A2%93%E5%B7%9D"
+  },
+  {
+    "id": "vocabulary:弁慶",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "弁慶",
+    "meaning": "Benkei",
+    "meanings": [
+      "Benkei",
+      "Strong Person"
+    ],
+    "readings": [
+      "べんけい"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "You should congratulate a person who speaks lots of dialect s because they have to be a really strong person , just like Mr. Benkei was. You think learning Japanese is hard now, just wait till you hear Osaka-ben and Hokkaido-ben. It takes a really strong person — a Benkei — to learn all those dialects, so congratulate them and tell them how strong they are! 弁慶 is the name of a Japanese historical figure who was really strong, so Benkei is the Japanese equivalent of Hercules or Achilles in Western languages.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "弁",
+        "name": "Dialect",
+        "id": "kanji:弁"
+      },
+      {
+        "character": "慶",
+        "name": "Congratulate",
+        "id": "kanji:慶"
+      }
+    ],
+    "dependencies": [
+      "kanji:弁",
+      "kanji:慶"
+    ],
+    "sentences": [
+      {
+        "japanese": "弁慶と牛若丸は清水寺で戦いました。",
+        "english": "Benkei and Ushiwakamaru fought at Kiyomizu Temple."
+      },
+      {
+        "japanese": "家では威張っているが、外では従順になる人のことを「内弁慶」と言う。",
+        "english": "A person who is arrogant at home but submissive outside the home is called an \"uchi-benkei\"."
+      },
+      {
+        "japanese": "むこうずねは、ぶつけると弁慶ほど強い人でも涙を流すほど痛いことから、「弁慶の泣き所」といわれています。",
+        "english": "The shin is known as \"Benkei's weeping spot\" because, if you hit it, it hurts so much that even someone as strong as Benkei would shed tears."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%BC%81%E6%85%B6"
+  },
+  {
+    "id": "vocabulary:憂き目",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "憂き目",
+    "meaning": "Bitterness",
+    "meanings": [
+      "Bitterness",
+      "Misery",
+      "Hardship",
+      "Distress"
+    ],
+    "readings": [
+      "うきめ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you have grief in your eye s, it means you've gone through a lot of bitterness and misery . You can always see in someone's eyes if they've experienced it too. You'll see this word most often in 憂き目を見る and 憂き目に合う , which both mean \"to experience hardship .\"",
+    "readingMnemonic": "This word uses one of the kun'yomi readings for the kanji. You haven't learned this kun'yomi reading for 憂 , so here's a mnemonic to help you remember it: Why the bitterness in your eyes? You visited a famed u ni ( う ) restaurant, only to find it closed and locked. And as a lover of uni, you know no greater misery than to miss out on some uni.",
+    "components": [
+      {
+        "character": "憂",
+        "name": "Grief",
+        "id": "kanji:憂"
+      },
+      {
+        "character": "目",
+        "name": "Eye",
+        "id": "kanji:目"
+      }
+    ],
+    "dependencies": [
+      "kanji:憂",
+      "kanji:目"
+    ],
+    "sentences": [
+      {
+        "japanese": "失恋の憂き目に遭いました。",
+        "english": "I met with the misery of a broken heart."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%86%82%E3%81%8D%E7%9B%AE"
+  },
+  {
+    "id": "vocabulary:大胆",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "大胆",
+    "meaning": "Bold",
+    "meanings": [
+      "Bold",
+      "Daring",
+      "Audacious"
+    ],
+    "readings": [
+      "だいたん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you have really big guts you're a super bold and daring person. In fact, you might even be superman. That's how big your guts are. Don't worry, I don't tell anyone I know who you are. It'll be our little secret.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "大",
+        "name": "Big",
+        "id": "kanji:大"
+      },
+      {
+        "character": "胆",
+        "name": "Guts",
+        "id": "kanji:胆"
+      }
+    ],
+    "dependencies": [
+      "kanji:大",
+      "kanji:胆"
+    ],
+    "sentences": [
+      {
+        "japanese": "グループは、大胆にも真っ昼間から犯行に及んだのです。",
+        "english": "The group is bold to commit crimes in broad daylight."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%A4%A7%E8%83%86"
+  },
+  {
+    "id": "vocabulary:萌え",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "萌え",
+    "meaning": "Budding",
+    "meanings": [
+      "Budding",
+      "Moe",
+      "Infatuation"
+    ],
+    "readings": [
+      "もえ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "What is a bud doing? It's budding ! Literally, what else can a bud be doing except budding? Moe is also a slang term for feelings of infatuation or affection that \"bud\" up in you, usually toward cute fictional characters. It can be an adjective to describe said cutesy characters too, especially ones you see in anime, manga, and video games. The term's a bit dated now, but 萌え is an important concept in otaku subcultures.",
+    "readingMnemonic": "This word uses a kun'yomi reading you didn't learn with the kanji, so here's a mnemonic: You feel a budding of affection for the character Moe ( も ). Yes, the old bartender character from The Simpsons. He's so cute and moe with that apron and curly hair of his, you feel a deep, protective love toward him.",
+    "components": [
+      {
+        "character": "萌",
+        "name": "Bud",
+        "id": "kanji:萌"
+      }
+    ],
+    "dependencies": [
+      "kanji:萌"
+    ],
+    "sentences": [
+      {
+        "japanese": "萌え系",
+        "english": "moe style"
+      },
+      {
+        "japanese": "萌えアニメ",
+        "english": "moe anime"
+      },
+      {
+        "japanese": "萌えキャラ",
+        "english": "moe character"
+      },
+      {
+        "japanese": "萌えポイント",
+        "english": "moe score, moe points"
+      },
+      {
+        "japanese": "萌え要素",
+        "english": "moe elements"
+      },
+      {
+        "japanese": "このアカウントでは、萌え系を中心に、僕の好きなアニメや漫画を紹介していきます。",
+        "english": "This account introduces some of my favorite anime and manga characters, especially the moe kind."
+      },
+      {
+        "japanese": "この仕草は、萌えポイントが高い。",
+        "english": "This behavior scores really high on the moe cuteness scale."
+      },
+      {
+        "japanese": "このアニメは萌え要素が多いんだよね。",
+        "english": "This anime has a lot of moe elements."
+      },
+      {
+        "japanese": "この作品はストーリーもいいけど、何より萌えキャラが魅力的だ。",
+        "english": "The story of this work is great, but what really stands out are the adorable characters."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E8%90%8C%E3%81%88"
+  },
+  {
+    "id": "vocabulary:岬",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "岬",
+    "meaning": "Cape",
+    "meanings": [
+      "Cape"
+    ],
+    "readings": [
+      "みさき"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The kanji and the word are exactly the same. That means they share meanings as well. 岬 means cape , which is a piece of land jutting out into the sea. While 崎 is mostly used in place names and compound words, 岬 can be used as a standalone noun, although you also see it in place names such as 宗谷岬 (Cape Sōya).",
+    "readingMnemonic": "This has the same reading as the kanji you learned, meaning you know the reading!",
+    "components": [
+      {
+        "character": "岬",
+        "name": "Cape",
+        "id": "kanji:岬"
+      }
+    ],
+    "dependencies": [
+      "kanji:岬"
+    ],
+    "sentences": [
+      {
+        "japanese": "岬の突端にカフェがあるんです。",
+        "english": "There's a cafe on the tip of the cape."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%B2%AC"
+  },
+  {
+    "id": "vocabulary:鋳造",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "鋳造",
+    "meaning": "Casting",
+    "meanings": [
+      "Casting",
+      "Founding",
+      "Minting"
+    ],
+    "readings": [
+      "ちゅうぞう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you want to create a cast you need to learn casting first. Then you can make lots of neat art, crafts, and counterfeit money. Wait, no, don't do that last one.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You've learned both of them, so you should already know this word!",
+    "components": [
+      {
+        "character": "鋳",
+        "name": "Cast",
+        "id": "kanji:鋳"
+      },
+      {
+        "character": "造",
+        "name": "Create",
+        "id": "kanji:造"
+      }
+    ],
+    "dependencies": [
+      "kanji:鋳",
+      "kanji:造"
+    ],
+    "sentences": [
+      {
+        "japanese": "ここで、プラチナ・コインの鋳造をします。",
+        "english": "Platinum coins are cast here."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E9%8B%B3%E9%80%A0"
+  },
+  {
+    "id": "vocabulary:変遷",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "変遷",
+    "meaning": "Change",
+    "meanings": [
+      "Change",
+      "Transition"
+    ],
+    "readings": [
+      "へんせん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Change and transition mean change and transition ! Nifty. 変遷 refers to historical or long-term changes. It’s often used when discussing the evolution or progression of entities over long periods.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "変",
+        "name": "Change",
+        "id": "kanji:変"
+      },
+      {
+        "character": "遷",
+        "name": "Transition",
+        "id": "kanji:遷"
+      }
+    ],
+    "dependencies": [
+      "kanji:変",
+      "kanji:遷"
+    ],
+    "sentences": [
+      {
+        "japanese": "1996年から2013年までのトップ日本語学習サイト20の変遷を見てみましょう。",
+        "english": "Let’s look at the changes in the top 20 Japanese language learning sites between 1996 and 2013."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%A4%89%E9%81%B7"
+  },
+  {
+    "id": "vocabulary:慶祝",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "慶祝",
+    "meaning": "Congratulation",
+    "meanings": [
+      "Congratulation",
+      "Celebration"
+    ],
+    "readings": [
+      "けいしゅく"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "You congratulate someone and celebrate by saying congratulation s and having a celebration !",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "慶",
+        "name": "Congratulate",
+        "id": "kanji:慶"
+      },
+      {
+        "character": "祝",
+        "name": "Celebrate",
+        "id": "kanji:祝"
+      }
+    ],
+    "dependencies": [
+      "kanji:慶",
+      "kanji:祝"
+    ],
+    "sentences": [
+      {
+        "japanese": "慶祝の意を表して、乾杯！",
+        "english": "To show our congratulations, a toast!"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%85%B6%E7%A5%9D"
+  },
+  {
+    "id": "vocabulary:慶弔",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "慶弔",
+    "meaning": "Congratulations And Condolences",
+    "meanings": [
+      "Congratulations And Condolences"
+    ],
+    "readings": [
+      "けいちょう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you are saying congratulation s and also giving your condolence s then they are congratulations and condolences . Pretty easy, right?",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "慶",
+        "name": "Congratulate",
+        "id": "kanji:慶"
+      },
+      {
+        "character": "弔",
+        "name": "Condolence",
+        "id": "kanji:弔"
+      }
+    ],
+    "dependencies": [
+      "kanji:慶",
+      "kanji:弔"
+    ],
+    "sentences": [
+      {
+        "japanese": "慶弔用の礼服は持っているのか。",
+        "english": "Do you have ceremonial dress for celebration and condolences?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%85%B6%E5%BC%94"
+  },
+  {
+    "id": "vocabulary:侮蔑",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "侮蔑",
+    "meaning": "Contempt",
+    "meanings": [
+      "Contempt",
+      "Scorn",
+      "Disdain"
+    ],
+    "readings": [
+      "ぶべつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Despise someone and your scorn for them will turn into full-on contempt . 侮蔑 is a formal word, mainly used in writing, that describes words, tone, or behavior which is contemptuous and demeaning. For example, derogatory expressions can be called 侮蔑的な表現 , and speech that openly belittles someone may be described as 侮蔑を込めた言い方 .",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "侮",
+        "name": "Despise",
+        "id": "kanji:侮"
+      },
+      {
+        "character": "蔑",
+        "name": "Scorn",
+        "id": "kanji:蔑"
+      }
+    ],
+    "dependencies": [
+      "kanji:侮",
+      "kanji:蔑"
+    ],
+    "sentences": [
+      {
+        "japanese": "叔母の言葉は、いつも軽い侮蔑を帯びている。",
+        "english": "My aunts speech always has light traces of contempt."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%BE%AE%E8%94%91"
+  },
+  {
+    "id": "vocabulary:危篤",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "危篤",
+    "meaning": "Critical Condition",
+    "meanings": [
+      "Critical Condition",
+      "Critical Illness",
+      "On The Verge Of Death"
+    ],
+    "readings": [
+      "きとく"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If someone is so dangerous that they deliberately hurt you, you're going to end up in critical condition . This wasn't an accident, they knew what they were doing and they didn't miss. Now you're on the verge of death . Hold on, kiddo.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "危",
+        "name": "Dangerous",
+        "id": "kanji:危"
+      },
+      {
+        "character": "篤",
+        "name": "Deliberate",
+        "id": "kanji:篤"
+      }
+    ],
+    "dependencies": [
+      "kanji:危",
+      "kanji:篤"
+    ],
+    "sentences": [
+      {
+        "japanese": "父が危篤だという電話がありました。",
+        "english": "There was a call saying dad was in critical condition."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%8D%B1%E7%AF%A4"
+  },
+  {
+    "id": "vocabulary:遮断機",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "遮断機",
+    "meaning": "Crossing Gate",
+    "meanings": [
+      "Crossing Gate",
+      "Railway Crossing Gate"
+    ],
+    "readings": [
+      "しゃだんき"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Remember how 遮断 means \"isolation?\" Well the machine that isolates you from a train is a crossing gate . That way you won't walk, bike, or drive your car into an oncoming train.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "遮",
+        "name": "Intercept",
+        "id": "kanji:遮"
+      },
+      {
+        "character": "断",
+        "name": "Cut Off",
+        "id": "kanji:断"
+      },
+      {
+        "character": "機",
+        "name": "Machine",
+        "id": "kanji:機"
+      }
+    ],
+    "dependencies": [
+      "kanji:遮",
+      "kanji:断",
+      "kanji:機"
+    ],
+    "sentences": [
+      {
+        "japanese": "遮断機が降りている時に、線路を渡ってはいけません。",
+        "english": "When the railroad crossing gate comes down, do not cross the tracks."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E9%81%AE%E6%96%AD%E6%A9%9F"
+  },
+  {
+    "id": "vocabulary:酪農",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "酪農",
+    "meaning": "Dairy Farming",
+    "meanings": [
+      "Dairy Farming"
+    ],
+    "readings": [
+      "らくのう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Dairy farming is dairy farming !",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "酪",
+        "name": "Dairy",
+        "id": "kanji:酪"
+      },
+      {
+        "character": "農",
+        "name": "Farming",
+        "id": "kanji:農"
+      }
+    ],
+    "dependencies": [
+      "kanji:酪",
+      "kanji:農"
+    ],
+    "sentences": [
+      {
+        "japanese": "ここは日本酪農発祥の地です。",
+        "english": "This is the location of the origin of Japanese dairy farming."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E9%85%AA%E8%BE%B2"
+  },
+  {
+    "id": "vocabulary:回忌",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "回忌",
+    "meaning": "Death Anniversary",
+    "meanings": [
+      "Death Anniversary",
+      "Anniversary Of Death"
+    ],
+    "readings": [
+      "かいき"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The times when you are in mourning each year are for a loved one's death anniversary . They come around again every year. It's important you remember your loved ones at this time. You'll often see this used with a number before 回忌 , indicating a certain anniversary. However, you actually start counting your 回忌 starting with the first period of mourning around the time of the person's death, which would be the 一回忌 . Hence, 二回忌 would usually be translated as \"first death anniversary\", 三回忌 as \"second death anniversary\", and so on.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "回",
+        "name": "Times",
+        "id": "kanji:回"
+      },
+      {
+        "character": "忌",
+        "name": "Mourning",
+        "id": "kanji:忌"
+      }
+    ],
+    "dependencies": [
+      "kanji:回",
+      "kanji:忌"
+    ],
+    "sentences": [
+      {
+        "japanese": "今年は祖父の三回忌です。",
+        "english": "Today is the second anniversary of my grandfather’s death."
+      },
+      {
+        "japanese": "みんな忙しいので、各回忌に家族全員集まることは難しいです。",
+        "english": "Everyone is so busy that it's difficult to get the whole family together for each anniversary."
+      },
+      {
+        "japanese": "死んだお嫁さんの一回忌もまだ終わってないのにもう再婚するつもりなの？",
+        "english": "Your late wife only just passed away and you're already planning to remarry?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%9B%9E%E5%BF%8C"
+  },
+  {
+    "id": "vocabulary:詠嘆",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "詠嘆",
+    "meaning": "Deep Feeling",
+    "meanings": [
+      "Deep Feeling",
+      "Exclamation",
+      "Marvel"
+    ],
+    "readings": [
+      "えいたん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you compose something with a sigh , it's because you're experiencing a deep feeling . You might express this deep feeling with an exclamation , as you marvel at the wonders of the world. This word can be used for a range of deep feelings, good or bad, and can also be used for the expression of those feelings, so you'll notice that the English translation varies quite a bit depending on the context.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi for both kanji. You should be able to read it on your own.",
+    "components": [
+      {
+        "character": "詠",
+        "name": "Compose",
+        "id": "kanji:詠"
+      },
+      {
+        "character": "嘆",
+        "name": "Sigh",
+        "id": "kanji:嘆"
+      }
+    ],
+    "dependencies": [
+      "kanji:詠",
+      "kanji:嘆"
+    ],
+    "sentences": [
+      {
+        "japanese": "その山の頂上から見た夕日の美しさに詠嘆した。",
+        "english": "I marveled at the beauty of the sunset I saw from the top of that mountain."
+      },
+      {
+        "japanese": "この文には、「これが最後かもしれないんだなあ」という詠嘆の意味が込められています。",
+        "english": "This sentence is filled with a deep feeling of \"I wonder if this might be the last time.\""
+      },
+      {
+        "japanese": "和歌でよく使われる「けり」という言葉は、詠嘆の助動詞です。",
+        "english": "The word \"keri,\" often used in waka poetry, is an auxiliary verb of exclamation."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E8%A9%A0%E5%98%86"
+  },
+  {
+    "id": "vocabulary:左遷",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "左遷",
+    "meaning": "Demotion",
+    "meanings": [
+      "Demotion",
+      "Degradation",
+      "Demolish"
+    ],
+    "readings": [
+      "させん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Usually if you're going to the left in Japanese, it's not a good thing. So if you transition to the left it's seen as a demotion . Going to the right is way better.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "左",
+        "name": "Left",
+        "id": "kanji:左"
+      },
+      {
+        "character": "遷",
+        "name": "Transition",
+        "id": "kanji:遷"
+      }
+    ],
+    "dependencies": [
+      "kanji:左",
+      "kanji:遷"
+    ],
+    "sentences": [
+      {
+        "japanese": "田舎の支店に左遷されました。",
+        "english": "I was demoted to a branch store in the country."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%B7%A6%E9%81%B7"
+  },
+  {
+    "id": "vocabulary:閑散",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "閑散",
+    "meaning": "Deserted",
+    "meanings": [
+      "Deserted",
+      "Inactive",
+      "Leisure",
+      "Quiet"
+    ],
+    "readings": [
+      "かんさん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "It's such a leisure ly day that everyone has scatter ed and left the area deserted . It's just you now. Lounging in the shade.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "閑",
+        "name": "Leisure",
+        "id": "kanji:閑"
+      },
+      {
+        "character": "散",
+        "name": "Scatter",
+        "id": "kanji:散"
+      }
+    ],
+    "dependencies": [
+      "kanji:閑",
+      "kanji:散"
+    ],
+    "sentences": [
+      {
+        "japanese": "駅の南側は、いつも閑散としています。",
+        "english": "The south side of the station is always deserted."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E9%96%91%E6%95%A3"
+  },
+  {
+    "id": "vocabulary:落胆",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "落胆",
+    "meaning": "Discouragement",
+    "meanings": [
+      "Discouragement",
+      "Despondency",
+      "Dejection",
+      "Disappointment"
+    ],
+    "readings": [
+      "らくたん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Your guts feel like they're fall ing when you experience a lot of discouragement . You know that sinking feeling you get in the pit of your stomach? That's your guts falling!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "落",
+        "name": "Fall",
+        "id": "kanji:落"
+      },
+      {
+        "character": "胆",
+        "name": "Guts",
+        "id": "kanji:胆"
+      }
+    ],
+    "dependencies": [
+      "kanji:落",
+      "kanji:胆"
+    ],
+    "sentences": [
+      {
+        "japanese": "息子は、受験に失敗して落胆しているんだ。",
+        "english": "My son failed an exam and is discouraged."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E8%90%BD%E8%83%86"
+  },
+  {
+    "id": "vocabulary:擬装",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "擬装",
+    "meaning": "Disguise",
+    "meanings": [
+      "Disguise",
+      "Camouflage"
+    ],
+    "readings": [
+      "ぎそう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Use attire that imitate s your surroundings to create a disguise . Or throw on some camouflage so that no one will be able to find you in Walmart.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "擬",
+        "name": "Imitate",
+        "id": "kanji:擬"
+      },
+      {
+        "character": "装",
+        "name": "Attire",
+        "id": "kanji:装"
+      }
+    ],
+    "dependencies": [
+      "kanji:擬",
+      "kanji:装"
+    ],
+    "sentences": [
+      {
+        "japanese": "食品会社の擬装を許してはいけません。",
+        "english": "You must not excuse the food company’s disguise."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%93%AC%E8%A3%85"
+  },
+  {
+    "id": "vocabulary:東亜",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "東亜",
+    "meaning": "East Asia",
+    "meanings": [
+      "East Asia",
+      "The Orient"
+    ],
+    "readings": [
+      "とうあ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "East Asia is East Asia , otherwise known historically as the Orient . 東亜 is an older way to say \"East Asia,\" covering countries like Japan, China, and Korea. These days, people usually say 東アジア instead, but you'll still sometimes see 東亜 in old writing and as part of proper nouns.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "東",
+        "name": "East",
+        "id": "kanji:東"
+      },
+      {
+        "character": "亜",
+        "name": "Asia",
+        "id": "kanji:亜"
+      }
+    ],
+    "dependencies": [
+      "kanji:東",
+      "kanji:亜"
+    ],
+    "sentences": [
+      {
+        "japanese": "太平洋戦争のことを、大東亜戦争と呼ぶのは何故ですか。",
+        "english": "Why is the Pacific War called The Greater East Asian War?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%9D%B1%E4%BA%9C"
+  },
+  {
+    "id": "vocabulary:大腸菌",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "大腸菌",
+    "meaning": "E. Coli",
+    "meanings": [
+      "E. Coli",
+      "Escherichia Coli",
+      "E Coli"
+    ],
+    "readings": [
+      "だいちょうきん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Remember how you learned that 大腸 means \"large intestines?\" Well when you get bacteria in there you end up with E. Coli . Go to a doctor right away! You're gonna be stuck in the bathroom for a while. Sorry...",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "大",
+        "name": "Big",
+        "id": "kanji:大"
+      },
+      {
+        "character": "腸",
+        "name": "Intestines",
+        "id": "kanji:腸"
+      },
+      {
+        "character": "菌",
+        "name": "Bacteria",
+        "id": "kanji:菌"
+      }
+    ],
+    "dependencies": [
+      "kanji:大",
+      "kanji:腸",
+      "kanji:菌"
+    ],
+    "sentences": [
+      {
+        "japanese": "大腸菌を美少女に擬人化させたカードアプリ・ゲームがあります。",
+        "english": "There’s a card app game that personifies E. Coli as a beautiful woman."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%A4%A7%E8%85%B8%E8%8F%8C"
+  },
+  {
+    "id": "vocabulary:雌",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "雌",
+    "meaning": "Female",
+    "meanings": [
+      "Female",
+      "Female Animal"
+    ],
+    "readings": [
+      "めす"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The kanji and the word are exactly the same. That means they share meanings as well. Note that this is often written in katakana, as in メス .",
+    "readingMnemonic": "This has the same reading as the kanji you learned, meaning you know the reading!",
+    "components": [
+      {
+        "character": "雌",
+        "name": "Female",
+        "id": "kanji:雌"
+      }
+    ],
+    "dependencies": [
+      "kanji:雌"
+    ],
+    "sentences": [
+      {
+        "japanese": "この犬は雌ですか？",
+        "english": "Is this dog female?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E9%9B%8C"
+  },
+  {
+    "id": "vocabulary:雌花",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "雌花",
+    "meaning": "Female Flower",
+    "meanings": [
+      "Female Flower"
+    ],
+    "readings": [
+      "めばな"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A female flower is a female flower !",
+    "readingMnemonic": "The readings for this word are both kun'yomi, but you haven't learned this kun'yomi for 雌 yet, so here's a mnemonic to help you: Just think of someone asking you to differentiate female flowers from male flowers. Can you? \" Meh ( め ), probably not.\" The reading of 花 is the rendaku version, so watch out for that too.",
+    "components": [
+      {
+        "character": "雌",
+        "name": "Female",
+        "id": "kanji:雌"
+      },
+      {
+        "character": "花",
+        "name": "Flower",
+        "id": "kanji:花"
+      }
+    ],
+    "dependencies": [
+      "kanji:雌",
+      "kanji:花"
+    ],
+    "sentences": [
+      {
+        "japanese": "ヒマラヤスギは、樹齢30年を超えないと雌花を付けません。",
+        "english": "Himalayan Cedar trees can't produce female flowers until they're over 30 years old."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E9%9B%8C%E8%8A%B1"
+  },
+  {
+    "id": "vocabulary:一周忌",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "一周忌",
+    "meaning": "First Anniversary Of Death",
+    "meanings": [
+      "First Anniversary Of Death",
+      "First Death Anniversary"
+    ],
+    "readings": [
+      "いっしゅうき"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Remember how you learned that 一周 means \"one time around?\" Well if you're mourning one time like this a year, then it's because it's the first anniversary of death for a family member. Maybe it was the death of your mom, your grandad or your goldfish, this is the first year since they died.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "一",
+        "name": "One",
+        "id": "kanji:一"
+      },
+      {
+        "character": "周",
+        "name": "Circumference",
+        "id": "kanji:周"
+      },
+      {
+        "character": "忌",
+        "name": "Mourning",
+        "id": "kanji:忌"
+      }
+    ],
+    "dependencies": [
+      "kanji:一",
+      "kanji:周",
+      "kanji:忌"
+    ],
+    "sentences": [
+      {
+        "japanese": "七月には、妻の父の一周忌の法事があります。",
+        "english": "In July we’re having the ceremony for my wife’s father’s first death anniversary."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%80%E5%91%A8%E5%BF%8C"
+  },
+  {
+    "id": "vocabulary:取り敢えず",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "取り敢えず",
+    "meaning": "For The Time Being",
+    "meanings": [
+      "For The Time Being",
+      "For Now",
+      "Tentatively"
+    ],
+    "readings": [
+      "とりあえず"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you only take without daring , then you can only take something for the time being . Since you weren't daring enough to take complete hold of it, you only have it for now . 取り敢えず is a common, casual phrase you'll hear all the time. People use it when making tentative decisions or taking temporary measures, and it often carries a \"we'll figure out the rest later\" vibe. Note this word is usually written in kana as とりあえず .",
+    "readingMnemonic": "This word uses the kun'yomi readings for the kanji. You learned both of these already, so you should be able to read this with no problems!",
+    "components": [
+      {
+        "character": "取",
+        "name": "Take",
+        "id": "kanji:取"
+      },
+      {
+        "character": "敢",
+        "name": "Daring",
+        "id": "kanji:敢"
+      }
+    ],
+    "dependencies": [
+      "kanji:取",
+      "kanji:敢"
+    ],
+    "sentences": [
+      {
+        "japanese": "取り敢えずここに座ってください。",
+        "english": "For now, please sit here."
+      },
+      {
+        "japanese": "迷ったら、取り敢えずやってみるタイプです。",
+        "english": "When in doubt, I'm the type to just try something."
+      },
+      {
+        "japanese": "取り敢えず逃げろ、とだけ頭が叫んでいた。",
+        "english": "My mind was screaming only one thing: just run."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%8F%96%E3%82%8A%E6%95%A2%E3%81%88%E3%81%9A"
+  },
+  {
+    "id": "vocabulary:親睦",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "親睦",
+    "meaning": "Friendship",
+    "meanings": [
+      "Friendship",
+      "Amity"
+    ],
+    "readings": [
+      "しんぼく"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If a parent is friendly enough you can form a friendship with them, not just a kid/parent bond.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "親",
+        "name": "Parent",
+        "id": "kanji:親"
+      },
+      {
+        "character": "睦",
+        "name": "Friendly",
+        "id": "kanji:睦"
+      }
+    ],
+    "dependencies": [
+      "kanji:親",
+      "kanji:睦"
+    ],
+    "sentences": [
+      {
+        "japanese": "親睦を深めるためのパーティーを準備しています。",
+        "english": "We are preparing for a party to strengthen our friendship."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E8%A6%AA%E7%9D%A6"
+  },
+  {
+    "id": "vocabulary:胆石",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "胆石",
+    "meaning": "Gallstones",
+    "meanings": [
+      "Gallstones"
+    ],
+    "readings": [
+      "たんせき"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Gallbladder stone s are more commonly known as gallstones . Sometimes you have to get them surgically removed. Scary!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "胆",
+        "name": "Guts",
+        "id": "kanji:胆"
+      },
+      {
+        "character": "石",
+        "name": "Stone",
+        "id": "kanji:石"
+      }
+    ],
+    "dependencies": [
+      "kanji:胆",
+      "kanji:石"
+    ],
+    "sentences": [
+      {
+        "japanese": "胆嚢炎は、ほとんどの場合、胆石が原因です。",
+        "english": "With inflammation of the gallbladder, the most likely cause is gallstones."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E8%83%86%E7%9F%B3"
+  },
+  {
+    "id": "vocabulary:胆",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "胆",
+    "meaning": "Guts",
+    "meanings": [
+      "Guts",
+      "Courage",
+      "Fortitude"
+    ],
+    "readings": [
+      "たん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The kanji and the word are exactly the same. That means they share meanings as well. 胆 means guts , and just like the English word guts, it can also be used to mean courage or fortitude . However, 胆 is much more formal and advanced than its English equivalent, and it's almost always seen in the set phrase 胆が据わる (to have nerves of steel).",
+    "readingMnemonic": "You learned this reading with the kanji, so you should be able to read it already!",
+    "components": [
+      {
+        "character": "胆",
+        "name": "Guts",
+        "id": "kanji:胆"
+      }
+    ],
+    "dependencies": [
+      "kanji:胆"
+    ],
+    "sentences": [
+      {
+        "japanese": "それは、今思い出しても胆を冷やす出来事だった。",
+        "english": "Even now, remembering it sends chills down my spine."
+      },
+      {
+        "japanese": "彼は意外と胆が据わっている。",
+        "english": "He's surprisingly got nerves of steel."
+      },
+      {
+        "japanese": "あの底知れない闇へ足を踏み入れるなど、胆の小さい者には到底できぬことだった。",
+        "english": "Taking even a single step into that unfathomable darkness was something utterly impossible for the faint-hearted."
+      },
+      {
+        "japanese": "お前はもう少し胆を練る必要がある。",
+        "english": "You need to build up your courage."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E8%83%86"
+  },
+  {
+    "id": "vocabulary:不均衡",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "不均衡",
+    "meaning": "Imbalance",
+    "meanings": [
+      "Imbalance",
+      "Disparity",
+      "Inequality"
+    ],
+    "readings": [
+      "ふきんこう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Remember how 均衡 means \"balance?\" Well if you do not have any balance, you're going to have an imbalance instead.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "不",
+        "name": "Not",
+        "id": "kanji:不"
+      },
+      {
+        "character": "均",
+        "name": "Equal",
+        "id": "kanji:均"
+      },
+      {
+        "character": "衡",
+        "name": "Equilibrium",
+        "id": "kanji:衡"
+      }
+    ],
+    "dependencies": [
+      "kanji:不",
+      "kanji:均",
+      "kanji:衡"
+    ],
+    "sentences": [
+      {
+        "japanese": "先進国と新興国・発展途上国間の経常収支の不均衡は是正されるのでしょうか。",
+        "english": "Will the current account imbalances of developing countries be corrected between developed and undeveloped countries?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%B8%8D%E5%9D%87%E8%A1%A1"
+  },
+  {
+    "id": "vocabulary:模擬",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "模擬",
+    "meaning": "Imitation",
+    "meanings": [
+      "Imitation",
+      "Sham",
+      "Mock",
+      "Simulation"
+    ],
+    "readings": [
+      "もぎ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Food that imitate s an imitation of some OTHER food, is an even worse imitation . You don't want to eat that. It's a sham ! It's mock ing real food! It's probably made of dust and cardboard!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "模",
+        "name": "Imitation",
+        "id": "kanji:模"
+      },
+      {
+        "character": "擬",
+        "name": "Imitate",
+        "id": "kanji:擬"
+      }
+    ],
+    "dependencies": [
+      "kanji:模",
+      "kanji:擬"
+    ],
+    "sentences": [
+      {
+        "japanese": "模擬試験の結果はどうだったの？",
+        "english": "How were the results of the mock exam?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%A8%A1%E6%93%AC"
+  },
+  {
+    "id": "vocabulary:甚大",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "甚大",
+    "meaning": "Immense",
+    "meanings": [
+      "Immense",
+      "Tremendous",
+      "Enormous"
+    ],
+    "readings": [
+      "じんだい"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Another way to say something is very big is to say it is immense or enormous .",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "甚",
+        "name": "Very",
+        "id": "kanji:甚"
+      },
+      {
+        "character": "大",
+        "name": "Big",
+        "id": "kanji:大"
+      }
+    ],
+    "dependencies": [
+      "kanji:甚",
+      "kanji:大"
+    ],
+    "sentences": [
+      {
+        "japanese": "大型台風が甚大な被害をもたらした。",
+        "english": "An immense typhoon brought on serious damage."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E7%94%9A%E5%A4%A7"
+  },
+  {
+    "id": "vocabulary:侮辱",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "侮辱",
+    "meaning": "Insult",
+    "meanings": [
+      "Insult",
+      "Contempt",
+      "Slight"
+    ],
+    "readings": [
+      "ぶじょく"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "You despise this one guy so much that you want to humiliate him so you insult him in public. That wasn't very nice, but it did seem to embarrass him. I guess you won.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "侮",
+        "name": "Despise",
+        "id": "kanji:侮"
+      },
+      {
+        "character": "辱",
+        "name": "Humiliate",
+        "id": "kanji:辱"
+      }
+    ],
+    "dependencies": [
+      "kanji:侮",
+      "kanji:辱"
+    ],
+    "sentences": [
+      {
+        "japanese": "こんな侮辱を受けて、黙っていろというのか。",
+        "english": "Are you telling me to stay quiet and just accept the insults?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%BE%AE%E8%BE%B1"
+  },
+  {
+    "id": "vocabulary:漆黒",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "漆黒",
+    "meaning": "Jet Black",
+    "meanings": [
+      "Jet Black",
+      "Pitch Black"
+    ],
+    "readings": [
+      "しっこく"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Lacquer black looks jet black , or pitch black . It's as black as black can be!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "漆",
+        "name": "Lacquer",
+        "id": "kanji:漆"
+      },
+      {
+        "character": "黒",
+        "name": "Black",
+        "id": "kanji:黒"
+      }
+    ],
+    "dependencies": [
+      "kanji:漆",
+      "kanji:黒"
+    ],
+    "sentences": [
+      {
+        "japanese": "漆黒の闇に青い地球が浮かんでいた。",
+        "english": "The earth appeared in the black darkness."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%BC%86%E9%BB%92"
+  },
+  {
+    "id": "vocabulary:漆",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "漆",
+    "meaning": "Lacquer",
+    "meanings": [
+      "Lacquer"
+    ],
+    "readings": [
+      "うるし"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The kanji and the word are exactly the same. That means they share meanings as well.",
+    "readingMnemonic": "Since this word is made up of a single kanji, it probably uses the kun'yomi reading. You did not learn this reading, so here's a mnemonic to help you: You make lacquer out of u ni roo t sh* t ( うるし ). You gotta get deep in the uni to the root of its sh*t and rub it into a paste to make the lacquer. Then rub that on wooden stuff! Yay! Uni root sh*t!",
+    "components": [
+      {
+        "character": "漆",
+        "name": "Lacquer",
+        "id": "kanji:漆"
+      }
+    ],
+    "dependencies": [
+      "kanji:漆"
+    ],
+    "sentences": [
+      {
+        "japanese": "漆の葉を触ると手がかぶれますよ。",
+        "english": "If you touch a lacquer leaf you’ll get a rash on your hand."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%BC%86"
+  },
+  {
+    "id": "vocabulary:漆器",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "漆器",
+    "meaning": "Lacquerware",
+    "meanings": [
+      "Lacquerware",
+      "Lacquer Ware"
+    ],
+    "readings": [
+      "しっき"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Lacquer container s are called Lacquerware . Those pretty bowls you're eating out of? That shininess is because it's lacquerware!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "漆",
+        "name": "Lacquer",
+        "id": "kanji:漆"
+      },
+      {
+        "character": "器",
+        "name": "Container",
+        "id": "kanji:器"
+      }
+    ],
+    "dependencies": [
+      "kanji:漆",
+      "kanji:器"
+    ],
+    "sentences": [
+      {
+        "japanese": "漆器の手入れの仕方を教えてください。",
+        "english": "Please teach me how to maintain lacquer ware."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%BC%86%E5%99%A8"
+  },
+  {
+    "id": "vocabulary:法曹",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "法曹",
+    "meaning": "Lawyer",
+    "meanings": [
+      "Lawyer",
+      "Legal Profession"
+    ],
+    "readings": [
+      "ほうそう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The official method of doing anything requires hiring a lawyer . They have to be there when you sign forms or sue people, or it isn't official at all.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "法",
+        "name": "Method",
+        "id": "kanji:法"
+      },
+      {
+        "character": "曹",
+        "name": "Official",
+        "id": "kanji:曹"
+      }
+    ],
+    "dependencies": [
+      "kanji:法",
+      "kanji:曹"
+    ],
+    "sentences": [
+      {
+        "japanese": "法曹を目指そうと思ったきっかけは何ですか。",
+        "english": "What made you pursue your dream of becoming a lawyer?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%B3%95%E6%9B%B9"
+  },
+  {
+    "id": "vocabulary:崇高",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "崇高",
+    "meaning": "Loftiness",
+    "meanings": [
+      "Loftiness",
+      "Sublimity",
+      "Nobility"
+    ],
+    "readings": [
+      "すうこう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "You worship someone who is so high above you that you can't help but be in awe of their loftiness . Their nobility is the reason you feel like you should worship them in the first place.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "崇",
+        "name": "Worship",
+        "id": "kanji:崇"
+      },
+      {
+        "character": "高",
+        "name": "Tall",
+        "id": "kanji:高"
+      }
+    ],
+    "dependencies": [
+      "kanji:崇",
+      "kanji:高"
+    ],
+    "sentences": [
+      {
+        "japanese": "自然の崇高な美しさに感動しました。",
+        "english": "I was deeply moved by the noble beauty of nature."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%B4%87%E9%AB%98"
+  },
+  {
+    "id": "vocabulary:婚姻",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "婚姻",
+    "meaning": "Marriage",
+    "meanings": [
+      "Marriage",
+      "Matrimony"
+    ],
+    "readings": [
+      "こんいん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Marry and marriage still make marriage . Congratulations! Wooh! Yay!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "婚",
+        "name": "Marriage",
+        "id": "kanji:婚"
+      },
+      {
+        "character": "姻",
+        "name": "Marry",
+        "id": "kanji:姻"
+      }
+    ],
+    "dependencies": [
+      "kanji:婚",
+      "kanji:姻"
+    ],
+    "sentences": [
+      {
+        "japanese": "婚姻届を役所に提出しました。",
+        "english": "I submitted the marriage registration at the public office."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%A9%9A%E5%A7%BB"
+  },
+  {
+    "id": "vocabulary:卑劣",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "卑劣",
+    "meaning": "Mean",
+    "meanings": [
+      "Mean",
+      "Foul Play",
+      "Cowardly",
+      "Base"
+    ],
+    "readings": [
+      "ひれつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you treat someone in a lowly manner because you think they're inferior to you then you're a mean person. Plain and simple.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "卑",
+        "name": "Lowly",
+        "id": "kanji:卑"
+      },
+      {
+        "character": "劣",
+        "name": "Inferiority",
+        "id": "kanji:劣"
+      }
+    ],
+    "dependencies": [
+      "kanji:卑",
+      "kanji:劣"
+    ],
+    "sentences": [
+      {
+        "japanese": "卑劣な手段を使いやがって。",
+        "english": "You played a mean trick!"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%8D%91%E5%8A%A3"
+  },
+  {
+    "id": "vocabulary:峠",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "峠",
+    "meaning": "Mountain Pass",
+    "meanings": [
+      "Mountain Pass",
+      "The Worst"
+    ],
+    "readings": [
+      "とうげ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The kanji and the word are exactly the same. That means they share meanings as well. 峠 refers to a mountain pass, and often specifically the highest point of a mountain pass , where it passes between two mountains. When used figuratively, it means the worst , as in the toughest moment of a specific event, like the height of a health crisis or the hottest day of a heatwave.",
+    "readingMnemonic": "You climb along the mountain pass and see adorable little To kyo ge ckos ( とうげ ) climbing all over the place. They're climbing with you now!",
+    "components": [
+      {
+        "character": "峠",
+        "name": "Mountain Pass",
+        "id": "kanji:峠"
+      }
+    ],
+    "dependencies": [
+      "kanji:峠"
+    ],
+    "sentences": [
+      {
+        "japanese": "この峠で転ぶと、三年だけしか生きられないという言い伝えがあります。",
+        "english": "Legend has it that if you fall down on this mountain pass, you'll only have three years left to live."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%B3%A0"
+  },
+  {
+    "id": "vocabulary:忌",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "忌",
+    "meaning": "Mourning",
+    "meanings": [
+      "Mourning",
+      "Mourning Period"
+    ],
+    "readings": [
+      "き"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The kanji and the word are exactly the same. That means they share meanings as well.",
+    "readingMnemonic": "This has the same reading as the kanji you learned, meaning you know the reading!",
+    "components": [
+      {
+        "character": "忌",
+        "name": "Mourning",
+        "id": "kanji:忌"
+      }
+    ],
+    "dependencies": [
+      "kanji:忌"
+    ],
+    "sentences": [
+      {
+        "japanese": "忌が明けたら、みんなで旅行でも行きましょうか。",
+        "english": "When the mourning is over, shall we all go on a trip?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%BF%8C"
+  },
+  {
+    "id": "vocabulary:遷都",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "遷都",
+    "meaning": "Move The Capital",
+    "meanings": [
+      "Move The Capital",
+      "Transfer The Capital",
+      "Relocation Of The Capital"
+    ],
+    "readings": [
+      "せんと"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you want to transition the capital to a new, better place, you need to move the capital . This used to happen a lot way back in Japanese history. It's actually pretty interesting so you might want to read up on it!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "遷",
+        "name": "Transition",
+        "id": "kanji:遷"
+      },
+      {
+        "character": "都",
+        "name": "Metropolis",
+        "id": "kanji:都"
+      }
+    ],
+    "dependencies": [
+      "kanji:遷",
+      "kanji:都"
+    ],
+    "sentences": [
+      {
+        "japanese": "来年は、遷都1500年記念のイベントが開催されます。",
+        "english": "Next year an event is being held for the 1500 year anniversary of the relocation of the capital."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E9%81%B7%E9%83%BD"
+  },
+  {
+    "id": "vocabulary:ご無沙汰",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "ご無沙汰",
+    "meaning": "Neglecting To Contact",
+    "meanings": [
+      "Neglecting To Contact",
+      "Long Silence"
+    ],
+    "readings": [
+      "ごぶさた"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you select to talk to nothing but sand for a really long time, you're neglecting to contact anyone else. Your relatives miss you! Stop talking to sand and call them!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "無",
+        "name": "Nothing",
+        "id": "kanji:無"
+      },
+      {
+        "character": "沙",
+        "name": "Sand",
+        "id": "kanji:沙"
+      },
+      {
+        "character": "汰",
+        "name": "Select",
+        "id": "kanji:汰"
+      }
+    ],
+    "dependencies": [
+      "kanji:無",
+      "kanji:沙",
+      "kanji:汰"
+    ],
+    "sentences": [
+      {
+        "japanese": "ご無沙汰しております。",
+        "english": "I haven’t seen you in so long."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E3%81%94%E7%84%A1%E6%B2%99%E6%B1%B0"
+  },
+  {
+    "id": "vocabulary:魂胆",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "魂胆",
+    "meaning": "Plot",
+    "meanings": [
+      "Plot",
+      "Ulterior Motive",
+      "Secret Intention",
+      "Hidden Purpose"
+    ],
+    "readings": [
+      "こんたん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The soul and guts of a story lie in the plot !",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "魂",
+        "name": "Soul",
+        "id": "kanji:魂"
+      },
+      {
+        "character": "胆",
+        "name": "Guts",
+        "id": "kanji:胆"
+      }
+    ],
+    "dependencies": [
+      "kanji:魂",
+      "kanji:胆"
+    ],
+    "sentences": [
+      {
+        "japanese": "あわよくばおこぼれに預かりたいという魂胆が見え見えだよ。",
+        "english": "You are so transparent. I can tell that you’re plotting to get a share of the profits if you get the chance."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E9%AD%82%E8%83%86"
+  },
+  {
+    "id": "vocabulary:詠歌",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "詠歌",
+    "meaning": "Poem",
+    "meanings": [
+      "Poem",
+      "Song",
+      "Composing A Poem Or Song"
+    ],
+    "readings": [
+      "えいか"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A compose d song is a poem , or a song . This can also refer to the act of composing a poem or song , which makes a lot of sense given the kanji. This is used particularly when referring to waka poetry.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi for both kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "詠",
+        "name": "Compose",
+        "id": "kanji:詠"
+      },
+      {
+        "character": "歌",
+        "name": "Song",
+        "id": "kanji:歌"
+      }
+    ],
+    "dependencies": [
+      "kanji:詠",
+      "kanji:歌"
+    ],
+    "sentences": [
+      {
+        "japanese": "みなさんは、誰がこの詠歌を書いたのが知っていますか？",
+        "english": "Everyone, do you know who wrote this poem?"
+      },
+      {
+        "japanese": "彼は、暗殺される直前に、一つの詠歌をしたためていた。",
+        "english": "Just before he was assassinated, he had written a poem."
+      },
+      {
+        "japanese": "仏教の教えを和歌の形にして、旋律に乗せて唱えるものを御詠歌といいます。",
+        "english": "Chanting Buddhist teachings in the form of a waka poem with a melody is called \"goeika\"."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E8%A9%A0%E6%AD%8C"
+  },
+  {
+    "id": "vocabulary:閑静",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "閑静",
+    "meaning": "Quiet",
+    "meanings": [
+      "Quiet"
+    ],
+    "readings": [
+      "かんせい"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Leisure ly quiet is the best kind of quiet . Even your brain gets to be quiet because you don't have a care left in the world.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "閑",
+        "name": "Leisure",
+        "id": "kanji:閑"
+      },
+      {
+        "character": "静",
+        "name": "Quiet",
+        "id": "kanji:静"
+      }
+    ],
+    "dependencies": [
+      "kanji:閑",
+      "kanji:静"
+    ],
+    "sentences": [
+      {
+        "japanese": "この辺りは、閑静な住宅街になっています。",
+        "english": "This neighborhood is now a quiet residential area."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E9%96%91%E9%9D%99"
+  },
+  {
+    "id": "vocabulary:暗礁",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "暗礁",
+    "meaning": "Reef",
+    "meanings": [
+      "Reef",
+      "Sunken Reef"
+    ],
+    "readings": [
+      "あんしょう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A dark reef is still a reef . It's just really deep underwater so it's kinda dark under there. Because of that it can also be called a sunken reef .",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "暗",
+        "name": "Dark",
+        "id": "kanji:暗"
+      },
+      {
+        "character": "礁",
+        "name": "Reef",
+        "id": "kanji:礁"
+      }
+    ],
+    "dependencies": [
+      "kanji:暗",
+      "kanji:礁"
+    ],
+    "sentences": [
+      {
+        "japanese": "船長は、暗礁に気をつけてと言って、僕に操縦を任せた。",
+        "english": "The captain told me to be careful of reefs and then left the steering to me."
+      },
+      {
+        "japanese": "捜査は暗礁に乗り上げてしまったな。",
+        "english": "The investigation went cold unexpectedly."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%9A%97%E7%A4%81"
+  },
+  {
+    "id": "vocabulary:岩礁",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "岩礁",
+    "meaning": "Reef",
+    "meanings": [
+      "Reef",
+      "Sunken Rocks",
+      "Shore Reef",
+      "Rock Reef"
+    ],
+    "readings": [
+      "がんしょう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A reef made of boulder s is still a reef , but it's made of sunken rocks .",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "岩",
+        "name": "Boulder",
+        "id": "kanji:岩"
+      },
+      {
+        "character": "礁",
+        "name": "Reef",
+        "id": "kanji:礁"
+      }
+    ],
+    "dependencies": [
+      "kanji:岩",
+      "kanji:礁"
+    ],
+    "sentences": [
+      {
+        "japanese": "岩礁を埋め立て、人工島に造り替えたんです。",
+        "english": "The reef was filled up and replaced with an artificial island."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%B2%A9%E7%A4%81"
+  },
+  {
+    "id": "vocabulary:早乙女",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "早乙女",
+    "meaning": "Rice Planting Girl",
+    "meanings": [
+      "Rice Planting Girl",
+      "Saotome"
+    ],
+    "readings": [
+      "さおとめ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A young woman who is planting rice from early morning into the latter evenings is a rice planting girl . You'll see them out there all day long, from dawn till dusk, planting, taking care of, and picking rice. This is also a common family name, and on rare occasion, a given name as well. Some well-known people with this name include historical fiction writer Saotome Mitsugu ( 早乙女 貢 ), former pro-wrestler, model, and idol Saotome Miku ( 早乙女 未来 ), and stage and screen actor Saotome Taichi ( 早乙女 太一 ).",
+    "readingMnemonic": "This is a really weird exception, sorry. You've kind of learned these reading, but they're like... weird variations of them. Take the さ from 早速 , the おつ becomes おと , and then the 女 kun'yomi め (hey that one's normal!). And you get さおとめ . You might need to just memorize this one.",
+    "components": [
+      {
+        "character": "早",
+        "name": "Early",
+        "id": "kanji:早"
+      },
+      {
+        "character": "乙",
+        "name": "Latter",
+        "id": "kanji:乙"
+      },
+      {
+        "character": "女",
+        "name": "Woman",
+        "id": "kanji:女"
+      }
+    ],
+    "dependencies": [
+      "kanji:早",
+      "kanji:乙",
+      "kanji:女"
+    ],
+    "sentences": [
+      {
+        "japanese": "昔は稲の苗を水田に植えつける女性のことを「早乙女」や「植女」と呼んでいました。",
+        "english": "Long ago, women who planted rice seedlings were called Saotome or Ueme."
+      },
+      {
+        "japanese": "早乙女勝元の児童文学作品の中では平和をテーマとしているものが多い。",
+        "english": "In Saotome Katsumoto's children's literature there are many works with peace as their theme."
+      },
+      {
+        "japanese": "女優の早乙女愛はデビューした時に漫画 『愛と誠』の映画化で同じ名前をした主人公を演じ、そのまま芸名にしたらしいよ。",
+        "english": "Apparently, when she made her debut, actress Saotome Ai played the lead character of the same name in the film adaptation of the manga \"Ai to Makoto,\" then just adopted it as her stage name."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%97%A9%E4%B9%99%E5%A5%B3"
+  },
+  {
+    "id": "vocabulary:浪人",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "浪人",
+    "meaning": "Ronin",
+    "meanings": [
+      "Ronin",
+      "Masterless Samurai"
+    ],
+    "readings": [
+      "ろうにん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A person who wander s because their lord was killed is known as a ronin , or a masterless samurai . Now they're just like the rest of us, but they can't stop wandering because they have nowhere they belong. In modern Japan, 浪人 refers to students who failed their university entrance exams and are waiting for the next chance to try again.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "浪",
+        "name": "Wander",
+        "id": "kanji:浪"
+      },
+      {
+        "character": "人",
+        "name": "Person",
+        "id": "kanji:人"
+      }
+    ],
+    "dependencies": [
+      "kanji:浪",
+      "kanji:人"
+    ],
+    "sentences": [
+      {
+        "japanese": "受験に失敗し、浪人生活に突入しました。",
+        "english": "I failed the exam and entered the life of a failed student."
+      },
+      {
+        "japanese": "お前みたいな浪人の要求には応じられないな。",
+        "english": "We are unable to comply with the request of a masterless samurai like you."
+      },
+      {
+        "japanese": "その浪人は、諸国を遍歴することにした。",
+        "english": "That ronin has decided to travel around various regions of the country."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%B5%AA%E4%BA%BA"
+  },
+  {
+    "id": "vocabulary:禍根",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "禍根",
+    "meaning": "Root Of Evil",
+    "meanings": [
+      "Root Of Evil",
+      "Source Of Evil"
+    ],
+    "readings": [
+      "かこん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Evil 's root is the root of evil . It's the source of evil things.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "禍",
+        "name": "Evil",
+        "id": "kanji:禍"
+      },
+      {
+        "character": "根",
+        "name": "Root",
+        "id": "kanji:根"
+      }
+    ],
+    "dependencies": [
+      "kanji:禍",
+      "kanji:根"
+    ],
+    "sentences": [
+      {
+        "japanese": "できれば禍根を残すことは避けたい。",
+        "english": "I want to avoid turning a blind eye to future trouble, if I can."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E7%A6%8D%E6%A0%B9"
+  },
+  {
+    "id": "vocabulary:沙羅",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "沙羅",
+    "meaning": "Sara",
+    "meanings": [
+      "Sara"
+    ],
+    "readings": [
+      "さら"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If sand is spread out you get the given name Sara . You've written your name in sand, right? Now imagine a Sara you know spreading out sand so that it spells her name. Or imagine a pro athlete, like wrestler Doshō Sara ( 土性 沙羅 ), judoka Asahina Sara ( 朝比奈 沙羅 ), or ski jumper Takanashi Sara ( 髙梨 沙羅 ) spreading out the sand. I bet they'd find some skillful ways to do it.",
+    "readingMnemonic": "This name uses the on'yomi for both kanji, and you learned those readings with the kanji.",
+    "components": [
+      {
+        "character": "沙",
+        "name": "Sand",
+        "id": "kanji:沙"
+      },
+      {
+        "character": "羅",
+        "name": "Spread Out",
+        "id": "kanji:羅"
+      }
+    ],
+    "dependencies": [
+      "kanji:沙",
+      "kanji:羅"
+    ],
+    "sentences": [
+      {
+        "japanese": "沙羅さんと会釈をして別れました。",
+        "english": "Sara-san and I bowed to each other and parted ways."
+      },
+      {
+        "japanese": "沙羅は拓哉と一緒に苗を植えるつもりです。",
+        "english": "Sara is going to plant the seedlings with Takuya."
+      },
+      {
+        "japanese": "ものまね芸人の沙羅さんが名古屋出身だって知ってた？",
+        "english": "Did you know that the impressionist Sara comes from Nagoya?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%B2%99%E7%BE%85"
+  },
+  {
+    "id": "vocabulary:軽蔑",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "軽蔑",
+    "meaning": "Scorn",
+    "meanings": [
+      "Scorn",
+      "Disdain",
+      "Contempt"
+    ],
+    "readings": [
+      "けいべつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Lightweight scorn , no matter how light, is still scorn . Those feelings are pretty strong no matter what. 軽蔑 is used when you look down on or disdain someone, seeing them as inferior in character or ability. It often follows unethical or disappointing behavior that makes you think, \"I can't respect you as a person anymore.\"",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You haven't learned this reading for 軽 yet, so here's a mnemonic to help you: You have more scorn and disdain for the K KK ( けい ) than any other group in the whole world. And I'm not going to argue with you, they're pretty hatable.",
+    "components": [
+      {
+        "character": "軽",
+        "name": "Lightweight",
+        "id": "kanji:軽"
+      },
+      {
+        "character": "蔑",
+        "name": "Scorn",
+        "id": "kanji:蔑"
+      }
+    ],
+    "dependencies": [
+      "kanji:軽",
+      "kanji:蔑"
+    ],
+    "sentences": [
+      {
+        "japanese": "私、あの人のこと軽蔑しているの。",
+        "english": "I despise them."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E8%BB%BD%E8%94%91"
+  },
+  {
+    "id": "vocabulary:吟味",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "吟味",
+    "meaning": "Scrutiny",
+    "meanings": [
+      "Scrutiny",
+      "Testing",
+      "Careful Investigation"
+    ],
+    "readings": [
+      "ぎんみ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you tasted the air at a recital the flavor would taste like scrutiny . That's really what everyone is doing when they watch. They don't really want to hear you, they just want to judge you.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "吟",
+        "name": "Recital",
+        "id": "kanji:吟"
+      },
+      {
+        "character": "味",
+        "name": "Flavor",
+        "id": "kanji:味"
+      }
+    ],
+    "dependencies": [
+      "kanji:吟",
+      "kanji:味"
+    ],
+    "sentences": [
+      {
+        "japanese": "結婚相手はよく吟味してから決めたい。",
+        "english": "I want to decide on a spouse after a lot of careful investigation."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%90%9F%E5%91%B3"
+  },
+  {
+    "id": "vocabulary:紡績",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "紡績",
+    "meaning": "Spinning",
+    "meanings": [
+      "Spinning",
+      "Yarn Spinning"
+    ],
+    "readings": [
+      "ぼうせき"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A spinning achievement is just the spinning you produce — like thread or yarn spinning . 紡績 is a technical term that specifically refers to the process of spinning fibers into yarn or thread, typically in the textile industry.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "紡",
+        "name": "Spinning",
+        "id": "kanji:紡"
+      },
+      {
+        "character": "績",
+        "name": "Achievement",
+        "id": "kanji:績"
+      }
+    ],
+    "dependencies": [
+      "kanji:紡",
+      "kanji:績"
+    ],
+    "sentences": [
+      {
+        "japanese": "牽切紡績とは、化学繊維特有の紡績方法で、綿からの紡績ではありません。",
+        "english": "Kensetsu bouseki is a spinning method particular to synthetic fibers not spun from cotton."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E7%B4%A1%E7%B8%BE"
+  },
+  {
+    "id": "vocabulary:紡織",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "紡織",
+    "meaning": "Spinning And Weaving",
+    "meanings": [
+      "Spinning And Weaving",
+      "Weaving And Spinning"
+    ],
+    "readings": [
+      "ぼうしょく"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Spinning and weaving means spinning and weaving . Yay!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You haven't learned this reading for 織 yet, so here's a mnemonic to help you: While you're spinning and weaving you are always absolutely shock ed ( しょく ) by what you make. You never really know when you start and then BAM! You made elephant slippers. That's just how it works and it shocks you every single time.",
+    "components": [
+      {
+        "character": "紡",
+        "name": "Spinning",
+        "id": "kanji:紡"
+      },
+      {
+        "character": "織",
+        "name": "Weave",
+        "id": "kanji:織"
+      }
+    ],
+    "dependencies": [
+      "kanji:紡",
+      "kanji:織"
+    ],
+    "sentences": [
+      {
+        "japanese": "日本繊維産業は、綿紡織、化繊を中心として復興しました。",
+        "english": "The Japanese textile industry was revived mainly by cotton spinning and weaving and synthetic fibers."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E7%B4%A1%E7%B9%94"
+  },
+  {
+    "id": "vocabulary:駐屯",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "駐屯",
+    "meaning": "Stationed",
+    "meanings": [
+      "Stationed",
+      "Occupancy"
+    ],
+    "readings": [
+      "ちゅうとん"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Resident soldiers live in barracks when they've been stationed in another country. They have to serve their occupancy for a certain amount of time before they get to go back home.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "駐",
+        "name": "Resident",
+        "id": "kanji:駐"
+      },
+      {
+        "character": "屯",
+        "name": "Barracks",
+        "id": "kanji:屯"
+      }
+    ],
+    "dependencies": [
+      "kanji:駐",
+      "kanji:屯"
+    ],
+    "sentences": [
+      {
+        "japanese": "あそこには米軍が駐屯しているんだよ。",
+        "english": "US armed forces are stationed over there."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E9%A7%90%E5%B1%AF"
+  },
+  {
+    "id": "vocabulary:卑屈",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "卑屈",
+    "meaning": "Subservient",
+    "meanings": [
+      "Subservient",
+      "Abject"
+    ],
+    "readings": [
+      "ひくつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "A lowly person who yield s to everyone is really subservient . They'll do everything people tell them because they don't have the nerves to speak up and just say no.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "卑",
+        "name": "Lowly",
+        "id": "kanji:卑"
+      },
+      {
+        "character": "屈",
+        "name": "Yield",
+        "id": "kanji:屈"
+      }
+    ],
+    "dependencies": [
+      "kanji:卑",
+      "kanji:屈"
+    ],
+    "sentences": [
+      {
+        "japanese": "どうしてすぐに卑屈になるの？",
+        "english": "Why do you immediately become subservient?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%8D%91%E5%B1%88"
+  },
+  {
+    "id": "vocabulary:禁忌",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "禁忌",
+    "meaning": "Taboo",
+    "meanings": [
+      "Taboo"
+    ],
+    "readings": [
+      "きんき"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Prohibition of something with a punishment so serious that you'll end up in mourning after is a taboo .",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "禁",
+        "name": "Prohibit",
+        "id": "kanji:禁"
+      },
+      {
+        "character": "忌",
+        "name": "Mourning",
+        "id": "kanji:忌"
+      }
+    ],
+    "dependencies": [
+      "kanji:禁",
+      "kanji:忌"
+    ],
+    "sentences": [
+      {
+        "japanese": "よく、禁忌を犯すと手足をもがれると言われますが、これは本当でしょうか。",
+        "english": "It’s often said that your hands and feet are plucked off when you commit a taboo, is that true?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E7%A6%81%E5%BF%8C"
+  },
+  {
+    "id": "vocabulary:詠む",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "詠む",
+    "meaning": "To Compose",
+    "meanings": [
+      "To Compose",
+      "To Recite"
+    ],
+    "readings": [
+      "よむ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word consists of kanji with hiragana attached. Because the hiragana ends with an う sound, you know this word is a verb. The kanji itself means compose , so the verb version is to compose .",
+    "readingMnemonic": "Since this word consists of a kanji with hiragana attached, you can bet that it will use the kun'yomi reading. You didn't learn that reading with this kanji, so here's a mnemonic to help you: You want to compose a poem but all you have for inspiration is what's in your pocket. You reach in and find a yo -yo ( よ ). Ah yes, this will do. So you compose a poem about your yo-yo: One string to rule them all, One string to find them, One string to- hey wait a minute...",
+    "components": [
+      {
+        "character": "詠",
+        "name": "Compose",
+        "id": "kanji:詠"
+      }
+    ],
+    "dependencies": [
+      "kanji:詠"
+    ],
+    "sentences": [
+      {
+        "japanese": "俳句を詠む人のことを俳人と呼びます。",
+        "english": "People who compose haiku are called haijin."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E8%A9%A0%E3%82%80"
+  },
+  {
+    "id": "vocabulary:侮る",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "侮る",
+    "meaning": "To Despise",
+    "meanings": [
+      "To Despise",
+      "To Disdain",
+      "To Make Light Of"
+    ],
+    "readings": [
+      "あなどる"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word consists of kanji with hiragana attached. Because the hiragana ends with an う sound, you know this word is a verb. The kanji itself means despise , so the verb version is to despise .",
+    "readingMnemonic": "Since this word consists of a kanji with hiragana attached, you can bet that it will use the kun'yomi reading. You didn't learn that reading with this kanji, so here's a mnemonic to help you: Think of all the things you start to despise and to disdain . Now come up with some anecdo tes ( あなど ) for each one of those things. Be sure to think in your head, \"I'm coming up with anecdotes for things I disdain, why am I coming up with anecdotes?\"",
+    "components": [
+      {
+        "character": "侮",
+        "name": "Despise",
+        "id": "kanji:侮"
+      }
+    ],
+    "dependencies": [
+      "kanji:侮"
+    ],
+    "sentences": [
+      {
+        "japanese": "子供だからといって侮らない方がいい。",
+        "english": "You shouldn’t make light of it just because it’s a child."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E4%BE%AE%E3%82%8B"
+  },
+  {
+    "id": "vocabulary:堪える",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "堪える",
+    "meaning": "To Endure",
+    "meanings": [
+      "To Endure",
+      "To Bear"
+    ],
+    "readings": [
+      "こらえる",
+      "たえる"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word consists of kanji with hiragana attached. Because the hiragana ends with an う sound, you know this word is a verb. The kanji itself means endure , so the verb version is to endure or to bear .",
+    "readingMnemonic": "Since this word consists of a kanji with hiragana attached, you can bet that it will use the kun'yomi reading. You learned this reading when you learned the kanji!",
+    "components": [
+      {
+        "character": "堪",
+        "name": "Endure",
+        "id": "kanji:堪"
+      }
+    ],
+    "dependencies": [
+      "kanji:堪"
+    ],
+    "sentences": [
+      {
+        "japanese": "この作品は読むに堪えない出来栄えだ。",
+        "english": "In the end, I couldn’t bear reading the work."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%A0%AA%E3%81%88%E3%82%8B"
+  },
+  {
+    "id": "vocabulary:凹む",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "凹む",
+    "meaning": "To Get Dented",
+    "meanings": [
+      "To Get Dented",
+      "To Feel Down"
+    ],
+    "readings": [
+      "へこむ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word consists of kanji with hiragana attached. Because the hiragana ends with an う sound, you know this word is a verb. The kanji itself means concave , but \"to concave\" doesn't really make sense. So the verb version is to get dented . Or, more figuratively, to feel down . 凹む is used in a physical sense when the surface of something is dented, collapsed inward, or features some kind of hollow depression. That can be anything from a dented car to even a fit, slimmed-down belly (sort of like the flab is \"dented\" in). In a figurative sense, 凹む is used when you're feeling down. Almost like your heart is dented, you know? We all have those days.",
+    "readingMnemonic": "Since this word consists of a kanji with hiragana attached, you can bet that it will use the kun'yomi reading. You didn't learn that reading with this kanji, so here's a mnemonic to help you: You feel like you've started to get dented when you have a hea d co ld ( へこ ). Like all that sniffling makes dents on the sides of your nose. It's easy to feel down when you have a head cold too, but try not to let it get to you.",
+    "components": [
+      {
+        "character": "凹",
+        "name": "Concave",
+        "id": "kanji:凹"
+      }
+    ],
+    "dependencies": [
+      "kanji:凹"
+    ],
+    "sentences": [
+      {
+        "japanese": "失恋で凹んでいます。",
+        "english": "I'm feeling down because of unrequited love."
+      },
+      {
+        "japanese": "早速新車を凹ませてしまって、凹んでいます。",
+        "english": "I'm super sad because I made a dent on my new car already."
+      },
+      {
+        "japanese": "凹むわー。せっかくAIで効率上がると思ったのに、確認と修正で時間を取られて、むしろ自分でやった方が早いっていうオチだった。",
+        "english": "I thought using AI would make things more efficient, but in the end, checks and corrections took so much time that it would've been faster to just do it myself."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%87%B9%E3%82%80"
+  },
+  {
+    "id": "vocabulary:紡ぐ",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "紡ぐ",
+    "meaning": "To Spin",
+    "meanings": [
+      "To Spin",
+      "To Make Yarn"
+    ],
+    "readings": [
+      "つむぐ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This word consists of kanji with hiragana attached. Because the hiragana ends with an う sound, you know this word is a verb. The kanji itself means spinning , so the verb version is to spin and to make yarn .",
+    "readingMnemonic": "Since this word consists of a kanji with hiragana attached, you can bet that it will use the kun'yomi reading. You didn't learn that reading with this kanji, so here's a mnemonic to help you: Before you start to spin you have to let out two moo s ( つむ ) as tribute to the cows that gave you their fur to make yarn out of. Go on, two moos, right now. Hey, out loud, not in your head!",
+    "components": [
+      {
+        "character": "紡",
+        "name": "Spinning",
+        "id": "kanji:紡"
+      }
+    ],
+    "dependencies": [
+      "kanji:紡"
+    ],
+    "sentences": [
+      {
+        "japanese": "昔はこうやって糸を紡いでいたんですよ。",
+        "english": "A long time ago thread was spun in this way."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E7%B4%A1%E3%81%90"
+  },
+  {
+    "id": "vocabulary:凸凹",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "凸凹",
+    "meaning": "Uneven",
+    "meanings": [
+      "Uneven",
+      "Rough",
+      "Rugged"
+    ],
+    "readings": [
+      "でこぼこ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Remember how you learned that 凹凸 means \"uneven?\" Well spin something uneven around and it's still uneven ! Just kinda backwards, just like this word!",
+    "readingMnemonic": "However, just because the meaning stays the same when you flip it, doesn't mean the reading does. Doing that actually made the reading change from on'yomi to kun'yomi readings! You haven't learned either of these yet so here's a mnemonic to help you: When you have the convex parts first and the concave parts second in something uneven it ends up looking like a deco box ( でこぼこ ). An art deco box that is. They have lots of stuff stick out of them on the outside, but you can open them up and put stuff on the inside.",
+    "components": [
+      {
+        "character": "凸",
+        "name": "Convex",
+        "id": "kanji:凸"
+      },
+      {
+        "character": "凹",
+        "name": "Concave",
+        "id": "kanji:凹"
+      }
+    ],
+    "dependencies": [
+      "kanji:凸",
+      "kanji:凹"
+    ],
+    "sentences": [
+      {
+        "japanese": "床がちょっと凸凹しているのが気になるね。",
+        "english": "I’m worried that the floor is a little uneven."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%87%B8%E5%87%B9"
+  },
+  {
+    "id": "vocabulary:普遍的",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "普遍的",
+    "meaning": "Universal",
+    "meanings": [
+      "Universal",
+      "Omnipresent",
+      "Ubiquitous"
+    ],
+    "readings": [
+      "ふへんてき"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Remember how 普遍 means \"universal?\" Well when you add like it's still universal ! Easy!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "普",
+        "name": "Normal",
+        "id": "kanji:普"
+      },
+      {
+        "character": "遍",
+        "name": "Universal",
+        "id": "kanji:遍"
+      },
+      {
+        "character": "的",
+        "name": "Target",
+        "id": "kanji:的"
+      }
+    ],
+    "dependencies": [
+      "kanji:普",
+      "kanji:遍",
+      "kanji:的"
+    ],
+    "sentences": [
+      {
+        "japanese": "とても普遍的なテーマだと思います。",
+        "english": "I think it’s a really universal theme."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%99%AE%E9%81%8D%E7%9A%84"
+  },
+  {
+    "id": "vocabulary:忌まわしい",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "忌まわしい",
+    "meaning": "Unpleasant",
+    "meanings": [
+      "Unpleasant",
+      "Disgusting",
+      "Inauspicious"
+    ],
+    "readings": [
+      "いまわしい"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "This is a single kanji with しい on the end, meaning it's an adjective. What's the adjective form of mourning ? It's unpleasant or disgusting . Nobody said mourning was fun.",
+    "readingMnemonic": "Since this word consists of a kanji with hiragana attached, you can bet that it will use the kun'yomi reading. You didn't learn that reading with this kanji, so here's a mnemonic to help you: Your mourning is especially unpleasant because it's your pet ea gle ( い ) you're mourning for. Your parents wouldn't let you bury him so you're just staring at his week old, dead eagle body. It's super disgusting , actually.",
+    "components": [
+      {
+        "character": "忌",
+        "name": "Mourning",
+        "id": "kanji:忌"
+      }
+    ],
+    "dependencies": [
+      "kanji:忌"
+    ],
+    "sentences": [
+      {
+        "japanese": "この忌まわしい記憶をどうか消し去ってください。",
+        "english": "Please erase this disgusting memory somehow."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%BF%8C%E3%81%BE%E3%82%8F%E3%81%97%E3%81%84"
+  },
+  {
+    "id": "vocabulary:稚拙",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "稚拙",
+    "meaning": "Unskillful",
+    "meanings": [
+      "Unskillful",
+      "Childish"
+    ],
+    "readings": [
+      "ちせつ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Clumsy and immature people end up being really unskillful . You can't do your job if you're always dropping things and whining, can you? They're usually also really childish , if you didn't already guess that.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "稚",
+        "name": "Immature",
+        "id": "kanji:稚"
+      },
+      {
+        "character": "拙",
+        "name": "Clumsy",
+        "id": "kanji:拙"
+      }
+    ],
+    "dependencies": [
+      "kanji:稚",
+      "kanji:拙"
+    ],
+    "sentences": [
+      {
+        "japanese": "稚拙な文章ですがもしよければ読んでください。",
+        "english": "It’s not a very good article, but please read it if you’d like."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E7%A8%9A%E6%8B%99"
+  },
+  {
+    "id": "vocabulary:流浪",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "流浪",
+    "meaning": "Vagrancy",
+    "meanings": [
+      "Vagrancy",
+      "Wandering",
+      "Nomadism"
+    ],
+    "readings": [
+      "るろう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Wander from stream to stream and you'll get really used to vagrancy . You'll love wandering so much that you'll convert to nomadism . The open sky is your home!",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. Since you haven't learned this particular reading for 流 , here's a mnemonic to help you: When you think about it, vagrancy is kind of a loo phole ( る ). No one ever knows where you could be, making it hard to track you down.",
+    "components": [
+      {
+        "character": "流",
+        "name": "Stream",
+        "id": "kanji:流"
+      },
+      {
+        "character": "浪",
+        "name": "Wander",
+        "id": "kanji:浪"
+      }
+    ],
+    "dependencies": [
+      "kanji:流",
+      "kanji:浪"
+    ],
+    "sentences": [
+      {
+        "japanese": "全てのロマが貧しい流浪の民というわけではない。",
+        "english": "That doesn’t mean all the Roma are poor, nomadic people."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%B5%81%E6%B5%AA"
+  },
+  {
+    "id": "vocabulary:浮浪者",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "浮浪者",
+    "meaning": "Vagrant",
+    "meanings": [
+      "Vagrant",
+      "Bum"
+    ],
+    "readings": [
+      "ふろうしゃ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Someone who float s and wander s from place to place is a vagrant . They don't really have a home, but they keep hanging around yours. It's kind of annoying. (This word has a negative connotation, you wouldn't use it for someone who is just homeless, unless you're really mean.)",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You haven't learned this reading for 浮 yet, so here's a mnemonic to help you: All the vagrant s you know are foo ls ( ふ ). They just left their homes and now they float around your city for no reason. You ask them why and they shrug. You've never seen a better definition of a fool before in your life!",
+    "components": [
+      {
+        "character": "浮",
+        "name": "Float",
+        "id": "kanji:浮"
+      },
+      {
+        "character": "浪",
+        "name": "Wander",
+        "id": "kanji:浪"
+      },
+      {
+        "character": "者",
+        "name": "Someone",
+        "id": "kanji:者"
+      }
+    ],
+    "dependencies": [
+      "kanji:浮",
+      "kanji:浪",
+      "kanji:者"
+    ],
+    "sentences": [
+      {
+        "japanese": "浮浪者でも7割の人は何らかの仕事をして日銭を稼いでいる。",
+        "english": "70% of vagrants do some kind of work and earn a daily cash income."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%B5%AE%E6%B5%AA%E8%80%85"
+  },
+  {
+    "id": "vocabulary:甚だ",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "甚だ",
+    "meaning": "Very",
+    "meanings": [
+      "Very",
+      "Very Much",
+      "Greatly"
+    ],
+    "readings": [
+      "はなはだ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "The kanji and the word are exactly the same. That means they share meanings as well.",
+    "readingMnemonic": "Since this word is made up of a single kanji, it probably uses the kun'yomi reading. You did not learn this reading, so here's a mnemonic to help you: When someone starts speaking in very flowery language, you can't help but scoff: \" 花 — Hah ( はなは )!\" To you, talking that way feels very pretentious, and you'd prefer if people kept it simple instead of trying to greatly embellish their speech.",
+    "components": [
+      {
+        "character": "甚",
+        "name": "Very",
+        "id": "kanji:甚"
+      }
+    ],
+    "dependencies": [
+      "kanji:甚"
+    ],
+    "sentences": [
+      {
+        "japanese": "そのようなことが事実だとすれば、甚だ遺憾である。",
+        "english": "If that sort of thing is true, I'm very sorry."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E7%94%9A%E3%81%A0"
+  },
+  {
+    "id": "vocabulary:放浪",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "放浪",
+    "meaning": "Wandering",
+    "meanings": [
+      "Wandering",
+      "Roaming"
+    ],
+    "readings": [
+      "ほうろう"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Release your worldly ties and wander the world. You'll get used to wandering and you'll spend the rest of your days roaming the world until you die. It's quite the life! But you can only do it if you let go of everything else.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "放",
+        "name": "Release",
+        "id": "kanji:放"
+      },
+      {
+        "character": "浪",
+        "name": "Wander",
+        "id": "kanji:浪"
+      }
+    ],
+    "dependencies": [
+      "kanji:放",
+      "kanji:浪"
+    ],
+    "sentences": [
+      {
+        "japanese": "当時は、逃げるように各地を転々と放浪していました。",
+        "english": "In those days I had to wander from place to place in order to escape."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%94%BE%E6%B5%AA"
+  },
+  {
+    "id": "vocabulary:戦禍",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "戦禍",
+    "meaning": "War Damages",
+    "meanings": [
+      "War Damages",
+      "Ravages Of War"
+    ],
+    "readings": [
+      "せんか"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "One of the most evil things about war are the war damages that happen during it. Whole countrysides, cities, and lots of people can die. So I'd say the ravages of war are the most evil thing about war. Period.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "戦",
+        "name": "War",
+        "id": "kanji:戦"
+      },
+      {
+        "character": "禍",
+        "name": "Evil",
+        "id": "kanji:禍"
+      }
+    ],
+    "dependencies": [
+      "kanji:戦",
+      "kanji:禍"
+    ],
+    "sentences": [
+      {
+        "japanese": "戦禍を逃れて田舎に疎開した。",
+        "english": "We escaped the ravages of war and evacuated into the countryside."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%88%A6%E7%A6%8D"
+  },
+  {
+    "id": "vocabulary:浪費",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "浪費",
+    "meaning": "Waste",
+    "meanings": [
+      "Waste",
+      "Extravagance"
+    ],
+    "readings": [
+      "ろうひ"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "If you wander around doing nothing at your own expense it will be a huge waste of money. It's not like you were doing or buying anything important, you were just wandering around, after all.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "浪",
+        "name": "Wander",
+        "id": "kanji:浪"
+      },
+      {
+        "character": "費",
+        "name": "Expense",
+        "id": "kanji:費"
+      }
+    ],
+    "dependencies": [
+      "kanji:浪",
+      "kanji:費"
+    ],
+    "sentences": [
+      {
+        "japanese": "妻の浪費癖がなかなか治らないんです。",
+        "english": "My wife’s wasteful habits were not easily cured."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%B5%AA%E8%B2%BB"
+  },
+  {
+    "id": "vocabulary:惜しまない",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "惜しまない",
+    "meaning": "Without Sparing",
+    "meanings": [
+      "Without Sparing",
+      "Spare No"
+    ],
+    "readings": [
+      "おしまない"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Remember how you learned that 惜しむ means \"to be sparing?\" Well if you make that negative with ない , then you're doing it without sparing anything instead.",
+    "readingMnemonic": "Since this word is made up of a single kanji, it probably uses the kun'yomi reading. You learned this reading already, so you should be able to read this already too!",
+    "components": [
+      {
+        "character": "惜",
+        "name": "Frugal",
+        "id": "kanji:惜"
+      }
+    ],
+    "dependencies": [
+      "kanji:惜"
+    ],
+    "sentences": [
+      {
+        "japanese": "目的を成し遂げるには、努力を惜しまないことが大切だと思います。",
+        "english": "I think it’s important to spare no effort in fulfilling your goals."
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E6%83%9C%E3%81%97%E3%81%BE%E3%81%AA%E3%81%84"
+  },
+  {
+    "id": "vocabulary:崇拝",
+    "type": "vocabulary",
+    "level": 59,
+    "character": "崇拝",
+    "meaning": "Worship",
+    "meanings": [
+      "Worship",
+      "Adoration",
+      "Admiration",
+      "Cult"
+    ],
+    "readings": [
+      "すうはい"
+    ],
+    "otherReadings": [],
+    "meaningMnemonic": "Worship in the morning, worship in the night, worship all day! Worship that WaniKani poster. Do it.",
+    "readingMnemonic": "This is a jukugo word that uses the on'yomi readings of the kanji. You should be able to read this on your own.",
+    "components": [
+      {
+        "character": "崇",
+        "name": "Worship",
+        "id": "kanji:崇"
+      },
+      {
+        "character": "拝",
+        "name": "Worship",
+        "id": "kanji:拝"
+      }
+    ],
+    "dependencies": [
+      "kanji:崇",
+      "kanji:拝"
+    ],
+    "sentences": [
+      {
+        "japanese": "どうして偶像崇拝を禁止するのですか。",
+        "english": "Why do they prohibit idol worship?"
+      }
+    ],
+    "sourceUrl": "https://www.wanikani.com/vocabulary/%E5%B4%87%E6%8B%9D"
+  }
+]

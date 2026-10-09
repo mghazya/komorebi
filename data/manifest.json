@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "datasetVersion": "wk-1-38-ce6644259449",
+  "datasetVersion": "wk-1-60-e504ee9f56ea",
   "levels": [
     {
       "level": 1,
@@ -419,6 +419,248 @@
         "vocabulary": 117
       },
       "sha256": "e08013499ee3d3b357b6a588820713b1ea3c691f77bd3e0f753c7071d4730a80"
+    },
+    {
+      "level": 39,
+      "path": "./data/level-39.json",
+      "itemCount": 154,
+      "counts": {
+        "radical": 8,
+        "kanji": 35,
+        "vocabulary": 111
+      },
+      "sha256": "fb990bc7707cd6e334256d17ee6cb1978d4e67a46f5abac8fa3bcc4b52d85918"
+    },
+    {
+      "level": 40,
+      "path": "./data/level-40.json",
+      "itemCount": 175,
+      "counts": {
+        "radical": 5,
+        "kanji": 36,
+        "vocabulary": 134
+      },
+      "sha256": "c59050c2ab01c88085d6ec69269353dee419f40198ea69b39a70707ba3aa146a"
+    },
+    {
+      "level": 41,
+      "path": "./data/level-41.json",
+      "itemCount": 147,
+      "counts": {
+        "radical": 5,
+        "kanji": 33,
+        "vocabulary": 109
+      },
+      "sha256": "a30925ad446375db2cbc6703320074ce47c618f3811ce3f3cd2e7c3f6237347b"
+    },
+    {
+      "level": 42,
+      "path": "./data/level-42.json",
+      "itemCount": 143,
+      "counts": {
+        "radical": 4,
+        "kanji": 33,
+        "vocabulary": 106
+      },
+      "sha256": "fca0fcbc0f5eb2ab7246dd3f62183cd3a7dfa513891e64a4b377fd032056f47d"
+    },
+    {
+      "level": 43,
+      "path": "./data/level-43.json",
+      "itemCount": 146,
+      "counts": {
+        "radical": 3,
+        "kanji": 34,
+        "vocabulary": 109
+      },
+      "sha256": "530da0327a1dc854dedede23e1131fae8a0679015cec3dd07faaf7170d3f5540"
+    },
+    {
+      "level": 44,
+      "path": "./data/level-44.json",
+      "itemCount": 137,
+      "counts": {
+        "radical": 2,
+        "kanji": 33,
+        "vocabulary": 102
+      },
+      "sha256": "8df8dd6e635b9c0eca7d0afdcf18f833335d81b949d288ece779d473c374776b"
+    },
+    {
+      "level": 45,
+      "path": "./data/level-45.json",
+      "itemCount": 141,
+      "counts": {
+        "radical": 2,
+        "kanji": 34,
+        "vocabulary": 105
+      },
+      "sha256": "ecd5473af1be7c9379cd5e2d5782733c32cb430a681350c88416ec70fe3be4c3"
+    },
+    {
+      "level": 46,
+      "path": "./data/level-46.json",
+      "itemCount": 141,
+      "counts": {
+        "radical": 1,
+        "kanji": 36,
+        "vocabulary": 104
+      },
+      "sha256": "ff73ca58e89b5ea53ed5517670ec5d3dd07d3d26e7f614d6019ca7f7b8ceb743"
+    },
+    {
+      "level": 47,
+      "path": "./data/level-47.json",
+      "itemCount": 141,
+      "counts": {
+        "radical": 2,
+        "kanji": 37,
+        "vocabulary": 102
+      },
+      "sha256": "063b091385d56ceaaa063ed79965a22c41026ff9128691698efa20d47786386c"
+    },
+    {
+      "level": 48,
+      "path": "./data/level-48.json",
+      "itemCount": 142,
+      "counts": {
+        "radical": 2,
+        "kanji": 36,
+        "vocabulary": 104
+      },
+      "sha256": "fe11c9c37637479f7d8699fff09a6db3e5e7d2a7be616b647b8fc9130976f3c7"
+    },
+    {
+      "level": 49,
+      "path": "./data/level-49.json",
+      "itemCount": 146,
+      "counts": {
+        "radical": 3,
+        "kanji": 35,
+        "vocabulary": 108
+      },
+      "sha256": "5f53d032240751724ecb3252dea6b7820ddbc00abf7c102eb15f2165d9cf0bd7"
+    },
+    {
+      "level": 50,
+      "path": "./data/level-50.json",
+      "itemCount": 135,
+      "counts": {
+        "radical": 3,
+        "kanji": 35,
+        "vocabulary": 97
+      },
+      "sha256": "4b7d06d469870e247215c04fa6906251bcba17549bcf956f4e852b1fdd768753"
+    },
+    {
+      "level": 51,
+      "path": "./data/level-51.json",
+      "itemCount": 123,
+      "counts": {
+        "radical": 0,
+        "kanji": 34,
+        "vocabulary": 89
+      },
+      "sha256": "e38edb80b6fe47eabde329f2647807c90ac358ba11ac0b4b3b2a901c24392103"
+    },
+    {
+      "level": 52,
+      "path": "./data/level-52.json",
+      "itemCount": 141,
+      "counts": {
+        "radical": 1,
+        "kanji": 36,
+        "vocabulary": 104
+      },
+      "sha256": "1661961408d041c875c9d2f1a7321491000338fd131bac93fbd7911846e50c6c"
+    },
+    {
+      "level": 53,
+      "path": "./data/level-53.json",
+      "itemCount": 145,
+      "counts": {
+        "radical": 1,
+        "kanji": 34,
+        "vocabulary": 110
+      },
+      "sha256": "860fc78c82df176e45f0318865966b20b8f2da4319ddda033f134abfa2891628"
+    },
+    {
+      "level": 54,
+      "path": "./data/level-54.json",
+      "itemCount": 153,
+      "counts": {
+        "radical": 0,
+        "kanji": 35,
+        "vocabulary": 118
+      },
+      "sha256": "ba7c002d4eb47034018b71bacb497da044b1673a502e086d9acac42dfa86e217"
+    },
+    {
+      "level": 55,
+      "path": "./data/level-55.json",
+      "itemCount": 119,
+      "counts": {
+        "radical": 2,
+        "kanji": 34,
+        "vocabulary": 83
+      },
+      "sha256": "0a4627b08b0cd40f576fdc532d4c80946f9ea8113b36d28e1069397f1db2b6ac"
+    },
+    {
+      "level": 56,
+      "path": "./data/level-56.json",
+      "itemCount": 130,
+      "counts": {
+        "radical": 0,
+        "kanji": 35,
+        "vocabulary": 95
+      },
+      "sha256": "7300bc366dff23fcb4c7ed90e85c665974c1212293fd36231def0fac953b9e82"
+    },
+    {
+      "level": 57,
+      "path": "./data/level-57.json",
+      "itemCount": 133,
+      "counts": {
+        "radical": 2,
+        "kanji": 34,
+        "vocabulary": 97
+      },
+      "sha256": "c2e6b2fc237efb6751058fc0cbd726ac5fd7b8843c851f4631f05be5a1168bf4"
+    },
+    {
+      "level": 58,
+      "path": "./data/level-58.json",
+      "itemCount": 115,
+      "counts": {
+        "radical": 0,
+        "kanji": 33,
+        "vocabulary": 82
+      },
+      "sha256": "ff8321ab55d08f5f891f4c60b0ce1223ac2c6be6ecce0369dc8dad61d1cddd9d"
+    },
+    {
+      "level": 59,
+      "path": "./data/level-59.json",
+      "itemCount": 115,
+      "counts": {
+        "radical": 1,
+        "kanji": 34,
+        "vocabulary": 80
+      },
+      "sha256": "5e94a66266e333d9f53e8267156808ed8e6c9b4b69699f563cbf6b40a72982c3"
+    },
+    {
+      "level": 60,
+      "path": "./data/level-60.json",
+      "itemCount": 111,
+      "counts": {
+        "radical": 0,
+        "kanji": 33,
+        "vocabulary": 78
+      },
+      "sha256": "c8fe93dc777432031d9c1d7b5682b4d5ddee9e79c919dd17f1d71fe117981f5e"
     }
   ]
 }
