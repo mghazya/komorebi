@@ -238,7 +238,9 @@ export function markAsGuru(profile, id, { level } = {}, now = Date.now()) {
       }),
     };
   }
+  // Keep every existing field (extensions included), like completeReview does, then apply Guru.
   const next = {
+    ...(previous || {}),
     stage: GURU_STAGE,
     availableAt: now + intervalFor(GURU_STAGE, Number.isInteger(level) ? level : undefined),
     startedAt: previous?.startedAt ?? now,
@@ -310,32 +312,72 @@ export function selectPlacementSample(items, profile, { maxLevel = 1, size = PLA
 }
 
 /**
- * Score a placement attempt.
- * answers: [{ id, kind, correct: boolean }, ...] in order asked.
- * Passes when correct/total >= PLACEMENT_PASS_RATIO, or a consecutive correct streak
- * of PLACEMENT_STREAK_PASS appears. Subjects to grant: those with every asked part correct.
+ * Question kinds a placement subject must answer correctly before it can be granted Guru.
+ * expected: the full placement queue ([{ id, kind }], from buildQuizQueue) — authoritative.
+ * Without it, the subject-ID prefix decides conservatively: radicals need a meaning;
+ * kanji and vocabulary need a meaning and a reading. Other IDs need the kinds actually asked.
  */
-export function scorePlacement(answers = []) {
-  const list = Array.isArray(answers) ? answers : [];
+function requiredPlacementKinds(answers, expected) {
+  const required = new Map();
+  if (Array.isArray(expected) && expected.length) {
+    for (const q of expected) {
+      if (!q?.id || !q.kind) continue;
+      const set = required.get(q.id) || new Set();
+      set.add(q.kind);
+      required.set(q.id, set);
+    }
+    return required;
+  }
+  for (const a of answers) {
+    if (!a?.id) continue;
+    let set = required.get(a.id);
+    if (!set) {
+      set = new Set(a.id.startsWith('radical:') ? ['meaning'] : /^(kanji|vocabulary):/.test(a.id) ? ['meaning', 'reading'] : []);
+      required.set(a.id, set);
+    }
+    if (!/^(radical|kanji|vocabulary):/.test(a.id) && a.kind) set.add(a.kind);
+  }
+  return required;
+}
+
+/**
+ * Score a placement attempt.
+ * answers: [{ id, kind, correct: boolean }, ...] in the order asked (one answer per question).
+ * options.expected: the full placement queue, so a subject whose reading was never asked
+ * (for example after an early streak finish) cannot be granted.
+ * Pass policy (unchanged): correct/total >= PLACEMENT_PASS_RATIO, or a consecutive correct
+ * streak of PLACEMENT_STREAK_PASS. grantIds: subjects with every expected part answered
+ * correctly and no wrong answer. incompleteIds: answered subjects still missing a part.
+ */
+export function scorePlacement(answers = [], { expected } = {}) {
+  const list = Array.isArray(answers) ? answers.filter(Boolean) : [];
   const total = list.length;
-  const correctCount = list.filter((a) => a && a.correct).length;
+  const correctCount = list.filter((a) => a.correct).length;
   let streak = 0;
   let bestStreak = 0;
   for (const a of list) {
-    if (a?.correct) { streak += 1; bestStreak = Math.max(bestStreak, streak); }
+    if (a.correct) { streak += 1; bestStreak = Math.max(bestStreak, streak); }
     else streak = 0;
   }
   const ratio = total ? correctCount / total : 0;
   const passed = total > 0 && (ratio >= PLACEMENT_PASS_RATIO || bestStreak >= PLACEMENT_STREAK_PASS);
+  const required = requiredPlacementKinds(list, expected);
   const byId = new Map();
   for (const a of list) {
-    if (!a?.id) continue;
-    const entry = byId.get(a.id) || { id: a.id, parts: 0, correctParts: 0 };
-    entry.parts += 1;
-    if (a.correct) entry.correctParts += 1;
+    if (!a.id) continue;
+    const entry = byId.get(a.id) || { id: a.id, correctKinds: new Set(), wrong: false };
+    if (a.correct) entry.correctKinds.add(a.kind);
+    else entry.wrong = true;
     byId.set(a.id, entry);
   }
-  const grantIds = [...byId.values()].filter((e) => e.parts > 0 && e.correctParts === e.parts).map((e) => e.id);
+  const grantIds = [];
+  const incompleteIds = [];
+  for (const entry of byId.values()) {
+    const kinds = [...(required.get(entry.id) || [])];
+    const complete = kinds.length > 0 && kinds.every((kind) => entry.correctKinds.has(kind));
+    if (!entry.wrong && complete) grantIds.push(entry.id);
+    else if (!entry.wrong) incompleteIds.push(entry.id);
+  }
   return {
     total,
     correct: correctCount,
@@ -343,7 +385,23 @@ export function scorePlacement(answers = []) {
     bestStreak,
     passed,
     grantIds,
+    incompleteIds,
   };
+}
+
+/**
+ * Whether a placement quiz should end now. remaining: questions still queued.
+ * It ends when nothing is left, or early after a PLACEMENT_STREAK_PASS streak — but never in
+ * the middle of a subject: if an answered subject still has a queued part (a kanji/vocabulary
+ * reading after its meaning), that part is asked first.
+ */
+export function placementShouldFinish(answers = [], remaining = []) {
+  const queue = Array.isArray(remaining) ? remaining : [];
+  if (!queue.length) return true;
+  const scored = scorePlacement(answers);
+  if (!(scored.passed && scored.bestStreak >= PLACEMENT_STREAK_PASS)) return false;
+  const answered = new Set((Array.isArray(answers) ? answers : []).map((a) => a?.id).filter(Boolean));
+  return !queue.some((q) => answered.has(q?.id));
 }
 
 /**
