@@ -323,3 +323,29 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
 .know-actions { margin: 1rem 0; display: grid; gap: 0.5rem; }
 .know-inline { margin: 0.75rem auto 0; display: block; text-align: center; }
 .session-done .button.secondary { margin-top: 0.75rem; }
+
+/* Answering on a phone: the glyph and input share the space above the keyboard. */
+@media(max-width:700px){
+ body.quiz-active{overflow:hidden;overscroll-behavior:none}
+ .quiz-active .sidebar,.quiz-active .topbar,.quiz-active footer,.quiz-active .session-footnote,.quiz-active .session-progress{display:none}
+ .quiz-active .main-shell{margin:0;padding:0}
+ .quiz-active main{margin:0;padding:0}
+ .quiz-active .session-header{position:fixed;top:var(--quiz-viewport-top,0px);left:0;right:0;height:44px;margin:0;padding:4px 12px;background:var(--paper,#f6f7f2);z-index:31;flex-wrap:nowrap;font-size:12px}
+ .quiz-active .session-header .text-button{min-height:36px;font-size:14px}
+ .quiz-active .quiz-card{position:fixed;top:calc(var(--quiz-viewport-top,0px) + 44px);left:8px;right:8px;height:calc(var(--quiz-viewport-height,100dvh) - 50px);margin:0;max-width:none;display:flex;flex-direction:column;overflow:hidden;z-index:30;border-radius:16px}
+ .quiz-active .quiz-prompt{flex:none;padding:4px 12px;display:flex;align-items:center;justify-content:center;gap:12px;min-height:68px;max-height:100px}
+ .quiz-active .quiz-prompt .subject-kind{font-size:11px;line-height:1.4;max-width:100px;margin:0}
+ .quiz-active .quiz-character{font-size:56px;line-height:1.2;margin:0;overflow-wrap:anywhere;max-height:88px;overflow:auto}
+ .quiz-active .quiz-prompt.vocabulary .quiz-character{font-size:clamp(24px,8vw,40px)}
+ .quiz-active .quiz-character .glyph-img{height:58px;width:58px}
+ .quiz-active .quiz-body{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:10px 14px 16px;scroll-padding:8px}
+ .quiz-active .quiz-body h1{font-size:18px;line-height:1.3;margin:0 0 8px}
+ .quiz-active .quiz-body>p{display:none}
+ .quiz-active .answer-input{font-size:20px;min-height:48px;padding:8px 12px;scroll-margin:8px}
+ .quiz-active .kana-preview{font-size:13px;line-height:1.4;min-height:18px;margin:4px 0 8px}
+ .quiz-active .quiz-body .button{min-height:44px;padding:9px 12px}
+ .quiz-active .answer-feedback{margin:8px 0}
+ .quiz-active .answer-feedback strong,.quiz-active .answer-feedback span{font-size:16px;line-height:1.45}
+ .quiz-active .dont-know{min-height:40px;margin:6px auto 0}
+ .quiz-active #toast{z-index:60;bottom:auto;top:calc(var(--quiz-viewport-top,0px) + 44px);font-size:14px}
+}

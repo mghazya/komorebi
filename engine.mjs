@@ -1,12 +1,11 @@
 /**
  * Komorebi's WaniKani-inspired learning engine. No storage or DOM dependencies.
  *
- * SRS timing follows WaniKani's published stages (knowledge.wanikani.com/wanikani/srs-stages/,
- * checked 2026-10-06): subjects from Levels 1–2 use accelerated Apprentice waits
- * (2h, 4h, 8h, 1d); later levels use 4h, 8h, 1d, 2d. Guru onward is shared: 1 week,
- * 2 weeks, 1 month (fixed at 30 days), 4 months (fixed at 120 days). Delays are the
- * wait AFTER entering each stage. The timing is chosen by the subject's own level at
- * the moment a lesson/review is recorded; stored due dates are never recomputed.
+ * SRS intervals match the exported WaniKani systems (2026-10-11).
+ * Levels 1–2 use accelerated Apprentice waits (2h, 4h, 8h, 23h);
+ * later levels use 4h, 8h, 23h, 47h. Guru onward uses 167h, 335h,
+ * 719h, 2879h. Existing stored due dates are never recomputed.
+ * These are interval durations; this engine does not round new due dates to the hour.
  * An item must reach Guru once to unlock its dependents; later mistakes never undo that
  * unlock. A level unlocks once ceil(90%) of the previous level's kanji reached Guru once.
  * Meaning + reading form one review. Pass mistakes for both questions combined.
@@ -20,14 +19,14 @@ const HOUR = 60 * 60 * 1000;
 const DAY = 24 * HOUR;
 /** Accelerated schedule (Levels 1–2). Kept under its historical name for compatibility. */
 export const STAGE_INTERVALS = Object.freeze([
-  0, 2 * HOUR, 4 * HOUR, 8 * HOUR, DAY, 7 * DAY,
-  14 * DAY, 30 * DAY, 120 * DAY, null,
+  0, 2 * HOUR, 4 * HOUR, 8 * HOUR, DAY - HOUR, 7 * DAY - HOUR,
+  14 * DAY - HOUR, 30 * DAY - HOUR, 120 * DAY - HOUR, null,
 ]);
 export const ACCELERATED_INTERVALS = STAGE_INTERVALS;
 /** Standard schedule (Level 3 and above). */
 export const STANDARD_INTERVALS = Object.freeze([
-  0, 4 * HOUR, 8 * HOUR, DAY, 2 * DAY, 7 * DAY,
-  14 * DAY, 30 * DAY, 120 * DAY, null,
+  0, 4 * HOUR, 8 * HOUR, DAY - HOUR, 2 * DAY - HOUR, 7 * DAY - HOUR,
+  14 * DAY - HOUR, 30 * DAY - HOUR, 120 * DAY - HOUR, null,
 ]);
 export const ACCELERATED_MAX_LEVEL = 2;
 export const LEVEL_UNLOCK_RATIO = 0.9;
