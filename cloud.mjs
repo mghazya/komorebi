@@ -375,5 +375,23 @@ export function createCloudClient(config, dependencies = {}) {
     return { session: clone(session), recovery: params.get('type') === 'recovery' };
   }
 
-  return Object.freeze({ isConfigured, signUp, signIn, signOut, getSession, loadProfile, saveProfile, requestPasswordReset, updatePassword, changePassword, initializeFromUrl });
+  async function listPushSubscriptions() {
+    const session = await ensureSession();
+    const result = await request('/rest/v1/push_subscriptions?' + new URLSearchParams({user_id:`eq.${session.user.id}`,select:'endpoint'}), {token:session.access_token});
+    sameAccount(session.user.id);
+    if (!Array.isArray(result)) throw new CloudError('REQUEST_ERROR', 'Could not read notification settings.');
+    return result;
+  }
+  async function registerPushSubscription(subscription) {
+    const session = await ensureSession();
+    const result = await request('/rest/v1/rpc/register_push_subscription', {method:'POST',token:session.access_token,body:{subscription}});
+    sameAccount(session.user.id); return result;
+  }
+  async function removePushSubscription(endpoint) {
+    const session = await ensureSession();
+    const result = await request('/rest/v1/rpc/remove_push_subscription', {method:'POST',token:session.access_token,body:{target_endpoint:endpoint}});
+    sameAccount(session.user.id); return result;
+  }
+
+  return Object.freeze({ isConfigured, signUp, signIn, signOut, getSession, loadProfile, saveProfile, listPushSubscriptions, registerPushSubscription, removePushSubscription, requestPasswordReset, updatePassword, changePassword, initializeFromUrl });
 }
