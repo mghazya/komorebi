@@ -333,9 +333,8 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
  .quiz-active .session-header{position:fixed;top:var(--quiz-viewport-top,0px);left:0;right:0;height:44px;margin:0;padding:4px 12px;background:var(--paper,#f6f7f2);z-index:31;flex-wrap:nowrap;font-size:12px}
  .quiz-active .session-header .text-button{min-height:36px;font-size:14px}
  .quiz-active .quiz-card{position:fixed;top:calc(var(--quiz-viewport-top,0px) + 44px);left:8px;right:8px;height:calc(var(--quiz-viewport-height,100dvh) - 50px);margin:0;max-width:none;display:flex;flex-direction:column;overflow:hidden;z-index:30;border-radius:16px}
- .quiz-active .quiz-prompt{flex:none;padding:4px 12px;display:flex;align-items:center;justify-content:center;gap:12px;min-height:68px;max-height:100px}
- .quiz-active .quiz-prompt .subject-kind{font-size:11px;line-height:1.4;max-width:100px;margin:0}
- .quiz-active .quiz-character{font-size:56px;line-height:1.2;margin:0;overflow-wrap:anywhere;max-height:88px;overflow:auto}
+ .quiz-active .quiz-prompt{flex:none;padding:4px 12px;display:flex;align-items:center;justify-content:center;min-height:68px;max-height:100px}
+ .quiz-active .quiz-character{font-size:56px;line-height:1.2;margin:0;overflow:hidden;scrollbar-width:none;max-height:88px}
  .quiz-active .quiz-prompt.vocabulary .quiz-character{font-size:clamp(24px,8vw,40px)}
  .quiz-active .quiz-character .glyph-img{height:58px;width:58px}
  .quiz-active .quiz-body{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:10px 14px 16px;scroll-padding:8px}
@@ -479,94 +478,91 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
   margin-top: 2px;
 }
 
-/* Mastery Level-Up / Level-Down Overlay Popup */
-.levelup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(14, 25, 20, 0.65);
-  backdrop-filter: blur(4px);
-  z-index: 10000;
+/* Milestone Level-Up / Level-Down Tooltip (below input) */
+.levelup-tooltip {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 16px;
-  animation: levelupFadeIn 0.22s ease-out;
-}
-.levelup-card {
-  width: 100%;
-  max-width: 380px;
-  border-radius: 16px;
-  padding: 24px 20px;
-  text-align: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 8px;
   color: #ffffff;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.3);
-  animation: levelupPopIn 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  font-size: 13px;
+  margin: 8px auto 10px;
+  width: 100%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  animation: fadeInDown 0.18s ease-out;
 }
-.levelup-card.is-up {
-  background: linear-gradient(135deg, #27ae60 0%, #1e824c 100%);
-  border: 2px solid #52d287;
+.levelup-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
 }
-.levelup-card.is-down {
-  background: linear-gradient(135deg, #c0392b 0%, #962d22 100%);
-  border: 2px solid #e74c3c;
+.levelup-tooltip.is-up {
+  background: #27ae60;
+  border: 1px solid #2ecc71;
 }
-.levelup-badge {
-  display: inline-block;
-  font-size: 11px;
+.levelup-tooltip.is-up::before {
+  border-bottom: 6px solid #27ae60;
+}
+.levelup-tooltip.is-down {
+  background: #c0392b;
+  border: 1px solid #e74c3c;
+}
+.levelup-tooltip.is-down::before {
+  border-bottom: 6px solid #c0392b;
+}
+.levelup-tooltip-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.levelup-tooltip-badge {
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.22);
-  padding: 4px 10px;
-  border-radius: 12px;
-  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 2px 7px;
+  border-radius: 4px;
 }
-.levelup-character {
-  font-size: 58px;
-  line-height: 1.1;
+.levelup-tooltip-stage {
   font-weight: 700;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
-  margin-bottom: 6px;
+  font-size: 14px;
 }
-.levelup-character .glyph-img {
+.levelup-tooltip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.95;
+}
+.levelup-tooltip-item .glyph-img {
   width: 1.1em;
   height: 1.1em;
   filter: brightness(0) invert(1);
 }
-.levelup-stage {
-  font-size: 26px;
-  font-weight: 800;
-  margin: 0 0 4px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
-}
-.levelup-meaning {
-  font-size: 16px;
-  font-weight: 600;
-  opacity: 0.95;
-  margin: 0 0 8px;
-}
-.levelup-note {
-  font-size: 13px;
+.levelup-tooltip-desc {
   opacity: 0.88;
-  margin: 0 0 18px;
+  font-size: 12px;
 }
-.levelup-btn {
-  background: #ffffff !important;
-  color: #1b3028 !important;
-  font-weight: 700 !important;
-  width: 100%;
-  border-radius: 8px;
-  padding: 10px 16px;
+.levelup-tooltip-close {
+  background: transparent;
+  border: 0;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.8;
+  padding: 0 4px;
+  transition: opacity 0.15s;
 }
-.levelup-btn:hover {
-  background: #f0f4ee !important;
-}
-
-@keyframes levelupFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes levelupPopIn {
-  from { opacity: 0; transform: scale(0.85); }
-  to { opacity: 1; transform: scale(1); }
+.levelup-tooltip-close:hover {
+  opacity: 1;
 }
