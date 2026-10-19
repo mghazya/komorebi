@@ -511,12 +511,11 @@ const ROMAJI = Object.freeze({
 });
 
 /**
- * Convert a complete romaji, hiragana, or katakana answer into hiragana.
- * This is intentionally a full-answer converter, not an incremental IME:
- * a terminal "n" is ん. Apostrophes disambiguate shin'ya from shinya.
- * Unknown characters remain visible so invalid input cannot silently pass.
+ * Convert a complete or incremental romaji, hiragana, or katakana answer into hiragana.
+ * In incremental mode (during live typing), a terminal "n" without next character remains "n"
+ * so syllables like "na" or "nya" can be typed without becoming "んあ" or "んや".
  */
-export function toHiragana(value) {
+export function toHiragana(value, { incremental = false } = {}) {
   const input = String(value ?? '')
     .normalize('NFKC')
     .toLowerCase()
@@ -535,7 +534,11 @@ export function toHiragana(value) {
         i += /[aiueoy]/.test(input[i + 2] || '') ? 1 : 2;
         continue;
       }
-      if (!next || (!/[aiueoy]/.test(next))) { result += 'ん'; i += 1; continue; }
+      if (!next) {
+        if (incremental) { result += 'n'; i += 1; continue; }
+        result += 'ん'; i += 1; continue;
+      }
+      if (!/[aiueoy]/.test(next)) { result += 'ん'; i += 1; continue; }
     }
     if (/[bcdfghjkmprstvwz]/.test(char) && char === next) {
       result += 'っ'; i += 1; continue;

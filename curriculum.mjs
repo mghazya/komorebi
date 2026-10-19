@@ -65,7 +65,21 @@ export function checkLevelItems(items, entry) {
 async function defaultDigest(buffer) {
   const subtle = globalThis.crypto?.subtle;
   if (!subtle) return null;
-  const hash = await subtle.digest('SHA-256', buffer);
+  // If buffer contains CRLF (common on Windows git checkout), normalize to LF for hash validation
+  const bytes = new Uint8Array(buffer);
+  let hasCrlf = false;
+  for (let i = 0; i < bytes.length - 1; i++) {
+    if (bytes[i] === 0x0d && bytes[i + 1] === 0x0a) {
+      hasCrlf = true;
+      break;
+    }
+  }
+  let targetBuffer = buffer;
+  if (hasCrlf) {
+    const text = new TextDecoder().decode(buffer).replace(/\r\n/g, '\n');
+    targetBuffer = new TextEncoder().encode(text).buffer;
+  }
+  const hash = await subtle.digest('SHA-256', targetBuffer);
   return [...new Uint8Array(hash)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 

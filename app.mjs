@@ -1,15 +1,15 @@
-import { createReviewNotifications } from './notifications.mjs?v=20261013-live-reminders';
-import { PUSH_PUBLIC_KEY } from './push-config.mjs?v=20261013-live-reminders';
-import { installQuizViewport } from './viewport.mjs?v=20261013-live-reminders';
+import { createReviewNotifications } from './notifications.mjs?v=20261019-merge';
+import { PUSH_PUBLIC_KEY } from './push-config.mjs?v=20261019-merge';
+import { installQuizViewport } from './viewport.mjs?v=20261019-merge';
 installQuizViewport();
-import { STAGE_NAMES, newProfile, availableLessons, dueReviews, startLearning, completeReview, statusFor, stats, toHiragana, checkAnswer, matchesSearch, practicePool, viewFromHash, intervalFor, learnerLevel, levelProgress, recordLevelUnlock, hasPassed, markAsGuru, markAsGuruMany, selectPlacementSample, scorePlacement, graduateLevelCandidates, GURU_STAGE, PLACEMENT_SAMPLE_SIZE, placementShouldFinish } from './engine.mjs?v=20261013-live-reminders';
-import { validateProfile as checkProfile, batchSizeOf, unknownProgressIds, serializeBackup } from './profile.mjs?v=20261013-live-reminders';
-import { loadCurriculum, sanitizeSvg, svgDataUrl, isSafeImagePath } from './curriculum.mjs?v=20261013-live-reminders';
-import { buildQuizQueue, feedbackSummary } from './quiz.mjs?v=20261013-live-reminders';
-import { createCloudSync } from './sync.mjs?v=20261013-live-reminders';
+import { STAGE_NAMES, newProfile, availableLessons, dueReviews, startLearning, completeReview, statusFor, stats, toHiragana, checkAnswer, matchesSearch, practicePool, viewFromHash, intervalFor, learnerLevel, levelProgress, recordLevelUnlock, hasPassed, markAsGuru, markAsGuruMany, selectPlacementSample, scorePlacement, graduateLevelCandidates, GURU_STAGE, PLACEMENT_SAMPLE_SIZE, placementShouldFinish } from './engine.mjs?v=20261019-hiragana';
+import { validateProfile as checkProfile, batchSizeOf, unknownProgressIds, serializeBackup } from './profile.mjs?v=20261019-merge';
+import { loadCurriculum, sanitizeSvg, svgDataUrl, isSafeImagePath } from './curriculum.mjs?v=20261019-merge';
+import { buildQuizQueue, feedbackSummary, hintBanners } from './quiz.mjs?v=20261019-merge';
+import { createCloudSync } from './sync.mjs?v=20261019-merge';
 
-import { createCloudClient, AUTH_STORAGE_KEY, validateNewPassword, validatePasswordChange, MIN_PASSWORD_LENGTH } from './cloud.mjs?v=20261013-live-reminders';
-import { CLOUD_CONFIG } from './config.js?v=20261013-live-reminders';
+import { createCloudClient, AUTH_STORAGE_KEY, validateNewPassword, validatePasswordChange, MIN_PASSWORD_LENGTH } from './cloud.mjs?v=20261019-merge';
+import { CLOUD_CONFIG } from './config.js?v=20261019-merge';
 const cloud = createCloudClient(CLOUD_CONFIG);
 const reviewNotifications = createReviewNotifications({cloud,publicKey:PUSH_PUBLIC_KEY});
 let notificationPanelEpoch = 0;
@@ -32,7 +32,11 @@ const icons = {
  arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>', clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
  check:'<path d="m5 12 4 4L19 6"/>', lock:'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
  chevron:'<path d="m8 5 7 7-7 7"/>', close:'<path d="m6 6 12 12M6 18 18 6"/>', download:'<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>',
- spark:'<path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/>', back:'<path d="M20 12H4m6-6-6 6 6 6"/>', play:'<path d="m8 4 12 8-12 8Z"/>', people:'<circle cx="9" cy="7" r="3"/><path d="M3 21v-4a6 6 0 0 1 12 0v4M17 4a3 3 0 0 1 0 6m2 11v-4a6 6 0 0 0-2-4"/>', plus:'<path d="M12 4v16M4 12h16"/>'
+ spark:'<path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/>', back:'<path d="M20 12H4m6-6-6 6 6 6"/>', play:'<path d="m8 4 12 8-12 8Z"/>', people:'<circle cx="9" cy="7" r="3"/><path d="M3 21v-4a6 6 0 0 1 12 0v4M17 4a3 3 0 0 1 0 6m2 11v-4a6 6 0 0 0-2-4"/>', plus:'<path d="M12 4v16M4 12h16"/>',
+ homeDoor:'<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+ inbox:'<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
+ eye:'<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+ eyeOff:'<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/>'
 };
 const icon = (name, extra='') => `<svg class="icon ${extra}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name] || icons.leaf}</svg>`;
 let items = [], itemsById = new Map(), curriculum = null, state, savedRaw = null, storageOK = true, view = 'dashboard', filter = 'radical', search = '', session = null, toastTimer;
@@ -101,8 +105,10 @@ async function updateProfile(p) {
  return result;
 }
 function render() {
- document.body.classList.toggle('quiz-active', session?.phase === 'quiz');
- const p=profile(), s=stats(items,p,Date.now(),ctx(p));
+  const isReviewing = Boolean(session && session.mode === 'review' && session.phase === 'quiz');
+  document.body.classList.toggle('quiz-active', session?.phase === 'quiz');
+  document.body.classList.toggle('review-active', isReviewing);
+  const p=profile(), s=stats(items,p,Date.now(),ctx(p));
  $('#app').innerHTML=`
  <a class="skip-link" href="#main">Skip to main content</a>
  <aside class="sidebar">
@@ -167,7 +173,7 @@ function settings() {
 }
 function subjectDetails(item, context='detail') {
  const st=statusOf(item);
- return `<div class="subject-banner ${item.type}"><span class="subject-kind">${item.type} <span>•</span> LEVEL ${esc(item.level)}</span><div class="big-character">${glyph(item,`${item.meaning} radical`)}</div><h2>${esc(item.meaning)}</h2>${readingsOf(item).length?`<p class="banner-reading" lang="ja">${esc(readingsOf(item).join(' ・ '))}</p>`:''}</div><div class="subject-content"><section><span class="eyebrow">MEANING</span><h3>${esc((item.meanings||[item.meaning]).join(' · '))}</h3><p>${esc(item.meaningMnemonic)||'Look closely at the character and connect its shape with its meaning.'}</p></section>${item.type!=='radical'?`<section><span class="eyebrow">READING</span><h3 lang="ja">${esc(readingsOf(item).join(' ・ '))}</h3><p>${esc(item.readingMnemonic)}</p>${item.otherReadings?.length?`<p class="small-note">Other kanji readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span>. The quiz asks for the reading taught above.</p>`:''}</section>`:''}${item.components?.length?`<section><span class="eyebrow">BUILDING BLOCKS</span><div class="component-list">${item.components.map(c=>`<span><b>${glyph(c,'')}</b>${esc(c.name)}</span>`).join('')}</div></section>`:''}${item.sentences?.length?`<section><span class="eyebrow">IN CONTEXT</span>${item.sentences.slice(-3).map(s=>`<div class="sentence"><p lang="ja">${esc(s.japanese)}</p><small>${esc(s.english)}</small></div>`).join('')}</section>`:''}${context==='detail'?`<section class="subject-status"><strong>${st.state==='locked'?'Not unlocked yet':st.state==='lesson'?'Ready for your lessons':esc(st.stageName)}</strong><p>${st.state==='locked'?(st.unmetDependencies.length?`First reach Guru with: ${st.unmetDependencies.map(id=>esc(getItem(id)?`${getItem(id).meaning} (Level ${getItem(id).level})`:id)).join(', ')}.`:`Opens when you reach Level ${esc(item.level)}.`):st.availableAt?`Next review: ${prettyDate(st.availableAt)}`:'Every small step counts.'}</p></section>`:''}${!hasPassed(profile().progress[item.id])?`<div class="know-actions"><button class="button secondary full-width" type="button" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button><p class="small-note">Skips early Apprentice waits. Sets Guru I so dependents unlock; light reviews stay on the schedule.</p></div>`:''}<a class="source-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a></div>`;
+ return `<div class="subject-banner ${item.type}"><span class="subject-kind">${item.type} <span>•</span> LEVEL ${esc(item.level)}</span><div class="big-character">${glyph(item,`${item.meaning} radical`)}</div><h2>${esc(item.meaning)}</h2>${readingsOf(item).length?`<p class="banner-reading" lang="ja">${esc(readingsOf(item).join(' ・ '))}</p>`:''}</div><div class="subject-content"><section><span class="eyebrow">MEANING</span><h3>${esc((item.meanings||[item.meaning]).join(' · '))}</h3><p>${esc(item.meaningMnemonic)||'Look closely at the character and connect its shape with its meaning.'}</p></section>${item.type!=='radical'?`<section><span class="eyebrow">READING</span><h3 lang="ja">${esc(readingsOf(item).join(' ・ '))}</h3><p>${esc(item.readingMnemonic)}</p>${item.otherReadings?.length?`<p class="small-note">Other kanji readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span>. The quiz asks for the reading taught above.</p>`:''}</section>`:''}${item.components?.length?`<section><span class="eyebrow">BUILDING BLOCKS</span><div class="component-list">${item.components.map(c=>`<span><b>${glyph(c,'')}</b>${esc(c.name)}</span>`).join('')}</div></section>`:''}${item.sentences?.length?`<section><span class="eyebrow">IN CONTEXT</span>${item.sentences.map(s=>`<div class="sentence"><p lang="ja">${esc(s.japanese)}</p><small>${esc(s.english)}</small></div>`).join('')}</section>`:''}${context==='detail'?`<section class="subject-status"><strong>${st.state==='locked'?'Not unlocked yet':st.state==='lesson'?'Ready for your lessons':esc(st.stageName)}</strong><p>${st.state==='locked'?(st.unmetDependencies.length?`First reach Guru with: ${st.unmetDependencies.map(id=>esc(getItem(id)?`${getItem(id).meaning} (Level ${getItem(id).level})`:id)).join(', ')}.`:`Opens when you reach Level ${esc(item.level)}.`):st.availableAt?`Next review: ${prettyDate(st.availableAt)}`:'Every small step counts.'}</p></section>`:''}${!hasPassed(profile().progress[item.id])?`<div class="know-actions"><button class="button secondary full-width" type="button" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button><p class="small-note">Skips early Apprentice waits. Sets Guru I so dependents unlock; light reviews stay on the schedule.</p></div>`:''}<a class="source-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a></div>`;
 }
 function openSubject(id) {
  const item=getItem(id); if(!item)return;
@@ -330,17 +336,71 @@ function begin(mode) {
  if(mode!=='lesson')makeQuiz();render();window.scrollTo(0,0);
 }
 function makeQuiz(){session.phase='quiz';session.queue=buildQuizQueue(session.selected);session.totalQuestions=session.queue.length;}
+function renderLevelUpTooltip(ev) {
+  if (!ev) return '';
+  const isUp = ev.direction === 'up';
+  return `<div class="levelup-tooltip ${isUp ? 'is-up' : 'is-down'}" role="status" aria-live="polite">
+    <div class="levelup-tooltip-content">
+      <span class="levelup-tooltip-badge">${isUp ? 'Level Up' : 'Level Down'}</span>
+      <strong class="levelup-tooltip-stage">${esc(ev.stageName)}</strong>
+      <span class="levelup-tooltip-item">${glyph(ev.item, '')} ${esc(ev.item.meaning)}</span>
+      <span class="levelup-tooltip-desc">${isUp ? `Advanced from ${esc(ev.stageBeforeName)}` : `Demoted from ${esc(ev.stageBeforeName)}`}</span>
+    </div>
+    <button type="button" class="levelup-tooltip-close" data-action="dismiss-levelup" aria-label="Dismiss">×</button>
+  </div>`;
+}
+
 function renderSession() {
  const s=session;
  if(s.phase==='done')return `<section class="session-done"><div class="done-icon">${icon('check')}</div><span class="eyebrow">A LITTLE MORE THAN YESTERDAY</span><h1>${s.mode==='lesson'?'A new beginning.':s.mode==='practice'?'Practice makes progress.':s.mode==='placement'?(s.placementScore?.passed?'Placement cleared.':'Keep studying—almost there.'):'Nicely remembered.'}</h1><p>${s.mode==='lesson'?`${s.selected.length} subjects planted in your memory. Your first reviews arrive in ${hoursText(Math.min(...s.selected.map(i=>intervalFor(1,i.level))))}.`:s.mode==='practice'?'A little extra practice, with your review schedule unchanged.':s.mode==='placement'?`${s.placementScore?Math.round(s.placementScore.ratio*100):0}% correct${s.placementSaveFailed?'. Your results could not be saved, so nothing was changed.':s.placementScore?.passed?` · ${s.placementGranted?.length||0} subject${(s.placementGranted?.length||0)===1?'':'s'} marked Guru I.`:'. Score ≥90% or an 8-answer streak to place.'}${s.placementScore?.passed&&!s.placementSaveFailed&&s.graduateCandidates?.length?` <button class="button secondary" data-action="graduate-level" type="button">Also mark ${s.graduateCandidates.length} unlocked on Level ${esc(s.graduateLevel)}</button>`:''}${s.placementExtra?` (+${s.placementExtra} more)`:''}`:`${s.finished.length} subjects reviewed. Your next review times are saved.`}</p><div class="result-cards"><div><strong>${s.mode==='lesson'?s.selected.length:s.finished.length}</strong><span>subjects ${s.mode==='lesson'?'learned':'completed'}</span></div><div><strong>${s.answers?Math.round(s.correct/s.answers*100):100}%</strong><span>answer accuracy</span></div></div><button class="button primary" data-action="finish">Back to your dashboard ${icon('arrow')}</button></section>`;
  if(s.phase==='saving')return `<section class="session-done session-saving" aria-busy="true"><div class="done-icon">${icon('clock')}</div><span class="eyebrow">PLACEMENT CHECK</span><h1>Saving your placement results…</h1><p role="status">Please keep this page open. Your results appear as soon as they are saved.</p></section>`;
  const learning=s.phase==='learn', item=learning?s.selected[s.position]:getItem(s.queue[0].id), kind=learning?'':s.queue[0].kind;
  const complete=learning?s.position:s.totalQuestions-s.queue.length;
- return `<section class="session-header"><button class="text-button" data-action="exit-session">${icon('back')} Dashboard</button><span>${s.mode==='lesson'?'New lessons':s.mode==='review'?'Spaced reviews':s.mode==='placement'?'Placement check':'Free practice'} <b>·</b> ${learning?`${s.position+1} of ${s.selected.length}`:`${s.finished.length} of ${s.selected.length} subjects`}</span></section><div class="session-progress"><span style="width:${learning?s.position/s.selected.length*100:s.finished.length/s.selected.length*100}%"></span></div>${learning?`<section class="lesson-card">${subjectDetails(item,'lesson')}<div class="lesson-controls"><button class="button secondary" data-action="previous-lesson" ${s.position===0?'disabled':''}>${icon('back')} Previous</button><span>${s.position+1} / ${s.selected.length}</span><button class="button primary" data-action="next-lesson">${s.position===s.selected.length-1?'Start the quiz':'Next subject'} ${icon('arrow')}</button></div>${!hasPassed(profile().progress[item.id])?`<button class="text-button know-inline" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button>`:''}</section>`:`<section class="quiz-card"><div class="quiz-prompt ${item.type}"><span class="subject-kind">${item.type} <span>•</span> ${kind==='meaning'?'MEANING':'READING'}</span><div class="quiz-character">${glyph(item,'radical image')}</div></div><div class="quiz-body"><h1>${kind==='meaning'?'What does this mean?':'How do you read this?'}</h1><p>${kind==='meaning'?'Enter an English meaning.':item.type==='kanji'?'Enter the reading you learned for this kanji.':'Enter this word’s reading in kana or romaji.'}</p><form id="answer-form"><label class="sr-only" for="answer">${kind==='meaning'?'Meaning in English':'Reading in kana or romaji'}</label><input id="answer" class="answer-input ${s.feedback?s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect':''}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${kind==='meaning'?'Your answer…':'かな or romaji…'}" ${s.feedback?'disabled':''} value="${esc(s.feedback?.answer||'')}"><div id="kana-preview" class="kana-preview" lang="ja">${kind==='reading'?'Romaji is converted to hiragana when you answer.':'Press Enter to check your answer.'}</div>${s.feedback?`<div class="answer-feedback ${s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect'}" role="status"><strong>${s.feedback.correct?'That’s right!':s.feedback.retry?'Another reading—try the one taught here.':'Not quite. Let’s try it again.'}</strong><span>${esc(feedbackSummary(item,kind,s.feedback,s.queue))}</span></div><button type="button" class="button primary full-width" data-action="continue-answer">Continue ${icon('arrow')}</button>${!s.feedback.correct&&!s.feedback.retry?`<details class="answer-explanation"><summary>Revisit the memory story</summary><p>${esc(kind==='meaning'?item.meaningMnemonic:item.readingMnemonic)}</p></details>`:''}`:`<button class="button primary full-width" type="submit">Check answer ${icon('arrow')}</button><button class="text-button dont-know" type="button" data-action="dont-know">I don’t remember yet</button>`}</form></div></section><p class="session-footnote">${s.mode==='practice'?'Just practice. Your spaced review progress will stay the same.':s.mode==='placement'?'Placement only marks Guru when you pass (≥90% or an 8-answer streak). Nothing is demoted.':s.mode==='lesson'?'You’ll recall every answer correctly before these lessons are saved.':'Both meaning and reading must be recalled before an item is complete.'}</p>`}`;
+
+ const hints = s.feedback ? hintBanners(item, kind, s.feedback) : [];
+ const hintHtml = hints.length ? `<div class="hint-banners-list">${hints.map(h => `<div class="hint-banner" role="status">${esc(h)}</div>`).join('')}</div>` : '';
+
+ const infoDrawerHtml = s.feedback && !s.feedback.retry ? `
+  <div class="info-toggle-row">
+    <button type="button" class="info-toggle-btn" data-action="toggle-info">
+      ${icon(s.infoOpen ? 'eyeOff' : 'eye')}
+      <span>${s.infoOpen ? 'Hide Item Info' : 'Item Info'}</span>
+      <span class="info-toggle-chevron">${s.infoOpen ? '▲' : '▼'}</span>
+    </button>
+  </div>
+  ${s.infoOpen ? `<div class="collapsed-item-info">
+    <section class="info-section">
+      <span class="info-eyebrow">MEANINGS</span>
+      <div class="info-text">${esc((item.meanings || [item.meaning]).join(', '))}</div>
+      ${item.meaningMnemonic ? `<p class="info-mnemonic"><strong>Mnemonic:</strong> ${esc(item.meaningMnemonic)}</p>` : ''}
+    </section>
+    ${item.type !== 'radical' && readingsOf(item).length ? `<section class="info-section">
+      <span class="info-eyebrow">READINGS</span>
+      <div class="info-text" lang="ja">${esc(readingsOf(item).join(' ・ '))}</div>
+      ${item.readingMnemonic ? `<p class="info-mnemonic"><strong>Mnemonic:</strong> ${esc(item.readingMnemonic)}</p>` : ''}
+      ${item.otherReadings?.length ? `<p class="info-small">Other readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span></p>` : ''}
+    </section>` : ''}
+    ${item.sentences?.length ? `<section class="info-section">
+      <span class="info-eyebrow">CONTEXT</span>
+      <div class="info-sentences-list">
+        ${item.sentences.map(s => `<div class="info-sentence">
+          <p lang="ja">${esc(s.japanese)}</p>
+          <small>${esc(s.english)}</small>
+        </div>`).join('')}
+      </div>
+    </section>` : ''}
+  </div>` : ''}
+ ` : '';
+
+  return `<section class="session-header"><button class="text-button" data-action="exit-session">${icon('back')} Dashboard</button><span>${s.mode==='lesson'?'New lessons':s.mode==='review'?'Spaced reviews':s.mode==='placement'?'Placement check':'Free practice'} <b>·</b> ${learning?`${s.position+1} of ${s.selected.length}`:`${s.finished.length} of ${s.selected.length} subjects`}</span></section><div class="session-progress"><span style="width:${learning?s.position/s.selected.length*100:s.finished.length/s.selected.length*100}%"></span></div>${learning?`<section class="lesson-card">${subjectDetails(item,'lesson')}<div class="lesson-controls"><button class="button secondary" data-action="previous-lesson" ${s.position===0?'disabled':''}>${icon('back')} Previous</button><span>${s.position+1} / ${s.selected.length}</span><button class="button primary" data-action="next-lesson">${s.position===s.selected.length-1?'Start the quiz':'Next subject'} ${icon('arrow')}</button></div>${!hasPassed(profile().progress[item.id])?`<button class="text-button know-inline" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button>`:''}</section>`:`<section class="quiz-card"><div class="quiz-prompt ${item.type}"><div class="quiz-character">${glyph(item,'radical image')}</div></div><div class="quiz-body"><h1>${kind==='meaning'?'What does this mean?':'How do you read this?'}</h1><p>${kind==='meaning'?'Enter an English meaning.':item.type==='kanji'?'Enter the reading you learned for this kanji.':'Enter this word’s reading in kana or romaji.'}</p><form id="answer-form" action="javascript:void(0)" onsubmit="return false;"><label class="sr-only" for="answer">${kind==='meaning'?'Meaning in English':'Reading in kana or romaji'}</label><input id="answer" class="answer-input ${s.feedback?s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect':''}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${kind==='meaning'?'Your answer…':'かな or romaji…'}" ${s.feedback?'disabled':''} value="${esc(s.feedback?.answer||'')}">${kind==='reading'?'':`<div id="kana-preview" class="kana-preview">Press Enter to check your answer.</div>`}${s.levelUpEvent ? renderLevelUpTooltip(s.levelUpEvent) : ''}${s.feedback?`<div class="answer-feedback ${s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect'}" role="status"><strong>${s.feedback.correct?'That’s right!':s.feedback.retry?'Another reading—try the one taught here.':'Not quite. Let’s try it again.'}</strong><span>${esc(feedbackSummary(item,kind,s.feedback,s.queue))}</span></div>${hintHtml}${infoDrawerHtml}<button type="button" class="button primary full-width" data-action="continue-answer">Continue ${icon('arrow')}</button>${!s.feedback.correct&&!s.feedback.retry?`<details class="answer-explanation"><summary>Revisit the memory story</summary><p>${esc(kind==='meaning'?item.meaningMnemonic:item.readingMnemonic)}</p></details>`:''}`:`<button class="button primary full-width" type="submit">Check answer ${icon('arrow')}</button><button class="text-button dont-know" type="button" data-action="dont-know">I don’t remember yet</button>`}</form></div></section>${s.mode==='review'?'':`<p class="session-footnote">${s.mode==='practice'?'Just practice. Your spaced review progress will stay the same.':s.mode==='placement'?'Placement only marks Guru when you pass (≥90% or an 8-answer streak). Nothing is demoted.':s.mode==='lesson'?'You’ll recall every answer correctly before these lessons are saved.':'Both meaning and reading must be recalled before an item is complete.'}</p>`}`}`;
 }
 function submitAnswer(unknown=false) {
  if(!session||session.phase!=='quiz'||session.feedback)return;
- const q=session.queue[0],item=getItem(q.id),answer=$('#answer').value.trim();
+ if(session.levelUpEvent){if(session.levelUpTimer)clearTimeout(session.levelUpTimer);session.levelUpEvent=null;session.levelUpTimer=null;}
+ const q=session.queue[0],item=getItem(q.id);
+ const inputEl=$('#answer');
+ if(q.kind==='reading'&&inputEl){inputEl.value=toHiragana(inputEl.value.trim());}
+ const answer=(inputEl?inputEl.value:$('#answer')?.value||'').trim();
  if(!unknown&&!answer){toast('Enter an answer, or choose “I don’t remember yet”.');return;}
  const result=unknown?{correct:false}:checkAnswer(item,q.kind,answer);
  if(!result.retry){
@@ -355,11 +415,42 @@ function submitAnswer(unknown=false) {
 }
 async function continueAnswer(){
  if(!session?.feedback||busy)return;
+ if(session.levelUpTimer){clearTimeout(session.levelUpTimer);session.levelUpTimer=null;}
  const s=structuredClone(session);
+ s.infoOpen=false;
  if(!s.feedback.retry){
   const q=s.queue.shift();if(!s.feedback.correct && s.mode!=='placement')s.queue.push(q);
   if(!s.queue.some(x=>x.id===q.id) && !s.finished.includes(q.id)) {
-   if(s.mode==='review' && !await updateProfile(withLevelRecord(completeReview(profile(),q.id,{mistakes:s.mistakes[q.id]||0,level:levelOf(q.id)},Date.now()))))return;
+   if(s.mode==='review') {
+    const stageBefore = profile().progress[q.id]?.stage || 0;
+    const nextProf = withLevelRecord(completeReview(profile(),q.id,{mistakes:s.mistakes[q.id]||0,level:levelOf(q.id)},Date.now()));
+    if(!await updateProfile(nextProf))return;
+    const stageAfter = nextProf.progress[q.id]?.stage || 0;
+    const milestones = [5, 7, 8, 9];
+    let levelUpEvent = null;
+    if (stageAfter > stageBefore && milestones.includes(stageAfter)) {
+      levelUpEvent = {
+        item: getItem(q.id),
+        stageBefore,
+        stageAfter,
+        direction: 'up',
+        stageName: STAGE_NAMES[stageAfter] || 'Guru',
+        stageBeforeName: STAGE_NAMES[stageBefore] || 'Apprentice',
+      };
+    } else if (stageAfter < stageBefore && milestones.includes(stageBefore)) {
+      levelUpEvent = {
+        item: getItem(q.id),
+        stageBefore,
+        stageAfter,
+        direction: 'down',
+        stageName: STAGE_NAMES[stageAfter] || 'Apprentice',
+        stageBeforeName: STAGE_NAMES[stageBefore] || 'Guru',
+      };
+    }
+    if (levelUpEvent) {
+      s.levelUpEvent = levelUpEvent;
+    }
+   }
    s.finished.push(q.id);
   }
  }
@@ -369,6 +460,15 @@ async function continueAnswer(){
  }
  if(!s.queue.length){if(s.mode==='lesson'&&!await updateProfile(withLevelRecord(startLearning(profile(),s.selected.map(i=>i.id),Date.now(),levelOf))))return;s.phase='done';}
  session=s;render();
+ if(s.levelUpEvent) {
+   s.levelUpTimer = setTimeout(() => {
+     if (session && session.levelUpEvent) {
+       session.levelUpEvent = null;
+       session.levelUpTimer = null;
+       render();
+     }
+   }, 3000);
+ }
 }
 /** After a learning event, record a newly earned level permanently (never on load). */
 function withLevelRecord(next){
@@ -406,12 +506,30 @@ function bind(){
   if(action==='reload-page'&&leaveSession())location.reload();
   if(action==='next-lesson'){if(session.position<session.selected.length-1)session.position++;else makeQuiz();render();window.scrollTo(0,0);}
   if(action==='previous-lesson'&&session.position>0){session.position--;render();window.scrollTo(0,0);}
+  if(action==='toggle-info'){if(session){session.infoOpen=!session.infoOpen;render();}}
+  if(action==='dismiss-levelup'){if(session){if(session.levelUpTimer){clearTimeout(session.levelUpTimer);session.levelUpTimer=null;}session.levelUpEvent=null;render();}}
   if(action==='continue-answer')continueAnswer();
   if(action==='dont-know')submitAnswer(true);
   if(action==='finish'||action==='exit-session'){if(action==='exit-session'&&!leaveSession())return;session=null;go('dashboard');}
  });
  if($('#answer-form'))$('#answer-form').onsubmit=e=>{e.preventDefault();submitAnswer();};
- if($('#answer')&&session.queue[0]?.kind==='reading')$('#answer').oninput=e=>{$('#kana-preview').textContent=e.target.value?toHiragana(e.target.value):'Romaji is converted to hiragana when you answer.';};
+ if($('#answer')&&session.queue[0]?.kind==='reading'){
+  const inputEl=$('#answer');
+  inputEl.oninput=e=>{
+   if(e.isComposing)return;
+   const raw=inputEl.value,cursor=inputEl.selectionStart??raw.length,prefix=raw.slice(0,cursor);
+   const converted=toHiragana(raw,{incremental:true});
+   if(converted!==raw){
+    const newCursor=toHiragana(prefix,{incremental:true}).length;
+    inputEl.value=converted;
+    try{inputEl.setSelectionRange(newCursor,newCursor);}catch{}
+   }
+  };
+  inputEl.addEventListener('compositionend',()=>{
+   const raw=inputEl.value,converted=toHiragana(raw,{incremental:true});
+   if(converted!==raw)inputEl.value=converted;
+  });
+ }
  if($('#search'))$('#search').oninput=e=>{const pos=e.target.selectionStart;search=e.target.value;libraryPage=0;render();$('#search').focus();try{$('#search').setSelectionRange(pos,pos);}catch{}};
  if($('#rename-form'))$('#rename-form').onsubmit=async e=>{e.preventDefault();const name=$('#profile-name').value.trim();if(name&&await updateProfile({...profile(),name})){render();toast('Your name has been updated.');}};
  if($('#import-file'))$('#import-file').onchange=e=>importProgress(e.target.files[0]);
