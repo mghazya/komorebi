@@ -8,11 +8,20 @@ const readingsOf = (item) => (item.readings || []).map((r) => typeof r === 'stri
 
 export const hasReadingQuestion = (item) => item.type !== 'radical' && readingsOf(item).length > 0;
 
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 export function buildQuizQueue(selected) {
-  return selected.flatMap((item) => [
+  const queue = selected.flatMap((item) => [
     { id: item.id, kind: 'meaning' },
     ...(hasReadingQuestion(item) ? [{ id: item.id, kind: 'reading' }] : []),
   ]);
+  return shuffle(queue);
 }
 
 /** queue[0] is the question being answered. Returns which parts may be shown now. */
@@ -30,4 +39,72 @@ export function feedbackSummary(item, kind, feedback, queue) {
   if (!feedback.correct) return `Answer: ${kind === 'meaning' ? (item.meanings || [item.meaning]).join(' / ') : readingsOf(item).join(' / ')}`;
   const show = revealableParts(item, kind, queue);
   return [show.meaning ? item.meaning : '', show.reading ? readingsOf(item).join(' / ') : ''].filter(Boolean).join(' · ');
+}
+
+/** Standard Levenshtein edit distance between two strings */
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  if (!m) return n;
+  if (!n) return m;
+  const dp = Array.from({ length: m + 1 }, () => new Uint8Array(n + 1));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      dp[i][j] = Math.min(
+        dp[i - 1][j] + 1,
+        dp[i][j - 1] + 1,
+        dp[i - 1][j - 1] + cost
+      );
+    }
+  }
+  return dp[m][n];
+}
+
+const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, ' ').trim().replace(/\s+/g, ' ');
+
+/** Detect if an answer was a near-miss typo for an accepted meaning */
+function nearMissMeaning(item, answer) {
+  const ans = norm(answer);
+  if (!ans || ans.length < 3) return null;
+  const accepted = [...(item.meanings || []), item.meaning].filter(Boolean).map(norm);
+  let closest = null;
+  let minDistance = Infinity;
+  for (const m of accepted) {
+    if (!m) continue;
+    const dist = levenshtein(ans, m);
+    if (dist > 0 && dist <= 2 && dist < minDistance) {
+      minDistance = dist;
+      closest = m;
+    }
+  }
+  return closest ? { match: closest, distance: minDistance } : null;
+}
+
+/** Generate smart hint banners for post-answer feedback (WaniKani-style tooltips) */
+export function hintBanners(item, kind, feedback) {
+  if (!feedback || feedback.retry) return [];
+  const banners = [];
+  const meaningsCount = [...new Set([...(item.meanings || []), item.meaning].filter(Boolean))].length;
+
+  if (feedback.correct) {
+    if (kind === 'meaning' && meaningsCount > 1) {
+      banners.push('Did you know this item has multiple possible meanings?');
+    }
+    if (kind === 'reading' && item.otherReadings?.length) {
+      banners.push('This kanji has other readings you may encounter.');
+    }
+  } else {
+    // Incorrect answer
+    if (kind === 'meaning' && feedback.answer) {
+      const near = nearMissMeaning(item, feedback.answer);
+      if (near) {
+        banners.push(`Almost! Did you mean “${near.match}”?`);
+      }
+    }
+    banners.push(kind === 'meaning' ? 'Need help? View the correct meaning and mnemonic.' : 'Need help? View the correct reading and mnemonic.');
+  }
+
+  return banners;
 }

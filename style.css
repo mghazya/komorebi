@@ -323,3 +323,538 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
 .know-actions { margin: 1rem 0; display: grid; gap: 0.5rem; }
 .know-inline { margin: 0.75rem auto 0; display: block; text-align: center; }
 .session-done .button.secondary { margin-top: 0.75rem; }
+
+/* =============================================================================
+   WaniKani-Style Review Layout & Mobile Keyboard Ergonomics
+   ============================================================================= */
+.review-shell {
+  margin-left: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.review-shell main {
+  padding: 12px 16px 20px !important;
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
+}
+
+/* WaniKani Header Bar */
+.review-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+.review-home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d2dacf;
+  background: #ffffff;
+  border-radius: 10px;
+  color: #3b5042;
+  transition: all .15s ease;
+}
+.review-home-button:hover {
+  background: #eef3e9;
+  border-color: #8fa588;
+  color: #1b3028;
+}
+.review-home-button .icon {
+  width: 20px;
+  height: 20px;
+}
+.review-stats-cluster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.review-subject-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #d2dacf;
+  font-size: 13px;
+  color: #405348;
+}
+.review-subject-pill .icon {
+  width: 16px;
+  height: 16px;
+  color: #5d7560;
+}
+.review-subject-pill strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1b3028;
+}
+.review-subject-pill small {
+  font-size: 11px;
+  color: #65776a;
+}
+
+/* WaniKani-Style Quiz Card */
+.wk-quiz-card {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(27, 48, 40, 0.06);
+  border: 1px solid #d8e0d4;
+  background: #ffffff;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Vivid WaniKani Subject Colors */
+.wk-quiz-card.radical .quiz-prompt {
+  background: #00a2f3;
+  color: #ffffff;
+}
+.wk-quiz-card.kanji .quiz-prompt {
+  background: #f100a1;
+  color: #ffffff;
+}
+.wk-quiz-card.vocabulary .quiz-prompt {
+  background: #9300e8;
+  color: #ffffff;
+}
+.wk-quiz-card .quiz-prompt {
+  padding: 18px 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 110px;
+}
+.wk-quiz-card .quiz-character {
+  font-size: 78px;
+  line-height: 1.1;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+}
+.wk-quiz-card.vocabulary .quiz-character {
+  font-size: 60px;
+}
+.wk-quiz-card .quiz-character .glyph-img {
+  width: 1em;
+  height: 1em;
+  filter: brightness(0) invert(1);
+}
+
+/* Prompt Bar (Meaning / Reading instruction bar) */
+.quiz-prompt-bar {
+  background: #eef2eb;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid #dce4d8;
+  padding: 8px 14px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #3b5042;
+  letter-spacing: 0.3px;
+  text-transform: capitalize;
+}
+.quiz-prompt-bar strong {
+  font-weight: 700;
+  color: #142820;
+}
+
+/* Quiz Body & Response Box */
+.wk-quiz-card .quiz-body {
+  padding: 16px 18px 18px;
+  background: #ffffff;
+}
+.answer-box {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  width: 100%;
+  border-radius: 9px;
+  border: 2px solid #ccd8c8;
+  background: #ffffff;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.answer-box:focus-within {
+  border-color: #285642;
+  box-shadow: 0 0 0 3px rgba(40, 86, 66, 0.15);
+}
+.answer-box .answer-input {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 9px 0 0 9px;
+  font-size: 22px;
+  height: 52px;
+  min-height: 52px;
+  padding: 8px 14px;
+  text-align: center;
+  flex: 1;
+  color: #1b3028;
+}
+.answer-box .answer-input:focus {
+  outline: none !important;
+}
+.answer-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0 16px;
+  color: #65776a;
+  border-radius: 0 7px 7px 0;
+  transition: color .15s, background .15s;
+}
+.answer-submit-btn:hover {
+  background: #eef3e9;
+  color: #285642;
+}
+.answer-submit-btn .icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Input feedback colors on response box */
+.answer-box:has(.answer-input.correct) {
+  border-color: #348e58 !important;
+  background: #edf8f0 !important;
+}
+.answer-box:has(.answer-input.incorrect) {
+  border-color: #c95d46 !important;
+  background: #fdf1ed !important;
+}
+.answer-box:has(.answer-input.retry) {
+  border-color: #caa038 !important;
+  background: #fef9ec !important;
+}
+
+/* Kana Preview & Bottom Action Row */
+.wk-quiz-card .kana-preview {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #607365;
+  min-height: 20px;
+  text-align: center;
+}
+.answer-actions-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.answer-actions-row .dont-know {
+  margin: 0 !important;
+  color: #728577;
+  font-size: 13px;
+  padding: 6px 12px;
+}
+.answer-actions-row .dont-know:hover {
+  color: #285642;
+}
+
+/* Mobile Ergonomics (< 700px): Keeps Character Visible Above Keyboard */
+@media(max-width:700px){
+  .review-shell main {
+    padding: 8px 12px 14px !important;
+  }
+  .review-top-bar {
+    min-height: 38px;
+    margin-bottom: 8px;
+  }
+  .review-home-button {
+    width: 36px;
+    height: 36px;
+  }
+  .review-subject-pill {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+  .review-subject-pill strong {
+    font-size: 14px;
+  }
+  .wk-quiz-card .quiz-prompt {
+    padding: 12px 10px;
+    min-height: 90px;
+  }
+  .wk-quiz-card .quiz-character {
+    font-size: 64px;
+    line-height: 1.05;
+  }
+  .wk-quiz-card.vocabulary .quiz-character {
+    font-size: 46px;
+  }
+  .quiz-prompt-bar {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  .wk-quiz-card .quiz-body {
+    padding: 12px 14px 14px;
+  }
+  .answer-box .answer-input {
+    font-size: 20px;
+    height: 48px;
+    min-height: 48px;
+    padding: 6px 10px;
+  }
+  .wk-quiz-card .kana-preview {
+    font-size: 12px;
+    margin-top: 4px;
+    min-height: 18px;
+  }
+  .answer-actions-row {
+    margin-top: 6px;
+  }
+  .answer-actions-row .dont-know {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+}
+
+@media(max-width:360px){
+  .wk-quiz-card .quiz-character {
+    font-size: 54px;
+  }
+  .wk-quiz-card.vocabulary .quiz-character {
+    font-size: 38px;
+  }
+  .answer-box .answer-input {
+    font-size: 18px;
+    height: 44px;
+    min-height: 44px;
+  }
+}
+
+
+/* Hint banners (WaniKani-style tooltips below answer bar) */
+.hint-banners-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  margin: 10px 0 12px;
+}
+.hint-banner {
+  background: #555555;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.45;
+  padding: 6px 14px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  position: relative;
+  text-align: center;
+  max-width: 90%;
+  animation: fadeInDown 0.18s ease-out;
+}
+.hint-banner::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #555555;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Item info toggle button & drawer */
+.info-toggle-row {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 12px;
+}
+.info-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0f4ee;
+  border: 1px solid #c8d4c4;
+  color: #3b5042;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.info-toggle-btn:hover {
+  background: #e2ece0;
+  border-color: #285642;
+  color: #1b3028;
+}
+.info-toggle-btn .icon {
+  width: 16px;
+  height: 16px;
+}
+.info-toggle-chevron {
+  font-size: 10px;
+  color: #65776a;
+}
+.collapsed-item-info {
+  background: #fbfdfa;
+  border: 1px solid #dbe4d8;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 8px 0 14px;
+  text-align: left;
+  animation: fadeInDown 0.2s ease-out;
+}
+.info-section {
+  margin-bottom: 12px;
+}
+.info-section:last-child {
+  margin-bottom: 0;
+}
+.info-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #667c6d;
+  margin-bottom: 4px;
+}
+.info-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1b3028;
+}
+.info-mnemonic {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #3e5245;
+  margin-top: 4px;
+  background: #f1f6ef;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+.info-small {
+  font-size: 13px;
+  color: #5c7263;
+  margin-top: 4px;
+}
+.info-sentence {
+  background: #f1f6ef;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+.info-sentence p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1b3028;
+  margin: 0;
+}
+.info-sentence small {
+  font-size: 13px;
+  color: #5c7263;
+  display: block;
+  margin-top: 2px;
+}
+
+/* Mastery Level-Up / Level-Down Overlay Popup */
+.levelup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 25, 20, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: levelupFadeIn 0.22s ease-out;
+}
+.levelup-card {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+  color: #ffffff;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+  animation: levelupPopIn 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+.levelup-card.is-up {
+  background: linear-gradient(135deg, #27ae60 0%, #1e824c 100%);
+  border: 2px solid #52d287;
+}
+.levelup-card.is-down {
+  background: linear-gradient(135deg, #c0392b 0%, #962d22 100%);
+  border: 2px solid #e74c3c;
+}
+.levelup-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.22);
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.levelup-character {
+  font-size: 58px;
+  line-height: 1.1;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  margin-bottom: 6px;
+}
+.levelup-character .glyph-img {
+  width: 1.1em;
+  height: 1.1em;
+  filter: brightness(0) invert(1);
+}
+.levelup-stage {
+  font-size: 26px;
+  font-weight: 800;
+  margin: 0 0 4px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.levelup-meaning {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.95;
+  margin: 0 0 8px;
+}
+.levelup-note {
+  font-size: 13px;
+  opacity: 0.88;
+  margin: 0 0 18px;
+}
+.levelup-btn {
+  background: #ffffff !important;
+  color: #1b3028 !important;
+  font-weight: 700 !important;
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px 16px;
+}
+.levelup-btn:hover {
+  background: #f0f4ee !important;
+}
+
+@keyframes levelupFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes levelupPopIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
