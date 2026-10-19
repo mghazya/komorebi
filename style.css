@@ -590,3 +590,27 @@ body.review-active main {
   margin: 0 auto;
   width: 100%;
 }
+
+.session-header-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+.wrapup-btn {
+  font-size: 11px;
+  color: #7b8e73;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(120, 149, 104, 0.08);
+  transition: all 0.15s ease;
+}
+.wrapup-btn:hover {
+  background: rgba(120, 149, 104, 0.16);
+  color: #4c6843;
+}
+.wrapup-btn.active {
+  background: #c3843f;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+

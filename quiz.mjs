@@ -7,8 +7,9 @@
 const readingsOf = (item) => (item.readings || []).map((r) => typeof r === 'string' ? r : r?.reading || r?.text || '').filter(Boolean);
 
 export const hasReadingQuestion = (item) => item.type !== 'radical' && readingsOf(item).length > 0;
+export const ACTIVE_REVIEW_POOL_SIZE = 10;
 
-function shuffle(arr) {
+export function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -16,11 +17,15 @@ function shuffle(arr) {
   return arr;
 }
 
-export function buildQuizQueue(selected) {
-  const queue = selected.flatMap((item) => [
+export function questionsForItem(item) {
+  return [
     { id: item.id, kind: 'meaning' },
     ...(hasReadingQuestion(item) ? [{ id: item.id, kind: 'reading' }] : []),
-  ]);
+  ];
+}
+
+export function buildQuizQueue(selected) {
+  const queue = selected.flatMap((item) => questionsForItem(item));
   return shuffle(queue);
 }
 
