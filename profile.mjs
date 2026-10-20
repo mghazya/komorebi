@@ -7,6 +7,7 @@
  */
 export const MAX_NAME_LENGTH = 50;
 export const BATCH_SIZES = Object.freeze([3, 5, 10]);
+export const REVIEW_BATCH_SIZES = Object.freeze([10, 20, 50, 0]);
 
 export class ProfileError extends Error {
   constructor(message) { super(message); this.name = 'ProfileError'; this.code = 'INVALID_PROFILE'; }
@@ -33,6 +34,7 @@ export function validateProfile(value) {
 }
 
 export const batchSizeOf = (profile) => BATCH_SIZES.includes(profile?.settings?.batchSize) ? profile.settings.batchSize : 5;
+export const reviewBatchSizeOf = (profile) => REVIEW_BATCH_SIZES.includes(profile?.settings?.reviewBatchSize) ? profile.settings.reviewBatchSize : 0;
 
 /** Progress IDs that the loaded curriculum does not contain (kept, never deleted). */
 export function unknownProgressIds(profile, knownIds) {
