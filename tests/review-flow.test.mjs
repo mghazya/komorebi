@@ -5,11 +5,11 @@ import vm from 'node:vm';
 import {buildQuizQueue,feedbackSummary,hintBanners,toggleReviewWrapUp} from '../quiz.mjs';
 import {scorePlacement} from '../engine.mjs';
 const app=fs.readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
-function fn(name){const start=app.indexOf(`function ${name}(`);assert.ok(start>=0);const tail=app.slice(start);const end=name==='renderSession'?tail.indexOf('\nfunction submitAnswer'):tail.indexOf('\nfunction ',1);return end<0?tail:tail.slice(0,end);}
+function fn(name){const start=app.indexOf(`function ${name}(`);assert.ok(start>=0);const tail=app.slice(start);const end=name==='renderSession'?tail.search(/\n(async\s+)?function submitAnswer/):tail.indexOf('\nfunction ',1);return end<0?tail:tail.slice(0,end);}
 const item={id:'kanji:test',type:'kanji',character:'字',meaning:'Letter',meanings:['Letter'],readings:['じ'],meaningMnemonic:'meaning-story',readingMnemonic:'reading-story',sentences:[{japanese:'context-secret',english:'context-translation'}]};
 function renderer(kind,remaining,feedback={correct:true,answer:'answer'}){
  const session={phase:'quiz',mode:'placement',selected:[item],finished:[],queue:[{id:item.id,kind},...remaining],totalQuestions:2,infoOpen:true,feedback};
- const c=vm.createContext({session,getItem:()=>item,feedbackSummary,hintBanners,esc:String,readingsOf:i=>i.readings,icon:()=>'',glyph:i=>i.character});
+ const c=vm.createContext({session,getItem:()=>item,feedbackSummary,hintBanners,esc:String,readingsOf:i=>i.readings,icon:()=>'',glyph:i=>i.character,charLenClass:i=>'char-len-1'});
  vm.runInContext(fn('renderSession'),c);
  return {c,html:()=>vm.runInContext('renderSession()',c)};
 }
