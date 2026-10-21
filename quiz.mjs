@@ -43,6 +43,9 @@ export function feedbackSummary(item, kind, feedback, queue) {
   if (feedback.retry) return feedback.message || 'Use the reading taught in the lesson.';
   if (!feedback.correct) return `Answer: ${kind === 'meaning' ? (item.meanings || [item.meaning]).join(' / ') : readingsOf(item).join(' / ')}`;
   const show = revealableParts(item, kind, queue);
+  if (feedback.typo && feedback.matchedMeaning) {
+    return `Accepted as “${feedback.matchedMeaning}” · ${[show.meaning ? item.meaning : '', show.reading ? readingsOf(item).join(' / ') : ''].filter(Boolean).join(' · ')}`;
+  }
   return [show.meaning ? item.meaning : '', show.reading ? readingsOf(item).join(' / ') : ''].filter(Boolean).join(' · ');
 }
 
@@ -94,7 +97,9 @@ export function hintBanners(item, kind, feedback) {
   const meaningsCount = [...new Set([...(item.meanings || []), item.meaning].filter(Boolean))].length;
 
   if (feedback.correct) {
-    if (kind === 'meaning' && meaningsCount > 1) {
+    if (feedback.typo && feedback.matchedMeaning) {
+      banners.push(`Check your spelling: Correct spelling is “${feedback.matchedMeaning}”.`);
+    } else if (kind === 'meaning' && meaningsCount > 1) {
       banners.push('Did you know this item has multiple possible meanings?');
     }
     if (kind === 'reading' && item.otherReadings?.length) {

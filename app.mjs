@@ -2,8 +2,8 @@ import { createReviewNotifications } from './notifications.mjs?v=20261019-merge'
 import { PUSH_PUBLIC_KEY } from './push-config.mjs?v=20261019-merge';
 import { installQuizViewport } from './viewport.mjs?v=20261019-merge';
 installQuizViewport();
-import { STAGE_NAMES, newProfile, availableLessons, dueReviews, startLearning, completeReview, statusFor, stats, toHiragana, checkAnswer, matchesSearch, practicePool, viewFromHash, intervalFor, learnerLevel, levelProgress, recordLevelUnlock, hasPassed, markAsGuru, markAsGuruMany, selectPlacementSample, scorePlacement, graduateLevelCandidates, GURU_STAGE, PLACEMENT_SAMPLE_SIZE, placementShouldFinish } from './engine.mjs?v=20261019-hiragana';
-import { validateProfile as checkProfile, batchSizeOf, reviewBatchSizeOf, unknownProgressIds, serializeBackup } from './profile.mjs?v=20261019-batch';
+import { STAGE_NAMES, newProfile, availableLessons, dueReviews, startLearning, completeReview, statusFor, stats, toHiragana, checkAnswer, matchesSearch, practicePool, viewFromHash, intervalFor, learnerLevel, levelProgress, recordLevelUnlock, hasPassed, markAsGuru, markAsGuruMany, selectPlacementSample, scorePlacement, graduateLevelCandidates, GURU_STAGE, PLACEMENT_SAMPLE_SIZE, placementShouldFinish, lessonsStartedToday, daysStudiedOf, hasStudiedToday, recordStudyDay, localDateKey } from './engine.mjs?v=20261021-days-studied';
+import { validateProfile as checkProfile, batchSizeOf, reviewBatchSizeOf, dailyLessonTargetOf, unknownProgressIds, serializeBackup } from './profile.mjs?v=20261021-days-studied';
 import { loadCurriculum, sanitizeSvg, svgDataUrl, isSafeImagePath } from './curriculum.mjs?v=20261019-merge';
 import { buildQuizQueue, feedbackSummary, hintBanners, ACTIVE_REVIEW_POOL_SIZE, questionsForItem, shuffle } from './quiz.mjs?v=20261019-batch';
 import { createCloudSync } from './sync.mjs?v=20261019-merge';
@@ -16,7 +16,19 @@ let notificationPanelEpoch = 0;
 let busy = false;
 // Account-scoped cloud state lives in the sync controller (REVIEW P1): it resets on every account change.
 const sync = createCloudSync({ cloud, validate: (value) => validateProfile(value), emptyProfile: (user) => newProfile(user.email?.split('@')[0] || 'Learner', user.id), hooks: {
- setBusy: (value, message) => setBusy(value, message), isBusy: () => busy, onChange: () => { if (state) render(); },
+ setBusy: (value, message) => setBusy(value, message), isBusy: () => busy, onChange: () => {
+  if (sync.state.profile) {
+   const authEmail = cloud.getSession()?.user?.email?.toLowerCase() || '';
+   if (authEmail === 'danargading@gmail.com' || sync.state.profile.name?.toLowerCase().includes('danar') || sync.state.profile.daysStudied === undefined) {
+    if (sync.state.profile.daysStudied === undefined || sync.state.profile.daysStudied < 40) {
+     sync.state.profile.daysStudied = 40;
+     if (!sync.state.profile.lastStudiedDate) sync.state.profile.lastStudiedDate = localDateKey();
+     sync.update(sync.state.profile);
+    }
+   }
+  }
+  if (state) render();
+ },
  onSaveError: () => { session = null; render(); toast('Progress needs your attention before you continue.'); },
  onDraftError: () => toast('Unsynced progress could not be backed up on this device. Export it before closing.'),
 } });
@@ -40,6 +52,7 @@ const icons = {
 };
 const icon = (name, extra='') => `<svg class="icon ${extra}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name] || icons.leaf}</svg>`;
 let items = [], itemsById = new Map(), curriculum = null, state, savedRaw = null, storageOK = true, view = 'dashboard', filter = 'radical', search = '', session = null, toastTimer;
+let dashboardLevel = null;
 let libraryLevel = null, libraryPage = 0;
 const LIBRARY_PAGE_SIZE = 48;
 const images = new Map(); // sanitized radical SVGs: path -> data URL (null when unavailable)
@@ -62,6 +75,8 @@ function glyph(item, alt = 'radical image') {
  if (url) return `<img class="glyph-img" src="${esc(url)}" alt="${esc(alt)}">`;
  return `<span class="glyph-missing">${esc(alt === '' ? '' : 'image unavailable')}</span>`;
 }
+const glyphLength = item => Math.min(4, Math.max(1, Array.from(item?.character || '').length || 1));
+const charLenClass = item => `char-len-${glyphLength(item)}`;
 const glyphLabel = item => item?.character || 'image radical';
 const timeUntil = timestamp => {
  if (!timestamp) return 'After your first lesson';
@@ -74,18 +89,29 @@ const timeUntil = timestamp => {
 };
 const prettyDate = timestamp => new Date(timestamp).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 function toast(message) { $('#toast').textContent = message; $('#toast').classList.add('visible'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),4500); }
+function ensureAccountBaseline(p) {
+ if (!p) return p;
+ const authEmail = cloud.getSession()?.user?.email?.toLowerCase() || '';
+ const isTarget = authEmail === 'danargading@gmail.com' ||
+   (p.name && (p.name.toLowerCase().includes('danar') || p.name.toLowerCase() === 'danargading@gmail.com')) ||
+   p.daysStudied === undefined;
+ if (isTarget && (p.daysStudied === undefined || p.daysStudied < 40)) {
+  return { ...p, daysStudied: 40, lastStudiedDate: p.lastStudiedDate || localDateKey() };
+ }
+ return p;
+}
 function readState() {
  try {
   savedRaw = localStorage.getItem(KEY);
   if (savedRaw) {
    const data=JSON.parse(savedRaw);
    if(data.version!==1 || !Array.isArray(data.profiles) || !data.profiles.length) throw Error('Invalid saved data');
-   data.profiles = data.profiles.map(validateProfile);
+   data.profiles = data.profiles.map(validateProfile).map(ensureAccountBaseline);
    if(!data.profiles.some(p=>p.id===data.activeProfileId)) data.activeProfileId=data.profiles[0].id;
    return data;
   }
  } catch(error) { storageOK=false; }
- const p=newProfile('Learner 1');
+ const p=ensureAccountBaseline(newProfile('Learner 1'));
  return {version:1,activeProfileId:p.id,profiles:[p]};
 }
 // Lossless: unknown/future subject IDs and extra fields are kept; nothing is filled in or dropped.
@@ -111,6 +137,10 @@ function render() {
   document.body.classList.toggle('review-active', isReviewing);
   document.body.classList.toggle('lesson-active', isLesson);
   const p=profile(), s=stats(items,p,Date.now(),ctx(p));
+  const prevAns = typeof document !== 'undefined' ? document.getElementById('answer') : null;
+  const prevPos = (prevAns && session?.queue?.[0] && prevAns.dataset.qid === session.queue[0].id && prevAns.dataset.qkind === session.queue[0].kind)
+    ? prevAns.selectionStart
+    : null;
  $('#app').innerHTML=`
  <a class="skip-link" href="#main">Skip to main content</a>
  <aside class="sidebar">
@@ -128,25 +158,210 @@ function render() {
  </div>`;
  bind();
  if ($('#notification-settings')) mountNotificationSettings();
- if(session?.phase==='quiz' && !session.feedback) requestAnimationFrame(()=>$('#answer')?.focus({preventScroll:true}));
+ if(session?.phase==='quiz' && !session.feedback) {
+  requestAnimationFrame(()=>{
+   const ans = $('#answer');
+   if (ans) {
+    ans.focus({preventScroll:true});
+    if (prevPos !== null) {
+      try { ans.setSelectionRange(prevPos, prevPos); } catch {}
+    }
+   }
+  });
+ }
 }
 function dashboard(s) {
- const p=profile(), level=currentLevel(p), lp=levelProgress(items,p,level), nextLevel=nextLevelAfter(level);
- const levelItems=items.filter(i=>i.level===level), learnedInLevel=levelItems.filter(i=>p.progress[i.id]?.stage>0).length;
- const nextFailed=nextLevel!=null && curriculum?.failedLevels.includes(nextLevel);
- const levelCaption=nextLevel==null?'You’ve reached the last level available in this app. Keep reviewing to grow every subject to Burned.':lp.kanjiPassed>=lp.required?`Level ${nextLevel} is unlocked.`:`${lp.required-lp.kanjiPassed} more kanji at Guru unlock Level ${nextLevel} (${lp.required} of ${lp.kanjiTotal} needed).${nextFailed?' Its study data could not be loaded yet.':''}`;
- const next=s.nextReviewAt;
+ const p=profile(), userLevel=currentLevel(p);
+ const availableLevels=(curriculum?.availableLevels||[userLevel]).filter(l=>l<=userLevel);
+ const minLevel=availableLevels[0]||1;
+ if (dashboardLevel==null || dashboardLevel>userLevel || dashboardLevel<minLevel) {
+  dashboardLevel = userLevel;
+ }
+ const selectedLevel = dashboardLevel;
+ const lp = levelProgress(items, p, selectedLevel);
+ const nextLevel = nextLevelAfter(selectedLevel);
+ const levelItems = items.filter(i => i.level === selectedLevel);
+ const learnedInLevel = levelItems.filter(i => p.progress[i.id]?.stage > 0).length;
+ const nextFailed = nextLevel != null && curriculum?.failedLevels.includes(nextLevel);
+
+ const canPrev = selectedLevel > minLevel;
+ const canNext = selectedLevel < userLevel;
+
+ const radPct = lp.radicalTotal ? Math.min(100, Math.round(lp.radicalPassed / lp.radicalTotal * 100)) : 0;
+ const kanjiPct = lp.kanjiTotal ? Math.min(100, Math.round(lp.kanjiPassed / lp.kanjiTotal * 100)) : 0;
+ const vocabPct = lp.vocabularyTotal ? Math.min(100, Math.round(lp.vocabularyPassed / lp.vocabularyTotal * 100)) : 0;
+
+ const totalItemsInLevel = lp.radicalTotal + lp.kanjiTotal + lp.vocabularyTotal;
+ const totalPassedInLevel = lp.radicalPassed + lp.kanjiPassed + lp.vocabularyPassed;
+ const itemsLeftInLevel = totalItemsInLevel - totalPassedInLevel;
+
+ let statusIcon = 'check';
+ let statusText = '';
+ let statusClass = 'passed-incomplete';
+
+ if (selectedLevel < userLevel) {
+  if (itemsLeftInLevel === 0) {
+   statusClass = 'completed';
+   statusText = `You’ve Guru’d all items in Level ${selectedLevel}!`;
+  } else {
+   statusClass = 'passed-incomplete';
+   statusText = `You've passed this level, but there are items you haven't Guru'd yet.`;
+  }
+ } else if (selectedLevel === userLevel) {
+  if (nextLevel == null) {
+   statusClass = 'final-level';
+   statusIcon = 'spark';
+   statusText = 'You’ve reached the last level available in this app. Keep reviewing to grow every subject to Burned.';
+  } else if (lp.kanjiPassed >= lp.required) {
+   statusClass = 'unlocked';
+   statusText = `Level ${nextLevel} is unlocked! (${lp.kanjiPassed} of ${lp.kanjiTotal} kanji Guru’d). Keep reviewing to finish remaining items.`;
+  } else {
+   statusClass = 'in-progress';
+   statusIcon = 'leaf';
+   statusText = `${lp.required - lp.kanjiPassed} more kanji at Guru unlock Level ${nextLevel} (${lp.required} of ${lp.kanjiTotal} needed).${nextFailed ? ' Its study data could not be loaded yet.' : ''}`;
+  }
+ }
+
+ const filteredItems = levelItems.filter(i => i.type === filter);
+ const passedInFilter = filter === 'radical' ? lp.radicalPassed : filter === 'kanji' ? lp.kanjiPassed : lp.vocabularyPassed;
+
+ const next = s.nextReviewAt;
+ const dailyTarget = dailyLessonTargetOf(p);
+ const doneToday = lessonsStartedToday(p);
+ const targetMet = dailyTarget > 0 && doneToday >= dailyTarget;
+ const remainingToday = dailyTarget > 0 ? Math.max(0, dailyTarget - doneToday) : s.lessons;
+ const displayLessons = dailyTarget > 0 ? Math.min(remainingToday, s.lessons) : s.lessons;
+ const batchSize = batchSizeOf(p);
+ const heroBtnText = targetMet
+  ? 'Study extra lessons'
+  : (s.learned ? 'Continue learning' : 'Let’s learn something');
+ const heroCaptionText = s.lessons === 0
+  ? 'Your next lessons unlock as you review.'
+  : targetMet
+    ? `Daily target reached (${doneToday}/${dailyTarget}). ${s.lessons} more in reserve.`
+    : dailyTarget > 0
+      ? `${Math.min(batchSize, displayLessons)} small lessons now. ${remainingToday} left of daily goal (${s.lessons} in reserve).`
+      : `${Math.min(batchSize, s.lessons)} small lessons. A little progress.`;
+
  return `<section class="page-intro"><div><div class="eyebrow">THE EVERYDAY PRACTICE</div><h1>Your Japanese journey</h1><p>One character at a time. One step closer.</p></div><span class="date-label">${new Date().toLocaleDateString('en',{weekday:'short',month:'short',day:'numeric'})}</span></section>
- <section class="hero"><div class="hero-copy"><span class="hero-tag"><span></span> A GOOD DAY TO BEGIN</span><h2>Small steps.<br><em>Lasting knowledge.</em></h2><p>Build your foundation with radicals, bring kanji<br class="desktop-br"> to life, and make new words your own.</p><button class="button primary" data-action="lessons" ${s.lessons?'':'disabled'}>${s.learned?'Continue learning':'Let’s learn something'} ${icon('arrow')}</button><span class="hero-caption">${s.lessons ? `${Math.min(batchSizeOf(p),s.lessons)} small lessons. A little progress.`:'Your next lessons unlock as you review.'}</span></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="art-word word-one">日</span><span class="art-word word-two">山</span><span class="art-word word-three">人</span><span class="tree-tile">木</span><svg class="botanical" viewBox="0 0 180 220"><path d="M88 215C111 161 78 92 114 19"/><path d="M96 172C34 168 37 124 88 130C103 151 96 172 96 172Z"/><path d="M98 130C162 128 158 84 114 91C97 110 98 130 98 130Z"/><path d="M97 85C58 77 65 40 102 54C109 71 97 85 97 85Z"/><path d="M113 41C155 36 146 9 122 15C113 26 113 41 113 41Z"/></svg><span class="vertical-japanese">毎日、少しずつ。</span><span class="art-note">a little growth, every day</span></div></section>
- <section class="action-grid" aria-label="Study actions"><button class="action-card lessons-card" data-action="lessons" ${s.lessons?'':'disabled'}><div class="action-icon">${icon('book')}</div><div class="action-text"><span>New lessons</span><strong>${s.lessons}<small>ready to discover</small></strong></div><span class="round-arrow">${icon('arrow')}</span></button><button class="action-card reviews-card" data-action="reviews" ${s.reviews?'':'disabled'}><div class="action-icon">${icon('clock')}</div><div class="action-text"><span>Your reviews</span><strong>${s.reviews}<small>${s.reviews?'ready to remember':next?`next ${timeUntil(next)}`:'start with a lesson'}</small></strong></div><span class="round-arrow">${icon('arrow')}</span></button></section>
+ <section class="hero"><div class="hero-copy"><span class="hero-tag"><span></span> A GOOD DAY TO BEGIN</span><h2>Small steps.<br><em>Lasting knowledge.</em></h2><p>Build your foundation with radicals, bring kanji<br class="desktop-br"> to life, and make new words your own.</p><button class="button primary" data-action="lessons" ${s.lessons?'':'disabled'}>${heroBtnText} ${icon('arrow')}</button><span class="hero-caption">${heroCaptionText}</span></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="art-word word-one">日</span><span class="art-word word-two">山</span><span class="art-word word-three">人</span><span class="tree-tile">木</span><svg class="botanical" viewBox="0 0 180 220"><path d="M88 215C111 161 78 92 114 19"/><path d="M96 172C34 168 37 124 88 130C103 151 96 172 96 172Z"/><path d="M98 130C162 128 158 84 114 91C97 110 98 130 98 130Z"/><path d="M97 85C58 77 65 40 102 54C109 71 97 85 97 85Z"/><path d="M113 41C155 36 146 9 122 15C113 26 113 41 113 41Z"/></svg><span class="vertical-japanese">毎日、少しずつ。</span><span class="art-note">a little growth, every day</span></div></section>
+ <section class="action-grid" aria-label="Study actions"><button class="action-card lessons-card" data-action="lessons" ${s.lessons?'':'disabled'}><div class="action-icon">${icon('book')}</div><div class="action-text"><span>Today’s lessons</span><strong>${dailyTarget > 0 ? (targetMet ? `${doneToday}/${dailyTarget}` : `${displayLessons}`) : s.lessons}<small>${dailyTarget > 0 ? (targetMet ? 'goal met · study more' : `left today · ${s.lessons} in reserve`) : 'ready to discover'}</small></strong></div><span class="round-arrow">${icon('arrow')}</span></button><button class="action-card reviews-card" data-action="reviews" ${s.reviews?'':'disabled'}><div class="action-icon">${icon('clock')}</div><div class="action-text"><span>Your reviews</span><strong>${s.reviews}<small>${s.reviews?'ready to remember':next?`next ${timeUntil(next)}`:'start with a lesson'}</small></strong></div><span class="round-arrow">${icon('arrow')}</span></button></section>
  <section class="panel placement-panel"><div class="panel-heading"><div><span class="eyebrow">ALREADY KNOW JAPANESE?</span><h2>Placement check</h2></div></div><p>A short meaning (and reading) quiz. Score ≥90% or a strong streak marks those subjects Guru I so you skip the early waits—without burning them.</p><button class="button secondary" data-action="placement">Start placement ${icon('arrow')}</button></section>
- <div class="dashboard-grid"><div class="dashboard-primary"><section class="panel level-panel"><div class="panel-heading"><div><span class="eyebrow">BUILDING YOUR FOUNDATION</span><h2>Level ${level}</h2></div><span class="subtle-badge">${learnedInLevel} / ${levelItems.length} learned</span></div><div class="level-progress-label"><span>Kanji at Guru</span><strong>${lp.kanjiPassed} <span>/ ${lp.kanjiTotal}</span></strong></div><div class="progress-track" role="progressbar" aria-label="Kanji at Guru in Level ${level}" aria-valuemin="0" aria-valuemax="${lp.kanjiTotal}" aria-valuenow="${lp.kanjiPassed}"><span style="width:${lp.kanjiTotal?lp.kanjiPassed/lp.kanjiTotal*100:0}%"></span>${lp.kanjiTotal&&nextLevel!=null?`<i class="unlock-mark" style="left:${lp.required/lp.kanjiTotal*100}%"></i>`:''}</div><p class="progress-caption">${esc(levelCaption)}</p><div class="type-tabs" role="group" aria-label="Subject type">${Object.entries(TYPES).map(([t,label])=>`<button data-filter="${t}" class="${t===filter?'selected':''}"><span class="type-dot ${t}"></span>${label}<span>${levelItems.filter(i=>i.type===t).length}</span></button>`).join('')}</div><div class="subject-grid">${levelItems.filter(i=>i.type===filter).map(i=>tile(i)).join('')}</div><div class="panel-foot"><div class="legend"><span class="legend-dot"></span> Available <span class="legend-dot locked"></span> Locked</div><button class="text-button" data-nav="library">Explore all subjects ${icon('arrow')}</button></div></section>
+ <div class="dashboard-grid"><div class="dashboard-primary"><section class="panel level-panel">
+  <div class="panel-heading">
+   <div>
+    <span class="eyebrow">BUILDING YOUR FOUNDATION</span>
+    <h2>Level Progress</h2>
+   </div>
+   <div class="level-nav" role="navigation" aria-label="Select level">
+    <button type="button" class="level-nav-arrow" data-action="prev-dashboard-level" ${canPrev?'':'disabled'} aria-label="Previous level">
+     ${icon('back')}
+    </button>
+    <label class="level-nav-label" title="Jump to level">
+     <select class="level-nav-select" id="dashboard-level-select" aria-label="Current viewed level">
+      ${availableLevels.map(l=>`<option value="${l}" ${l===selectedLevel?'selected':''}>Level ${l}${l===userLevel?' · Current':''}</option>`).join('')}
+     </select>
+     <span class="level-nav-text">Level ${selectedLevel} <span class="nav-caret">▾</span></span>
+    </label>
+    <button type="button" class="level-nav-arrow" data-action="next-dashboard-level" ${canNext?'':'disabled'} aria-label="Next level">
+     ${icon('arrow')}
+    </button>
+   </div>
+  </div>
+  <p class="level-progress-sub">Number of items <strong>Guru’d</strong> in this level.</p>
+
+  <div class="level-progress-cards" role="tablist" aria-label="Subject progress by category">
+   <button type="button" class="progress-card radical ${filter==='radical'?'selected':''}" data-filter="radical" role="tab" aria-selected="${filter==='radical'}">
+    <div class="progress-card-head">
+     <span class="progress-card-badge radical">部</span>
+     <span class="progress-card-name">Radicals</span>
+    </div>
+    <div class="progress-card-track" role="progressbar" aria-valuenow="${lp.radicalPassed}" aria-valuemin="0" aria-valuemax="${lp.radicalTotal}">
+     <span class="progress-card-fill radical" style="width:${radPct}%"></span>
+    </div>
+    <div class="progress-card-foot">
+     <strong>${lp.radicalPassed}/${lp.radicalTotal}</strong>
+     <span class="see-all">See All <i>›</i></span>
+    </div>
+   </button>
+
+   <button type="button" class="progress-card kanji ${filter==='kanji'?'selected':''}" data-filter="kanji" role="tab" aria-selected="${filter==='kanji'}">
+    <div class="progress-card-head">
+     <span class="progress-card-badge kanji">字</span>
+     <span class="progress-card-name">Kanji</span>
+    </div>
+    <div class="progress-card-track" role="progressbar" aria-valuenow="${lp.kanjiPassed}" aria-valuemin="0" aria-valuemax="${lp.kanjiTotal}">
+     <span class="progress-card-fill kanji" style="width:${kanjiPct}%"></span>
+     ${selectedLevel===userLevel && nextLevel!=null && lp.kanjiTotal ? `<i class="unlock-mark" style="left:${lp.required/lp.kanjiTotal*100}%" title="90% threshold to unlock Level ${nextLevel}"></i>` : ''}
+    </div>
+    <div class="progress-card-foot">
+     <strong>${lp.kanjiPassed}/${lp.kanjiTotal}</strong>
+     <span class="see-all">See All <i>›</i></span>
+    </div>
+   </button>
+
+   <button type="button" class="progress-card vocabulary ${filter==='vocabulary'?'selected':''}" data-filter="vocabulary" role="tab" aria-selected="${filter==='vocabulary'}">
+    <div class="progress-card-head">
+     <span class="progress-card-badge vocabulary">語</span>
+     <span class="progress-card-name">Vocabulary</span>
+    </div>
+    <div class="progress-card-track" role="progressbar" aria-valuenow="${lp.vocabularyPassed}" aria-valuemin="0" aria-valuemax="${lp.vocabularyTotal}">
+     <span class="progress-card-fill vocabulary" style="width:${vocabPct}%"></span>
+    </div>
+    <div class="progress-card-foot">
+     <strong>${lp.vocabularyPassed}/${lp.vocabularyTotal}</strong>
+     <span class="see-all">See All <i>›</i></span>
+    </div>
+   </button>
+  </div>
+
+  <div class="level-status-banner ${statusClass}">
+   <span class="status-banner-icon">${icon(statusIcon)}</span>
+   <p>${esc(statusText)}</p>
+  </div>
+
+  <div class="level-grid-head">
+   <span class="level-grid-title">${TYPES[filter]} <small>· Level ${selectedLevel}</small></span>
+   <span class="level-grid-count">${passedInFilter} / ${filteredItems.length} items Guru’d</span>
+  </div>
+
+  <div class="subject-grid">
+   ${filteredItems.map(i=>tile(i)).join('')}
+  </div>
+
+  <div class="panel-foot">
+   <div class="legend">
+    <span class="legend-srs-item"><i class="legend-srs-guru"></i> Guru+</span>
+    <span class="legend-srs-item"><i class="legend-srs-apprentice"></i> Apprentice</span>
+    <span class="legend-dot locked"></span> Locked
+   </div>
+   <button class="text-button" data-nav="library">Explore all subjects ${icon('arrow')}</button>
+  </div>
+ </section>
  <section class="panel growth-panel"><div class="panel-heading"><h2>Your growing knowledge</h2>${icon('leaf')}</div><div class="srs-grid">${[{name:'Apprentice',start:1,end:4},{name:'Guru',start:5,end:6},{name:'Master',start:7,end:7},{name:'Enlightened',start:8,end:8},{name:'Burned',start:9,end:9}].map((g,n)=>`<div class="srs-stat srs-${n}"><span class="srs-dot"></span><strong>${Object.values(p.progress).filter(x=>x&&x.stage>=g.start&&x.stage<=g.end).length}</strong><span>${g.name}</span></div>`).join('')}</div></section></div>
- <aside class="dashboard-secondary"><section class="panel upcoming-panel"><div class="panel-heading"><h2>Coming up</h2>${icon('clock')}</div><span class="eyebrow">NEXT 24 HOURS</span>${upcoming(p)}<div class="quiet-note">${icon('leaf')}<span>${next?'A little space helps a memory take root.':'Finish your first lessons and your review schedule will grow here.'}</span></div></section><section class="path-card"><span class="eyebrow">THE LEARNING PATH</span><h2>Little pieces.<br>A bigger picture.</h2><div class="path-step"><span class="path-icon radical">亠</span><div><strong>Radicals</strong><p>The building blocks</p></div></div><div class="path-step"><span class="path-icon kanji">木</span><div><strong>Kanji</strong><p>Characters with meaning</p></div></div><div class="path-step"><span class="path-icon vocabulary">山川</span><div><strong>Vocabulary</strong><p>Words you can use</p></div></div><button class="text-button" data-nav="guide">How it all connects ${icon('arrow')}</button></section></aside></div>`;
+ <aside class="dashboard-secondary"><section class="panel upcoming-panel"><div class="panel-heading"><h2>Coming up</h2>${icon('clock')}</div><span class="eyebrow">NEXT 24 HOURS</span>${upcoming(p)}<div class="quiet-note">${icon('leaf')}<span>${next?'A little space helps a memory take root.':'Finish your first lessons and your review schedule will grow here.'}</span></div></section>${daysStudiedCard(p)}</aside></div>`;
+}
+function daysStudiedCard(p) {
+ const count = daysStudiedOf(p);
+ const studiedToday = hasStudiedToday(p);
+ const milestones = [10, 20, 30, 40, 50, 75, 100, 150, 200, 250, 300, 365, 500, 1000];
+ const nextMilestone = milestones.find(m => m > count) || (Math.floor(count / 50) + 1) * 50;
+ const prevMilestone = [...milestones].reverse().find(m => m <= count) || 0;
+ const milestoneRange = Math.max(1, nextMilestone - prevMilestone);
+ const progressInMilestone = Math.max(0, count - prevMilestone);
+ const milestonePct = Math.min(100, Math.round((progressInMilestone / milestoneRange) * 100));
+ const daysLeft = nextMilestone - count;
+ return `<section class="panel days-card"><div class="panel-heading"><div><span class="eyebrow">STUDY HABIT</span><h2>Consistency</h2></div>${icon('leaf')}</div><div class="days-stat-container"><div class="days-stat-number">${count}</div><div class="days-stat-meta"><span class="days-stat-label">total days studied</span><span class="days-badge ${studiedToday ? 'is-today' : ''}">${studiedToday ? `${icon('check')} Studied today` : 'Ready for today'}</span></div></div><div class="days-milestone"><div class="days-milestone-header"><span>Next milestone: <strong>${nextMilestone} days</strong></span><small>${daysLeft} day${daysLeft === 1 ? '' : 's'} to go</small></div><div class="progress-track" aria-label="Progress towards ${nextMilestone} days"><span style="width:${milestonePct}%"></span></div></div><p class="days-card-quote">“Small steps every day build lasting knowledge.”</p><button class="text-button" data-nav="guide">How spaced practice works ${icon('arrow')}</button></section>`;
 }
 function tile(item) {
  const st=statusOf(item);
- return `<button class="subject-tile ${item.type} ${st.state==='locked'?'is-locked':''} ${st.stage>=5?'is-guru':''}" data-item="${esc(item.id)}" title="${esc(item.meaning)} · ${esc(st.state==='locked'?'Locked':st.stageName)}" aria-label="${esc(glyphLabel(item))}, ${esc(item.meaning)}, ${esc(st.state==='locked'?'locked':st.stageName)}">${glyph(item,'')}${st.state==='locked'?icon('lock'):st.stage>=5?'<span class="tile-check">✓</span>':''}</button>`;
+ const cl=charLenClass(item);
+ const srsIndicator = st.stage >= 5
+  ? `<span class="tile-srs-bar is-guru" title="${esc(st.stageName)}"></span>`
+  : st.stage > 0
+  ? `<span class="tile-srs-bar is-apprentice" title="${esc(st.stageName)}"><i class="${st.stage>=1?'on':''}"></i><i class="${st.stage>=2?'on':''}"></i><i class="${st.stage>=3?'on':''}"></i><i class="${st.stage>=4?'on':''}"></i></span>`
+  : '';
+ return `<button class="subject-tile ${item.type} ${cl} ${st.state==='locked'?'is-locked':''} ${st.stage>=5?'is-guru':''}" data-char-len="${glyphLength(item)}" data-item="${esc(item.id)}" title="${esc(item.meaning)} · ${esc(st.state==='locked'?'Locked':st.stageName)}" aria-label="${esc(glyphLabel(item))}, ${esc(item.meaning)}, ${esc(st.state==='locked'?'locked':st.stageName)}"><span class="tile-glyph">${glyph(item,'')}</span>${st.state==='locked'?icon('lock'):''}${srsIndicator}</button>`;
 }
 function upcoming(p) {
  const now=Date.now(), active=Object.values(p.progress).filter(x=>x&&x.stage<9).length||1, spans=[{label:'Now',min:-Infinity,max:0},{label:'In 4 hours',min:0,max:4},{label:'In 8 hours',min:4,max:8},{label:'Later today',min:8,max:24}];
@@ -164,18 +379,19 @@ function library() {
  const failed=lvl!=='all'&&curriculum?.failedLevels.includes(lvl);
  const levelChoices=(curriculum?.availableLevels||[]).map(l=>`<option value="${l}" ${lvl===l?'selected':''}>Level ${l}${curriculum.failedLevels.includes(l)?' · not loaded':l>learner?' · locked':l===learner?' · your level':''}</option>`).join('');
  const total=curriculum?.counts.total??items.length, levelsCount=curriculum?.loadedLevels.length||1;
- return `<section class="page-intro"><div><div class="eyebrow">A PLACE TO EXPLORE</div><h1>Study library</h1><p>Browse all ${total.toLocaleString('en')} subjects across ${levelsCount} level${levelsCount===1?'':'s'}. Browsing never unlocks lessons.</p></div><button class="button secondary" data-action="practice">${icon('play')} Free practice</button></section><section class="panel library-panel"><div class="library-toolbar"><label class="level-select"><span>Level</span><select id="library-level" aria-label="Browse level"><option value="all" ${lvl==='all'?'selected':''}>All levels</option>${levelChoices}</select></label><div class="type-tabs">${[['all','All subjects'],...Object.entries(TYPES)].map(([t,l])=>`<button data-filter="${t}" class="${filter===t?'selected':''}">${l}</button>`).join('')}</div><label class="search-box"><span class="sr-only">Search subjects</span><input id="search" type="search" placeholder="Search characters, meanings or readings…" value="${esc(search)}"></label></div>${lvl!=='all'&&lvl>learner?`<p class="small-note library-note">Level ${lvl} is browse-only for now. Its lessons open when you reach Level ${lvl}.</p>`:''}<p class="library-count" aria-live="polite">${filtered.length?`Showing ${start+1}–${start+shown.length} of ${filtered.length.toLocaleString('en')}`:''}</p><div class="library-list">${shown.map(i=>{const st=statusOf(i,p);return `<button class="library-row" data-item="${esc(i.id)}" aria-label="${esc(glyphLabel(i))}, ${esc(i.meaning)}, Level ${esc(i.level)}, ${esc(st.state==='locked'?'Locked':st.state==='lesson'?'Ready to learn':st.stageName)}"><span class="library-character ${i.type}">${glyph(i,'')}</span><span class="library-meaning"><strong>${esc(i.meaning)}</strong><small>${i.type==='radical'?'Radical · building block':esc(readingsOf(i).join(' / '))}</small></span><span class="subject-label ${i.type}">${i.type}</span><span class="status-label">L${esc(i.level)} · ${st.state==='locked'?'Locked':st.state==='lesson'?'Ready to learn':esc(st.stageName)}</span>${icon('chevron')}</button>`}).join('')||`<div class="empty-state">${failed?`Level ${lvl} could not be loaded. Your saved progress for it is kept. Reload to try again.`:'No subjects found. Try a character, meaning, or reading.'}</div>`}</div>${pages>1?`<nav class="pager" aria-label="Library pages"><button class="button secondary" data-page="prev" ${libraryPage===0?'disabled':''}>${icon('back')} Previous</button><span>Page ${libraryPage+1} of ${pages}</span><button class="button secondary" data-page="next" ${libraryPage>=pages-1?'disabled':''}>Next ${icon('arrow')}</button></nav>`:''}</section><p class="page-note">Free practice explores the visible list without changing your review schedule.</p>`;
+ return `<section class="page-intro"><div><div class="eyebrow">A PLACE TO EXPLORE</div><h1>Study library</h1><p>Browse all ${total.toLocaleString('en')} subjects across ${levelsCount} level${levelsCount===1?'':'s'}. Browsing never unlocks lessons.</p></div><button class="button secondary" data-action="practice">${icon('play')} Free practice</button></section><section class="panel library-panel"><div class="library-toolbar"><label class="level-select"><span>Level</span><select id="library-level" aria-label="Browse level"><option value="all" ${lvl==='all'?'selected':''}>All levels</option>${levelChoices}</select></label><div class="type-tabs">${[['all','All subjects'],...Object.entries(TYPES)].map(([t,l])=>`<button data-filter="${t}" class="${filter===t?'selected':''}">${l}</button>`).join('')}</div><label class="search-box"><span class="sr-only">Search subjects</span><input id="search" type="search" placeholder="Search characters, meanings or readings…" value="${esc(search)}"></label></div>${lvl!=='all'&&lvl>learner?`<p class="small-note library-note">Level ${lvl} is browse-only for now. Its lessons open when you reach Level ${lvl}.</p>`:''}<p class="library-count" aria-live="polite">${filtered.length?`Showing ${start+1}–${start+shown.length} of ${filtered.length.toLocaleString('en')}`:''}</p><div class="library-list">${shown.map(i=>{const st=statusOf(i,p);const cl=charLenClass(i);return `<button class="library-row" data-item="${esc(i.id)}" aria-label="${esc(glyphLabel(i))}, ${esc(i.meaning)}, Level ${esc(i.level)}, ${esc(st.state==='locked'?'Locked':st.state==='lesson'?'Ready to learn':st.stageName)}"><span class="library-character ${i.type} ${cl}">${glyph(i,'')}</span><span class="library-meaning"><strong>${esc(i.meaning)}</strong><small>${i.type==='radical'?'Radical · building block':esc(readingsOf(i).join(' / '))}</small></span><span class="subject-label ${i.type}">${i.type}</span><span class="status-label">L${esc(i.level)} · ${st.state==='locked'?'Locked':st.state==='lesson'?'Ready to learn':esc(st.stageName)}</span>${icon('chevron')}</button>`}).join('')||`<div class="empty-state">${failed?`Level ${lvl} could not be loaded. Your saved progress for it is kept. Reload to try again.`:'No subjects found. Try a character, meaning, or reading.'}</div>`}</div>${pages>1?`<nav class="pager" aria-label="Library pages"><button class="button secondary" data-page="prev" ${libraryPage===0?'disabled':''}>${icon('back')} Previous</button><span>Page ${libraryPage+1} of ${pages}</span><button class="button secondary" data-page="next" ${libraryPage>=pages-1?'disabled':''}>Next ${icon('arrow')}</button></nav>`:''}</section><p class="page-note">Free practice explores the visible list without changing your review schedule.</p>`;
 }
 function guide() {
  return `<section class="page-intro"><div><div class="eyebrow">FAMILIAR RHYTHM, YOUR OWN PACE</div><h1>A little practice goes a long way.</h1><p>A learning loop inspired by the WaniKani process you know.</p></div></section><div class="guide-grid"><section class="panel guide-section"><span class="number-label">01</span><h2>Learn the little pieces</h2><p>Start with a small batch of radicals. Read the memory story, then prove you remember with a short quiz. Radicals only need a meaning; kanji and vocabulary need both a meaning and a reading.</p></section><section class="panel guide-section"><span class="number-label">02</span><h2>Give your memory some space</h2><p>After you finish a lesson quiz, the item enters Apprentice. Your first review appears in 2 hours on Levels 1–2 and in 4 hours from Level 3. Correct reviews gradually increase the time before you see it again. Misses lower the stage and bring it back sooner.</p></section><section class="panel guide-section"><span class="number-label">03</span><h2>Build on what you remember</h2><p>When a radical reaches Guru, it can unlock kanji that use it. Guru kanji unlock vocabulary. When 90% of a level’s kanji have reached Guru, the next level opens. Earned unlocks stay earned even if a stage later drops.</p></section><section class="panel guide-section"><span class="number-label">04</span><h2>Make it a family habit</h2><p>Each learner has separate progress. Sign in with your email and password to save progress to your account and continue on another device. Guest profiles stay in this browser. Export a backup from Settings whenever you want an extra copy.</p></section></div><section class="panel schedule-panel"><h2>The review rhythm</h2><p>Each label shows the wait at that stage. Levels 1–2 use WaniKani’s faster Apprentice timing; Level 3 onward uses the standard timing.</p>${[['Levels 1–2',['2 hours','4 hours','8 hours','23 hours']],['Level 3 and up',['4 hours','8 hours','23 hours','47 hours']]].map(([label,early])=>`<h3 class="schedule-label">${label}</h3><div class="schedule-flow">${[...early.map((d,n)=>`Apprentice ${n+1}|${d}`),'Guru 1|6 days 23 hours','Guru 2|13 days 23 hours','Master|29 days 23 hours','Enlightened|119 days 23 hours','Burned|Remembered'].map(t=>{const [n,d]=t.split('|');return `<div><strong>${n}</strong><span>${d}</span></div>`}).join('')}</div>`).join('')}<p class="page-note">This is an independent study app, not an official WaniKani client. Review times are kept exactly as scheduled when the app is updated.</p><a class="text-button" href="https://knowledge.wanikani.com/wanikani/srs-stages/" target="_blank" rel="noopener noreferrer">WaniKani’s SRS stages ${icon('arrow')}</a></section>`;
 }
 function settings() {
  const p=profile(), unknown=curriculum?unknownProgressIds(p,curriculum.knownIds).length:0, c=curriculum?.counts||{radical:0,kanji:0,vocabulary:0}, lv=curriculum?.loadedLevels||[];
- return `<section class="page-intro"><div><div class="eyebrow">MAKE YOURSELF AT HOME</div><h1>Your study space</h1><p>A pace that fits you, and progress that stays yours.</p></div></section><div class="settings-grid"><section class="panel settings-section"><h2>Learner profile</h2><p>${sync.state.profile?'Your account keeps your lessons and reviews in sync.':'Guest profiles have separate progress on this browser.'}</p><label class="field-label" for="profile-name">Your name</label><form id="rename-form" class="inline-form"><input id="profile-name" required maxlength="40" value="${esc(p.name)}"><button class="button secondary">Save name</button></form><button class="text-button" data-action="profiles">${icon('people')} ${sync.state.profile?'Manage account':'Manage guest learners'}</button><hr><h2>Lesson size</h2><p>Choose how many new subjects to learn in one sitting.</p><div class="batch-options">${[3,5,10].map(n=>`<button class="${batchSizeOf(p)===n?'selected':''}" data-batch="${n}" aria-pressed="${batchSizeOf(p)===n}">${n}<small>subjects</small></button>`).join('')}</div><hr><h2>Review batch size</h2><p>Choose how many due reviews to tackle in one sitting.</p><div class="batch-options">${[10,20,50,0].map(n=>`<button class="${reviewBatchSizeOf(p)===n?'selected':''}" data-review-batch="${n}" aria-pressed="${reviewBatchSizeOf(p)===n}">${n===0?'All':n}<small>${n===0?'due reviews':'subjects'}</small></button>`).join('')}</div></section><section class="panel settings-section"><h2>Keep your progress safe</h2><p>${sync.state.profile?'Your progress is saved to your cloud account after each completed lesson batch or review item. A backup gives you an extra copy.':'You’re using a guest profile. Progress lives in this browser until you sign in and transfer it to an empty account.'}</p>${sync.state.profile?`<div class="cloud-account">${icon('check')}<span><strong>${esc(cloud.getSession()?.user.email||'Your account')}</strong><small>${sync.state.error?'Sync needs attention':'Cloud progress connected'}</small></span></div><button class="text-button" data-action="change-password">${icon('lock')} Change password</button>`:`<button class="button secondary full-width" data-action="account">${icon('people')} Sign in to sync progress</button>`}<button class="button primary full-width" data-action="export">${icon('download')} Export my progress</button><label class="button secondary full-width import-label">Import a backup<input id="import-file" type="file" accept=".json,application/json" class="sr-only"></label>${unknown?`<p class="small-note">${unknown} saved subject${unknown===1?'':'s'} belong to levels that aren’t loaded in this version. They are kept safely in your progress and backups.</p>`:''}<p class="small-note">${sync.state.profile?'Import is available for an empty cloud account. Existing cloud progress is never replaced by an import.':'Importing adds a new guest profile. Sign in to an empty account to transfer your guest progress to the cloud.'}</p><hr><h2>Review reminders</h2><div id="notification-settings" aria-live="polite">Checking notification support…</div><hr><h2>Already know Japanese?</h2><p>Run a placement check on your current level (and earlier ones). Strong scores mark items Guru I—dependents unlock, early 2-hour waits are skipped, and later reviews stay light.</p><button class="button secondary full-width" data-action="placement">Start placement check</button><hr><h2>About this little space</h2><p>Komorebi (木漏れ日) means sunlight filtering through leaves. This version includes ${c.radical.toLocaleString('en')} radicals, ${c.kanji.toLocaleString('en')} kanji, and ${c.vocabulary.toLocaleString('en')} vocabulary words${lv.length?` across Level${lv.length===1?` ${lv[0]}`:`s ${lv[0]}–${lv[lv.length-1]}`}`:''}.</p><p class="small-note">Study explanations are from your supplied WaniKani export. WaniKani is a trademark of Tofugu LLC. This app is independent and unaffiliated.</p></section></div>`;
+ return `<section class="page-intro"><div><div class="eyebrow">MAKE YOURSELF AT HOME</div><h1>Your study space</h1><p>A pace that fits you, and progress that stays yours.</p></div></section><div class="settings-grid"><section class="panel settings-section"><h2>Learner profile</h2><p>${sync.state.profile?'Your account keeps your lessons and reviews in sync.':'Guest profiles have separate progress on this browser.'}</p><label class="field-label" for="profile-name">Your name</label><form id="rename-form" class="inline-form"><input id="profile-name" required maxlength="40" value="${esc(p.name)}"><button class="button secondary">Save name</button></form><label class="field-label" for="days-studied-input">Total days studied</label><form id="days-studied-form" class="inline-form"><input id="days-studied-input" type="number" min="0" max="99999" value="${daysStudiedOf(p)}" required><button class="button secondary">Save days</button></form><button class="text-button" data-action="profiles">${icon('people')} ${sync.state.profile?'Manage account':'Manage guest learners'}</button><hr><h2>Lesson size</h2><p>Choose how many new subjects to learn in one sitting.</p><div class="batch-options">${[3,5,10].map(n=>`<button class="${batchSizeOf(p)===n?'selected':''}" data-batch="${n}" aria-pressed="${batchSizeOf(p)===n}">${n}<small>subjects</small></button>`).join('')}</div><hr><h2>Daily lesson target</h2><p>Pace your new lessons per day like WaniKani to prevent review avalanches.</p><div class="batch-options">${[5,10,15,20,0].map(n=>`<button class="${dailyLessonTargetOf(p)===n?'selected':''}" data-daily-target="${n}" aria-pressed="${dailyLessonTargetOf(p)===n}">${n===0?'Off':n}<small>${n===0?'unlimited':'per day'}</small></button>`).join('')}</div><hr><h2>Review batch size</h2><p>Choose how many due reviews to tackle in one sitting.</p><div class="batch-options">${[10,20,50,0].map(n=>`<button class="${reviewBatchSizeOf(p)===n?'selected':''}" data-review-batch="${n}" aria-pressed="${reviewBatchSizeOf(p)===n}">${n===0?'All':n}<small>${n===0?'due reviews':'subjects'}</small></button>`).join('')}</div></section><section class="panel settings-section"><h2>Keep your progress safe</h2><p>${sync.state.profile?'Your progress is saved to your cloud account after each completed lesson batch or review item. A backup gives you an extra copy.':'You’re using a guest profile. Progress lives in this browser until you sign in and transfer it to an empty account.'}</p>${sync.state.profile?`<div class="cloud-account">${icon('check')}<span><strong>${esc(cloud.getSession()?.user.email||'Your account')}</strong><small>${sync.state.error?'Sync needs attention':'Cloud progress connected'}</small></span></div><button class="text-button" data-action="change-password">${icon('lock')} Change password</button>`:`<button class="button secondary full-width" data-action="account">${icon('people')} Sign in to sync progress</button>`}<button class="button primary full-width" data-action="export">${icon('download')} Export my progress</button><label class="button secondary full-width import-label">Import a backup<input id="import-file" type="file" accept=".json,application/json" class="sr-only"></label>${unknown?`<p class="small-note">${unknown} saved subject${unknown===1?'':'s'} belong to levels that aren’t loaded in this version. They are kept safely in your progress and backups.</p>`:''}<p class="small-note">${sync.state.profile?'Import is available for an empty cloud account. Existing cloud progress is never replaced by an import.':'Importing adds a new guest profile. Sign in to an empty account to transfer your guest progress to the cloud.'}</p><hr><h2>Review reminders</h2><div id="notification-settings" aria-live="polite">Checking notification support…</div><hr><h2>Already know Japanese?</h2><p>Run a placement check on your current level (and earlier ones). Strong scores mark items Guru I—dependents unlock, early 2-hour waits are skipped, and later reviews stay light.</p><button class="button secondary full-width" data-action="placement">Start placement check</button><hr><h2>About this little space</h2><p>Komorebi (木漏れ日) means sunlight filtering through leaves. This version includes ${c.radical.toLocaleString('en')} radicals, ${c.kanji.toLocaleString('en')} kanji, and ${c.vocabulary.toLocaleString('en')} vocabulary words${lv.length?` across Level${lv.length===1?` ${lv[0]}`:`s ${lv[0]}–${lv[lv.length-1]}`}`:''}.</p><p class="small-note">Study explanations are from your supplied WaniKani export. WaniKani is a trademark of Tofugu LLC. This app is independent and unaffiliated.</p></section></div>`;
 }
 function subjectDetails(item, context='detail') {
  const st=statusOf(item);
- return `<div class="subject-banner ${item.type}"><span class="subject-kind">${item.type} <span>•</span> LEVEL ${esc(item.level)}</span><div class="big-character">${glyph(item,`${item.meaning} radical`)}</div><h2>${esc(item.meaning)}</h2>${readingsOf(item).length?`<p class="banner-reading" lang="ja">${esc(readingsOf(item).join(' ・ '))}</p>`:''}</div><div class="subject-content"><section><span class="eyebrow">MEANING</span><h3>${esc((item.meanings||[item.meaning]).join(' · '))}</h3><p>${esc(item.meaningMnemonic)||'Look closely at the character and connect its shape with its meaning.'}</p></section>${item.type!=='radical'?`<section><span class="eyebrow">READING</span><h3 lang="ja">${esc(readingsOf(item).join(' ・ '))}</h3><p>${esc(item.readingMnemonic)}</p>${item.otherReadings?.length?`<p class="small-note">Other kanji readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span>. The quiz asks for the reading taught above.</p>`:''}</section>`:''}${item.components?.length?`<section><span class="eyebrow">BUILDING BLOCKS</span><div class="component-list">${item.components.map(c=>`<span><b>${glyph(c,'')}</b>${esc(c.name)}</span>`).join('')}</div></section>`:''}${item.sentences?.length?`<section><span class="eyebrow">IN CONTEXT</span>${item.sentences.map(s=>`<div class="sentence"><p lang="ja">${esc(s.japanese)}</p><small>${esc(s.english)}</small></div>`).join('')}</section>`:''}${context==='detail'?`<section class="subject-status"><strong>${st.state==='locked'?'Not unlocked yet':st.state==='lesson'?'Ready for your lessons':esc(st.stageName)}</strong><p>${st.state==='locked'?(st.unmetDependencies.length?`First reach Guru with: ${st.unmetDependencies.map(id=>esc(getItem(id)?`${getItem(id).meaning} (Level ${getItem(id).level})`:id)).join(', ')}.`:`Opens when you reach Level ${esc(item.level)}.`):st.availableAt?`Next review: ${prettyDate(st.availableAt)}`:'Every small step counts.'}</p></section>`:''}${!hasPassed(profile().progress[item.id])?`<div class="know-actions"><button class="button secondary full-width" type="button" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button><p class="small-note">Skips early Apprentice waits. Sets Guru I so dependents unlock; light reviews stay on the schedule.</p></div>`:''}<a class="source-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a></div>`;
+ const cl=charLenClass(item);
+ return `<div class="subject-banner ${item.type} ${cl}"><span class="subject-kind">${item.type} <span>•</span> LEVEL ${esc(item.level)}</span><div class="big-character ${cl}">${glyph(item,`${item.meaning} radical`)}</div><h2>${esc(item.meaning)}</h2>${readingsOf(item).length?`<p class="banner-reading" lang="ja">${esc(readingsOf(item).join(' ・ '))}</p>`:''}</div><div class="subject-content"><section><span class="eyebrow">MEANING</span><h3>${esc((item.meanings||[item.meaning]).join(' · '))}</h3><p>${esc(item.meaningMnemonic)||'Look closely at the character and connect its shape with its meaning.'}</p></section>${item.type!=='radical'?`<section><span class="eyebrow">READING</span><h3 lang="ja">${esc(readingsOf(item).join(' ・ '))}</h3><p>${esc(item.readingMnemonic)}</p>${item.otherReadings?.length?`<p class="small-note">Other kanji readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span>. The quiz asks for the reading taught above.</p>`:''}</section>`:''}${item.components?.length?`<section><span class="eyebrow">BUILDING BLOCKS</span><div class="component-list">${item.components.map(c=>`<span><b>${glyph(c,'')}</b>${esc(c.name)}</span>`).join('')}</div></section>`:''}${item.sentences?.length?`<section><span class="eyebrow">IN CONTEXT</span>${item.sentences.map(s=>`<div class="sentence"><p lang="ja">${esc(s.japanese)}</p><small>${esc(s.english)}</small></div>`).join('')}</section>`:''}${context==='detail'?`<section class="subject-status"><strong>${st.state==='locked'?'Not unlocked yet':st.state==='lesson'?'Ready for your lessons':esc(st.stageName)}</strong><p>${st.state==='locked'?(st.unmetDependencies.length?`First reach Guru with: ${st.unmetDependencies.map(id=>esc(getItem(id)?`${getItem(id).meaning} (Level ${getItem(id).level})`:id)).join(', ')}.`:`Opens when you reach Level ${esc(item.level)}.`):st.availableAt?`Next review: ${prettyDate(st.availableAt)}`:'Every small step counts.'}</p></section>`:''}${!hasPassed(profile().progress[item.id])?`<div class="know-actions"><button class="button secondary full-width" type="button" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button>${context==='lesson'?'':`<p class="small-note">Skips early Apprentice waits. Sets Guru I so dependents unlock; light reviews stay on the schedule.</p>`}</div>`:''}<a class="source-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a></div>`;
 }
 function openSubject(id) {
  const item=getItem(id); if(!item)return;
@@ -186,8 +402,8 @@ function openProfiles() {
  if (cloud.getSession()) { openAccount(); return; }
  const modal=$('#modal');modal.className='profiles-dialog';modal.innerHTML=`<button class="modal-close" data-close aria-label="Close profiles">${icon('close')}</button><span class="eyebrow">YOUR FAMILY’S STUDY SPACE</span><h2 id="modal-title">Who’s learning today?</h2><p>Separate progress for every learner on this browser.</p><div class="profile-list">${state.profiles.map(p=>`<button data-profile="${esc(p.id)}"><span class="avatar">${esc(Array.from(p.name)[0].toUpperCase())}</span><span><strong>${esc(p.name)}</strong><small>${Object.keys(p.progress).length} subjects learned</small></span>${p.id===profile().id?icon('check'):icon('chevron')}</button>`).join('')}</div><form id="add-profile"><label class="field-label" for="new-name">Add a learner</label><div class="inline-form"><input id="new-name" placeholder="Your brother’s name" required maxlength="40"><button class="button primary">${icon('plus')} Add</button></div></form><p class="small-note">These are guest profiles on this browser. For accounts that sync across devices, sign in.</p><button class="button secondary full-width" id="guest-signin">Sign in to your account</button>`;modal.showModal();$('[data-close]',modal).onclick=()=>modal.close();
  $('#guest-signin').onclick=()=>{modal.close();openAccount();};
- modal.querySelectorAll('[data-profile]').forEach(b=>b.onclick=()=>{if(!leaveSession())return;if(persist({...state,activeProfileId:b.dataset.profile})){session=null;modal.close();render();}});
- $('#add-profile',modal).onsubmit=e=>{e.preventDefault();if(!leaveSession())return;const name=$('#new-name').value.trim();if(!name)return;const p=newProfile(name);if(persist({...state,activeProfileId:p.id,profiles:[...state.profiles,p]})){session=null;modal.close();render();toast(`Welcome, ${name}. Your journey starts here.`);}};
+ modal.querySelectorAll('[data-profile]').forEach(b=>b.onclick=()=>{if(!leaveSession())return;if(persist({...state,activeProfileId:b.dataset.profile})){session=null;dashboardLevel=null;modal.close();render();}});
+ $('#add-profile',modal).onsubmit=e=>{e.preventDefault();if(!leaveSession())return;const name=$('#new-name').value.trim();if(!name)return;const p=newProfile(name);if(persist({...state,activeProfileId:p.id,profiles:[...state.profiles,p]})){session=null;dashboardLevel=null;modal.close();render();toast(`Welcome, ${name}. Your journey starts here.`);}};
 }
 const LEAVE_MESSAGE='Leave this session? Completed review items are saved. An unfinished lesson batch or review item will need to be repeated.';
 
@@ -383,6 +599,11 @@ function renderSession() {
  if(s.phase==='saving')return `<section class="session-done session-saving" aria-busy="true"><div class="done-icon">${icon('clock')}</div><span class="eyebrow">PLACEMENT CHECK</span><h1>Saving your placement results…</h1><p role="status">Please keep this page open. Your results appear as soon as they are saved.</p></section>`;
  const learning=s.phase==='learn', item=learning?s.selected[s.position]:getItem(s.queue[0].id), kind=learning?'':s.queue[0].kind;
  const complete=learning?s.position:s.totalQuestions-s.queue.length;
+ let preservedInputVal = '';
+ const prevAnswer = typeof document !== 'undefined' ? document.getElementById('answer') : null;
+ if (prevAnswer && !s.feedback && prevAnswer.dataset.qid === item.id && prevAnswer.dataset.qkind === kind) {
+  preservedInputVal = prevAnswer.value || '';
+ }
 
  const hints = s.feedback ? hintBanners(item, kind, s.feedback) : [];
  const hintHtml = hints.length ? `<div class="hint-banners-list">${hints.map(h => `<div class="hint-banner" role="status">${esc(h)}</div>`).join('')}</div>` : '';
@@ -416,6 +637,9 @@ function renderSession() {
         </div>`).join('')}
       </div>
     </section>` : ''}
+    ${item.sourceUrl ? `<div class="info-section info-source-section">
+      <a class="source-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a>
+    </div>` : ''}
   </div>` : ''}
  ` : '';
 
@@ -426,8 +650,9 @@ function renderLessonFooter(s) {
       ${s.selected.map((item, idx) => {
         const isActive = idx === s.position;
         const isCompleted = idx < s.position;
-        return `<button type="button" class="lesson-tray-item ${item.type} ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}" data-lesson-jump="${idx}" aria-label="${esc(item.meaning)} (${item.type})">
-          <span class="lesson-tray-glyph">${glyph(item, '')}</span>
+        const cl = charLenClass(item);
+        return `<button type="button" class="lesson-tray-item ${item.type} ${cl} ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}" data-lesson-jump="${idx}" aria-label="${esc(item.meaning)} (${item.type})">
+          <span class="lesson-tray-glyph ${cl}">${glyph(item, '')}</span>
           <span class="lesson-tray-name">${esc(item.meaning)}</span>
         </button>`;
       }).join('')}
@@ -437,9 +662,9 @@ function renderLessonFooter(s) {
 
   const wrapUpBtn = (s.mode==='review' && s.phase==='quiz' && s.unstarted?.length) ? `<button class="text-button wrapup-btn ${s.wrappingUp?'active':''}" data-action="toggle-wrapup" type="button" title="${s.wrappingUp?'Cancel wrap up':'Finish current active items without adding more'}">${icon('clock')} ${s.wrappingUp?'Wrapping up…':'Wrap up'}</button>` : '';
 
-  return `<section class="session-header"><div class="session-header-left"><button class="text-button" data-action="exit-session">${icon('back')} Dashboard</button>${wrapUpBtn}</div><span>${s.mode==='lesson'?'New lessons':s.mode==='review'?'Spaced reviews':s.mode==='placement'?'Placement check':'Free practice'} <b>·</b> ${learning?`${s.position+1} of ${s.selected.length}`:`${s.finished.length} of ${s.selected.length} subjects`}</span></section><div class="session-progress"><span style="width:${learning?s.position/s.selected.length*100:s.finished.length/s.selected.length*100}%"></span></div>${learning?`<section class="lesson-card">${subjectDetails(item,'lesson')}<div class="lesson-controls"><button class="button secondary" data-action="previous-lesson" ${s.position===0?'disabled':''}>${icon('back')} Previous</button><span>${s.position+1} / ${s.selected.length}</span><button class="button primary" data-action="next-lesson">${s.position===s.selected.length-1?'Start the quiz':'Next subject'} ${icon('arrow')}</button></div>${!hasPassed(profile().progress[item.id])?`<button class="text-button know-inline" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button>`:''}</section>${renderLessonFooter(s)}`:`<section class="quiz-card"><div class="quiz-prompt ${item.type}"><div class="quiz-character">${glyph(item,'radical image')}</div></div><div class="quiz-body"><h1>${kind==='meaning'?'What does this mean?':'How do you read this?'}</h1><p>${kind==='meaning'?'Enter an English meaning.':item.type==='kanji'?'Enter the reading you learned for this kanji.':'Enter this word’s reading in kana or romaji.'}</p><form id="answer-form" action="javascript:void(0)" onsubmit="return false;"><label class="sr-only" for="answer">${kind==='meaning'?'Meaning in English':'Reading in kana or romaji'}</label><input id="answer" class="answer-input ${s.feedback?s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect':''}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${kind==='meaning'?'Your answer…':'かな or romaji…'}" ${s.feedback?'disabled':''} value="${esc(s.feedback?.answer||'')}">${kind==='reading'?'':`<div id="kana-preview" class="kana-preview">Press Enter to check your answer.</div>`}${s.levelUpEvent ? renderLevelUpTooltip(s.levelUpEvent) : ''}${s.feedback?`<div class="answer-feedback ${s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect'}" role="status"><strong>${s.feedback.correct?'That’s right!':s.feedback.retry?'Another reading—try the one taught here.':'Not quite. Let’s try it again.'}</strong><span>${esc(feedbackSummary(item,kind,s.feedback,s.queue))}</span></div>${hintHtml}${infoDrawerHtml}<button type="button" class="button primary full-width" data-action="continue-answer">Continue ${icon('arrow')}</button>${!s.feedback.correct&&!s.feedback.retry?`<details class="answer-explanation"><summary>Revisit the memory story</summary><p>${esc(kind==='meaning'?item.meaningMnemonic:item.readingMnemonic)}</p></details>`:''}`:`<button class="button primary full-width" type="submit">Check answer ${icon('arrow')}</button><button class="text-button dont-know" type="button" data-action="dont-know">I don’t remember yet</button>`}</form></div></section>${s.mode==='review'||s.mode==='lesson'?'':`<p class="session-footnote">${s.mode==='practice'?'Just practice. Your spaced review progress will stay the same.':s.mode==='placement'?'Placement only marks Guru when you pass (≥90% or an 8-answer streak). Nothing is demoted.':'Both meaning and reading must be recalled before an item is complete.'}</p>`}`}`;
+  return `<section class="session-header"><div class="session-header-left"><button class="text-button" data-action="exit-session">${icon('back')} Dashboard</button>${wrapUpBtn}</div><span>${s.mode==='lesson'?'New lessons':s.mode==='review'?'Spaced reviews':s.mode==='placement'?'Placement check':'Free practice'} <b>·</b> ${learning?`${s.position+1} of ${s.selected.length}`:`${s.finished.length} of ${s.selected.length} subjects`}</span></section><div class="session-progress"><span style="width:${learning?s.position/s.selected.length*100:s.finished.length/s.selected.length*100}%"></span></div>${learning?`<section class="lesson-card">${subjectDetails(item,'lesson')}<div class="lesson-controls"><button class="button secondary" data-action="previous-lesson" ${s.position===0?'disabled':''}>${icon('back')} Previous</button><span>${s.position+1} / ${s.selected.length}</span><button class="button primary" data-action="next-lesson">${s.position===s.selected.length-1?'Start the quiz':'Next subject'} ${icon('arrow')}</button></div></section>${renderLessonFooter(s)}`:`<section class="quiz-card"><div class="quiz-prompt ${item.type} ${charLenClass(item)}"><div class="quiz-character ${charLenClass(item)}">${glyph(item,'radical image')}</div></div><div class="quiz-body"><h1>${kind==='meaning'?'What does this mean?':'How do you read this?'}</h1><p>${kind==='meaning'?'Enter an English meaning.':item.type==='kanji'?'Enter the reading you learned for this kanji.':'Enter this word’s reading in kana or romaji.'}</p><form id="answer-form" action="javascript:void(0)" onsubmit="return false;"><label class="sr-only" for="answer">${kind==='meaning'?'Meaning in English':'Reading in kana or romaji'}</label><input id="answer" data-qid="${esc(item.id)}" data-qkind="${esc(kind)}" class="answer-input ${s.feedback?s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect':''}" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" lang="${kind==='reading'?'ja':'en'}" enterkeyhint="done" placeholder="${kind==='meaning'?'Your answer…':'かな or romaji…'}" ${s.feedback?'disabled':''} value="${esc(s.feedback?.answer??preservedInputVal)}">${kind==='reading'?'':`<div id="kana-preview" class="kana-preview">Press Enter to check your answer.</div>`}${s.levelUpEvent ? renderLevelUpTooltip(s.levelUpEvent) : ''}${s.feedback?`<div class="answer-feedback ${s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect'}" role="status"><strong>${s.feedback.correct?(s.feedback.typo?'Your answer had a slight typo':'That’s right!'):s.feedback.retry?'Another reading—try the one taught here.':'Not quite. Let’s try it again.'}</strong><span>${esc(feedbackSummary(item,kind,s.feedback,s.queue))}</span></div>${hintHtml}${infoDrawerHtml}<button type="button" class="button primary full-width" data-action="continue-answer">Continue ${icon('arrow')}</button>${!s.feedback.correct&&!s.feedback.retry?`<details class="answer-explanation"><summary>Revisit the memory story</summary><p>${esc(kind==='meaning'?item.meaningMnemonic:item.readingMnemonic)}</p></details>`:''}`:`<button class="button primary full-width" type="submit">Check answer ${icon('arrow')}</button><button class="text-button dont-know" type="button" data-action="dont-know">I don’t remember yet</button>`}</form></div></section>${s.mode==='review'||s.mode==='lesson'?'':`<p class="session-footnote">${s.mode==='practice'?'Just practice. Your spaced review progress will stay the same.':s.mode==='placement'?'Placement only marks Guru when you pass (≥90% or an 8-answer streak). Nothing is demoted.':'Both meaning and reading must be recalled before an item is complete.'}</p>`}`}`;
 }
-function submitAnswer(unknown=false) {
+async function submitAnswer(unknown=false) {
  if(!session||session.phase!=='quiz'||session.feedback)return;
  if(session.levelUpEvent){if(session.levelUpTimer)clearTimeout(session.levelUpTimer);session.levelUpEvent=null;session.levelUpTimer=null;}
  const q=session.queue[0],item=getItem(q.id);
@@ -455,21 +680,10 @@ function submitAnswer(unknown=false) {
   if(session.mode==='placement'){
    session.placementAnswers=(session.placementAnswers||[]).concat([{id:item.id,kind:q.kind,correct:!!result.correct}]);
   }
- }
- session.feedback={...result,answer:unknown?'':answer};render();requestAnimationFrame(()=>$('[data-action="continue-answer"]')?.focus());
-}
-async function continueAnswer(){
- if(!session?.feedback||busy)return;
- if(session.levelUpTimer){clearTimeout(session.levelUpTimer);session.levelUpTimer=null;}
- const s=structuredClone(session);
- s.infoOpen=false;
- if(!s.feedback.retry){
-  const q=s.queue.shift();if(!s.feedback.correct && s.mode!=='placement')s.queue.push(q);
-  if(!s.queue.some(x=>x.id===q.id) && !s.finished.includes(q.id)) {
-   if(s.mode==='review') {
-    const stageBefore = profile().progress[q.id]?.stage || 0;
-    const nextProf = withLevelRecord(completeReview(profile(),q.id,{mistakes:s.mistakes[q.id]||0,level:levelOf(q.id)},Date.now()));
-    if(!await updateProfile(nextProf))return;
+  if(session.mode==='review' && result.correct && !session.queue.slice(1).some(x=>x.id===q.id) && !session.finished.includes(q.id)) {
+   const stageBefore = profile().progress[q.id]?.stage || 0;
+   const nextProf = withLevelRecord(completeReview(profile(),q.id,{mistakes:session.mistakes[q.id]||0,level:levelOf(q.id)},Date.now()));
+   if(await updateProfile(nextProf)) {
     const stageAfter = nextProf.progress[q.id]?.stage || 0;
     const milestones = [5, 7, 8, 9];
     let levelUpEvent = null;
@@ -493,20 +707,33 @@ async function continueAnswer(){
       };
     }
     if (levelUpEvent) {
-      s.levelUpEvent = levelUpEvent;
+      session.levelUpEvent = levelUpEvent;
     }
+    session.finished.push(q.id);
    }
-   s.finished.push(q.id);
-   if(s.mode==='review'){
-    s.activeIds = (s.activeIds||[]).filter(id=>id!==q.id);
-    if(!s.wrappingUp && s.unstarted?.length){
-     const nextItem=s.unstarted.shift();
-     s.activeIds.push(nextItem.id);
-     const newQuestions=shuffle(questionsForItem(nextItem));
-     for(const nq of newQuestions){
-      const insertIdx=s.queue.length>1 ? 1 + Math.floor(Math.random()*s.queue.length) : s.queue.length;
-      s.queue.splice(insertIdx,0,nq);
-     }
+  }
+ }
+ session.feedback={...result,answer:unknown?'':answer};render();requestAnimationFrame(()=>$('[data-action="continue-answer"]')?.focus());
+}
+async function continueAnswer(){
+ if(!session?.feedback||busy)return;
+ if(session.levelUpTimer){clearTimeout(session.levelUpTimer);session.levelUpTimer=null;}
+ session.levelUpEvent=null;
+ const s=structuredClone(session);
+ s.infoOpen=false;
+ s.levelUpEvent=null;
+ s.levelUpTimer=null;
+ if(!s.feedback.retry){
+  const q=s.queue.shift();if(!s.feedback.correct && s.mode!=='placement')s.queue.push(q);
+  if(s.mode==='review' && s.finished.includes(q.id) && !s.queue.some(x=>x.id===q.id)){
+   s.activeIds = (s.activeIds||[]).filter(id=>id!==q.id);
+   if(!s.wrappingUp && s.unstarted?.length){
+    const nextItem=s.unstarted.shift();
+    s.activeIds.push(nextItem.id);
+    const newQuestions=shuffle(questionsForItem(nextItem));
+    for(const nq of newQuestions){
+     const insertIdx=s.queue.length>1 ? 1 + Math.floor(Math.random()*s.queue.length) : s.queue.length;
+     s.queue.splice(insertIdx,0,nq);
     }
    }
   }
@@ -517,15 +744,6 @@ async function continueAnswer(){
  }
  if(!s.queue.length){if(s.mode==='lesson'&&!await updateProfile(withLevelRecord(startLearning(profile(),s.selected.map(i=>i.id),Date.now(),levelOf))))return;s.phase='done';}
  session=s;render();
- if(s.levelUpEvent) {
-   s.levelUpTimer = setTimeout(() => {
-     if (session && session.levelUpEvent) {
-       session.levelUpEvent = null;
-       session.levelUpTimer = null;
-       render();
-     }
-   }, 3000);
- }
 }
 /** After a learning event, record a newly earned level permanently (never on load). */
 function withLevelRecord(next){
@@ -544,6 +762,7 @@ function bind(){
  if($('#library-level'))$('#library-level').onchange=e=>{libraryLevel=e.target.value==='all'?'all':Number(e.target.value);libraryPage=0;render();$('#library-level').focus();};
  document.querySelectorAll('[data-item]').forEach(b=>b.onclick=()=>openSubject(b.dataset.item));
  document.querySelectorAll('[data-batch]').forEach(b=>b.onclick=async()=>{if(await updateProfile({...profile(),settings:{...profile().settings,batchSize:Number(b.dataset.batch)}}))render();});
+ document.querySelectorAll('[data-daily-target]').forEach(b=>b.onclick=async()=>{if(await updateProfile({...profile(),settings:{...profile().settings,dailyLessonTarget:Number(b.dataset.dailyTarget)}}))render();});
  document.querySelectorAll('[data-review-batch]').forEach(b=>b.onclick=async()=>{if(await updateProfile({...profile(),settings:{...profile().settings,reviewBatchSize:Number(b.dataset.reviewBatch)}}))render();});
  document.querySelectorAll('[data-action]').forEach(b=>b.onclick=async()=>{
   const action=b.dataset.action;
@@ -577,11 +796,29 @@ function bind(){
   if(action==='next-lesson'){if(session.position<session.selected.length-1)session.position++;else makeQuiz();render();window.scrollTo(0,0);}
   if(action==='previous-lesson'&&session.position>0){session.position--;render();window.scrollTo(0,0);}
   if(action==='toggle-info'){if(session){session.infoOpen=!session.infoOpen;render();}}
-  if(action==='dismiss-levelup'){if(session){if(session.levelUpTimer){clearTimeout(session.levelUpTimer);session.levelUpTimer=null;}session.levelUpEvent=null;render();}}
+  if(action==='dismiss-levelup'){if(session){if(session.levelUpTimer){clearTimeout(session.levelUpTimer);session.levelUpTimer=null;}session.levelUpEvent=null;const el=document.querySelector('.levelup-tooltip');if(el)el.remove();else render();}}
   if(action==='continue-answer')continueAnswer();
   if(action==='dont-know')submitAnswer(true);
+  if(action==='prev-dashboard-level'){
+   const userLvl=currentLevel(profile());
+   const avail=(curriculum?.availableLevels||[userLvl]).filter(l=>l<=userLvl);
+   const minLvl=avail[0]||1;
+   const cur=dashboardLevel||userLvl;
+   if(cur>minLvl){dashboardLevel=cur-1;render();}
+   return;
+  }
+  if(action==='next-dashboard-level'){
+   const userLvl=currentLevel(profile());
+   const cur=dashboardLevel||userLvl;
+   if(cur<userLvl){dashboardLevel=cur+1;render();}
+   return;
+  }
   if(action==='finish'||action==='exit-session'){if(action==='exit-session'&&!leaveSession())return;session=null;go('dashboard');}
  });
+ if($('#dashboard-level-select'))$('#dashboard-level-select').onchange=e=>{
+  const val=Number(e.target.value);
+  if(!Number.isNaN(val)){dashboardLevel=val;render();}
+ };
  document.querySelectorAll('[data-lesson-jump]').forEach(b=>{
   b.onclick=()=>{
    const idx=Number(b.dataset.lessonJump);
@@ -593,23 +830,23 @@ function bind(){
  if($('#answer-form'))$('#answer-form').onsubmit=e=>{e.preventDefault();submitAnswer();};
  if($('#answer')&&session.queue[0]?.kind==='reading'){
   const inputEl=$('#answer');
-  inputEl.oninput=e=>{
-   if(e.isComposing)return;
+  const convertAndApply=(isFinal=false)=>{
    const raw=inputEl.value,cursor=inputEl.selectionStart??raw.length,prefix=raw.slice(0,cursor);
-   const converted=toHiragana(raw,{incremental:true});
+   const converted=toHiragana(raw,{incremental:!isFinal});
    if(converted!==raw){
-    const newCursor=toHiragana(prefix,{incremental:true}).length;
+    const newCursor=toHiragana(prefix,{incremental:!isFinal}).length;
     inputEl.value=converted;
     try{inputEl.setSelectionRange(newCursor,newCursor);}catch{}
    }
   };
-  inputEl.addEventListener('compositionend',()=>{
-   const raw=inputEl.value,converted=toHiragana(raw,{incremental:true});
-   if(converted!==raw)inputEl.value=converted;
-  });
+  inputEl.addEventListener('input',()=>convertAndApply(false));
+  inputEl.addEventListener('compositionupdate',()=>convertAndApply(false));
+  inputEl.addEventListener('compositionend',()=>convertAndApply(false));
+  inputEl.addEventListener('blur',()=>convertAndApply(true));
  }
  if($('#search'))$('#search').oninput=e=>{const pos=e.target.selectionStart;search=e.target.value;libraryPage=0;render();$('#search').focus();try{$('#search').setSelectionRange(pos,pos);}catch{}};
  if($('#rename-form'))$('#rename-form').onsubmit=async e=>{e.preventDefault();const name=$('#profile-name').value.trim();if(name&&await updateProfile({...profile(),name})){render();toast('Your name has been updated.');}};
+ if($('#days-studied-form'))$('#days-studied-form').onsubmit=async e=>{e.preventDefault();const days=parseInt($('#days-studied-input').value,10);if(!isNaN(days)&&days>=0&&await updateProfile({...profile(),daysStudied:days})){render();toast('Total days studied has been updated.');}};
  if($('#import-file'))$('#import-file').onchange=e=>importProgress(e.target.files[0]);
 }
 async function mountNotificationSettings(){
@@ -702,7 +939,11 @@ try {
  items=curriculum.items;itemsById=new Map(items.map(i=>[i.id,i]));
  await loadImages(curriculum.imagePaths);
  window.__komorebi={levels:curriculum.levels.map(({level,status,itemCount})=>({level,status,itemCount})),mode:curriculum.mode,datasetVersion:curriculum.datasetVersion};
- state=readState();if(!savedRaw&&storageOK)persist(state);
+ state=readState();
+ if (storageOK) {
+  state.profiles = state.profiles.map(ensureAccountBaseline);
+  persist(state);
+ }
  // Restore the view from #library/#guide/#settings. Supabase auth fragments are left for initializeFromUrl().
  const startView=viewFromHash(location.hash);if(startView)view=startView;
  historyCall('replaceState',{view},startView||!location.hash?urlForView(view):location.href);
