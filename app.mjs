@@ -1,15 +1,15 @@
-import { createReviewNotifications } from './notifications.mjs?v=20261019-merge';
-import { PUSH_PUBLIC_KEY } from './push-config.mjs?v=20261019-merge';
-import { installQuizViewport } from './viewport.mjs?v=20261019-merge';
+import { createReviewNotifications } from './notifications.mjs?v=20261021-review-fixes';
+import { PUSH_PUBLIC_KEY } from './push-config.mjs?v=20261021-review-fixes';
+import { installQuizViewport } from './viewport.mjs?v=20261021-review-fixes';
 installQuizViewport();
-import { STAGE_NAMES, newProfile, availableLessons, dueReviews, startLearning, completeReview, statusFor, stats, toHiragana, checkAnswer, matchesSearch, practicePool, viewFromHash, intervalFor, learnerLevel, levelProgress, recordLevelUnlock, hasPassed, markAsGuru, markAsGuruMany, selectPlacementSample, scorePlacement, graduateLevelCandidates, GURU_STAGE, PLACEMENT_SAMPLE_SIZE, placementShouldFinish } from './engine.mjs?v=20261019-hiragana';
-import { validateProfile as checkProfile, batchSizeOf, reviewBatchSizeOf, unknownProgressIds, serializeBackup } from './profile.mjs?v=20261019-batch';
-import { loadCurriculum, sanitizeSvg, svgDataUrl, isSafeImagePath } from './curriculum.mjs?v=20261019-merge';
-import { buildQuizQueue, feedbackSummary, hintBanners, ACTIVE_REVIEW_POOL_SIZE, questionsForItem, shuffle } from './quiz.mjs?v=20261019-batch';
-import { createCloudSync } from './sync.mjs?v=20261019-merge';
+import { STAGE_NAMES, newProfile, availableLessons, dueReviews, startLearning, completeReview, statusFor, stats, toHiragana, checkAnswer, matchesSearch, practicePool, viewFromHash, intervalFor, learnerLevel, levelProgress, recordLevelUnlock, hasPassed, markAsGuru, markAsGuruMany, selectPlacementSample, scorePlacement, graduateLevelCandidates, GURU_STAGE, PLACEMENT_SAMPLE_SIZE, placementShouldFinish } from './engine.mjs?v=20261021-review-fixes';
+import { validateProfile as checkProfile, batchSizeOf, reviewBatchSizeOf, unknownProgressIds, serializeBackup } from './profile.mjs?v=20261021-review-fixes';
+import { loadCurriculum, sanitizeSvg, svgDataUrl, isSafeImagePath } from './curriculum.mjs?v=20261021-review-fixes';
+import { buildQuizQueue, feedbackSummary, hintBanners, ACTIVE_REVIEW_POOL_SIZE, questionsForItem, shuffle, toggleReviewWrapUp } from './quiz.mjs?v=20261021-review-fixes';
+import { createCloudSync } from './sync.mjs?v=20261021-review-fixes';
 
-import { createCloudClient, AUTH_STORAGE_KEY, validateNewPassword, validatePasswordChange, MIN_PASSWORD_LENGTH } from './cloud.mjs?v=20261019-merge';
-import { CLOUD_CONFIG } from './config.js?v=20261019-merge';
+import { createCloudClient, AUTH_STORAGE_KEY, validateNewPassword, validatePasswordChange, MIN_PASSWORD_LENGTH } from './cloud.mjs?v=20261021-review-fixes';
+import { CLOUD_CONFIG } from './config.js?v=20261021-review-fixes';
 const cloud = createCloudClient(CLOUD_CONFIG);
 const reviewNotifications = createReviewNotifications({cloud,publicKey:PUSH_PUBLIC_KEY});
 let notificationPanelEpoch = 0;
@@ -387,7 +387,8 @@ function renderSession() {
  const hints = s.feedback ? hintBanners(item, kind, s.feedback) : [];
  const hintHtml = hints.length ? `<div class="hint-banners-list">${hints.map(h => `<div class="hint-banner" role="status">${esc(h)}</div>`).join('')}</div>` : '';
 
- const infoDrawerHtml = s.feedback && !s.feedback.retry ? `
+ const canShowInfo = Boolean(s.feedback && !s.feedback.retry && !s.queue.slice(1).some(q=>q.id===item.id));
+ const infoDrawerHtml = canShowInfo ? `
   <div class="info-toggle-row">
     <button type="button" class="info-toggle-btn" data-action="toggle-info">
       ${icon(s.infoOpen ? 'eyeOff' : 'eye')}
@@ -419,7 +420,7 @@ function renderSession() {
   </div>` : ''}
  ` : '';
 
-function renderLessonFooter(s) {
+ function renderLessonFooter(s) {
   if (s.mode !== 'lesson' || s.phase !== 'learn') return '';
   return `<footer class="lesson-tray-footer" aria-label="Lesson batch queue">
     <div class="lesson-tray-scroll">
@@ -435,9 +436,9 @@ function renderLessonFooter(s) {
   </footer>`;
 }
 
-  const wrapUpBtn = (s.mode==='review' && s.phase==='quiz' && s.unstarted?.length) ? `<button class="text-button wrapup-btn ${s.wrappingUp?'active':''}" data-action="toggle-wrapup" type="button" title="${s.wrappingUp?'Cancel wrap up':'Finish current active items without adding more'}">${icon('clock')} ${s.wrappingUp?'Wrapping up…':'Wrap up'}</button>` : '';
+  const wrapUpBtn = (s.mode==='review' && s.phase==='quiz' && (s.unstarted?.length || s.wrappingUp)) ? `<button class="text-button wrapup-btn ${s.wrappingUp?'active':''}" data-action="toggle-wrapup" type="button" title="${s.wrappingUp?'Cancel wrap up':'Finish current active items without adding more'}">${icon('clock')} ${s.wrappingUp?'Wrapping up…':'Wrap up'}</button>` : '';
 
-  return `<section class="session-header"><div class="session-header-left"><button class="text-button" data-action="exit-session">${icon('back')} Dashboard</button>${wrapUpBtn}</div><span>${s.mode==='lesson'?'New lessons':s.mode==='review'?'Spaced reviews':s.mode==='placement'?'Placement check':'Free practice'} <b>·</b> ${learning?`${s.position+1} of ${s.selected.length}`:`${s.finished.length} of ${s.selected.length} subjects`}</span></section><div class="session-progress"><span style="width:${learning?s.position/s.selected.length*100:s.finished.length/s.selected.length*100}%"></span></div>${learning?`<section class="lesson-card">${subjectDetails(item,'lesson')}<div class="lesson-controls"><button class="button secondary" data-action="previous-lesson" ${s.position===0?'disabled':''}>${icon('back')} Previous</button><span>${s.position+1} / ${s.selected.length}</span><button class="button primary" data-action="next-lesson">${s.position===s.selected.length-1?'Start the quiz':'Next subject'} ${icon('arrow')}</button></div>${!hasPassed(profile().progress[item.id])?`<button class="text-button know-inline" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button>`:''}</section>${renderLessonFooter(s)}`:`<section class="quiz-card"><div class="quiz-prompt ${item.type}"><div class="quiz-character">${glyph(item,'radical image')}</div></div><div class="quiz-body"><h1>${kind==='meaning'?'What does this mean?':'How do you read this?'}</h1><p>${kind==='meaning'?'Enter an English meaning.':item.type==='kanji'?'Enter the reading you learned for this kanji.':'Enter this word’s reading in kana or romaji.'}</p><form id="answer-form" action="javascript:void(0)" onsubmit="return false;"><label class="sr-only" for="answer">${kind==='meaning'?'Meaning in English':'Reading in kana or romaji'}</label><input id="answer" class="answer-input ${s.feedback?s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect':''}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${kind==='meaning'?'Your answer…':'かな or romaji…'}" ${s.feedback?'disabled':''} value="${esc(s.feedback?.answer||'')}">${kind==='reading'?'':`<div id="kana-preview" class="kana-preview">Press Enter to check your answer.</div>`}${s.levelUpEvent ? renderLevelUpTooltip(s.levelUpEvent) : ''}${s.feedback?`<div class="answer-feedback ${s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect'}" role="status"><strong>${s.feedback.correct?'That’s right!':s.feedback.retry?'Another reading—try the one taught here.':'Not quite. Let’s try it again.'}</strong><span>${esc(feedbackSummary(item,kind,s.feedback,s.queue))}</span></div>${hintHtml}${infoDrawerHtml}<button type="button" class="button primary full-width" data-action="continue-answer">Continue ${icon('arrow')}</button>${!s.feedback.correct&&!s.feedback.retry?`<details class="answer-explanation"><summary>Revisit the memory story</summary><p>${esc(kind==='meaning'?item.meaningMnemonic:item.readingMnemonic)}</p></details>`:''}`:`<button class="button primary full-width" type="submit">Check answer ${icon('arrow')}</button><button class="text-button dont-know" type="button" data-action="dont-know">I don’t remember yet</button>`}</form></div></section>${s.mode==='review'||s.mode==='lesson'?'':`<p class="session-footnote">${s.mode==='practice'?'Just practice. Your spaced review progress will stay the same.':s.mode==='placement'?'Placement only marks Guru when you pass (≥90% or an 8-answer streak). Nothing is demoted.':'Both meaning and reading must be recalled before an item is complete.'}</p>`}`}`;
+  return `<section class="session-header"><div class="session-header-left"><button class="text-button" data-action="exit-session">${icon('back')} Dashboard</button>${wrapUpBtn}</div><span>${s.mode==='lesson'?'New lessons':s.mode==='review'?'Spaced reviews':s.mode==='placement'?'Placement check':'Free practice'} <b>·</b> ${learning?`${s.position+1} of ${s.selected.length}`:`${s.finished.length} of ${s.selected.length} subjects`}</span></section><div class="session-progress"><span style="width:${learning?s.position/s.selected.length*100:s.finished.length/s.selected.length*100}%"></span></div>${learning?`<section class="lesson-card">${subjectDetails(item,'lesson')}<div class="lesson-controls"><button class="button secondary" data-action="previous-lesson" ${s.position===0?'disabled':''}>${icon('back')} Previous</button><span>${s.position+1} / ${s.selected.length}</span><button class="button primary" data-action="next-lesson">${s.position===s.selected.length-1?'Start the quiz':'Next subject'} ${icon('arrow')}</button></div>${!hasPassed(profile().progress[item.id])?`<button class="text-button know-inline" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button>`:''}</section>${renderLessonFooter(s)}`:`<section class="quiz-card"><div class="quiz-prompt ${item.type}"><div class="quiz-character">${glyph(item,'radical image')}</div></div><div class="quiz-body"><h1>${kind==='meaning'?'What does this mean?':'How do you read this?'}</h1><p>${kind==='meaning'?'Enter an English meaning.':item.type==='kanji'?'Enter the reading you learned for this kanji.':'Enter this word’s reading in kana or romaji.'}</p><form id="answer-form" action="javascript:void(0)" onsubmit="return false;"><label class="sr-only" for="answer">${kind==='meaning'?'Meaning in English':'Reading in kana or romaji'}</label><input id="answer" class="answer-input ${s.feedback?s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect':''}" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${kind==='meaning'?'Your answer…':'かな or romaji…'}" ${s.feedback?'disabled':''} value="${esc(s.feedback?.answer||'')}">${kind==='reading'?'':`<div id="kana-preview" class="kana-preview">Press Enter to check your answer.</div>`}${s.levelUpEvent ? renderLevelUpTooltip(s.levelUpEvent) : ''}${s.feedback?`<div class="answer-feedback ${s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect'}" role="status"><strong>${s.feedback.correct?'That’s right!':s.feedback.retry?'Another reading—try the one taught here.':'Not quite. Let’s try it again.'}</strong><span>${esc(feedbackSummary(item,kind,s.feedback,s.queue))}</span></div>${hintHtml}${infoDrawerHtml}<button type="button" class="button primary full-width" data-action="continue-answer">Continue ${icon('arrow')}</button>${canShowInfo&&!s.feedback.correct&&!s.feedback.retry?`<details class="answer-explanation"><summary>Revisit the memory story</summary><p>${esc(kind==='meaning'?item.meaningMnemonic:item.readingMnemonic)}</p></details>`:''}`:`<button class="button primary full-width" type="submit">Check answer ${icon('arrow')}</button><button class="text-button dont-know" type="button" data-action="dont-know">I don’t remember yet</button>`}</form></div></section>${s.mode==='review'||s.mode==='lesson'?'':`<p class="session-footnote">${s.mode==='practice'?'Just practice. Your spaced review progress will stay the same.':s.mode==='placement'?'Placement only marks Guru when you pass (≥90% or an 8-answer streak). Nothing is demoted.':'Both meaning and reading must be recalled before an item is complete.'}</p>`}`}`;
 }
 function submitAnswer(unknown=false) {
  if(!session||session.phase!=='quiz'||session.feedback)return;
@@ -519,11 +520,7 @@ async function continueAnswer(){
  session=s;render();
  if(s.levelUpEvent) {
    s.levelUpTimer = setTimeout(() => {
-     if (session && session.levelUpEvent) {
-       session.levelUpEvent = null;
-       session.levelUpTimer = null;
-       render();
-     }
+     if (session === s && session.levelUpEvent) dismissLevelUp();
    }, 3000);
  }
 }
@@ -535,6 +532,24 @@ function withLevelRecord(next){
 }
 function exportProgress(){const blob=new Blob([serializeBackup(profile())],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`komorebi-${profile().name.replace(/[^a-z0-9_-]/gi,'-')}-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Your progress backup is ready.');}
 async function importProgress(file){if(!file)return;try{/* Same size/app/version policy as readBackupFile (BACKUP_MAX_BYTES = 8_000_000). */if(file.size>8000000)throw Error('Please choose a Komorebi backup smaller than 8 MB.');const data=JSON.parse(await file.text());if(data.app!=='komorebi'||data.version!==1)throw Error('Please choose a Komorebi progress backup.');const p=validateProfile(data.profile);if(cloud.getSession()){if(Object.keys(profile().progress).length)throw Error('Import is only available for an empty cloud account. Export the existing progress first.');p.id=cloud.getSession().user.id;if(await updateProfile(p)){render();toast('Backup saved to your cloud account.');}return;}p.id=crypto.randomUUID();p.name=p.name.slice(0,38)+' (imported)';if(persist({...state,activeProfileId:p.id,profiles:[...state.profiles,p]})){render();toast('Backup imported as a new learner profile.');}}catch(error){toast(error.message||'That backup could not be imported. Your progress is unchanged.');}}
+function dismissLevelUp(){
+ if(!session)return;
+ if(session.levelUpTimer)clearTimeout(session.levelUpTimer);
+ session.levelUpTimer=null;
+ session.levelUpEvent=null;
+ $('.levelup-tooltip')?.remove();
+}
+function renderPreservingAnswer(){
+ const input=$('#answer');
+ const draft=input&&!input.disabled?{value:input.value,start:input.selectionStart,end:input.selectionEnd}:null;
+ render();
+ const next=$('#answer');
+ if(draft&&next&&!next.disabled){
+  next.value=draft.value;
+  next.focus({preventScroll:true});
+  try{next.setSelectionRange(draft.start,draft.end);}catch{}
+ }
+}
 function bind(){
  document.querySelectorAll('[data-nav]').forEach(b=>b.onclick=()=>go(b.dataset.nav));
  $('.brand').onclick=e=>{e.preventDefault();go('dashboard');};
@@ -549,15 +564,9 @@ function bind(){
   const action=b.dataset.action;
   if(busy)return;
   if(action==='toggle-wrapup'&&session?.mode==='review'){
-   session.wrappingUp=!session.wrappingUp;
-   if(session.wrappingUp){
-    session.selected=session.selected.filter(item=>!session.unstarted?.some(u=>u.id===item.id));
-    session.unstarted=[];
-    toast('Wrapping up: finishing your current items.');
-   }else{
-    toast('Wrap up cancelled.');
-   }
-   render();
+   toggleReviewWrapUp(session);
+   toast(session.wrappingUp?'Wrapping up: finishing your current items.':'Wrap up cancelled.');
+   renderPreservingAnswer();
    return;
   }
   if(action==='account')openAccount();
@@ -577,7 +586,7 @@ function bind(){
   if(action==='next-lesson'){if(session.position<session.selected.length-1)session.position++;else makeQuiz();render();window.scrollTo(0,0);}
   if(action==='previous-lesson'&&session.position>0){session.position--;render();window.scrollTo(0,0);}
   if(action==='toggle-info'){if(session){session.infoOpen=!session.infoOpen;render();}}
-  if(action==='dismiss-levelup'){if(session){if(session.levelUpTimer){clearTimeout(session.levelUpTimer);session.levelUpTimer=null;}session.levelUpEvent=null;render();}}
+  if(action==='dismiss-levelup')dismissLevelUp();
   if(action==='continue-answer')continueAnswer();
   if(action==='dont-know')submitAnswer(true);
   if(action==='finish'||action==='exit-session'){if(action==='exit-session'&&!leaveSession())return;session=null;go('dashboard');}
