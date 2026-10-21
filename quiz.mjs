@@ -118,3 +118,19 @@ export function hintBanners(item, kind, feedback) {
 
   return banners;
 }
+
+/** Pause unstarted reviews without discarding them, so wrap-up remains reversible. */
+export function toggleReviewWrapUp(session) {
+ if(session.mode!=='review'||session.phase!=='quiz')return;
+ session.wrappingUp=!session.wrappingUp;
+ if(session.wrappingUp){
+  session.pausedReviewItems=session.unstarted||[];
+  const paused=new Set(session.pausedReviewItems.map(item=>item.id));
+  session.selected=session.selected.filter(item=>!paused.has(item.id));
+  session.unstarted=[];
+ }else{
+  session.unstarted=session.pausedReviewItems||[];
+  session.selected=session.selected.concat(session.unstarted);
+  session.pausedReviewItems=[];
+ }
+}
