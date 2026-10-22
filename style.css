@@ -363,20 +363,39 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
   flex-direction: column;
   gap: 8px;
   align-items: center;
-  margin: 10px 0 12px;
+  margin: 8px 0 10px;
 }
 .hint-banner {
-  background: #555555;
+  appearance: none;
+  border: none;
+  font-family: inherit;
+  background: #4a4a4a;
   color: #ffffff;
   font-size: 13px;
   line-height: 1.45;
-  padding: 6px 14px;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   position: relative;
   text-align: center;
-  max-width: 90%;
+  max-width: 92%;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
   animation: fadeInDown 0.18s ease-out;
+}
+.hint-banner:hover {
+  background: #383838;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+.hint-banner:active {
+  background: #2b2b2b;
+  transform: translateY(0);
+}
+.hint-banner:focus-visible {
+  outline: 2px solid #5a8a70;
+  outline-offset: 2px;
 }
 .hint-banner::before {
   content: '';
@@ -386,7 +405,14 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
   transform: translateX(-50%);
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-bottom: 6px solid #555555;
+  border-bottom: 6px solid #4a4a4a;
+  transition: border-bottom-color 0.15s;
+}
+.hint-banner:hover::before {
+  border-bottom-color: #383838;
+}
+.hint-banner:active::before {
+  border-bottom-color: #2b2b2b;
 }
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-4px); }
@@ -397,26 +423,31 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
 .info-toggle-row {
   display: flex;
   justify-content: center;
-  margin: 10px 0 12px;
+  margin: 8px 0 12px;
 }
 .info-toggle-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   background: #f0f4ee;
   border: 1px solid #c8d4c4;
-  color: #3b5042;
+  color: #284435;
   font-size: 13px;
   font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 6px;
+  padding: 8px 18px;
+  min-height: 40px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
 }
 .info-toggle-btn:hover {
   background: #e2ece0;
   border-color: #285642;
-  color: #1b3028;
+  color: #142820;
+}
+.info-toggle-btn:active {
+  transform: scale(0.98);
 }
 .info-toggle-btn .icon {
   width: 16px;
@@ -424,8 +455,61 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
 }
 .info-toggle-chevron {
   font-size: 10px;
-  color: #65776a;
+  color: #556c5c;
 }
+
+/* WaniKani-style 3-column kanji readings grid */
+.kanji-readings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 8px 0 14px;
+  padding: 12px 14px;
+  background: #f3f7f0;
+  border: 1px solid #dde6da;
+  border-radius: 8px;
+}
+.reading-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+.reading-column-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #65796b;
+  letter-spacing: 0.3px;
+}
+.reading-column.is-primary .reading-column-title {
+  font-weight: 700;
+  color: #153222;
+}
+.reading-column-items {
+  font-size: 16px;
+  line-height: 1.45;
+  color: #1c2b23;
+  margin: 0;
+  word-break: break-word;
+}
+.reading-column.is-primary .reading-column-items {
+  font-weight: 600;
+}
+.reading-column-items.is-none {
+  color: #8c9e90;
+  font-style: italic;
+  font-size: 13px;
+}
+@media (max-width: 420px) {
+  .kanji-readings-grid {
+    gap: 8px;
+    padding: 10px 10px;
+  }
+  .reading-column-items {
+    font-size: 15px;
+  }
+}
+
 .collapsed-item-info {
   background: #fbfdfa;
   border: 1px solid #dbe4d8;
@@ -1381,6 +1465,61 @@ body.lesson-active main {
 }
 .days-card .text-button {
   margin-top: auto;
+}
+
+/* ==========================================================================
+   Flexible-width Vocabulary Tiles (WaniKani Style)
+   ========================================================================== */
+.subject-grid.is-vocabulary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 6px;
+}
+
+.subject-tile.vocabulary {
+  aspect-ratio: auto !important;
+  width: auto !important;
+  min-width: 44px;
+  height: 44px;
+  max-height: 44px;
+  padding: 0 12px 6px !important;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+.subject-tile.vocabulary.char-len-1 { font-size: 21px !important; }
+.subject-tile.vocabulary.char-len-2 { font-size: 18px !important; }
+.subject-tile.vocabulary.char-len-3 { font-size: 18px !important; }
+.subject-tile.vocabulary.char-len-4 { font-size: 17px !important; }
+
+.subject-tile.vocabulary.is-locked {
+  padding-right: 15px !important;
+}
+
+.subject-tile.vocabulary .tile-srs-bar {
+  left: 6px;
+  right: 6px;
+  bottom: 3px;
+  height: 3px;
+}
+
+@media (max-width: 700px) {
+  .subject-grid.is-vocabulary {
+    gap: 7px 5px;
+  }
+  .subject-tile.vocabulary {
+    min-height: 40px;
+    height: 40px;
+    max-height: 40px;
+    min-width: 40px;
+    padding: 0 10px 5px !important;
+  }
+  .subject-tile.vocabulary.char-len-1 { font-size: 19px !important; }
+  .subject-tile.vocabulary.char-len-2,
+  .subject-tile.vocabulary.char-len-3 { font-size: 16px !important; }
+  .subject-tile.vocabulary.char-len-4 { font-size: 15px !important; }
 }
 
 
