@@ -114,3 +114,11 @@ test('Security: index.html has Content-Security-Policy and Referrer-Policy', () 
  assert.match(html, /<meta\s+name=["']referrer["']\s+content=["']strict-origin-when-cross-origin["']/i);
 });
 
+test('Dashboard: subject-grid receives is-vocabulary class when filter is vocabulary', () => {
+ assert.match(app, /class="subject-grid\s+\$\{filter==='vocabulary'\?'is-vocabulary':''\}"/, 'subject-grid must conditionally receive is-vocabulary class');
+
+ const css = fs.readFileSync(new URL('../style.css', import.meta.url), 'utf8');
+ assert.match(css, /\.subject-grid\.is-vocabulary\s*\{[^}]*display:\s*flex;[^}]*flex-wrap:\s*wrap;/s, 'is-vocabulary must use flex-wrap');
+ assert.match(css, /\.subject-tile\.vocabulary\s*\{[^}]*width:\s*auto\s*!important;[^}]*white-space:\s*nowrap;/s, 'vocabulary tile must have auto-width and nowrap');
+});
+

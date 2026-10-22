@@ -1467,5 +1467,60 @@ body.lesson-active main {
   margin-top: auto;
 }
 
+/* ==========================================================================
+   Flexible-width Vocabulary Tiles (WaniKani Style)
+   ========================================================================== */
+.subject-grid.is-vocabulary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 6px;
+}
+
+.subject-tile.vocabulary {
+  aspect-ratio: auto !important;
+  width: auto !important;
+  min-width: 44px;
+  height: 44px;
+  max-height: 44px;
+  padding: 0 12px 6px !important;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+.subject-tile.vocabulary.char-len-1 { font-size: 21px !important; }
+.subject-tile.vocabulary.char-len-2 { font-size: 18px !important; }
+.subject-tile.vocabulary.char-len-3 { font-size: 18px !important; }
+.subject-tile.vocabulary.char-len-4 { font-size: 17px !important; }
+
+.subject-tile.vocabulary.is-locked {
+  padding-right: 15px !important;
+}
+
+.subject-tile.vocabulary .tile-srs-bar {
+  left: 6px;
+  right: 6px;
+  bottom: 3px;
+  height: 3px;
+}
+
+@media (max-width: 700px) {
+  .subject-grid.is-vocabulary {
+    gap: 7px 5px;
+  }
+  .subject-tile.vocabulary {
+    min-height: 40px;
+    height: 40px;
+    max-height: 40px;
+    min-width: 40px;
+    padding: 0 10px 5px !important;
+  }
+  .subject-tile.vocabulary.char-len-1 { font-size: 19px !important; }
+  .subject-tile.vocabulary.char-len-2,
+  .subject-tile.vocabulary.char-len-3 { font-size: 16px !important; }
+  .subject-tile.vocabulary.char-len-4 { font-size: 15px !important; }
+}
+
 
 

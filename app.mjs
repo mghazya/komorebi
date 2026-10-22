@@ -335,7 +335,7 @@ function dashboard(s) {
    <span class="level-grid-count">${passedInFilter} / ${filteredItems.length} items Guru’d</span>
   </div>
 
-  <div class="subject-grid">
+  <div class="subject-grid ${filter==='vocabulary'?'is-vocabulary':''}">
    ${filteredItems.map(i=>tile(i)).join('')}
   </div>
 
