@@ -7,6 +7,7 @@ import { validateProfile as checkProfile, batchSizeOf, reviewBatchSizeOf, dailyL
 import { loadCurriculum, sanitizeSvg, svgDataUrl, isSafeImagePath } from './curriculum.mjs?v=20261021-conflict-res';
 import { buildQuizQueue, feedbackSummary, hintBanners, ACTIVE_REVIEW_POOL_SIZE, questionsForItem, shuffle, toggleReviewWrapUp } from './quiz.mjs?v=20261021-conflict-res';
 import { createCloudSync } from './sync.mjs?v=20261021-conflict-res';
+import { KANJI_READINGS } from './kanji-readings.mjs';
 
 import { createCloudClient, AUTH_STORAGE_KEY, validateNewPassword, validatePasswordChange, MIN_PASSWORD_LENGTH } from './cloud.mjs?v=20261021-review-fixes';
 import { CLOUD_CONFIG } from './config.js?v=20261021-review-fixes';
@@ -17,16 +18,6 @@ let busy = false;
 // Account-scoped cloud state lives in the sync controller (REVIEW P1): it resets on every account change.
 const sync = createCloudSync({ cloud, validate: (value) => validateProfile(value), emptyProfile: (user) => newProfile(user.email?.split('@')[0] || 'Learner', user.id), hooks: {
  setBusy: (value, message) => setBusy(value, message), isBusy: () => busy, onChange: () => {
-  if (sync.state.profile) {
-   const authEmail = cloud.getSession()?.user?.email?.toLowerCase() || '';
-   if (authEmail === 'danargading@gmail.com' || sync.state.profile.name?.toLowerCase().includes('danar') || sync.state.profile.daysStudied === undefined) {
-    if (sync.state.profile.daysStudied === undefined || sync.state.profile.daysStudied < 40) {
-     sync.state.profile.daysStudied = 40;
-     if (!sync.state.profile.lastStudiedDate) sync.state.profile.lastStudiedDate = localDateKey();
-     sync.update(sync.state.profile);
-    }
-   }
-  }
   if (state) render();
  },
  onSaveError: () => { session = null; render(); toast('Progress needs your attention before you continue.'); },
@@ -34,6 +25,13 @@ const sync = createCloudSync({ cloud, validate: (value) => validateProfile(value
 } });
 const $ = (s, root = document) => root.querySelector(s);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeHref = url => {
+ if (!url || typeof url !== 'string') return '';
+ try {
+  const p = new URL(url, window.location.origin);
+  return (p.protocol === 'http:' || p.protocol === 'https:') ? p.href : '';
+ } catch { return ''; }
+};
 const KEY = 'komorebi.study.v1';
 const TYPES = { radical: 'Radicals', kanji: 'Kanji', vocabulary: 'Vocabulary' };
 const icons = {
@@ -66,6 +64,29 @@ const statusOf = (item, p = profile()) => statusFor(item, p, Date.now(), ctx(p))
 const levelOf = id => getItem(id)?.level;
 const nextLevelAfter = level => (curriculum?.availableLevels || []).find(l => l > level);
 const readingsOf = item => item.readings || [];
+function renderKanjiReadings(item) {
+  if (item.type !== 'kanji') return '';
+  const data = KANJI_READINGS[item.character];
+  const onyomi = data?.onyomi || [];
+  const kunyomi = data?.kunyomi || [];
+  const nanori = data?.nanori || [];
+  const primaryType = data?.primaryType || (kunyomi.includes(item.readings?.[0]) ? 'kunyomi' : nanori.includes(item.readings?.[0]) ? 'nanori' : 'onyomi');
+
+  return `<div class="kanji-readings-grid">
+    <div class="reading-column ${primaryType === 'onyomi' ? 'is-primary' : ''}">
+      <span class="reading-column-title">On’yomi</span>
+      <p class="reading-column-items ${!onyomi.length ? 'is-none' : ''}" lang="ja">${onyomi.length ? esc(onyomi.join(', ')) : 'None'}</p>
+    </div>
+    <div class="reading-column ${primaryType === 'kunyomi' ? 'is-primary' : ''}">
+      <span class="reading-column-title">Kun’yomi</span>
+      <p class="reading-column-items ${!kunyomi.length ? 'is-none' : ''}" lang="ja">${kunyomi.length ? esc(kunyomi.join(', ')) : 'None'}</p>
+    </div>
+    <div class="reading-column ${primaryType === 'nanori' ? 'is-primary' : ''}">
+      <span class="reading-column-title">Nanori</span>
+      <p class="reading-column-items ${!nanori.length ? 'is-none' : ''}" lang="ja">${nanori.length ? esc(nanori.join(', ')) : 'None'}</p>
+    </div>
+  </div>`;
+}
 const pad2 = n => String(n).padStart(2, '0');
 const hoursText = ms => ms >= 864e5 ? `${ms/864e5} day${ms===864e5?'':'s'}` : `${ms/36e5} hours`;
 /** Glyph markup: the real character, or a sanitized local SVG for image-only radicals. Never a guessed substitute. */
@@ -89,29 +110,18 @@ const timeUntil = timestamp => {
 };
 const prettyDate = timestamp => new Date(timestamp).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 function toast(message) { $('#toast').textContent = message; $('#toast').classList.add('visible'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),4500); }
-function ensureAccountBaseline(p) {
- if (!p) return p;
- const authEmail = cloud.getSession()?.user?.email?.toLowerCase() || '';
- const isTarget = authEmail === 'danargading@gmail.com' ||
-   (p.name && (p.name.toLowerCase().includes('danar') || p.name.toLowerCase() === 'danargading@gmail.com')) ||
-   p.daysStudied === undefined;
- if (isTarget && (p.daysStudied === undefined || p.daysStudied < 40)) {
-  return { ...p, daysStudied: 40, lastStudiedDate: p.lastStudiedDate || localDateKey() };
- }
- return p;
-}
 function readState() {
  try {
   savedRaw = localStorage.getItem(KEY);
   if (savedRaw) {
    const data=JSON.parse(savedRaw);
    if(data.version!==1 || !Array.isArray(data.profiles) || !data.profiles.length) throw Error('Invalid saved data');
-   data.profiles = data.profiles.map(validateProfile).map(ensureAccountBaseline);
+   data.profiles = data.profiles.map(validateProfile);
    if(!data.profiles.some(p=>p.id===data.activeProfileId)) data.activeProfileId=data.profiles[0].id;
    return data;
   }
  } catch(error) { storageOK=false; }
- const p=ensureAccountBaseline(newProfile('Learner 1'));
+ const p=newProfile('Learner 1');
  return {version:1,activeProfileId:p.id,profiles:[p]};
 }
 // Lossless: unknown/future subject IDs and extra fields are kept; nothing is filled in or dropped.
@@ -391,7 +401,7 @@ function settings() {
 function subjectDetails(item, context='detail') {
  const st=statusOf(item);
  const cl=charLenClass(item);
- return `<div class="subject-banner ${item.type} ${cl}"><span class="subject-kind">${item.type} <span>•</span> LEVEL ${esc(item.level)}</span><div class="big-character ${cl}">${glyph(item,`${item.meaning} radical`)}</div><h2>${esc(item.meaning)}</h2>${readingsOf(item).length?`<p class="banner-reading" lang="ja">${esc(readingsOf(item).join(' ・ '))}</p>`:''}</div><div class="subject-content"><section><span class="eyebrow">MEANING</span><h3>${esc((item.meanings||[item.meaning]).join(' · '))}</h3><p>${esc(item.meaningMnemonic)||'Look closely at the character and connect its shape with its meaning.'}</p></section>${item.type!=='radical'?`<section><span class="eyebrow">READING</span><h3 lang="ja">${esc(readingsOf(item).join(' ・ '))}</h3><p>${esc(item.readingMnemonic)}</p>${item.otherReadings?.length?`<p class="small-note">Other kanji readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span>. The quiz asks for the reading taught above.</p>`:''}</section>`:''}${item.components?.length?`<section><span class="eyebrow">BUILDING BLOCKS</span><div class="component-list">${item.components.map(c=>`<span><b>${glyph(c,'')}</b>${esc(c.name)}</span>`).join('')}</div></section>`:''}${item.sentences?.length?`<section><span class="eyebrow">IN CONTEXT</span>${item.sentences.map(s=>`<div class="sentence"><p lang="ja">${esc(s.japanese)}</p><small>${esc(s.english)}</small></div>`).join('')}</section>`:''}${context==='detail'?`<section class="subject-status"><strong>${st.state==='locked'?'Not unlocked yet':st.state==='lesson'?'Ready for your lessons':esc(st.stageName)}</strong><p>${st.state==='locked'?(st.unmetDependencies.length?`First reach Guru with: ${st.unmetDependencies.map(id=>esc(getItem(id)?`${getItem(id).meaning} (Level ${getItem(id).level})`:id)).join(', ')}.`:`Opens when you reach Level ${esc(item.level)}.`):st.availableAt?`Next review: ${prettyDate(st.availableAt)}`:'Every small step counts.'}</p></section>`:''}${!hasPassed(profile().progress[item.id])?`<div class="know-actions"><button class="button secondary full-width" type="button" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button>${context==='lesson'?'':`<p class="small-note">Skips early Apprentice waits. Sets Guru I so dependents unlock; light reviews stay on the schedule.</p>`}</div>`:''}<a class="source-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a></div>`;
+ return `<div class="subject-banner ${item.type} ${cl}"><span class="subject-kind">${item.type} <span>•</span> LEVEL ${esc(item.level)}</span><div class="big-character ${cl}">${glyph(item,`${item.meaning} radical`)}</div><h2>${esc(item.meaning)}</h2>${readingsOf(item).length?`<p class="banner-reading" lang="ja">${esc(readingsOf(item).join(' ・ '))}</p>`:''}</div><div class="subject-content"><section><span class="eyebrow">MEANING</span><h3>${esc((item.meanings||[item.meaning]).join(' · '))}</h3><p>${esc(item.meaningMnemonic)||'Look closely at the character and connect its shape with its meaning.'}</p></section>${item.type!=='radical'?`<section><span class="eyebrow">${item.type==='kanji'?'READINGS':'READING'}</span>${item.type==='kanji'&&KANJI_READINGS[item.character]?renderKanjiReadings(item):`<h3 lang="ja">${esc(readingsOf(item).join(' ・ '))}</h3>`}<p>${esc(item.readingMnemonic)}</p>${item.type!=='kanji'&&item.otherReadings?.length?`<p class="small-note">Other readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span>.</p>`:''}</section>`:''}${item.components?.length?`<section><span class="eyebrow">BUILDING BLOCKS</span><div class="component-list">${item.components.map(c=>`<span><b>${glyph(c,'')}</b>${esc(c.name)}</span>`).join('')}</div></section>`:''}${item.sentences?.length?`<section><span class="eyebrow">IN CONTEXT</span>${item.sentences.map(s=>`<div class="sentence"><p lang="ja">${esc(s.japanese)}</p><small>${esc(s.english)}</small></div>`).join('')}</section>`:''}${context==='detail'?`<section class="subject-status"><strong>${st.state==='locked'?'Not unlocked yet':st.state==='lesson'?'Ready for your lessons':esc(st.stageName)}</strong><p>${st.state==='locked'?(st.unmetDependencies.length?`First reach Guru with: ${st.unmetDependencies.map(id=>esc(getItem(id)?`${getItem(id).meaning} (Level ${getItem(id).level})`:id)).join(', ')}.`:`Opens when you reach Level ${esc(item.level)}.`):st.availableAt?`Next review: ${prettyDate(st.availableAt)}`:'Every small step counts.'}</p></section>`:''}${!hasPassed(profile().progress[item.id])?`<div class="know-actions"><button class="button secondary full-width" type="button" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button>${context==='lesson'?'':`<p class="small-note">Skips early Apprentice waits. Sets Guru I so dependents unlock; light reviews stay on the schedule.</p>`}</div>`:''}${item.sourceUrl && safeHref(item.sourceUrl) ? `<a class="source-link" href="${esc(safeHref(item.sourceUrl))}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a>` : ''}</div>`;
 }
 function openSubject(id) {
  const item=getItem(id); if(!item)return;
@@ -606,9 +616,9 @@ function renderSession() {
  }
 
  const hints = s.feedback ? hintBanners(item, kind, s.feedback) : [];
- const hintHtml = hints.length ? `<div class="hint-banners-list">${hints.map(h => `<div class="hint-banner" role="status">${esc(h)}</div>`).join('')}</div>` : '';
+ const hintHtml = hints.length ? `<div class="hint-banners-list">${hints.map(h => `<button type="button" class="hint-banner" data-action="toggle-info" role="button" aria-expanded="${Boolean(s.infoOpen)}" title="Click to view item details">${esc(h)}</button>`).join('')}</div>` : '';
 
- const canShowInfo = Boolean(s.feedback && !s.feedback.retry && !s.queue.slice(1).some(q=>q.id===item.id));
+ const canShowInfo = Boolean(s.feedback && !s.feedback.retry);
  const infoDrawerHtml = canShowInfo ? `
   <div class="info-toggle-row">
     <button type="button" class="info-toggle-btn" data-action="toggle-info">
@@ -624,10 +634,10 @@ function renderSession() {
       ${item.meaningMnemonic ? `<p class="info-mnemonic"><strong>Mnemonic:</strong> ${esc(item.meaningMnemonic)}</p>` : ''}
     </section>
     ${item.type !== 'radical' && readingsOf(item).length ? `<section class="info-section">
-      <span class="info-eyebrow">READINGS</span>
-      <div class="info-text" lang="ja">${esc(readingsOf(item).join(' ・ '))}</div>
+      <span class="info-eyebrow">${item.type === 'kanji' ? 'READINGS' : 'READING'}</span>
+      ${item.type === 'kanji' && KANJI_READINGS[item.character] ? renderKanjiReadings(item) : `<div class="info-text" lang="ja">${esc(readingsOf(item).join(' ・ '))}</div>`}
       ${item.readingMnemonic ? `<p class="info-mnemonic"><strong>Mnemonic:</strong> ${esc(item.readingMnemonic)}</p>` : ''}
-      ${item.otherReadings?.length ? `<p class="info-small">Other readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span></p>` : ''}
+      ${item.type !== 'kanji' && item.otherReadings?.length ? `<p class="info-small">Other readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span></p>` : ''}
     </section>` : ''}
     ${item.sentences?.length ? `<section class="info-section">
       <span class="info-eyebrow">CONTEXT</span>
@@ -638,8 +648,8 @@ function renderSession() {
         </div>`).join('')}
       </div>
     </section>` : ''}
-    ${item.sourceUrl ? `<div class="info-section info-source-section">
-      <a class="source-link" href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a>
+    ${item.sourceUrl && safeHref(item.sourceUrl) ? `<div class="info-section info-source-section">
+      <a class="source-link" href="${esc(safeHref(item.sourceUrl))}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a>
     </div>` : ''}
   </div>` : ''}
  ` : '';
@@ -663,7 +673,7 @@ function renderSession() {
 
   const wrapUpBtn = (s.mode==='review' && s.phase==='quiz' && (s.unstarted?.length || s.wrappingUp)) ? `<button class="text-button wrapup-btn ${s.wrappingUp?'active':''}" data-action="toggle-wrapup" type="button" title="${s.wrappingUp?'Cancel wrap up':'Finish current active items without adding more'}">${icon('clock')} ${s.wrappingUp?'Wrapping up…':'Wrap up'}</button>` : '';
 
-  return `<section class="session-header"><div class="session-header-left"><button class="text-button" data-action="exit-session">${icon('back')} Dashboard</button>${wrapUpBtn}</div><span>${s.mode==='lesson'?'New lessons':s.mode==='review'?'Spaced reviews':s.mode==='placement'?'Placement check':'Free practice'} <b>·</b> ${learning?`${s.position+1} of ${s.selected.length}`:`${s.finished.length} of ${s.selected.length} subjects`}</span></section><div class="session-progress"><span style="width:${learning?s.position/s.selected.length*100:s.finished.length/s.selected.length*100}%"></span></div>${learning?`<section class="lesson-card">${subjectDetails(item,'lesson')}<div class="lesson-controls"><button class="button secondary" data-action="previous-lesson" ${s.position===0?'disabled':''}>${icon('back')} Previous</button><span>${s.position+1} / ${s.selected.length}</span><button class="button primary" data-action="next-lesson">${s.position===s.selected.length-1?'Start the quiz':'Next subject'} ${icon('arrow')}</button></div></section>${renderLessonFooter(s)}`:`<section class="quiz-card"><div class="quiz-prompt ${item.type} ${charLenClass(item)}"><div class="quiz-character ${charLenClass(item)}">${glyph(item,'radical image')}</div></div><div class="quiz-body"><h1>${kind==='meaning'?'What does this mean?':'How do you read this?'}</h1><p>${kind==='meaning'?'Enter an English meaning.':item.type==='kanji'?'Enter the reading you learned for this kanji.':'Enter this word’s reading in kana or romaji.'}</p><form id="answer-form" action="javascript:void(0)" onsubmit="return false;"><label class="sr-only" for="answer">${kind==='meaning'?'Meaning in English':'Reading in kana or romaji'}</label><input id="answer" data-qid="${esc(item.id)}" data-qkind="${esc(kind)}" class="answer-input ${s.feedback?s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect':''}" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" lang="${kind==='reading'?'ja':'en'}" enterkeyhint="done" placeholder="${kind==='meaning'?'Your answer…':'かな or romaji…'}" ${s.feedback?'disabled':''} value="${esc(s.feedback?.answer??preservedInputVal)}">${kind==='reading'?'':`<div id="kana-preview" class="kana-preview">Press Enter to check your answer.</div>`}${s.levelUpEvent ? renderLevelUpTooltip(s.levelUpEvent) : ''}${s.feedback?`<div class="answer-feedback ${s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect'}" role="status"><strong>${s.feedback.correct?(s.feedback.typo?'Your answer had a slight typo':'That’s right!'):s.feedback.retry?'Another reading—try the one taught here.':'Not quite. Let’s try it again.'}</strong><span>${esc(feedbackSummary(item,kind,s.feedback,s.queue))}</span></div>${hintHtml}${infoDrawerHtml}<button type="button" class="button primary full-width" data-action="continue-answer">Continue ${icon('arrow')}</button>${canShowInfo&&!s.feedback.correct&&!s.feedback.retry?`<details class="answer-explanation"><summary>Revisit the memory story</summary><p>${esc(kind==='meaning'?item.meaningMnemonic:item.readingMnemonic)}</p></details>`:''}`:`<button class="button primary full-width" type="submit">Check answer ${icon('arrow')}</button><button class="text-button dont-know" type="button" data-action="dont-know">I don’t remember yet</button>`}</form></div></section>${s.mode==='review'||s.mode==='lesson'?'':`<p class="session-footnote">${s.mode==='practice'?'Just practice. Your spaced review progress will stay the same.':s.mode==='placement'?'Placement only marks Guru when you pass (≥90% or an 8-answer streak). Nothing is demoted.':'Both meaning and reading must be recalled before an item is complete.'}</p>`}`}`;
+  return `<section class="session-header"><div class="session-header-left"><button class="text-button" data-action="exit-session">${icon('back')} Dashboard</button>${wrapUpBtn}</div><span>${s.mode==='lesson'?'New lessons':s.mode==='review'?'Spaced reviews':s.mode==='placement'?'Placement check':'Free practice'} <b>·</b> ${learning?`${s.position+1} of ${s.selected.length}`:`${s.finished.length} of ${s.selected.length} subjects`}</span></section><div class="session-progress"><span style="width:${learning?s.position/s.selected.length*100:s.finished.length/s.selected.length*100}%"></span></div>${learning?`<section class="lesson-card">${subjectDetails(item,'lesson')}<div class="lesson-controls"><button class="button secondary" data-action="previous-lesson" ${s.position===0?'disabled':''}>${icon('back')} Previous</button><span>${s.position+1} / ${s.selected.length}</span><button class="button primary" data-action="next-lesson">${s.position===s.selected.length-1?'Start the quiz':'Next subject'} ${icon('arrow')}</button></div></section>${renderLessonFooter(s)}`:`<section class="quiz-card"><div class="quiz-prompt ${item.type} ${charLenClass(item)}"><div class="quiz-character ${charLenClass(item)}">${glyph(item,'radical image')}</div></div><div class="quiz-body"><h1>${kind==='meaning'?'What does this mean?':'How do you read this?'}</h1><p>${kind==='meaning'?'Enter an English meaning.':item.type==='kanji'?'Enter the reading you learned for this kanji.':'Enter this word’s reading in kana or romaji.'}</p><form id="answer-form"><label class="sr-only" for="answer">${kind==='meaning'?'Meaning in English':'Reading in kana or romaji'}</label><input id="answer" data-qid="${esc(item.id)}" data-qkind="${esc(kind)}" class="answer-input ${s.feedback?s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect':''}" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" lang="${kind==='reading'?'ja':'en'}" enterkeyhint="done" placeholder="${kind==='meaning'?'Your answer…':'かな or romaji…'}" ${s.feedback?'disabled':''} value="${esc(s.feedback?.answer??preservedInputVal)}">${kind==='reading'?'':`<div id="kana-preview" class="kana-preview">Press Enter to check your answer.</div>`}${s.levelUpEvent ? renderLevelUpTooltip(s.levelUpEvent) : ''}${s.feedback?`<div class="answer-feedback ${s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect'}" role="status"><strong>${s.feedback.correct?(s.feedback.typo?'Your answer had a slight typo':'That’s right!'):s.feedback.retry?'Another reading—try the one taught here.':'Not quite. Let’s try it again.'}</strong><span>${esc(feedbackSummary(item,kind,s.feedback,s.queue))}</span></div>${hintHtml}${infoDrawerHtml}<button type="button" class="button primary full-width" data-action="continue-answer">Continue ${icon('arrow')}</button>${canShowInfo&&!s.feedback.correct&&!s.feedback.retry?`<details class="answer-explanation"><summary>Revisit the memory story</summary><p>${esc(kind==='meaning'?item.meaningMnemonic:item.readingMnemonic)}</p></details>`:''}`:`<button class="button primary full-width" type="submit">Check answer ${icon('arrow')}</button><button class="text-button dont-know" type="button" data-action="dont-know">I don’t remember yet</button>`}</form></div></section>${s.mode==='review'||s.mode==='lesson'?'':`<p class="session-footnote">${s.mode==='practice'?'Just practice. Your spaced review progress will stay the same.':s.mode==='placement'?'Placement only marks Guru when you pass (≥90% or an 8-answer streak). Nothing is demoted.':'Both meaning and reading must be recalled before an item is complete.'}</p>`}`}`;
 }
 async function submitAnswer(unknown=false) {
  if(!session||session.phase!=='quiz'||session.feedback)return;
@@ -951,17 +961,22 @@ window.addEventListener('storage',async e=>{
 });
 window.addEventListener('focus',()=>{if(state&&cloud.getSession()&&!session&&!busy&&!sync.state.error)connectCloud();});
 window.addEventListener('beforeunload',e=>{if(session && session.phase!=='done'){e.preventDefault();e.returnValue='';}});
+window.addEventListener('keydown',e=>{
+ if(e.defaultPrevented||e.isComposing)return;
+ const tag = e.target?.tagName?.toLowerCase();
+ if(tag === 'input' || tag === 'textarea') return;
+ if((e.key === 'f' || e.key === 'F') && session && session.phase === 'quiz' && session.feedback && !session.feedback.retry) {
+  e.preventDefault();
+  session.infoOpen = !session.infoOpen;
+  render();
+ }
+});
 setInterval(()=>{if(state && !session && view==='dashboard'&&!$('#modal').open)render();},60000);
 try {
  curriculum=await loadCurriculum();
  items=curriculum.items;itemsById=new Map(items.map(i=>[i.id,i]));
  await loadImages(curriculum.imagePaths);
- window.__komorebi={levels:curriculum.levels.map(({level,status,itemCount})=>({level,status,itemCount})),mode:curriculum.mode,datasetVersion:curriculum.datasetVersion};
  state=readState();
- if (storageOK) {
-  state.profiles = state.profiles.map(ensureAccountBaseline);
-  persist(state);
- }
  // Restore the view from #library/#guide/#settings. Supabase auth fragments are left for initializeFromUrl().
  const startView=viewFromHash(location.hash);if(startView)view=startView;
  historyCall('replaceState',{view},startView||!location.hash?urlForView(view):location.href);
