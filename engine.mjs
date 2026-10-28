@@ -11,6 +11,7 @@ import { KANJI_READINGS } from './kanji-readings.mjs?v=20261028-reading-prompts'
  * unlock. A level unlocks once ceil(90%) of the previous level's kanji reached Guru once.
  * Meaning + reading form one review. Pass mistakes for both questions combined.
  */
+
 export const STAGE_NAMES = Object.freeze([
   'Not started', 'Apprentice I', 'Apprentice II', 'Apprentice III',
   'Apprentice IV', 'Guru I', 'Guru II', 'Master', 'Enlightened', 'Burned',
@@ -759,7 +760,20 @@ export function checkAnswer(item, kind, answer) {
   const data = item.type === 'kanji' ? KANJI_READINGS[item.character] : null;
   const alternatives = [...(item.otherReadings || []), ...(data?.onyomi || []), ...(data?.kunyomi || []), ...(data?.nanori || [])].map(readingText).map(normalizeReading);
   if (item.type === 'kanji' && alternatives.includes(normalized)) {
-    return { correct: false, retry: true, message: `That is another valid reading of this kanji. Try the ${readingTypeLabel(item) || 'kanji'} reading taught in this lesson. No mistake counted.` };
+    let message = `That is another valid reading of this kanji. Try the ${readingTypeLabel(item) || 'kanji'} reading taught in this lesson. No mistake counted.`;
+    const kd = KANJI_READINGS?.[item.character];
+    if (kd) {
+      const onyomi = (kd.onyomi || []).map(readingText).map(normalizeReading);
+      const kunyomi = (kd.kunyomi || []).map(readingText).map(normalizeReading);
+      const taughtIsOnyomi = accepted.some(r => onyomi.includes(r));
+      const taughtIsKunyomi = accepted.some(r => kunyomi.includes(r));
+      if (taughtIsOnyomi && kunyomi.includes(normalized)) {
+        message = 'We’re looking for the on’yomi reading. No mistake counted.';
+      } else if (taughtIsKunyomi && onyomi.includes(normalized)) {
+        message = 'We’re looking for the kun’yomi reading. No mistake counted.';
+      }
+    }
+    return { correct: false, retry: true, message };
   }
   return { correct: false, message: `Reading: ${(item.readings || []).map(readingText).join(' / ')}` };
 }

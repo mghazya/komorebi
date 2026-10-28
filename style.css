@@ -1522,5 +1522,120 @@ body.lesson-active main {
   .subject-tile.vocabulary.char-len-4 { font-size: 15px !important; }
 }
 
+/* Retry input shake & callout tooltip */
+@keyframes input-shake {
+  0%, 100% { transform: translateX(0); }
+  15%, 55%, 85% { transform: translateX(-6px); }
+  35%, 70% { transform: translateX(6px); }
+}
+.answer-input.shake {
+  animation: input-shake 0.38s ease;
+  border-color: #d1be84 !important;
+  background: #faf6e9 !important;
+  color: #8c7b3e !important;
+}
+.answer-input.is-retry {
+  border-color: #d1be84;
+  background: #faf6e9;
+  color: #8c7b3e;
+}
+.retry-tooltip {
+  position: relative;
+  margin: 12px auto 0;
+  padding: 10px 18px;
+  background: #faf5e7;
+  border: 1px solid #d1be84;
+  border-radius: 9px;
+  color: #786d42;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(110, 95, 40, 0.1);
+  max-width: 440px;
+  animation: retry-fade-in 0.2s ease-out;
+}
+.retry-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: #faf5e7;
+  border-left: 1px solid #d1be84;
+  border-top: 1px solid #d1be84;
+}
+@keyframes retry-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Interactive Building Block Chips */
+.component-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 8px;
+}
+.component-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 9px;
+  border: 1px solid #e2ebd9;
+  background: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: left;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  color: inherit;
+}
+.component-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(40, 86, 66, 0.1);
+}
+.component-chip.radical {
+  background: #f0f7f3;
+  border-color: #cce2d6;
+  color: #3d6a58;
+}
+.component-chip.radical b {
+  color: #2e5948;
+}
+.component-chip.kanji {
+  background: #fbf2ef;
+  border-color: #f0d5ce;
+  color: #9c5545;
+}
+.component-chip.kanji b {
+  color: #8c4232;
+}
+.component-chip b {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+.component-chip .component-name {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.component-chip .component-name strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+.component-chip .component-name small {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.75;
+}
+
+
 
 
