@@ -1,3 +1,4 @@
+import { KANJI_READINGS } from './kanji-readings.mjs?v=20261028-reading-prompts';
 /**
  * Komorebi's WaniKani-inspired learning engine. No storage or DOM dependencies.
  *
@@ -708,6 +709,22 @@ function findMeaningTypoMatch(normalizedInput, rawAccepted) {
   return closest ? { matchedMeaning: closest, distance: minDistance } : null;
 }
 
+const READING_LABELS = { onyomi: 'on’yomi', kunyomi: 'kun’yomi', nanori: 'nanori (name reading)' };
+export function readingTypeLabel(item) {
+  if (item.type !== 'kanji') return '';
+  const data = KANJI_READINGS[item.character];
+  const accepted = (item.readings || []).map(readingText).map(normalizeReading);
+  if (!data || !accepted.length) return '';
+  const types = Object.keys(READING_LABELS).filter(type => accepted.every(r => (data[type] || []).map(normalizeReading).includes(r)));
+  const type = types.includes(data.primaryType) ? data.primaryType : types.length === 1 ? types[0] : null;
+  return READING_LABELS[type] || '';
+}
+export function readingPrompt(item) {
+  if (item.type !== 'kanji') return 'How do you read this word?';
+  const label = readingTypeLabel(item);
+  return label ? `What is the ${label} reading?` : 'What is the taught kanji reading?';
+}
+
 export function checkAnswer(item, kind, answer) {
   if (kind === 'meaning') {
     const normalized = normalizeMeaning(answer);
@@ -739,9 +756,10 @@ export function checkAnswer(item, kind, answer) {
   }
   const accepted = (item.readings || []).map(readingText).map(normalizeReading);
   if (accepted.includes(normalized)) return { correct: true };
-  const alternatives = (item.otherReadings || []).map(readingText).map(normalizeReading);
+  const data = item.type === 'kanji' ? KANJI_READINGS[item.character] : null;
+  const alternatives = [...(item.otherReadings || []), ...(data?.onyomi || []), ...(data?.kunyomi || []), ...(data?.nanori || [])].map(readingText).map(normalizeReading);
   if (item.type === 'kanji' && alternatives.includes(normalized)) {
-    return { correct: false, retry: true, message: 'That is another reading of this kanji. Try the reading taught in this lesson.' };
+    return { correct: false, retry: true, message: `That is another valid reading of this kanji. Try the ${readingTypeLabel(item) || 'kanji'} reading taught in this lesson. No mistake counted.` };
   }
   return { correct: false, message: `Reading: ${(item.readings || []).map(readingText).join(' / ')}` };
 }
