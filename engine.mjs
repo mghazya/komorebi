@@ -1,3 +1,4 @@
+import { KANJI_READINGS } from './kanji-readings.mjs?v=20261028-reading-prompts';
 /**
  * Komorebi's WaniKani-inspired learning engine. No storage or DOM dependencies.
  *
@@ -84,11 +85,27 @@ export function statusFor(item, profile, now = Date.now(), ctx = {}) {
   };
 }
 
-/** Kanji progress of one level and the number needed (ceil 90%) to unlock the next level. */
+/** Progress of one level: Radicals, Kanji, Vocabulary, and the kanji count needed (ceil 90%) to unlock next level. */
 export function levelProgress(items, profile, level) {
+  const prog = progressOf(profile);
+  const radicals = items.filter((item) => item.type === 'radical' && item.level === level);
   const kanji = items.filter((item) => item.type === 'kanji' && item.level === level);
-  const kanjiPassed = kanji.filter((item) => hasPassed(progressOf(profile)[item.id])).length;
-  return { level, kanjiTotal: kanji.length, kanjiPassed, required: levelUnlockThreshold(kanji.length) };
+  const vocabulary = items.filter((item) => item.type === 'vocabulary' && item.level === level);
+
+  const radicalsPassed = radicals.filter((item) => hasPassed(prog[item.id])).length;
+  const kanjiPassed = kanji.filter((item) => hasPassed(prog[item.id])).length;
+  const vocabularyPassed = vocabulary.filter((item) => hasPassed(prog[item.id])).length;
+
+  return {
+    level,
+    kanjiTotal: kanji.length,
+    kanjiPassed,
+    required: levelUnlockThreshold(kanji.length),
+    radicalTotal: radicals.length,
+    radicalPassed: radicalsPassed,
+    vocabularyTotal: vocabulary.length,
+    vocabularyPassed: vocabularyPassed,
+  };
 }
 
 /** ceil(90%): 17 of 18, 27 of 30, 0 of 0. */
@@ -133,17 +150,99 @@ export function recordLevelUnlock(profile, level) {
   return { ...profile, unlockedLevel: level };
 }
 
+const TYPE_ORDER = Object.freeze({ radical: 0, kanji: 1, vocabulary: 2 });
+
 /**
  * Lessons whose prerequisites are met, from levels up to ctx.maxLevel (default: the derived
- * learner level for these items), lower levels first.
+ * learner level for these items).
+ * Orders strictly by:
+ * 1. level (ascending: earlier levels first)
+ * 2. subject type (WaniKani order: radical -> kanji -> vocabulary)
+ * 3. array order / dependency sequence
  */
 export function availableLessons(items, profile, ctx) {
   const maxLevel = Number.isInteger(ctx?.maxLevel) ? ctx.maxLevel : learnerLevel(items, profile);
   return items
     .map((item, index) => ({ item, index }))
     .filter(({ item }) => statusFor(item, profile, Date.now(), { maxLevel }).state === 'lesson')
-    .sort((a, b) => ((a.item.level ?? 0) - (b.item.level ?? 0)) || (a.index - b.index))
+    .sort((a, b) => {
+      const levelDiff = (a.item.level ?? 0) - (b.item.level ?? 0);
+      if (levelDiff !== 0) return levelDiff;
+      const typeDiff = (TYPE_ORDER[a.item.type] ?? 9) - (TYPE_ORDER[b.item.type] ?? 9);
+      if (typeDiff !== 0) return typeDiff;
+      return a.index - b.index;
+    })
     .map(({ item }) => item);
+}
+
+/**
+ * Local calendar date string YYYY-MM-DD.
+ */
+export function localDateKey(timestamp = Date.now()) {
+  const d = new Date(timestamp);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/**
+ * Total cumulative days studied.
+ * Uses profile.daysStudied if defined; otherwise calculates unique active dates from history.
+ */
+export function daysStudiedOf(profile, now = Date.now()) {
+  if (profile && Number.isInteger(profile.daysStudied) && profile.daysStudied >= 0) {
+    return profile.daysStudied;
+  }
+  const history = historyOf(profile);
+  const days = new Set();
+  for (const entry of history) {
+    if (entry && Number.isFinite(entry.at)) {
+      days.add(localDateKey(entry.at));
+    }
+  }
+  return days.size;
+}
+
+/**
+ * Check if the learner has recorded any study activity today.
+ */
+export function hasStudiedToday(profile, now = Date.now()) {
+  const todayKey = localDateKey(now);
+  if (profile?.lastStudiedDate === todayKey) return true;
+  if (lessonsStartedToday(profile, now) > 0) return true;
+  const today = new Date(now);
+  const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+  const history = historyOf(profile);
+  return history.some((entry) => entry && entry.at >= startOfDay && (entry.type === 'review' || entry.type === 'lesson'));
+}
+
+/**
+ * Increment daysStudied when studying on a new calendar day.
+ */
+export function recordStudyDay(profile, now = Date.now()) {
+  if (!profile) return profile;
+  const todayKey = localDateKey(now);
+  if (profile.lastStudiedDate === todayKey) return profile;
+  const currentDays = daysStudiedOf(profile, now);
+  return {
+    ...profile,
+    daysStudied: currentDays + 1,
+    lastStudiedDate: todayKey,
+  };
+}
+
+/**
+ * Count of lessons started today (calendar day based on local time).
+ */
+export function lessonsStartedToday(profile, now = Date.now()) {
+  const today = new Date(now);
+  const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+  const history = historyOf(profile);
+  let count = 0;
+  for (const entry of history) {
+    if (entry && entry.type === 'lesson' && entry.at >= startOfDay) {
+      count += Array.isArray(entry.itemIds) ? entry.itemIds.length : (entry.itemId ? 1 : 0);
+    }
+  }
+  return count;
 }
 
 export function dueReviews(items, profile, now = Date.now()) {
@@ -171,10 +270,11 @@ export function startLearning(profile, itemIds, now = Date.now(), levelOf) {
       passedAt: null,
     };
   }
+  const prof = recordStudyDay(profile, now);
   return {
-    ...profile,
+    ...prof,
     progress,
-    history: appendHistory(profile, { type: 'lesson', at: now, itemIds: freshIds }),
+    history: appendHistory(prof, { type: 'lesson', at: now, itemIds: freshIds }),
   };
 }
 
@@ -199,10 +299,11 @@ export function completeReview(profile, id, { mistakes = 0, level } = {}, now = 
     incorrectReviews: (previous.incorrectReviews || 0) + Number(!correct),
     passedAt: previous.passedAt ?? (previous.stage >= 5 || stage >= 5 ? now : null),
   };
+  const prof = recordStudyDay(profile, now);
   return {
-    ...profile,
-    progress: { ...progressOf(profile), [id]: next },
-    history: appendHistory(profile, {
+    ...prof,
+    progress: { ...progressOf(prof), [id]: next },
+    history: appendHistory(prof, {
       type: 'review', at: now, itemId: id,
       fromStage: previous.stage, toStage: stage, mistakes, correct,
     }),
@@ -561,6 +662,69 @@ const normalizeReading = (value) => toHiragana(value).replace(/\s+/g, '').trim()
 const readingText = (value) => typeof value === 'string' ? value : value?.reading || value?.text || '';
 const meaningText = (value) => typeof value === 'string' ? value : value?.meaning || value?.text || '';
 
+/** Standard Damerau-Levenshtein edit distance (supports transpositions) */
+export function damerauLevenshtein(a, b) {
+  const m = a.length, n = b.length;
+  if (!m) return n;
+  if (!n) return m;
+  const d = Array.from({ length: m + 1 }, () => new Int32Array(n + 1));
+  for (let i = 0; i <= m; i++) d[i][0] = i;
+  for (let j = 0; j <= n; j++) d[0][j] = j;
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      d[i][j] = Math.min(
+        d[i - 1][j] + 1,
+        d[i][j - 1] + 1,
+        d[i - 1][j - 1] + cost
+      );
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) {
+        d[i][j] = Math.min(d[i][j], d[i - 2][j - 2] + 1);
+      }
+    }
+  }
+  return d[m][n];
+}
+
+function maxAllowedDistance(targetLength) {
+  if (targetLength <= 3) return 0;
+  if (targetLength <= 7) return 1;
+  return 2;
+}
+
+function findMeaningTypoMatch(normalizedInput, rawAccepted) {
+  let closest = null;
+  let minDistance = Infinity;
+  for (const raw of rawAccepted) {
+    const target = normalizeMeaning(meaningText(raw));
+    if (!target) continue;
+    const maxDist = maxAllowedDistance(target.length);
+    if (maxDist === 0) continue;
+    const dist = damerauLevenshtein(normalizedInput, target);
+    if (dist <= maxDist && dist < minDistance) {
+      minDistance = dist;
+      closest = meaningText(raw);
+    }
+  }
+  return closest ? { matchedMeaning: closest, distance: minDistance } : null;
+}
+
+const READING_LABELS = { onyomi: 'on’yomi', kunyomi: 'kun’yomi', nanori: 'nanori (name reading)' };
+export function readingTypeLabel(item) {
+  if (item.type !== 'kanji') return '';
+  const data = KANJI_READINGS[item.character];
+  const accepted = (item.readings || []).map(readingText).map(normalizeReading);
+  if (!data || !accepted.length) return '';
+  const types = Object.keys(READING_LABELS).filter(type => accepted.every(r => (data[type] || []).map(normalizeReading).includes(r)));
+  const type = types.includes(data.primaryType) ? data.primaryType : types.length === 1 ? types[0] : null;
+  return READING_LABELS[type] || '';
+}
+export function readingPrompt(item) {
+  if (item.type !== 'kanji') return 'How do you read this word?';
+  const label = readingTypeLabel(item);
+  return label ? `What is the ${label} reading?` : 'What is the taught kanji reading?';
+}
+
 export function checkAnswer(item, kind, answer) {
   if (kind === 'meaning') {
     const normalized = normalizeMeaning(answer);
@@ -568,10 +732,21 @@ export function checkAnswer(item, kind, answer) {
     if (/[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}]/u.test(normalized)) {
       return { correct: false, retry: true, message: 'This question asks for the English meaning.' };
     }
-    const accepted = [...(item.meanings || []), item.meaning].filter(Boolean).map(meaningText).map(normalizeMeaning);
-    return accepted.includes(normalized)
-      ? { correct: true }
-      : { correct: false, message: `Meaning: ${item.meaning || meaningText(item.meanings?.[0])}` };
+    const rawAccepted = [...(item.meanings || []), item.meaning].filter(Boolean);
+    const accepted = rawAccepted.map(meaningText).map(normalizeMeaning);
+    if (accepted.includes(normalized)) {
+      return { correct: true };
+    }
+    const typoMatch = findMeaningTypoMatch(normalized, rawAccepted);
+    if (typoMatch) {
+      return {
+        correct: true,
+        typo: true,
+        matchedMeaning: typoMatch.matchedMeaning,
+        distance: typoMatch.distance
+      };
+    }
+    return { correct: false, message: `Meaning: ${item.meaning || meaningText(item.meanings?.[0])}` };
   }
   if (kind !== 'reading') throw new TypeError(`Unknown question kind: ${kind}`);
   const normalized = normalizeReading(answer);
@@ -581,9 +756,10 @@ export function checkAnswer(item, kind, answer) {
   }
   const accepted = (item.readings || []).map(readingText).map(normalizeReading);
   if (accepted.includes(normalized)) return { correct: true };
-  const alternatives = (item.otherReadings || []).map(readingText).map(normalizeReading);
+  const data = item.type === 'kanji' ? KANJI_READINGS[item.character] : null;
+  const alternatives = [...(item.otherReadings || []), ...(data?.onyomi || []), ...(data?.kunyomi || []), ...(data?.nanori || [])].map(readingText).map(normalizeReading);
   if (item.type === 'kanji' && alternatives.includes(normalized)) {
-    return { correct: false, retry: true, message: 'That is another reading of this kanji. Try the reading taught in this lesson.' };
+    return { correct: false, retry: true, message: `That is another valid reading of this kanji. Try the ${readingTypeLabel(item) || 'kanji'} reading taught in this lesson. No mistake counted.` };
   }
   return { correct: false, message: `Reading: ${(item.readings || []).map(readingText).join(' / ')}` };
 }

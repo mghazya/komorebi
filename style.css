@@ -14,7 +14,7 @@ p{color:#697c62}.eyebrow{color:#6e8263}.page-intro p{font-size:13px}.hero p{font
 p,.page-intro p,.hero p,.sidebar-bottom,.sidebar-bottom p,.sidebar-bottom h3,.small-note,.page-note,.progress-caption,.quiet-note,.legend,.srs-stat,.forecast-row,.forecast-row strong,.subtle-badge,.level-progress-label,.level-progress-label strong,.level-progress-label strong span,.action-text>span,.action-text small,.path-step strong,.path-step p,.library-meaning small,.status-label,.breadcrumb,.breadcrumb strong,.field-label,.date-label,.workspace-label,.brand small,.level-pill,.number-label,.batch-options small,.session-footnote,.kana-preview,.cloud-banner,.nav-link,.type-tabs button,.type-tabs button.selected,.type-tabs button>span:last-child,footer,.footer-dot{color:var(--muted-aa)}
 .eyebrow,.subject-content .eyebrow,.hero-tag,.hero-caption{color:var(--muted-aa)}
 .breadcrumb span,.down-chevron,.muted-japanese{color:#646f5e}
-.text-button,.source-link,.secondary,.hero h2 em,.path-card h2,.srs-stat strong{color:var(--link-aa)}
+.text-button,.source-link,.secondary,.hero h2 em,.path-card h2,.days-card h2,.srs-stat strong{color:var(--link-aa)}
 .avatar{color:#566c43}
 .nav-link.active{color:#526e45}
 .schedule-flow span{color:var(--muted-aa)}
@@ -36,7 +36,7 @@ p,.page-intro p,.hero p,.sidebar-bottom,.sidebar-bottom p,.sidebar-bottom h3,.sm
 .answer-feedback.correct{color:#557448}.answer-feedback.incorrect{color:#9a5948}.answer-feedback.retry{color:#786d42}
 .answer-feedback span{opacity:1}
 /* Levels 1–38 (Grok app lane): image radicals, unlock marker, library level picker and pager */
-.glyph-img{display:block;width:1em;height:1em;object-fit:contain}
+.glyph-img{display:inline-block;width:1.15em;height:1.15em;vertical-align:middle;object-fit:contain}
 .glyph-missing{font-size:10px;line-height:1.2;color:var(--muted-aa);text-align:center}
 .progress-track{position:relative}
 .unlock-mark{position:absolute;top:-1px;bottom:-1px;width:2px;margin-left:-1px;background:#4f6b3f;border-radius:1px}
@@ -103,7 +103,7 @@ h2,.panel-heading h2,.growth-panel .panel-heading h2{font-size:22px;line-height:
 .page-intro p,.hero p,.guide-section p,.settings-section p,.schedule-panel>p,
 .profiles-dialog>p,.auth-dialog>p,.session-done>p,.loading p{font-size:17px;line-height:1.75}
 .eyebrow,.page-intro .eyebrow,.level-panel .eyebrow,.level-panel .panel-heading .eyebrow,
-.upcoming-panel .eyebrow,.path-card>.eyebrow,.hero-tag{
+.upcoming-panel .eyebrow,.path-card>.eyebrow,.days-card .eyebrow,.hero-tag{
   font-size:13px;line-height:1.5;letter-spacing:1px;color:var(--muted-aa);
 }
 .brand small{font-size:10px;letter-spacing:.7px;line-height:1.4}
@@ -126,7 +126,7 @@ h2,.panel-heading h2,.growth-panel .panel-heading h2{font-size:22px;line-height:
 .lesson-controls .button,.pager .button{
   font-size:16px;line-height:1.45;min-height:46px;padding:12px 18px;font-weight:600;
 }
-.text-button,.panel-foot .text-button,.path-card>.text-button,.session-header .text-button{
+.text-button,.panel-foot .text-button,.path-card>.text-button,.days-card .text-button,.session-header .text-button{
   font-size:15px;line-height:1.5;min-height:44px;
 }
 .button .icon,.text-button .icon{width:18px;height:18px}
@@ -224,7 +224,7 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
 @media(max-width:1100px){
   .dashboard-grid{grid-template-columns:minmax(0,1fr)}
   .dashboard-secondary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-  .path-card{margin-top:0}
+  .path-card,.days-card{margin-top:0}
   .action-text strong{flex-direction:column;align-items:flex-start}
   .hero-copy{width:100%}
   .hero-art{display:none}
@@ -268,7 +268,7 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
   .action-text strong{font-size:32px}
   .action-text small{font-size:14px}
   .dashboard-secondary{grid-template-columns:minmax(0,1fr)}
-  .upcoming-panel,.path-card{padding:24px}
+  .upcoming-panel,.path-card,.days-card{padding:24px}
   .forecast-track{display:block}
   .forecast-row>span{width:100px}
   .library-row{display:grid;grid-template-columns:72px minmax(0,1fr);gap:6px 14px}
@@ -333,10 +333,18 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
  .quiz-active .session-header{position:fixed;top:var(--quiz-viewport-top,0px);left:0;right:0;height:44px;margin:0;padding:4px 12px;background:var(--paper,#f6f7f2);z-index:31;flex-wrap:nowrap;font-size:12px}
  .quiz-active .session-header .text-button{min-height:36px;font-size:14px}
  .quiz-active .quiz-card{position:fixed;top:calc(var(--quiz-viewport-top,0px) + 44px);left:8px;right:8px;height:calc(var(--quiz-viewport-height,100dvh) - 50px);margin:0;max-width:none;display:flex;flex-direction:column;overflow:hidden;z-index:30;border-radius:16px}
- .quiz-active .quiz-prompt{flex:none;padding:4px 12px;display:flex;align-items:center;justify-content:center;min-height:68px;max-height:100px}
- .quiz-active .quiz-character{font-size:56px;line-height:1.2;margin:0;overflow:hidden;scrollbar-width:none;max-height:88px}
- .quiz-active .quiz-prompt.vocabulary .quiz-character{font-size:clamp(24px,8vw,40px)}
- .quiz-active .quiz-character .glyph-img{height:58px;width:58px}
+ .quiz-active .quiz-prompt{flex:none;padding:4px 12px;display:flex;align-items:center;justify-content:center;min-height:72px;max-height:104px}
+ .quiz-active .quiz-character{font-size:64px;line-height:1.2;margin:0;overflow:hidden;scrollbar-width:none;max-height:92px}
+ .quiz-active .quiz-character.char-len-1{font-size:64px}
+ .quiz-active .quiz-character.char-len-2{font-size:56px}
+ .quiz-active .quiz-character.char-len-3{font-size:46px}
+ .quiz-active .quiz-character.char-len-4{font-size:38px}
+ .quiz-active .quiz-prompt.vocabulary .quiz-character{font-size:inherit}
+ .quiz-active .quiz-prompt.vocabulary .quiz-character.char-len-1{font-size:64px}
+ .quiz-active .quiz-prompt.vocabulary .quiz-character.char-len-2{font-size:56px}
+ .quiz-active .quiz-prompt.vocabulary .quiz-character.char-len-3{font-size:46px}
+ .quiz-active .quiz-prompt.vocabulary .quiz-character.char-len-4{font-size:38px}
+ .quiz-active .quiz-character .glyph-img{height:64px;width:64px}
  .quiz-active .quiz-body{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:10px 14px 16px;scroll-padding:8px}
  .quiz-active .quiz-body h1{font-size:18px;line-height:1.3;margin:0 0 8px}
  .quiz-active .quiz-body>p{display:none}
@@ -355,20 +363,39 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
   flex-direction: column;
   gap: 8px;
   align-items: center;
-  margin: 10px 0 12px;
+  margin: 8px 0 10px;
 }
 .hint-banner {
-  background: #555555;
+  appearance: none;
+  border: none;
+  font-family: inherit;
+  background: #4a4a4a;
   color: #ffffff;
   font-size: 13px;
   line-height: 1.45;
-  padding: 6px 14px;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   position: relative;
   text-align: center;
-  max-width: 90%;
+  max-width: 92%;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
   animation: fadeInDown 0.18s ease-out;
+}
+.hint-banner:hover {
+  background: #383838;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+.hint-banner:active {
+  background: #2b2b2b;
+  transform: translateY(0);
+}
+.hint-banner:focus-visible {
+  outline: 2px solid #5a8a70;
+  outline-offset: 2px;
 }
 .hint-banner::before {
   content: '';
@@ -378,7 +405,14 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
   transform: translateX(-50%);
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-bottom: 6px solid #555555;
+  border-bottom: 6px solid #4a4a4a;
+  transition: border-bottom-color 0.15s;
+}
+.hint-banner:hover::before {
+  border-bottom-color: #383838;
+}
+.hint-banner:active::before {
+  border-bottom-color: #2b2b2b;
 }
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-4px); }
@@ -389,26 +423,31 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
 .info-toggle-row {
   display: flex;
   justify-content: center;
-  margin: 10px 0 12px;
+  margin: 8px 0 12px;
 }
 .info-toggle-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
   background: #f0f4ee;
   border: 1px solid #c8d4c4;
-  color: #3b5042;
+  color: #284435;
   font-size: 13px;
   font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 6px;
+  padding: 8px 18px;
+  min-height: 40px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
 }
 .info-toggle-btn:hover {
   background: #e2ece0;
   border-color: #285642;
-  color: #1b3028;
+  color: #142820;
+}
+.info-toggle-btn:active {
+  transform: scale(0.98);
 }
 .info-toggle-btn .icon {
   width: 16px;
@@ -416,8 +455,61 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
 }
 .info-toggle-chevron {
   font-size: 10px;
-  color: #65776a;
+  color: #556c5c;
 }
+
+/* WaniKani-style 3-column kanji readings grid */
+.kanji-readings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 8px 0 14px;
+  padding: 12px 14px;
+  background: #f3f7f0;
+  border: 1px solid #dde6da;
+  border-radius: 8px;
+}
+.reading-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+.reading-column-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #65796b;
+  letter-spacing: 0.3px;
+}
+.reading-column.is-primary .reading-column-title {
+  font-weight: 700;
+  color: #153222;
+}
+.reading-column-items {
+  font-size: 16px;
+  line-height: 1.45;
+  color: #1c2b23;
+  margin: 0;
+  word-break: break-word;
+}
+.reading-column.is-primary .reading-column-items {
+  font-weight: 600;
+}
+.reading-column-items.is-none {
+  color: #8c9e90;
+  font-style: italic;
+  font-size: 13px;
+}
+@media (max-width: 420px) {
+  .kanji-readings-grid {
+    gap: 8px;
+    padding: 10px 10px;
+  }
+  .reading-column-items {
+    font-size: 15px;
+  }
+}
+
 .collapsed-item-info {
   background: #fbfdfa;
   border: 1px solid #dbe4d8;
@@ -481,6 +573,22 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
   color: #5c7263;
   display: block;
   margin-top: 2px;
+}
+.info-source-section {
+  padding-top: 8px;
+  border-top: 1px dashed #dbe4d8;
+  margin-top: 12px;
+}
+.info-source-section .source-link {
+  font-size: 13px;
+  color: #4a755d;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.info-source-section .source-link:hover {
+  text-decoration: underline;
+  color: #2b5640;
 }
 
 /* Milestone Level-Up / Level-Down Tooltip (below input) */
@@ -712,4 +820,707 @@ body.lesson-active main {
   color: #ffffff !important;
   font-weight: 600;
 }
+
+/* ==========================================================================
+   Consistent Glyph Sizing System
+   Ensures Radicals, Kanji, and Vocabulary of identical lengths share visual
+   weight and font-size, while longer words scale gracefully.
+   ========================================================================== */
+
+/* Subject Tiles (Dashboard & Grids) */
+.subject-tile {
+  font-size: 24px;
+}
+.subject-tile.char-len-1 { font-size: 24px; }
+.subject-tile.char-len-2 { font-size: 20px; }
+.subject-tile.char-len-3 { font-size: 16px; }
+.subject-tile.char-len-4 { font-size: 13px; }
+
+/* In case of specific subject type classes, ensure length takes priority */
+.subject-tile.vocabulary.char-len-1 { font-size: 24px; }
+.subject-tile.vocabulary.char-len-2 { font-size: 20px; }
+.subject-tile.vocabulary.char-len-3 { font-size: 16px; }
+.subject-tile.vocabulary.char-len-4 { font-size: 13px; }
+
+/* Library Character Rows */
+.library-character.char-len-1 { font-size: 34px; }
+.library-character.char-len-2 { font-size: 28px; }
+.library-character.char-len-3 { font-size: 22px; }
+.library-character.char-len-4 { font-size: 18px; }
+.library-character.vocabulary.char-len-1 { font-size: 34px; }
+.library-character.vocabulary.char-len-2 { font-size: 28px; }
+.library-character.vocabulary.char-len-3 { font-size: 22px; }
+.library-character.vocabulary.char-len-4 { font-size: 18px; }
+
+/* Big Character Banner (Detail modal & Lessons) */
+.big-character.char-len-1 { font-size: 85px; }
+.big-character.char-len-2 { font-size: 76px; }
+.big-character.char-len-3 { font-size: 64px; }
+.big-character.char-len-4 { font-size: 52px; }
+.subject-banner.vocabulary .big-character.char-len-1 { font-size: 85px; }
+.subject-banner.vocabulary .big-character.char-len-2 { font-size: 76px; }
+.subject-banner.vocabulary .big-character.char-len-3 { font-size: 64px; }
+.subject-banner.vocabulary .big-character.char-len-4 { font-size: 52px; }
+.lesson-card .big-character.char-len-1 { font-size: 80px; }
+.lesson-card .big-character.char-len-2 { font-size: 72px; }
+.lesson-card .big-character.char-len-3 { font-size: 60px; }
+.lesson-card .big-character.char-len-4 { font-size: 50px; }
+
+/* Quiz Character Prompts (Desktop default) */
+.quiz-character.char-len-1 { font-size: 100px; }
+.quiz-character.char-len-2 { font-size: 84px; }
+.quiz-character.char-len-3 { font-size: 70px; }
+.quiz-character.char-len-4 { font-size: 56px; }
+.quiz-prompt.vocabulary .quiz-character.char-len-1 { font-size: 100px; }
+.quiz-prompt.vocabulary .quiz-character.char-len-2 { font-size: 84px; }
+.quiz-prompt.vocabulary .quiz-character.char-len-3 { font-size: 70px; }
+.quiz-prompt.vocabulary .quiz-character.char-len-4 { font-size: 56px; }
+
+/* Lesson Tray Glyphs */
+.lesson-tray-item .lesson-tray-glyph { font-size: 18px; }
+.lesson-tray-item.vocabulary .lesson-tray-glyph.char-len-1 { font-size: 18px; }
+.lesson-tray-item.vocabulary .lesson-tray-glyph.char-len-2 { font-size: 17px; }
+.lesson-tray-item.vocabulary .lesson-tray-glyph.char-len-3 { font-size: 15px; }
+.lesson-tray-item.vocabulary .lesson-tray-glyph.char-len-4 { font-size: 13px; }
+
+/* Mobile Dimensions: Slight boost in size and stroke clarity for mobile phones */
+@media (max-width: 700px) {
+  /* Tiles: slightly larger, comfortable touch target */
+  .subject-tile {
+    min-height: 46px;
+    max-height: 60px;
+    font-size: 26px;
+  }
+  .subject-tile.char-len-1,
+  .subject-tile.vocabulary.char-len-1 { font-size: 26px; }
+  .subject-tile.char-len-2,
+  .subject-tile.vocabulary.char-len-2 { font-size: 21px; }
+  .subject-tile.char-len-3,
+  .subject-tile.vocabulary.char-len-3 { font-size: 17px; }
+  .subject-tile.char-len-4,
+  .subject-tile.vocabulary.char-len-4 { font-size: 14px; }
+
+  /* Library Characters */
+  .library-character {
+    font-size: 28px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+  .library-character.char-len-1,
+  .library-character.vocabulary.char-len-1 { font-size: 28px; }
+  .library-character.char-len-2,
+  .library-character.vocabulary.char-len-2 { font-size: 25px; }
+  .library-character.char-len-3,
+  .library-character.vocabulary.char-len-3 { font-size: 20px; }
+  .library-character.char-len-4,
+  .library-character.vocabulary.char-len-4 { font-size: 16px; }
+
+  /* Banner & Lesson Character */
+  .big-character,
+  .lesson-card .big-character {
+    font-size: 78px;
+  }
+  .big-character.char-len-1,
+  .subject-banner.vocabulary .big-character.char-len-1,
+  .lesson-card .big-character.char-len-1 { font-size: 78px; }
+  .big-character.char-len-2,
+  .subject-banner.vocabulary .big-character.char-len-2,
+  .lesson-card .big-character.char-len-2 { font-size: 70px; }
+  .big-character.char-len-3,
+  .subject-banner.vocabulary .big-character.char-len-3,
+  .lesson-card .big-character.char-len-3 { font-size: 58px; }
+  .big-character.char-len-4,
+  .subject-banner.vocabulary .big-character.char-len-4,
+  .lesson-card .big-character.char-len-4 { font-size: 46px; }
+
+  /* Normal Quiz Character (when not in full keyboard quiz-active mode) */
+  .quiz-character.char-len-1,
+  .quiz-prompt.vocabulary .quiz-character.char-len-1 { font-size: 88px; }
+  .quiz-character.char-len-2,
+  .quiz-prompt.vocabulary .quiz-character.char-len-2 { font-size: 76px; }
+  .quiz-character.char-len-3,
+  .quiz-prompt.vocabulary .quiz-character.char-len-3 { font-size: 60px; }
+  .quiz-character.char-len-4,
+  .quiz-prompt.vocabulary .quiz-character.char-len-4 { font-size: 48px; }
+
+  /* Lesson Tray Glyphs */
+  .lesson-tray-item .lesson-tray-glyph { font-size: 20px; }
+  .lesson-tray-item.vocabulary .lesson-tray-glyph.char-len-1 { font-size: 20px; }
+  .lesson-tray-item.vocabulary .lesson-tray-glyph.char-len-2 { font-size: 19px; }
+  .lesson-tray-item.vocabulary .lesson-tray-glyph.char-len-3 { font-size: 16px; }
+  .lesson-tray-item.vocabulary .lesson-tray-glyph.char-len-4 { font-size: 14px; }
+}
+
+/* ==========================================================================
+   WaniKani-Style Level Progress Component
+   ========================================================================== */
+
+/* Header & Level Navigation (< Level X >) */
+.level-panel .panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.level-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f4f7f0;
+  border: 1px solid #dfe6d8;
+  border-radius: 9px;
+  padding: 4px 8px;
+}
+.level-nav-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #496342;
+  padding: 0;
+  transition: all .15s ease;
+}
+.level-nav-arrow:not(:disabled):hover {
+  background: #ffffff;
+  border-color: #d2ddd0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.level-nav-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.level-nav-arrow .icon {
+  width: 15px;
+  height: 15px;
+}
+.level-nav-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+.level-nav-select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+.level-nav-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 2px 6px;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.level-nav-text .nav-caret {
+  font-size: 11px;
+  color: var(--muted-aa);
+}
+
+.level-progress-sub {
+  font-size: 13px;
+  color: var(--muted-aa);
+  margin: 0 0 16px 0;
+}
+.level-progress-sub strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Category Progress Cards (Radicals, Kanji, Vocabulary) */
+.level-progress-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.progress-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #e1e7dc;
+  border-radius: 12px;
+  padding: 14px 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: all .15s ease;
+  position: relative;
+}
+.progress-card:hover {
+  border-color: #b7cbaf;
+  box-shadow: 0 3px 12px rgba(40, 86, 66, 0.06);
+  transform: translateY(-1px);
+}
+.progress-card.selected {
+  border-color: #799a68;
+  box-shadow: 0 0 0 2px rgba(121, 154, 104, 0.25);
+  background: #fbfdf9;
+}
+.progress-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.progress-card-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  font-family: var(--jp);
+  font-size: 13px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.progress-card-badge.radical {
+  background: #dcece5;
+  color: #356050;
+  border: 1px solid #c8ded4;
+}
+.progress-card-badge.kanji {
+  background: #f3e2de;
+  color: #8e4938;
+  border: 1px solid #e7cec7;
+}
+.progress-card-badge.vocabulary {
+  background: #e8e6f4;
+  color: #5f4d8b;
+  border: 1px solid #d8d4ec;
+}
+.progress-card-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.progress-card-track {
+  height: 7px;
+  background: #edf1e9;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.progress-card-fill {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  transition: width .25s ease;
+}
+.progress-card-fill.radical {
+  background: #558772;
+}
+.progress-card-fill.kanji {
+  background: #b66c59;
+}
+.progress-card-fill.vocabulary {
+  background: #8372ae;
+}
+.progress-card .unlock-mark {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  width: 2px;
+  margin-left: -1px;
+  background: #506a44;
+  border-radius: 1px;
+  z-index: 2;
+}
+.progress-card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--muted-aa);
+}
+.progress-card-foot strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.progress-card-foot .see-all {
+  font-size: 12px;
+  font-weight: 500;
+  color: #55724b;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.progress-card-foot .see-all i {
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Status Callout Banner */
+.level-status-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.level-status-banner.passed-incomplete {
+  background: #eef3fc;
+  border: 1px solid #dbe6f8;
+  color: #2b4f7e;
+}
+.level-status-banner.passed-incomplete .status-banner-icon {
+  background: #4679bd;
+  color: #ffffff;
+}
+.level-status-banner.completed {
+  background: #edf8ef;
+  border: 1px solid #d4ebd8;
+  color: #276537;
+}
+.level-status-banner.completed .status-banner-icon {
+  background: #39aa56;
+  color: #ffffff;
+}
+.level-status-banner.unlocked {
+  background: #edf8ef;
+  border: 1px solid #d4ebd8;
+  color: #276537;
+}
+.level-status-banner.unlocked .status-banner-icon {
+  background: #39aa56;
+  color: #ffffff;
+}
+.level-status-banner.in-progress {
+  background: #f7f9f3;
+  border: 1px solid #e5ebd9;
+  color: #4a6344;
+}
+.level-status-banner.in-progress .status-banner-icon {
+  background: #739564;
+  color: #ffffff;
+}
+.level-status-banner.final-level {
+  background: #f9f6ed;
+  border: 1px solid #ebdcb8;
+  color: #795d24;
+}
+.level-status-banner.final-level .status-banner-icon {
+  background: #d89f2a;
+  color: #ffffff;
+}
+.status-banner-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.status-banner-icon .icon {
+  width: 14px;
+  height: 14px;
+}
+.level-status-banner p {
+  margin: 0;
+  color: inherit;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Subject Grid Header */
+.level-grid-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #eef2ea;
+}
+.level-grid-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.level-grid-title small {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted-aa);
+}
+.level-grid-count {
+  font-size: 13px;
+  color: var(--muted-aa);
+  font-weight: 500;
+}
+
+/* Subject Tile SRS Stage Underline Indicators (WaniKani Style) */
+.subject-tile {
+  padding-bottom: 7px !important;
+}
+.tile-glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.tile-srs-bar {
+  position: absolute;
+  bottom: 3px;
+  left: 6px;
+  right: 6px;
+  height: 3px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+.tile-srs-bar.is-guru {
+  background: #39aa56;
+}
+.tile-srs-bar.is-apprentice {
+  display: flex;
+  gap: 2px;
+}
+.tile-srs-bar.is-apprentice i {
+  flex: 1;
+  height: 100%;
+  border-radius: 1px;
+  background: rgba(0, 0, 0, 0.12);
+}
+.tile-srs-bar.is-apprentice i.on {
+  background: #39aa56;
+}
+
+/* Legend SRS items in footer */
+.legend-srs-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 6px;
+}
+.legend-srs-guru {
+  display: inline-block;
+  width: 14px;
+  height: 3px;
+  background: #39aa56;
+  border-radius: 2px;
+}
+.legend-srs-apprentice {
+  display: inline-flex;
+  gap: 1px;
+  width: 14px;
+  height: 3px;
+}
+.legend-srs-apprentice::before {
+  content: '';
+  flex: 2;
+  height: 100%;
+  background: #39aa56;
+  border-radius: 1px;
+}
+.legend-srs-apprentice::after {
+  content: '';
+  flex: 2;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 1px;
+}
+
+/* Mobile Responsiveness for Level Progress */
+@media (max-width: 700px) {
+  .level-progress-cards {
+    gap: 8px;
+  }
+  .progress-card {
+    padding: 10px 8px;
+    gap: 7px;
+    border-radius: 10px;
+  }
+  .progress-card-badge {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+  .progress-card-name {
+    font-size: 11px;
+  }
+  .progress-card-track {
+    height: 5px;
+  }
+  .progress-card-foot {
+    font-size: 11px;
+  }
+  .progress-card-foot strong {
+    font-size: 12px;
+  }
+  .progress-card-foot .see-all {
+    display: none; /* Keep clean on narrow phone screens */
+  }
+  .level-status-banner {
+    padding: 10px 12px;
+    font-size: 12px;
+    gap: 10px;
+  }
+  .status-banner-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .tile-srs-bar {
+    left: 4px;
+    right: 4px;
+    bottom: 2px;
+    height: 2.5px;
+  }
+}
+
+/* Days studied / consistency card */
+.days-card {
+  padding: 24px 22px;
+  margin-top: 19px;
+  display: flex;
+  flex-direction: column;
+}
+.days-stat-container {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 12px 0 16px;
+}
+.days-stat-number {
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--green);
+  letter-spacing: -1.5px;
+}
+.days-stat-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.days-stat-label {
+  font-size: 13px;
+  color: var(--muted-aa);
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.days-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #7a8f6d;
+  background: #edf3e7;
+  padding: 3px 8px;
+  border-radius: 6px;
+  width: fit-content;
+}
+.days-badge.is-today {
+  color: #2e6047;
+  background: #d8ebd7;
+}
+.days-badge .icon {
+  width: 13px;
+  height: 13px;
+}
+.days-milestone {
+  background: #f7f9f4;
+  border: 1px solid #e9ede3;
+  border-radius: 9px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.days-milestone-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #728469;
+  margin-bottom: 8px;
+}
+.days-milestone-header strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.days-milestone-header small {
+  color: var(--muted-aa);
+  font-size: 10px;
+}
+.days-card-quote {
+  font-size: 12px;
+  color: var(--muted-aa);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+.days-card .text-button {
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   Flexible-width Vocabulary Tiles (WaniKani Style)
+   ========================================================================== */
+.subject-grid.is-vocabulary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 6px;
+}
+
+.subject-tile.vocabulary {
+  aspect-ratio: auto !important;
+  width: auto !important;
+  min-width: 44px;
+  height: 44px;
+  max-height: 44px;
+  padding: 0 12px 6px !important;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+.subject-tile.vocabulary.char-len-1 { font-size: 21px !important; }
+.subject-tile.vocabulary.char-len-2 { font-size: 18px !important; }
+.subject-tile.vocabulary.char-len-3 { font-size: 18px !important; }
+.subject-tile.vocabulary.char-len-4 { font-size: 17px !important; }
+
+.subject-tile.vocabulary.is-locked {
+  padding-right: 15px !important;
+}
+
+.subject-tile.vocabulary .tile-srs-bar {
+  left: 6px;
+  right: 6px;
+  bottom: 3px;
+  height: 3px;
+}
+
+@media (max-width: 700px) {
+  .subject-grid.is-vocabulary {
+    gap: 7px 5px;
+  }
+  .subject-tile.vocabulary {
+    min-height: 40px;
+    height: 40px;
+    max-height: 40px;
+    min-width: 40px;
+    padding: 0 10px 5px !important;
+  }
+  .subject-tile.vocabulary.char-len-1 { font-size: 19px !important; }
+  .subject-tile.vocabulary.char-len-2,
+  .subject-tile.vocabulary.char-len-3 { font-size: 16px !important; }
+  .subject-tile.vocabulary.char-len-4 { font-size: 15px !important; }
+}
+
+
 
