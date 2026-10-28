@@ -253,9 +253,15 @@ function dashboard(s) {
       ? `${Math.min(batchSize, displayLessons)} small lessons now. ${remainingToday} left of daily goal (${s.lessons} in reserve).`
       : `${Math.min(batchSize, s.lessons)} small lessons. A little progress.`;
 
+  const savedReview = loadReviewSession(p.id);
+  const savedRemaining = savedReview ? ((savedReview.unstarted?.length || 0) + new Set(savedReview.queue.map(q => q.id)).size) : 0;
+  const reviewCardHtml = (savedReview && savedRemaining > 0)
+   ? `<button class="action-card reviews-card is-resume" data-action="resume-reviews"><div class="action-icon">${icon('clock')}</div><div class="action-text"><span>In-progress review</span><strong>${savedRemaining}<small>subjects left · tap to resume</small></strong></div><span class="round-arrow">${icon('arrow')}</span></button>`
+   : `<button class="action-card reviews-card" data-action="reviews" ${s.reviews?'':'disabled'}><div class="action-icon">${icon('clock')}</div><div class="action-text"><span>Your reviews</span><strong>${s.reviews}<small>${s.reviews?'ready to remember':next?`next ${timeUntil(next)}`:'start with a lesson'}</small></strong></div><span class="round-arrow">${icon('arrow')}</span></button>`;
+
  return `<section class="page-intro"><div><div class="eyebrow">THE EVERYDAY PRACTICE</div><h1>Your Japanese journey</h1><p>One character at a time. One step closer.</p></div><span class="date-label">${new Date().toLocaleDateString('en',{weekday:'short',month:'short',day:'numeric'})}</span></section>
  <section class="hero"><div class="hero-copy"><span class="hero-tag"><span></span> A GOOD DAY TO BEGIN</span><h2>Small steps.<br><em>Lasting knowledge.</em></h2><p>Build your foundation with radicals, bring kanji<br class="desktop-br"> to life, and make new words your own.</p><button class="button primary" data-action="lessons" ${s.lessons?'':'disabled'}>${heroBtnText} ${icon('arrow')}</button><span class="hero-caption">${heroCaptionText}</span></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="art-word word-one">日</span><span class="art-word word-two">山</span><span class="art-word word-three">人</span><span class="tree-tile">木</span><svg class="botanical" viewBox="0 0 180 220"><path d="M88 215C111 161 78 92 114 19"/><path d="M96 172C34 168 37 124 88 130C103 151 96 172 96 172Z"/><path d="M98 130C162 128 158 84 114 91C97 110 98 130 98 130Z"/><path d="M97 85C58 77 65 40 102 54C109 71 97 85 97 85Z"/><path d="M113 41C155 36 146 9 122 15C113 26 113 41 113 41Z"/></svg><span class="vertical-japanese">毎日、少しずつ。</span><span class="art-note">a little growth, every day</span></div></section>
- <section class="action-grid" aria-label="Study actions"><button class="action-card lessons-card" data-action="lessons" ${s.lessons?'':'disabled'}><div class="action-icon">${icon('book')}</div><div class="action-text"><span>Today’s lessons</span><strong>${dailyTarget > 0 ? (targetMet ? `${doneToday}/${dailyTarget}` : `${displayLessons}`) : s.lessons}<small>${dailyTarget > 0 ? (targetMet ? 'goal met · study more' : `left today · ${s.lessons} in reserve`) : 'ready to discover'}</small></strong></div><span class="round-arrow">${icon('arrow')}</span></button><button class="action-card reviews-card" data-action="reviews" ${s.reviews?'':'disabled'}><div class="action-icon">${icon('clock')}</div><div class="action-text"><span>Your reviews</span><strong>${s.reviews}<small>${s.reviews?'ready to remember':next?`next ${timeUntil(next)}`:'start with a lesson'}</small></strong></div><span class="round-arrow">${icon('arrow')}</span></button></section>
+ <section class="action-grid" aria-label="Study actions"><button class="action-card lessons-card" data-action="lessons" ${s.lessons?'':'disabled'}><div class="action-icon">${icon('book')}</div><div class="action-text"><span>Today’s lessons</span><strong>${dailyTarget > 0 ? (targetMet ? `${doneToday}/${dailyTarget}` : `${displayLessons}`) : s.lessons}<small>${dailyTarget > 0 ? (targetMet ? 'goal met · study more' : `left today · ${s.lessons} in reserve`) : 'ready to discover'}</small></strong></div><span class="round-arrow">${icon('arrow')}</span></button>${reviewCardHtml}</section>
  <section class="panel placement-panel"><div class="panel-heading"><div><span class="eyebrow">ALREADY KNOW JAPANESE?</span><h2>Placement check</h2></div></div><p>A short meaning (and reading) quiz. Score ≥90% or a strong streak marks those subjects Guru I so you skip the early waits—without burning them.</p><button class="button secondary" data-action="placement">Start placement ${icon('arrow')}</button></section>
  <div class="dashboard-grid"><div class="dashboard-primary"><section class="panel level-panel">
   <div class="panel-heading">
@@ -398,15 +404,37 @@ function settings() {
  const p=profile(), unknown=curriculum?unknownProgressIds(p,curriculum.knownIds).length:0, c=curriculum?.counts||{radical:0,kanji:0,vocabulary:0}, lv=curriculum?.loadedLevels||[];
  return `<section class="page-intro"><div><div class="eyebrow">MAKE YOURSELF AT HOME</div><h1>Your study space</h1><p>A pace that fits you, and progress that stays yours.</p></div></section><div class="settings-grid"><section class="panel settings-section"><h2>Learner profile</h2><p>${sync.state.profile?'Your account keeps your lessons and reviews in sync.':'Guest profiles have separate progress on this browser.'}</p><label class="field-label" for="profile-name">Your name</label><form id="rename-form" class="inline-form"><input id="profile-name" required maxlength="40" value="${esc(p.name)}"><button class="button secondary">Save name</button></form><label class="field-label" for="days-studied-input">Total days studied</label><form id="days-studied-form" class="inline-form"><input id="days-studied-input" type="number" min="0" max="99999" value="${daysStudiedOf(p)}" required><button class="button secondary">Save days</button></form><button class="text-button" data-action="profiles">${icon('people')} ${sync.state.profile?'Manage account':'Manage guest learners'}</button><hr><h2>Lesson size</h2><p>Choose how many new subjects to learn in one sitting.</p><div class="batch-options">${[3,5,10].map(n=>`<button class="${batchSizeOf(p)===n?'selected':''}" data-batch="${n}" aria-pressed="${batchSizeOf(p)===n}">${n}<small>subjects</small></button>`).join('')}</div><hr><h2>Daily lesson target</h2><p>Pace your new lessons per day like WaniKani to prevent review avalanches.</p><div class="batch-options">${[5,10,15,20,0].map(n=>`<button class="${dailyLessonTargetOf(p)===n?'selected':''}" data-daily-target="${n}" aria-pressed="${dailyLessonTargetOf(p)===n}">${n===0?'Off':n}<small>${n===0?'unlimited':'per day'}</small></button>`).join('')}</div><hr><h2>Review batch size</h2><p>Choose how many due reviews to tackle in one sitting.</p><div class="batch-options">${[10,20,50,0].map(n=>`<button class="${reviewBatchSizeOf(p)===n?'selected':''}" data-review-batch="${n}" aria-pressed="${reviewBatchSizeOf(p)===n}">${n===0?'All':n}<small>${n===0?'due reviews':'subjects'}</small></button>`).join('')}</div></section><section class="panel settings-section"><h2>Keep your progress safe</h2><p>${sync.state.profile?'Your progress is saved to your cloud account after each completed lesson batch or review item. A backup gives you an extra copy.':'You’re using a guest profile. Progress lives in this browser until you sign in and transfer it to an empty account.'}</p>${sync.state.profile?`<div class="cloud-account">${icon('check')}<span><strong>${esc(cloud.getSession()?.user.email||'Your account')}</strong><small>${sync.state.error?'Sync needs attention':'Cloud progress connected'}</small></span></div><button class="text-button" data-action="change-password">${icon('lock')} Change password</button>`:`<button class="button secondary full-width" data-action="account">${icon('people')} Sign in to sync progress</button>`}<button class="button primary full-width" data-action="export">${icon('download')} Export my progress</button><label class="button secondary full-width import-label">Import a backup<input id="import-file" type="file" accept=".json,application/json" class="sr-only"></label>${unknown?`<p class="small-note">${unknown} saved subject${unknown===1?'':'s'} belong to levels that aren’t loaded in this version. They are kept safely in your progress and backups.</p>`:''}<p class="small-note">${sync.state.profile?'Import is available for an empty cloud account. Existing cloud progress is never replaced by an import.':'Importing adds a new guest profile. Sign in to an empty account to transfer your guest progress to the cloud.'}</p><hr><h2>Review reminders</h2><div id="notification-settings" aria-live="polite">Checking notification support…</div><hr><h2>Already know Japanese?</h2><p>Run a placement check on your current level (and earlier ones). Strong scores mark items Guru I—dependents unlock, early 2-hour waits are skipped, and later reviews stay light.</p><button class="button secondary full-width" data-action="placement">Start placement check</button><hr><h2>About this little space</h2><p>Komorebi (木漏れ日) means sunlight filtering through leaves. This version includes ${c.radical.toLocaleString('en')} radicals, ${c.kanji.toLocaleString('en')} kanji, and ${c.vocabulary.toLocaleString('en')} vocabulary words${lv.length?` across Level${lv.length===1?` ${lv[0]}`:`s ${lv[0]}–${lv[lv.length-1]}`}`:''}.</p><p class="small-note">Study explanations are from your supplied WaniKani export. WaniKani is a trademark of Tofugu LLC. This app is independent and unaffiliated.</p></section></div>`;
 }
+function renderComponents(item) {
+  if (!item?.components?.length) return '';
+  return `<section class="info-section">
+    <span class="eyebrow info-eyebrow">BUILDING BLOCKS</span>
+    <div class="component-list">
+      ${item.components.map(c => {
+        const comp = getItem(c.id);
+        const compType = comp?.type || (c.id?.startsWith('radical:') ? 'radical' : 'kanji');
+        const compGlyph = comp ? glyph(comp, '') : (c.character ? `<span lang="ja">${esc(c.character)}</span>` : '');
+        const compName = esc(comp?.meaning || c.name || '');
+        return `<button type="button" class="component-chip ${compType}" data-action="view-subject" data-item="${esc(c.id)}" title="${compName} (${compType})">
+          <b>${compGlyph}</b>
+          <span class="component-name">
+            <strong>${compName}</strong>
+            <small>${compType}</small>
+          </span>
+        </button>`;
+      }).join('')}
+    </div>
+  </section>`;
+}
 function subjectDetails(item, context='detail') {
- const st=statusOf(item);
- const cl=charLenClass(item);
- return `<div class="subject-banner ${item.type} ${cl}"><span class="subject-kind">${item.type} <span>•</span> LEVEL ${esc(item.level)}</span><div class="big-character ${cl}">${glyph(item,`${item.meaning} radical`)}</div><h2>${esc(item.meaning)}</h2>${readingsOf(item).length?`<p class="banner-reading" lang="ja">${esc(readingsOf(item).join(' ・ '))}</p>`:''}</div><div class="subject-content"><section><span class="eyebrow">MEANING</span><h3>${esc((item.meanings||[item.meaning]).join(' · '))}</h3><p>${esc(item.meaningMnemonic)||'Look closely at the character and connect its shape with its meaning.'}</p></section>${item.type!=='radical'?`<section><span class="eyebrow">${item.type==='kanji'?'READINGS':'READING'}</span>${item.type==='kanji'&&KANJI_READINGS[item.character]?renderKanjiReadings(item):`<h3 lang="ja">${esc(readingsOf(item).join(' ・ '))}</h3>`}<p>${esc(item.readingMnemonic)}</p>${item.type!=='kanji'&&item.otherReadings?.length?`<p class="small-note">Other readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span>.</p>`:''}</section>`:''}${item.components?.length?`<section><span class="eyebrow">BUILDING BLOCKS</span><div class="component-list">${item.components.map(c=>`<span><b>${glyph(c,'')}</b>${esc(c.name)}</span>`).join('')}</div></section>`:''}${item.sentences?.length?`<section><span class="eyebrow">IN CONTEXT</span>${item.sentences.map(s=>`<div class="sentence"><p lang="ja">${esc(s.japanese)}</p><small>${esc(s.english)}</small></div>`).join('')}</section>`:''}${context==='detail'?`<section class="subject-status"><strong>${st.state==='locked'?'Not unlocked yet':st.state==='lesson'?'Ready for your lessons':esc(st.stageName)}</strong><p>${st.state==='locked'?(st.unmetDependencies.length?`First reach Guru with: ${st.unmetDependencies.map(id=>esc(getItem(id)?`${getItem(id).meaning} (Level ${getItem(id).level})`:id)).join(', ')}.`:`Opens when you reach Level ${esc(item.level)}.`):st.availableAt?`Next review: ${prettyDate(st.availableAt)}`:'Every small step counts.'}</p></section>`:''}${!hasPassed(profile().progress[item.id])?`<div class="know-actions"><button class="button secondary full-width" type="button" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button>${context==='lesson'?'':`<p class="small-note">Skips early Apprentice waits. Sets Guru I so dependents unlock; light reviews stay on the schedule.</p>`}</div>`:''}${item.sourceUrl && safeHref(item.sourceUrl) ? `<a class="source-link" href="${esc(safeHref(item.sourceUrl))}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a>` : ''}</div>`;
+  const st=statusOf(item);
+  const cl=charLenClass(item);
+  return `<div class="subject-banner ${item.type} ${cl}"><span class="subject-kind">${item.type} <span>•</span> LEVEL ${esc(item.level)}</span><div class="big-character ${cl}">${glyph(item,`${item.meaning} radical`)}</div><h2>${esc(item.meaning)}</h2>${readingsOf(item).length?`<p class="banner-reading" lang="ja">${esc(readingsOf(item).join(' ・ '))}</p>`:''}</div><div class="subject-content"><section><span class="eyebrow">MEANING</span><h3>${esc((item.meanings||[item.meaning]).join(' · '))}</h3><p>${esc(item.meaningMnemonic)||'Look closely at the character and connect its shape with its meaning.'}</p></section>${item.type!=='radical'?`<section><span class="eyebrow">${item.type==='kanji'?'READINGS':'READING'}</span>${item.type==='kanji'&&KANJI_READINGS[item.character]?renderKanjiReadings(item):`<h3 lang="ja">${esc(readingsOf(item).join(' ・ '))}</h3>`}<p>${esc(item.readingMnemonic)}</p>${item.type!=='kanji'&&item.otherReadings?.length?`<p class="small-note">Other readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span>.</p>`:''}</section>`:''}${renderComponents(item)}${item.sentences?.length?`<section><span class="eyebrow">IN CONTEXT</span>${item.sentences.map(s=>`<div class="sentence"><p lang="ja">${esc(s.japanese)}</p><small>${esc(s.english)}</small></div>`).join('')}</section>`:''}${context==='detail'?`<section class="subject-status"><strong>${st.state==='locked'?'Not unlocked yet':st.state==='lesson'?'Ready for your lessons':esc(st.stageName)}</strong><p>${st.state==='locked'?(st.unmetDependencies.length?`First reach Guru with: ${st.unmetDependencies.map(id=>esc(getItem(id)?`${getItem(id).meaning} (Level ${getItem(id).level})`:id)).join(', ')}.`:`Opens when you reach Level ${esc(item.level)}.`):st.availableAt?`Next review: ${prettyDate(st.availableAt)}`:'Every small step counts.'}</p></section>`:''}${!hasPassed(profile().progress[item.id])?`<div class="know-actions"><button class="button secondary full-width" type="button" data-action="mark-known" data-item="${esc(item.id)}">Already know this · mark Guru</button>${context==='lesson'?'':`<p class="small-note">Skips early Apprentice waits. Sets Guru I so dependents unlock; light reviews stay on the schedule.</p>`}</div>`:''}${item.sourceUrl && safeHref(item.sourceUrl) ? `<a class="source-link" href="${esc(safeHref(item.sourceUrl))}" target="_blank" rel="noopener noreferrer">View the original on WaniKani ↗</a>` : ''}</div>`;
 }
 function openSubject(id) {
- const item=getItem(id); if(!item)return;
- const modal=$('#modal');modal.className='subject-dialog';modal.innerHTML=`<button class="modal-close" data-close aria-label="Close subject">${icon('close')}</button><span id="modal-title" class="sr-only">${esc(item.meaning)} details</span>${subjectDetails(item)}`;modal.showModal(); $('[data-close]',modal).onclick=()=>modal.close();
- modal.querySelectorAll('[data-action="mark-known"]').forEach(b=>b.onclick=async()=>{const id=b.dataset.item;if(id)await markKnown(id);});
+  const item=getItem(id); if(!item)return;
+  const modal=$('#modal');modal.className='subject-dialog';modal.innerHTML=`<button class="modal-close" data-close aria-label="Close subject">${icon('close')}</button><span id="modal-title" class="sr-only">${esc(item.meaning)} details</span>${subjectDetails(item)}`;modal.showModal(); $('[data-close]',modal).onclick=()=>modal.close();
+  modal.querySelectorAll('[data-action="mark-known"]').forEach(b=>b.onclick=async()=>{const id=b.dataset.item;if(id)await markKnown(id);});
+  modal.querySelectorAll('[data-action="view-subject"]').forEach(b=>b.onclick=()=>{const id=b.dataset.item;if(id)openSubject(id);});
 }
 function openProfiles() {
  if (cloud.getSession()) { openAccount(); return; }
@@ -537,8 +565,13 @@ async function graduatePlacementLevel() {
 
 function leaveSession(){
  if(!session || session.phase==='done')return true;
- if(session.mode==='review' && session.finished?.length){
-  return window.confirm(`Leave this review session? ${session.finished.length} completed review subject${session.finished.length===1?' is':'s are'} already saved to your progress.`);
+ if(session.mode==='review'){
+  saveReviewSession();
+  const ok = window.confirm(`Leave this review session? Your progress is saved and you can resume anytime from the dashboard.`);
+  if (ok) {
+   toast('Review session saved. Tap Resume on your dashboard whenever you’re ready.');
+  }
+  return ok;
  }
  return window.confirm(LEAVE_MESSAGE);
 }
@@ -563,6 +596,16 @@ window.addEventListener('popstate',e=>{
 });
 function begin(mode) {
  if (busy || (sync.state.profile && sync.state.error)) {toast('Resolve cloud sync first so your progress can be saved safely.');return;}
+ if (mode === 'review') {
+  const saved = loadReviewSession();
+  if (saved) {
+   session = saved;
+   if(history.state?.session)historyCall('replaceState',{view,session:true},urlForView(view));else historyCall('pushState',{view,session:true},urlForView(view));
+   render();window.scrollTo(0,0);
+   toast('Resumed your in-progress review session.');
+   return;
+  }
+ }
  const p=profile();
  let selected;
  if(mode==='lesson') selected=availableLessons(items,p,ctx(p)).slice(0,batchSizeOf(p));
@@ -574,6 +617,7 @@ function begin(mode) {
  session={mode,phase:mode==='lesson'?'learn':'quiz',selected,unstarted:[],activeIds:[],wrappingUp:false,position:0,queue:[],mistakes:{},finished:[],feedback:null,answers:0,correct:0,startedAt:Date.now()};
  if(history.state?.session)historyCall('replaceState',{view,session:true},urlForView(view));else historyCall('pushState',{view,session:true},urlForView(view));
  if(mode!=='lesson')makeQuiz();render();window.scrollTo(0,0);
+ if(mode==='review')saveReviewSession();
 }
 function makeQuiz(){
  session.phase='quiz';
@@ -584,10 +628,127 @@ function makeQuiz(){
   session.activeIds=initial.map(i=>i.id);
   session.queue=buildQuizQueue(initial);
   session.totalQuestions=session.queue.length;
+  saveReviewSession();
  } else {
   session.queue=buildQuizQueue(session.selected);
   session.totalQuestions=session.queue.length;
  }
+}
+
+const SESSION_KEY = (profileId) => `komorebi.review-session.${profileId}`;
+
+function saveReviewSession(s = session) {
+  if (!s || s.mode !== 'review' || s.phase !== 'quiz') return;
+  const pId = profile()?.id;
+  if (!pId) return;
+  try {
+    const data = {
+      profileId: pId,
+      selectedIds: (s.selected || []).map(i => i.id),
+      unstartedIds: (s.unstarted || []).map(i => i.id),
+      activeIds: s.activeIds || [],
+      queue: s.queue || [],
+      mistakes: s.mistakes || {},
+      finished: s.finished || [],
+      answers: s.answers || 0,
+      correct: s.correct || 0,
+      startedAt: s.startedAt || Date.now(),
+      wrappingUp: Boolean(s.wrappingUp),
+      totalQuestions: s.totalQuestions || 0,
+    };
+    localStorage.setItem(SESSION_KEY(pId), JSON.stringify(data));
+  } catch {}
+}
+
+function loadReviewSession(pId = profile()?.id) {
+  if (!pId) return null;
+  try {
+    const raw = localStorage.getItem(SESSION_KEY(pId));
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (!data || data.profileId !== pId || !Array.isArray(data.queue) || !data.queue.length) {
+      localStorage.removeItem(SESSION_KEY(pId));
+      return null;
+    }
+    const selected = (data.selectedIds || []).map(id => getItem(id)).filter(Boolean);
+    const unstarted = (data.unstartedIds || []).map(id => getItem(id)).filter(Boolean);
+    if (!selected.length) {
+      localStorage.removeItem(SESSION_KEY(pId));
+      return null;
+    }
+    const queue = data.queue.filter(q => getItem(q.id));
+    if (!queue.length) {
+      localStorage.removeItem(SESSION_KEY(pId));
+      return null;
+    }
+    return {
+      mode: 'review',
+      phase: 'quiz',
+      selected,
+      unstarted,
+      activeIds: data.activeIds || [],
+      queue,
+      mistakes: data.mistakes || {},
+      finished: data.finished || [],
+      feedback: null,
+      answers: data.answers || 0,
+      correct: data.correct || 0,
+      startedAt: data.startedAt || Date.now(),
+      wrappingUp: Boolean(data.wrappingUp),
+      totalQuestions: data.totalQuestions || queue.length,
+    };
+  } catch {
+    return null;
+  }
+}
+
+function clearReviewSession(pId = profile()?.id) {
+  if (!pId) return;
+  try { localStorage.removeItem(SESSION_KEY(pId)); } catch {}
+}
+
+function resumeReviewSession() {
+  const saved = loadReviewSession();
+  if (!saved) {
+    begin('review');
+    return;
+  }
+  session = saved;
+  if (history.state?.session) historyCall('replaceState', { view, session: true }, urlForView(view));
+  else historyCall('pushState', { view, session: true }, urlForView(view));
+  render();
+  window.scrollTo(0, 0);
+  toast('Resumed your in-progress review session.');
+}
+
+function showRetryTooltip(message) {
+  const inputEl = $('#answer');
+  if (!inputEl) return;
+  $('#retry-tooltip')?.remove();
+  inputEl.classList.remove('shake');
+  void inputEl.offsetWidth;
+  inputEl.classList.add('shake', 'is-retry');
+  const tip = document.createElement('div');
+  tip.id = 'retry-tooltip';
+  tip.className = 'retry-tooltip';
+  tip.setAttribute('role', 'status');
+  tip.innerHTML = `<span>${esc(message)}</span>`;
+  const parent = inputEl.closest('#answer-form') || inputEl.parentNode;
+  const kanaPreview = $('#kana-preview');
+  if (kanaPreview && kanaPreview.parentNode === parent) {
+    kanaPreview.after(tip);
+  } else {
+    inputEl.after(tip);
+  }
+  inputEl.focus({ preventScroll: true });
+}
+
+function dismissRetryTooltip() {
+  $('#retry-tooltip')?.remove();
+  const inputEl = $('#answer');
+  if (inputEl) {
+    inputEl.classList.remove('shake', 'is-retry');
+  }
 }
 function renderLevelUpTooltip(ev) {
   if (!ev) return '';
@@ -639,6 +800,7 @@ function renderSession() {
       ${item.readingMnemonic ? `<p class="info-mnemonic"><strong>Mnemonic:</strong> ${esc(item.readingMnemonic)}</p>` : ''}
       ${item.type !== 'kanji' && item.otherReadings?.length ? `<p class="info-small">Other readings: <span lang="ja">${esc(item.otherReadings.join(' ・ '))}</span></p>` : ''}
     </section>` : ''}
+    ${typeof renderComponents === 'function' ? renderComponents(item) : ''}
     ${item.sentences?.length ? `<section class="info-section">
       <span class="info-eyebrow">CONTEXT</span>
       <div class="info-sentences-list">
@@ -676,6 +838,7 @@ function renderSession() {
   return `<section class="session-header"><div class="session-header-left"><button class="text-button" data-action="exit-session">${icon('back')} Dashboard</button>${wrapUpBtn}</div><span>${s.mode==='lesson'?'New lessons':s.mode==='review'?'Spaced reviews':s.mode==='placement'?'Placement check':'Free practice'} <b>·</b> ${learning?`${s.position+1} of ${s.selected.length}`:`${s.finished.length} of ${s.selected.length} subjects`}</span></section><div class="session-progress"><span style="width:${learning?s.position/s.selected.length*100:s.finished.length/s.selected.length*100}%"></span></div>${learning?`<section class="lesson-card">${subjectDetails(item,'lesson')}<div class="lesson-controls"><button class="button secondary" data-action="previous-lesson" ${s.position===0?'disabled':''}>${icon('back')} Previous</button><span>${s.position+1} / ${s.selected.length}</span><button class="button primary" data-action="next-lesson">${s.position===s.selected.length-1?'Start the quiz':'Next subject'} ${icon('arrow')}</button></div></section>${renderLessonFooter(s)}`:`<section class="quiz-card"><div class="quiz-prompt ${item.type} ${charLenClass(item)}"><div class="quiz-character ${charLenClass(item)}">${glyph(item,'radical image')}</div></div><div class="quiz-body"><h1>${kind==='meaning'?'What does this mean?':esc(readingPrompt(item))}</h1><p>${kind==='meaning'?'Enter an English meaning.':item.type==='kanji'?`Enter the ${readingTypeLabel(item)||'kanji'} reading taught in this lesson, in kana or romaji.`:'Enter this word’s reading in kana or romaji.'}</p><form id="answer-form"><label class="sr-only" for="answer">${kind==='meaning'?'Meaning in English':esc(readingPrompt(item)+' Enter kana or romaji.')}</label><input id="answer" data-qid="${esc(item.id)}" data-qkind="${esc(kind)}" class="answer-input ${s.feedback?s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect':''}" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" lang="${kind==='reading'?'ja':'en'}" enterkeyhint="done" placeholder="${kind==='meaning'?'Your answer…':'かな or romaji…'}" ${s.feedback?'disabled':''} value="${esc(s.feedback?.answer??preservedInputVal)}">${kind==='reading'?'':`<div id="kana-preview" class="kana-preview">Press Enter to check your answer.</div>`}${s.levelUpEvent ? renderLevelUpTooltip(s.levelUpEvent) : ''}${s.feedback?`<div class="answer-feedback ${s.feedback.correct?'correct':s.feedback.retry?'retry':'incorrect'}" role="status"><strong>${s.feedback.correct?(s.feedback.typo?'Your answer had a slight typo':'That’s right!'):s.feedback.retry?'Try again — no mistake counted.':'Not quite. Let’s try it again.'}</strong><span>${esc(feedbackSummary(item,kind,s.feedback,s.queue))}</span></div>${hintHtml}${infoDrawerHtml}<button type="button" class="button primary full-width" data-action="continue-answer">Continue ${icon('arrow')}</button>${canShowInfo&&!s.feedback.correct&&!s.feedback.retry?`<details class="answer-explanation"><summary>Revisit the memory story</summary><p>${esc(kind==='meaning'?item.meaningMnemonic:item.readingMnemonic)}</p></details>`:''}`:`<button class="button primary full-width" type="submit">Check answer ${icon('arrow')}</button><button class="text-button dont-know" type="button" data-action="dont-know">I don’t remember yet</button>`}</form></div></section>${s.mode==='review'||s.mode==='lesson'?'':`<p class="session-footnote">${s.mode==='practice'?'Just practice. Your spaced review progress will stay the same.':s.mode==='placement'?'Placement only marks Guru when you pass (≥90% or an 8-answer streak). Nothing is demoted.':'Both meaning and reading must be recalled before an item is complete.'}</p>`}`}`;
 }
 async function submitAnswer(unknown=false) {
+ if(typeof dismissRetryTooltip==='function')dismissRetryTooltip();
  if(!session||session.phase!=='quiz'||session.feedback)return;
  if(session.levelUpEvent){if(session.levelUpTimer)clearTimeout(session.levelUpTimer);session.levelUpEvent=null;session.levelUpTimer=null;}
  const q=session.queue[0],item=getItem(q.id);
@@ -684,46 +847,50 @@ async function submitAnswer(unknown=false) {
  const answer=(inputEl?inputEl.value:$('#answer')?.value||'').trim();
  if(!unknown&&!answer){toast('Enter an answer, or choose “I don’t remember yet”.');return;}
  const result=unknown?{correct:false}:checkAnswer(item,q.kind,answer);
- if(!result.retry){
-  session.answers++;
-  if(result.correct)session.correct++;
-  else session.mistakes[item.id]=(session.mistakes[item.id]||0)+1;
-  if(session.mode==='placement'){
-   session.placementAnswers=(session.placementAnswers||[]).concat([{id:item.id,kind:q.kind,correct:!!result.correct}]);
-  }
-  if(session.mode==='review' && result.correct && !session.queue.slice(1).some(x=>x.id===q.id) && !session.finished.includes(q.id)) {
-   const stageBefore = profile().progress[q.id]?.stage || 0;
-   const nextProf = withLevelRecord(completeReview(profile(),q.id,{mistakes:session.mistakes[q.id]||0,level:levelOf(q.id)},Date.now()));
-   if(await updateProfile(nextProf)) {
-    const stageAfter = nextProf.progress[q.id]?.stage || 0;
-    const milestones = [5, 7, 8, 9];
-    let levelUpEvent = null;
-    if (stageAfter > stageBefore && milestones.includes(stageAfter)) {
-      levelUpEvent = {
-        item: getItem(q.id),
-        stageBefore,
-        stageAfter,
-        direction: 'up',
-        stageName: STAGE_NAMES[stageAfter] || 'Guru',
-        stageBeforeName: STAGE_NAMES[stageBefore] || 'Apprentice',
-      };
-    } else if (stageAfter < stageBefore && milestones.includes(stageBefore)) {
-      levelUpEvent = {
-        item: getItem(q.id),
-        stageBefore,
-        stageAfter,
-        direction: 'down',
-        stageName: STAGE_NAMES[stageAfter] || 'Apprentice',
-        stageBeforeName: STAGE_NAMES[stageBefore] || 'Guru',
-      };
-    }
-    if (levelUpEvent) {
-      session.levelUpEvent = levelUpEvent;
-    }
-    session.finished.push(q.id);
+ if(result.retry){
+  if(typeof showRetryTooltip==='function')showRetryTooltip(result.message);
+  else session.feedback={...result,answer:unknown?'':answer};
+  return;
+ }
+ session.answers++;
+ if(result.correct)session.correct++;
+ else session.mistakes[item.id]=(session.mistakes[item.id]||0)+1;
+ if(session.mode==='placement'){
+  session.placementAnswers=(session.placementAnswers||[]).concat([{id:item.id,kind:q.kind,correct:!!result.correct}]);
+ }
+ if(session.mode==='review' && result.correct && !session.queue.slice(1).some(x=>x.id===q.id) && !session.finished.includes(q.id)) {
+  const stageBefore = profile().progress[q.id]?.stage || 0;
+  const nextProf = withLevelRecord(completeReview(profile(),q.id,{mistakes:session.mistakes[q.id]||0,level:levelOf(q.id)},Date.now()));
+  if(await updateProfile(nextProf)) {
+   const stageAfter = nextProf.progress[q.id]?.stage || 0;
+   const milestones = [5, 7, 8, 9];
+   let levelUpEvent = null;
+   if (stageAfter > stageBefore && milestones.includes(stageAfter)) {
+     levelUpEvent = {
+       item: getItem(q.id),
+       stageBefore,
+       stageAfter,
+       direction: 'up',
+       stageName: STAGE_NAMES[stageAfter] || 'Guru',
+       stageBeforeName: STAGE_NAMES[stageBefore] || 'Apprentice',
+     };
+   } else if (stageAfter < stageBefore && milestones.includes(stageBefore)) {
+     levelUpEvent = {
+       item: getItem(q.id),
+       stageBefore,
+       stageAfter,
+       direction: 'down',
+       stageName: STAGE_NAMES[stageAfter] || 'Apprentice',
+       stageBeforeName: STAGE_NAMES[stageBefore] || 'Guru',
+     };
    }
+   if (levelUpEvent) {
+     session.levelUpEvent = levelUpEvent;
+   }
+   session.finished.push(q.id);
   }
  }
+ if(session.mode==='review') saveReviewSession();
  session.feedback={...result,answer:unknown?'':answer};render();requestAnimationFrame(()=>$('[data-action="continue-answer"]')?.focus());
 }
 async function continueAnswer(){
@@ -753,8 +920,14 @@ async function continueAnswer(){
  if(s.mode==='placement'){
   if(placementShouldFinish(s.placementAnswers||[],s.queue)){await finishPlacement(s);return;}
  }
- if(!s.queue.length){if(s.mode==='lesson'&&!await updateProfile(withLevelRecord(startLearning(profile(),s.selected.map(i=>i.id),Date.now(),levelOf))))return;s.phase='done';}
- session=s;render();
+ if(!s.queue.length){
+  if(s.mode==='lesson'&&!await updateProfile(withLevelRecord(startLearning(profile(),s.selected.map(i=>i.id),Date.now(),levelOf))))return;
+  s.phase='done';
+  if(s.mode==='review') clearReviewSession();
+ }
+ session=s;
+ if(session.mode==='review' && session.phase==='quiz') saveReviewSession();
+ render();
  if(s.levelUpEvent) {
    s.levelUpTimer = setTimeout(() => {
      if (session === s && session.levelUpEvent) dismissLevelUp();
@@ -814,7 +987,18 @@ function bind(){
   if(action==='upload-guest')uploadGuest();
   if(action==='profiles')openProfiles();
   if(action==='lessons')begin('lesson');
-  if(action==='reviews')begin('review');
+  if(action==='resume-reviews'){resumeReviewSession();return;}
+  if(action==='reviews'){
+   const saved=loadReviewSession();
+   if(saved){resumeReviewSession();return;}
+   begin('review');
+   return;
+  }
+  if(action==='view-subject'){
+   const id=b.dataset.item;
+   if(id)openSubject(id);
+   return;
+  }
   if(action==='practice')begin('practice');
   if(action==='placement')beginPlacement();
   if(action==='mark-known'){const id=b.dataset.item;if(id)await markKnown(id);}
@@ -856,6 +1040,7 @@ function bind(){
   };
  });
  if($('#answer-form'))$('#answer-form').onsubmit=e=>{e.preventDefault();submitAnswer();};
+ if($('#answer'))$('#answer').addEventListener('input',dismissRetryTooltip);
  if($('#answer')&&session.queue[0]?.kind==='reading'){
   const inputEl=$('#answer');
   const convertAndApply=(isFinal=false)=>{
@@ -877,6 +1062,11 @@ function bind(){
  if($('#days-studied-form'))$('#days-studied-form').onsubmit=async e=>{e.preventDefault();const days=parseInt($('#days-studied-input').value,10);if(!isNaN(days)&&days>=0&&await updateProfile({...profile(),daysStudied:days})){render();toast('Total days studied has been updated.');}};
  if($('#import-file'))$('#import-file').onchange=e=>importProgress(e.target.files[0]);
 }
+window.addEventListener('beforeunload', () => {
+  if (session?.mode === 'review' && session.phase === 'quiz') {
+    saveReviewSession();
+  }
+});
 async function mountNotificationSettings(){
  const epoch=++notificationPanelEpoch, panel=$('#notification-settings');
  if(!panel)return;
