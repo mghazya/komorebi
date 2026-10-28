@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {buildQuizQueue,feedbackSummary,hintBanners,toggleReviewWrapUp} from '../quiz.mjs';
-import {scorePlacement} from '../engine.mjs';
+import {scorePlacement, checkAnswer} from '../engine.mjs';
 const app=fs.readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
 function fn(name){const start=app.indexOf(`function ${name}(`);assert.ok(start>=0);const tail=app.slice(start);const end=name==='renderSession'?tail.search(/\n(async\s+)?function submitAnswer/):tail.indexOf('\nfunction ',1);return end<0?tail:tail.slice(0,end);}
 import {KANJI_READINGS} from '../kanji-readings.mjs';
@@ -121,4 +121,131 @@ test('Dashboard: subject-grid receives is-vocabulary class when filter is vocabu
  assert.match(css, /\.subject-grid\.is-vocabulary\s*\{[^}]*display:\s*flex;[^}]*flex-wrap:\s*wrap;/s, 'is-vocabulary must use flex-wrap');
  assert.match(css, /\.subject-tile\.vocabulary\s*\{[^}]*width:\s*auto\s*!important;[^}]*white-space:\s*nowrap;/s, 'vocabulary tile must have auto-width and nowrap');
 });
+
+test('Kanji alternative reading retry returns specific on’yomi/kun’yomi prompt', () => {
+ const kanjiCar = { id: 'kanji:車', type: 'kanji', character: '車', readings: ['しゃ'], otherReadings: ['くるま'] };
+ const res = checkAnswer(kanjiCar, 'reading', 'くるま');
+ assert.equal(res.correct, false);
+ assert.equal(res.retry, true);
+ assert.equal(res.message, 'We’re looking for the on’yomi reading.');
+
+ const kanjiRiver = { id: 'kanji:川', type: 'kanji', character: '川', readings: ['かわ'], otherReadings: ['せん'] };
+ const resRiver = checkAnswer(kanjiRiver, 'reading', 'せん');
+ assert.equal(resRiver.correct, false);
+ assert.equal(resRiver.retry, true);
+ assert.equal(resRiver.message, 'We’re looking for the kun’yomi reading.');
+});
+
+test('Review session persistence saves and resumes queue preserving partially completed items', () => {
+ const store = new Map();
+ const mockLocalStorage = {
+  getItem: (k) => store.get(k) || null,
+  setItem: (k, v) => store.set(k, String(v)),
+  removeItem: (k) => store.delete(k),
+ };
+ const item1 = { id: 'kanji:1', type: 'kanji', character: '一' };
+ const item2 = { id: 'kanji:2', type: 'kanji', character: '二' };
+ const mockItemsById = new Map([['kanji:1', item1], ['kanji:2', item2]]);
+
+ const c = vm.createContext({
+  localStorage: mockLocalStorage,
+  profile: () => ({ id: 'user-123' }),
+  getItem: (id) => mockItemsById.get(id),
+ });
+
+ const helpersCode = `
+  const SESSION_KEY = (profileId) => 'komorebi.review-session.' + profileId;
+  ${app.slice(app.indexOf('function saveReviewSession('), app.indexOf('function showRetryTooltip('))}
+ `;
+ vm.runInContext(helpersCode, c);
+
+ // Simulate session with item1 (meaning answered, reading pending) and item2 (both pending)
+ const activeSession = {
+  mode: 'review',
+  phase: 'quiz',
+  selected: [item1, item2],
+  unstarted: [],
+  activeIds: ['kanji:1', 'kanji:2'],
+  queue: [{ id: 'kanji:1', kind: 'reading' }, { id: 'kanji:2', kind: 'meaning' }, { id: 'kanji:2', kind: 'reading' }],
+  mistakes: { 'kanji:1': 0 },
+  finished: [],
+  answers: 1,
+  correct: 1,
+  startedAt: 1000,
+  wrappingUp: false,
+ };
+
+ c.activeSession = activeSession;
+ vm.runInContext('saveReviewSession(activeSession)', c);
+ const restored = vm.runInContext('loadReviewSession("user-123")', c);
+
+ assert.ok(restored);
+ assert.equal(restored.queue.length, 3);
+ assert.equal(restored.queue[0].id, 'kanji:1');
+ assert.equal(restored.queue[0].kind, 'reading');
+ // Notice: meaning for kanji:1 is NOT in the queue because it was already completed before exit!
+ assert.ok(!restored.queue.some(q => q.id === 'kanji:1' && q.kind === 'meaning'));
+});
+
+test('Building blocks render clickable chips with data-action view-subject', () => {
+ const comp1 = { id: 'radical:ground', type: 'radical', character: '一', meaning: 'Ground' };
+ const comp2 = { id: 'radical:toe', type: 'radical', character: 'ト', meaning: 'Toe' };
+ const kanjiWithComps = {
+  id: 'kanji:下',
+  type: 'kanji',
+  character: '下',
+  meaning: 'Below',
+  components: [
+   { id: 'radical:ground', name: 'Ground', character: '一' },
+   { id: 'radical:toe', name: 'Toe', character: 'ト' }
+  ],
+ };
+ const mockMap = new Map([['radical:ground', comp1], ['radical:toe', comp2]]);
+ const c = vm.createContext({
+  getItem: (id) => mockMap.get(id),
+  glyph: (i) => i.character,
+  esc: String,
+ });
+
+ const renderCompCode = app.slice(app.indexOf('function renderComponents('), app.indexOf('function subjectDetails('));
+ vm.runInContext(renderCompCode, c);
+ c.kanjiWithComps = kanjiWithComps;
+ const html = vm.runInContext('renderComponents(kanjiWithComps)', c);
+
+ assert.match(html, /class="component-chip radical"/);
+ assert.match(html, /data-action="view-subject"/);
+ assert.match(html, /data-item="radical:ground"/);
+ assert.match(html, /data-item="radical:toe"/);
+ assert.match(html, /Ground/);
+ assert.match(html, /Toe/);
+});
+
+test('hintBanners only suggests other readings if multiple readings exist for the tested category', () => {
+ // Single on'yomi kanji (心: on'yomi しん, kun'yomi こころ)
+ const kanjiHeart = { id: 'kanji:心', type: 'kanji', character: '心', readings: ['しん'], otherReadings: ['こころ'] };
+ const bannersHeart = hintBanners(kanjiHeart, 'reading', { correct: true });
+ assert.deepEqual(bannersHeart, [], '心 should not show other readings banner because it only has one on’yomi reading');
+
+ // Multi on'yomi kanji (去: on'yomi きょ, こ)
+ const kanjiPast = { id: 'kanji:去', type: 'kanji', character: '去', readings: ['きょ', 'こ'], otherReadings: ['さ'] };
+ const bannersPast = hintBanners(kanjiPast, 'reading', { correct: true });
+ assert.deepEqual(bannersPast, ['This kanji has other on’yomi readings you may encounter.']);
+
+ // Single kun'yomi kanji (川: on'yomi せん, kun'yomi かわ)
+ const kanjiRiver = { id: 'kanji:川', type: 'kanji', character: '川', readings: ['かわ'], otherReadings: ['せん'] };
+ const bannersRiver = hintBanners(kanjiRiver, 'reading', { correct: true });
+ assert.deepEqual(bannersRiver, [], '川 should not show other readings banner because it only has one kun’yomi reading');
+
+ // Multi kun'yomi kanji (上: kun'yomi うえ, あ, のぼ, etc.)
+ const kanjiAboveKunyomi = { id: 'kanji:上', type: 'kanji', character: '上', readings: ['うえ'], otherReadings: ['じょう'] };
+ const bannersAbove = hintBanners(kanjiAboveKunyomi, 'reading', { correct: true });
+ assert.deepEqual(bannersAbove, ['This kanji has other kun’yomi readings you may encounter.']);
+
+ // Multi-reading vocabulary (日本: にほん, にっぽん)
+ const vocabJapan = { id: 'vocabulary:日本', type: 'vocabulary', character: '日本', readings: ['にほん', 'にっぽん'] };
+ const bannersVocab = hintBanners(vocabJapan, 'reading', { correct: true });
+ assert.deepEqual(bannersVocab, ['This vocabulary has other readings you may encounter.']);
+});
+
+
 

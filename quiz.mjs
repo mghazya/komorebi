@@ -4,6 +4,8 @@
  * longer waiting in the queue. This keeps a correct meaning from giving away the reading that is
  * asked next (and vice versa if the order is ever randomized).
  */
+import { KANJI_READINGS } from './kanji-readings.mjs';
+
 const readingsOf = (item) => (item.readings || []).map((r) => typeof r === 'string' ? r : r?.reading || r?.text || '').filter(Boolean);
 
 export const hasReadingQuestion = (item) => item.type !== 'radical' && readingsOf(item).length > 0;
@@ -102,8 +104,26 @@ export function hintBanners(item, kind, feedback) {
     } else if (kind === 'meaning' && meaningsCount > 1) {
       banners.push('Did you know this item has multiple possible meanings?');
     }
-    if (kind === 'reading' && item.otherReadings?.length) {
-      banners.push('This kanji has other readings you may encounter.');
+    if (kind === 'reading') {
+      if (item.type === 'kanji') {
+        const kd = KANJI_READINGS?.[item.character];
+        const accepted = readingsOf(item).map(r => r.trim());
+        const onyomi = kd?.onyomi || [];
+        const kunyomi = kd?.kunyomi || [];
+        const taughtIsOnyomi = accepted.some(r => onyomi.includes(r)) || kd?.primaryType === 'onyomi';
+        const taughtIsKunyomi = accepted.some(r => kunyomi.includes(r)) || kd?.primaryType === 'kunyomi';
+
+        const hasOtherOnyomi = taughtIsOnyomi && (onyomi.length > 1 || (item.readings?.length > 1));
+        const hasOtherKunyomi = taughtIsKunyomi && (kunyomi.length > 1 || (item.readings?.length > 1));
+
+        if (hasOtherOnyomi) {
+          banners.push('This kanji has other on’yomi readings you may encounter.');
+        } else if (hasOtherKunyomi) {
+          banners.push('This kanji has other kun’yomi readings you may encounter.');
+        }
+      } else if (item.type === 'vocabulary' && readingsOf(item).length > 1) {
+        banners.push('This vocabulary has other readings you may encounter.');
+      }
     }
   } else {
     // Incorrect answer

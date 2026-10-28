@@ -10,6 +10,8 @@
  * unlock. A level unlocks once ceil(90%) of the previous level's kanji reached Guru once.
  * Meaning + reading form one review. Pass mistakes for both questions combined.
  */
+import { KANJI_READINGS } from './kanji-readings.mjs';
+
 export const STAGE_NAMES = Object.freeze([
   'Not started', 'Apprentice I', 'Apprentice II', 'Apprentice III',
   'Apprentice IV', 'Guru I', 'Guru II', 'Master', 'Enlightened', 'Burned',
@@ -741,7 +743,20 @@ export function checkAnswer(item, kind, answer) {
   if (accepted.includes(normalized)) return { correct: true };
   const alternatives = (item.otherReadings || []).map(readingText).map(normalizeReading);
   if (item.type === 'kanji' && alternatives.includes(normalized)) {
-    return { correct: false, retry: true, message: 'That is another reading of this kanji. Try the reading taught in this lesson.' };
+    let message = 'That is another reading of this kanji. Try the reading taught in this lesson.';
+    const kd = KANJI_READINGS?.[item.character];
+    if (kd) {
+      const onyomi = (kd.onyomi || []).map(readingText).map(normalizeReading);
+      const kunyomi = (kd.kunyomi || []).map(readingText).map(normalizeReading);
+      const taughtIsOnyomi = accepted.some(r => onyomi.includes(r));
+      const taughtIsKunyomi = accepted.some(r => kunyomi.includes(r));
+      if (taughtIsOnyomi && kunyomi.includes(normalized)) {
+        message = 'We’re looking for the on’yomi reading.';
+      } else if (taughtIsKunyomi && onyomi.includes(normalized)) {
+        message = 'We’re looking for the kun’yomi reading.';
+      }
+    }
+    return { correct: false, retry: true, message };
   }
   return { correct: false, message: `Reading: ${(item.readings || []).map(readingText).join(' / ')}` };
 }
