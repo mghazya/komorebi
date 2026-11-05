@@ -3,14 +3,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {buildQuizQueue,feedbackSummary,hintBanners,toggleReviewWrapUp} from '../quiz.mjs';
-import {scorePlacement, checkAnswer, subjectKindLabel, meaningPrompt, meaningSubtext, answerInputLabel, readingPrompt, readingTypeLabel} from '../engine.mjs';
+import {scorePlacement, checkAnswer, subjectKindLabel, meaningPrompt, meaningSubtext, answerInputLabel, readingPrompt, readingSubtext, readingTypeLabel} from '../engine.mjs';
 const app=fs.readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
 function fn(name){const start=app.indexOf(`function ${name}(`);assert.ok(start>=0);const tail=app.slice(start);const end=name==='renderSession'?tail.search(/\n(async\s+)?function submitAnswer/):tail.indexOf('\nfunction ',1);return end<0?tail:tail.slice(0,end);}
 import {KANJI_READINGS} from '../kanji-readings.mjs';
 const item={id:'kanji:test',type:'kanji',character:'去',meaning:'Past',meanings:['Past'],readings:['きょ','こ'],otherReadings:['さ'],meaningMnemonic:'meaning-story',readingMnemonic:'reading-story',sentences:[{japanese:'context-secret',english:'context-translation'}]};
 function renderer(kind,remaining,feedback={correct:true,answer:'answer'}){
  const session={phase:'quiz',mode:'placement',selected:[item],finished:[],queue:[{id:item.id,kind},...remaining],totalQuestions:2,infoOpen:true,feedback};
- const c=vm.createContext({session,getItem:()=>item,subjectKindLabel,meaningPrompt,meaningSubtext,answerInputLabel,readingPrompt,readingTypeLabel,feedbackSummary,hintBanners,esc:String,readingsOf:i=>i.readings,icon:()=>'',glyph:i=>i.character,charLenClass:i=>'char-len-1',KANJI_READINGS,renderKanjiReadings:(it)=>{
+ const c=vm.createContext({session,getItem:()=>item,subjectKindLabel,meaningPrompt,meaningSubtext,answerInputLabel,readingPrompt,readingSubtext,readingTypeLabel,feedbackSummary,hintBanners,esc:String,readingsOf:i=>i.readings,icon:()=>'',glyph:i=>i.character,charLenClass:i=>'char-len-1',KANJI_READINGS,renderKanjiReadings:(it)=>{
   const d=KANJI_READINGS[it.character];
   return `<div class="kanji-readings-grid"><div class="reading-column is-primary"><span class="reading-column-title">On’yomi</span><p class="reading-column-items">${d.onyomi.join(', ')}</p></div><div class="reading-column"><span class="reading-column-title">Kun’yomi</span><p class="reading-column-items">${d.kunyomi.join(', ')}</p></div><div class="reading-column"><span class="reading-column-title">Nanori</span><p class="reading-column-items is-none">None</p></div></div>`;
  }});
@@ -38,7 +38,7 @@ test('Retry does not expose item info',()=>{
 test('Hint banner rendered as interactive button with toggle-info action',()=>{
  const multiItem = { ...item, meanings: ['Past', 'Previous'] };
  const session={phase:'quiz',mode:'placement',selected:[multiItem],finished:[],queue:[{id:multiItem.id,kind:'meaning'}],totalQuestions:1,infoOpen:false,feedback:{correct:true,answer:'Past'}};
- const c=vm.createContext({session,getItem:()=>multiItem,subjectKindLabel,meaningPrompt,meaningSubtext,answerInputLabel,readingPrompt,readingTypeLabel,feedbackSummary,hintBanners,esc:String,readingsOf:i=>i.readings,icon:()=>'',glyph:i=>i.character,charLenClass:i=>'char-len-1',KANJI_READINGS,renderKanjiReadings:()=>''});
+ const c=vm.createContext({session,getItem:()=>multiItem,subjectKindLabel,meaningPrompt,meaningSubtext,answerInputLabel,readingPrompt,readingSubtext,readingTypeLabel,feedbackSummary,hintBanners,esc:String,readingsOf:i=>i.readings,icon:()=>'',glyph:i=>i.character,charLenClass:i=>'char-len-1',KANJI_READINGS,renderKanjiReadings:()=>''});
  vm.runInContext(fn('renderSession'),c);
  const html = vm.runInContext('renderSession()',c);
  assert.match(html, /class="hint-banner"[^>]*data-action="toggle-info"/);
@@ -49,6 +49,13 @@ test('Kanji readings dataset accurately maps On’yomi, Kun’yomi, and Nanori f
  assert.deepEqual(KANJI_READINGS['一'], { onyomi: ['いち', 'いつ'], kunyomi: ['ひと'], nanori: ['かず'], primaryType: 'onyomi' });
  assert.deepEqual(KANJI_READINGS['川'], { onyomi: ['せん'], kunyomi: ['かわ'], nanori: [], primaryType: 'kunyomi' });
  assert.deepEqual(KANJI_READINGS['輔'], { onyomi: ['ふ', 'ほ'], kunyomi: ['たす'], nanori: ['すけ'], primaryType: 'nanori' });
+ assert.deepEqual(KANJI_READINGS['馬'], { onyomi: ['ば', 'め'], kunyomi: ['うま', 'ま'], nanori: [], primaryType: 'onyomi' });
+ assert.deepEqual(KANJI_READINGS['実'], { onyomi: ['じつ'], kunyomi: ['み', 'みの', 'さね'], nanori: [], primaryType: 'onyomi' });
+ assert.deepEqual(KANJI_READINGS['豊'], { onyomi: ['ほう'], kunyomi: ['ゆた'], nanori: ['とよ'], primaryType: 'onyomi' });
+ assert.deepEqual(KANJI_READINGS['河'], { onyomi: ['か'], kunyomi: ['かわ'], nanori: ['こう', 'こお'], primaryType: 'onyomi' });
+ assert.deepEqual(KANJI_READINGS['猛'], { onyomi: ['もう'], kunyomi: ['たけ'], nanori: [], primaryType: 'onyomi' });
+ assert.deepEqual(KANJI_READINGS['胡'], { onyomi: ['こ', 'う', 'ご'], kunyomi: ['なんぞ'], nanori: ['きゅう'], primaryType: 'onyomi' });
+ assert.deepEqual(KANJI_READINGS['椎'], { onyomi: ['つい'], kunyomi: ['しい'], nanori: [], primaryType: 'onyomi' });
 });
 test('Wrap up preserves all unstarted subjects and can be cancelled repeatedly',()=>{
  const selected=Array.from({length:25},(_,n)=>({id:String(n)}));
@@ -122,20 +129,30 @@ test('Dashboard: subject-grid receives is-vocabulary class when filter is vocabu
  assert.match(css, /\.subject-tile\.vocabulary\s*\{[^}]*width:\s*auto\s*!important;[^}]*white-space:\s*nowrap;/s, 'vocabulary tile must have auto-width and nowrap');
 });
 
-test('Kanji alternative reading retry returns specific on’yomi/kun’yomi prompt', () => {
+test('Kanji alternative reading retry returns specific on’yomi/kun’yomi/nanori prompt', () => {
  const kanjiCar = { id: 'kanji:車', type: 'kanji', character: '車', readings: ['しゃ'], otherReadings: ['くるま'] };
  const res = checkAnswer(kanjiCar, 'reading', 'くるま');
  assert.equal(res.correct, false);
  assert.equal(res.retry, true);
- assert.match(res.message, /We’re looking for the on’yomi reading/);
- assert.match(res.message, /No mistake counted/);
+ assert.equal(res.message, 'We’re looking for the on’yomi reading. No mistake counted.');
 
  const kanjiRiver = { id: 'kanji:川', type: 'kanji', character: '川', readings: ['かわ'], otherReadings: ['せん'] };
  const resRiver = checkAnswer(kanjiRiver, 'reading', 'せん');
  assert.equal(resRiver.correct, false);
  assert.equal(resRiver.retry, true);
- assert.match(resRiver.message, /We’re looking for the kun’yomi reading/);
- assert.match(resRiver.message, /No mistake counted/);
+ assert.equal(resRiver.message, 'We’re looking for the kun’yomi reading. No mistake counted.');
+
+ const kanjiUncle = { id: 'kanji:叔', type: 'kanji', character: '叔', readings: ['お'], otherReadings: ['しゅく'] };
+ const resUncle = checkAnswer(kanjiUncle, 'reading', 'しゅく');
+ assert.equal(resUncle.correct, false);
+ assert.equal(resUncle.retry, true);
+ assert.equal(resUncle.message, 'This question asks for nanori (a name reading). No mistake counted.');
+
+ const kanjiOne = { id: 'kanji:一', type: 'kanji', character: '一', readings: ['いち', 'いつ'], otherReadings: ['ひと', 'かず'] };
+ const resOneNanori = checkAnswer(kanjiOne, 'reading', 'かず');
+ assert.equal(resOneNanori.correct, false);
+ assert.equal(resOneNanori.retry, true);
+ assert.equal(resOneNanori.message, 'We’re looking for the on’yomi reading. No mistake counted.');
 });
 
 test('Review session persistence saves and resumes queue preserving partially completed items', () => {

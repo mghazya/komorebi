@@ -4,7 +4,7 @@
  * longer waiting in the queue. This keeps a correct meaning from giving away the reading that is
  * asked next (and vice versa if the order is ever randomized).
  */
-import { KANJI_READINGS } from './kanji-readings.mjs';
+import { KANJI_READINGS } from './kanji-readings.mjs?v=20261105-reading-categories';
 
 const readingsOf = (item) => (item.readings || []).map((r) => typeof r === 'string' ? r : r?.reading || r?.text || '').filter(Boolean);
 
