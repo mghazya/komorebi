@@ -1,6 +1,6 @@
 /**
  * Practice in context — on-demand grammar & sentence pack loader, session state,
- * first-attempt scoring, and isolated completion recording.
+ * first-attempt + follow-up scoring, and isolated completion recording.
  *
  * Pack files are loaded only when opened by the learner, never on dashboard startup.
  * Completion is stored under `profile.contextPractice[packId]` and never touches
@@ -30,6 +30,24 @@ const isPlainObject = (value) => Boolean(value) && typeof value === 'object' && 
 const deepCopy = (value) => JSON.parse(JSON.stringify(value));
 const SRS_PREFIX = /^(?:radical|kanji|vocabulary):/;
 
+function validateChoicesList(choices, correctChoice, ownerId) {
+  if (!Array.isArray(choices) || choices.length < 2 || typeof correctChoice !== 'string') {
+    throw new ContextPackError(`Question ${ownerId} has invalid choices.`, 'BAD_PACK');
+  }
+  const choiceIds = new Set();
+  for (const c of choices) {
+    if (!isPlainObject(c) || typeof c.id !== 'string' || !c.id || choiceIds.has(c.id) ||
+      typeof c.text !== 'string' || !c.text.trim() ||
+      typeof c.explanation !== 'string' || !c.explanation.trim()) {
+      throw new ContextPackError(`Question ${ownerId} has an invalid answer choice.`, 'BAD_PACK');
+    }
+    choiceIds.add(c.id);
+  }
+  if (!choiceIds.has(correctChoice)) {
+    throw new ContextPackError(`Question ${ownerId} is missing its expected choice.`, 'BAD_PACK');
+  }
+}
+
 export function validateContextPack(data) {
   if (!isPlainObject(data) || data.schemaVersion !== 1 || typeof data.id !== 'string' || !data.id.startsWith('pack:') ||
     typeof data.title !== 'string' || !data.title.trim() || !Array.isArray(data.patterns) || !data.patterns.length) {
@@ -37,6 +55,7 @@ export function validateContextPack(data) {
   }
   const patternIds = new Set();
   const questionIds = new Set();
+  const followUpIds = new Set();
 
   for (const pattern of data.patterns) {
     if (!isPlainObject(pattern) || typeof pattern.id !== 'string' || !pattern.id.startsWith('grammar:') ||
@@ -62,23 +81,28 @@ export function validateContextPack(data) {
       if (!isPlainObject(q) || typeof q.id !== 'string' || !q.id.startsWith('question:') ||
         SRS_PREFIX.test(q.id) || questionIds.has(q.id) ||
         typeof q.prompt !== 'string' || !q.prompt.trim() ||
-        typeof q.japanese !== 'string' || !q.japanese.trim() ||
-        typeof q.correctChoice !== 'string' ||
-        !Array.isArray(q.choices) || q.choices.length < 2) {
+        typeof q.japanese !== 'string' || !q.japanese.trim()) {
         throw new ContextPackError(`Pattern ${pattern.id} has an invalid question.`, 'BAD_PACK');
       }
       questionIds.add(q.id);
-      const choiceIds = new Set();
-      for (const c of q.choices) {
-        if (!isPlainObject(c) || typeof c.id !== 'string' || !c.id || choiceIds.has(c.id) ||
-          typeof c.text !== 'string' || !c.text.trim() ||
-          typeof c.explanation !== 'string' || !c.explanation.trim()) {
-          throw new ContextPackError(`Question ${q.id} has an invalid answer choice.`, 'BAD_PACK');
-        }
-        choiceIds.add(c.id);
+      validateChoicesList(q.choices, q.correctChoice, q.id);
+
+      const fu = q.followUp;
+      if (!isPlainObject(fu) || typeof fu.id !== 'string' || !fu.id.startsWith('followup:') ||
+        SRS_PREFIX.test(fu.id) || followUpIds.has(fu.id) ||
+        typeof fu.prompt !== 'string' || !fu.prompt.trim() ||
+        typeof fu.japanese !== 'string' || !fu.japanese.trim() ||
+        fu.japanese.trim() === q.japanese.trim()) {
+        throw new ContextPackError(`Question ${q.id} is missing a valid fresh follow-up question.`, 'BAD_PACK');
       }
-      if (!choiceIds.has(q.correctChoice)) {
-        throw new ContextPackError(`Question ${q.id} is missing its expected choice.`, 'BAD_PACK');
+      followUpIds.add(fu.id);
+      validateChoicesList(fu.choices, fu.correctChoice, fu.id);
+
+      const we = fu.workedExample;
+      if (!isPlainObject(we) || typeof we.japanese !== 'string' || !we.japanese.trim() ||
+        typeof we.english !== 'string' || !we.english.trim() ||
+        typeof we.breakdown !== 'string' || !we.breakdown.trim()) {
+        throw new ContextPackError(`Follow-up ${fu.id} is missing a valid worked example.`, 'BAD_PACK');
       }
     }
   }
@@ -131,60 +155,131 @@ export function createContextSession(pack) {
     pack: validated,
     questions,
     position: 0,
+    inFollowUp: false,
     showReading: false,
     selectedChoice: null,
     triedChoices: {},
     feedback: null,
     firstAttempts: {},
+    awaitingFollowUp: {},
+    followUpResults: {},
     resolved: {},
     startedAt: Date.now(),
   };
 }
 
 /**
- * Evaluates a learner's selected choice on the current question.
- * - First attempt on each question is permanently recorded in `firstAttempts[q.id]`.
- * - Retrying a question updates `selectedChoice` and `feedback` (explaining the chosen option)
- *   without overwriting `firstAttempts[q.id]`.
- * - A question is marked `resolved[q.id] = true` only when its correct choice is selected.
+ * Evaluates a learner's selected choice in Practice in context:
+ * - On the original question (`!session.inFollowUp`):
+ *   - First attempt is permanently recorded in `firstAttempts[q.id]`.
+ *   - If right: marks `resolved[q.id] = true` so the learner can advance.
+ *   - If wrong: explains the specific misunderstanding, marks `awaitingFollowUp[q.id] = true`,
+ *     and locks the original question so the missed sentence is not immediately repeated.
+ * - On the follow-up question (`session.inFollowUp === true`):
+ *   - Records the follow-up outcome separately in `followUpResults[q.id]`.
+ *   - If right: explains why the follow-up choice works and marks `resolved[q.id] = true`.
+ *   - If wrong: explains why the follow-up choice doesn't work, attaches the prewritten
+ *     `workedExample`, and marks `resolved[q.id] = true` so the learner can continue.
  */
 export function selectContextChoice(session, choiceId) {
   if (!session || session.mode !== 'context' || session.phase !== 'quiz') return session;
   const q = session.questions?.[session.position];
   if (!q) return session;
   if (session.resolved?.[q.id]) return session;
-  const choice = q.choices.find((c) => c.id === choiceId);
+
+  if (!session.inFollowUp) {
+    if (session.awaitingFollowUp?.[q.id]) return session;
+    const choice = q.choices.find((c) => c.id === choiceId);
+    if (!choice) return session;
+
+    const isCorrect = choice.id === q.correctChoice;
+    const firstAttempts = { ...(session.firstAttempts || {}), [q.id]: isCorrect };
+    const triedChoices = { ...(session.triedChoices || {}), [q.id]: [choice.id] };
+    const resolved = { ...(session.resolved || {}) };
+    const awaitingFollowUp = { ...(session.awaitingFollowUp || {}) };
+
+    if (isCorrect) {
+      resolved[q.id] = true;
+    } else {
+      awaitingFollowUp[q.id] = true;
+    }
+
+    return {
+      ...session,
+      selectedChoice: choice.id,
+      triedChoices,
+      firstAttempts,
+      awaitingFollowUp,
+      resolved,
+      feedback: {
+        stage: 'primary',
+        questionId: q.id,
+        choiceId: choice.id,
+        text: choice.text,
+        lang: choice.lang || 'en',
+        correct: isCorrect,
+        explanation: choice.explanation,
+        workedExample: null,
+      },
+    };
+  }
+
+  // Follow-up stage for a missed original question
+  const fu = q.followUp;
+  if (!fu) return session;
+  const choice = fu.choices.find((c) => c.id === choiceId);
   if (!choice) return session;
 
-  const isCorrect = choice.id === q.correctChoice;
-  const firstAttempts = { ...(session.firstAttempts || {}) };
-  if (!(q.id in firstAttempts)) {
-    firstAttempts[q.id] = isCorrect;
-  }
-
-  const prevTried = Array.isArray(session.triedChoices?.[q.id]) ? session.triedChoices[q.id] : [];
-  const triedForQ = prevTried.includes(choice.id) ? prevTried : [...prevTried, choice.id];
-  const triedChoices = { ...(session.triedChoices || {}), [q.id]: triedForQ };
-
-  const resolved = { ...(session.resolved || {}) };
-  if (isCorrect) {
-    resolved[q.id] = true;
-  }
+  const isCorrect = choice.id === fu.correctChoice;
+  const triedChoices = { ...(session.triedChoices || {}), [fu.id]: [choice.id] };
+  const followUpResults = {
+    ...(session.followUpResults || {}),
+    [q.id]: {
+      questionId: q.id,
+      followUpId: fu.id,
+      choiceId: choice.id,
+      correct: isCorrect,
+      workedExampleShown: !isCorrect,
+    },
+  };
+  const resolved = { ...(session.resolved || {}), [q.id]: true };
 
   return {
     ...session,
     selectedChoice: choice.id,
     triedChoices,
-    firstAttempts,
+    followUpResults,
     resolved,
     feedback: {
+      stage: 'followup',
       questionId: q.id,
+      followUpId: fu.id,
       choiceId: choice.id,
       text: choice.text,
       lang: choice.lang || 'en',
       correct: isCorrect,
       explanation: choice.explanation,
+      workedExample: isCorrect ? null : deepCopy(fu.workedExample),
     },
+  };
+}
+
+/**
+ * Transitions from a missed original question's misunderstanding explanation
+ * to its fresh, prewritten follow-up question testing the same grammar point.
+ */
+export function startContextFollowUp(session) {
+  if (!session || session.mode !== 'context' || session.phase !== 'quiz') return session;
+  const q = session.questions?.[session.position];
+  if (!q || session.inFollowUp || !session.awaitingFollowUp?.[q.id] || session.resolved?.[q.id]) {
+    return session;
+  }
+  return {
+    ...session,
+    inFollowUp: true,
+    showReading: false,
+    selectedChoice: null,
+    feedback: null,
   };
 }
 
@@ -194,13 +289,47 @@ export function scoreContextSession(session) {
   const correct = questions.filter((q) => session?.firstAttempts?.[q.id] === true).length;
   const resolvedCount = questions.filter((q) => session?.resolved?.[q.id] === true).length;
   const complete = total > 0 && resolvedCount === total;
-  return { correct, total, resolvedCount, complete };
+  const missedQuestions = questions
+    .filter((q) => session?.firstAttempts?.[q.id] === false)
+    .map((q) => q.id);
+  const followUpItems = {};
+  let followUpAttempted = 0;
+  let followUpCorrect = 0;
+  let workedExamplesShown = 0;
+  for (const q of questions) {
+    const res = session?.followUpResults?.[q.id];
+    if (res) {
+      followUpAttempted += 1;
+      if (res.correct) followUpCorrect += 1;
+      if (res.workedExampleShown) workedExamplesShown += 1;
+      followUpItems[q.id] = {
+        followUpId: res.followUpId,
+        choiceId: res.choiceId,
+        correct: Boolean(res.correct),
+        workedExampleShown: Boolean(res.workedExampleShown),
+      };
+    }
+  }
+  return {
+    correct,
+    total,
+    resolvedCount,
+    complete,
+    missedQuestions,
+    followUp: {
+      attempted: followUpAttempted,
+      correct: followUpCorrect,
+      workedExamplesShown,
+      items: followUpItems,
+    },
+  };
 }
 
 /**
  * Saves completion under `profile.contextPractice[pack.id]` for the active learner only.
- * Refuses to mark an unfinished pack complete, and never modifies `profile.progress`,
- * `profile.unlockedLevel`, or `profile.history`.
+ * Records both the first-attempt score (`lastScore`, `missedQuestions`) and the separate
+ * follow-up outcomes (`followUp`). Refuses to mark an unfinished pack complete, and never
+ * modifies `profile.progress`, `profile.unlockedLevel`, or `profile.history`.
  */
 export function recordContextCompletion(profile, pack, score, now = Date.now()) {
   if (!isPlainObject(profile) || !isPlainObject(pack) || typeof pack.id !== 'string') {
@@ -219,11 +348,31 @@ export function recordContextCompletion(profile, pack, score, now = Date.now()) 
   const bestCorrect = Math.max(prevBest, score.correct);
   const prevAttempts = Number.isInteger(prev?.attempts) && prev.attempts >= 0 ? prev.attempts : 0;
 
+  const missedQuestions = Array.isArray(score.missedQuestions)
+    ? score.missedQuestions.filter((id) => typeof id === 'string' && id)
+    : [];
+  const rawFollowUp = isPlainObject(score.followUp) ? score.followUp : null;
+  const followUp = rawFollowUp
+    ? {
+        attempted: Number.isInteger(rawFollowUp.attempted) && rawFollowUp.attempted >= 0 ? rawFollowUp.attempted : missedQuestions.length,
+        correct: Number.isInteger(rawFollowUp.correct) && rawFollowUp.correct >= 0 ? rawFollowUp.correct : 0,
+        workedExamplesShown: Number.isInteger(rawFollowUp.workedExamplesShown) && rawFollowUp.workedExamplesShown >= 0 ? rawFollowUp.workedExamplesShown : 0,
+        items: isPlainObject(rawFollowUp.items) ? deepCopy(rawFollowUp.items) : {},
+      }
+    : {
+        attempted: 0,
+        correct: 0,
+        workedExamplesShown: 0,
+        items: {},
+      };
+
   next.contextPractice[pack.id] = {
     completedAt: now,
     patterns: Array.isArray(pack.patterns) ? pack.patterns.map((p) => p.id) : [],
     lastScore: { correct: score.correct, total: score.total },
     bestScore: { correct: bestCorrect, total: score.total },
+    missedQuestions,
+    followUp,
     attempts: prevAttempts + 1,
   };
   return next;

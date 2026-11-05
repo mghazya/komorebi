@@ -42,6 +42,18 @@ export function validateProfile(value) {
         entry.lastScore.total <= 0 || entry.lastScore.correct < 0 || entry.lastScore.correct > entry.lastScore.total) {
         throw new ProfileError('This backup contains invalid practice-in-context data.');
       }
+      if (entry.missedQuestions !== undefined && (!Array.isArray(entry.missedQuestions) || !entry.missedQuestions.every((q) => typeof q === 'string' && q))) {
+        throw new ProfileError('This backup contains invalid practice-in-context data.');
+      }
+      if (entry.followUp !== undefined) {
+        if (!isPlainObject(entry.followUp) ||
+          !Number.isInteger(entry.followUp.attempted) || entry.followUp.attempted < 0 ||
+          !Number.isInteger(entry.followUp.correct) || entry.followUp.correct < 0 || entry.followUp.correct > entry.followUp.attempted ||
+          (entry.followUp.workedExamplesShown !== undefined && (!Number.isInteger(entry.followUp.workedExamplesShown) || entry.followUp.workedExamplesShown < 0)) ||
+          (entry.followUp.items !== undefined && !isPlainObject(entry.followUp.items))) {
+          throw new ProfileError('This backup contains invalid practice-in-context data.');
+        }
+      }
     }
   }
   return deepCopy(value);

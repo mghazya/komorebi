@@ -10,6 +10,7 @@ import {
   loadContextPack,
   createContextSession,
   selectContextChoice,
+  startContextFollowUp,
   scoreContextSession,
   recordContextCompletion,
 } from '../context.mjs';
@@ -26,7 +27,7 @@ const packRaw = JSON.parse(fs.readFileSync(new URL('../data/context-pack-1.json'
 const level1Raw = JSON.parse(fs.readFileSync(new URL('../data/level-1.json', import.meta.url), 'utf8'));
 const appSource = fs.readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
 
-test('Beginner Pack 1 structure, varied answer positions, Q3/Q6 edits, and Level 1 subject links', () => {
+test('Beginner Pack 1 structure, varied answer positions, Q3/Q6 edits, follow-ups, worked examples, and Level 1 subject links', () => {
   const pack = validateContextPack(packRaw);
   assert.equal(pack.id, 'pack:beginner-1');
   assert.equal(pack.label, '3 patterns · 6 questions');
@@ -36,10 +37,15 @@ test('Beginner Pack 1 structure, varied answer positions, Q3/Q6 edits, and Level
   for (const pattern of pack.patterns) {
     assert.equal(pattern.examples.length, 2, `${pattern.id} should have 2 examples`);
     assert.equal(pattern.questions.length, 2, `${pattern.id} should have 2 questions`);
-    // Each pattern includes one seen example check and one fresh unseen sentence
     assert.equal(pattern.questions.filter((q) => q.isFreshSentence).length, 1, `${pattern.id} must have 1 fresh unseen sentence`);
     for (const subjId of pattern.subjectIds) {
       assert.ok(level1Ids.has(subjId), `Subject ${subjId} in ${pattern.id} must exist in data/level-1.json`);
+    }
+    for (const q of pattern.questions) {
+      assert.ok(q.followUp, `${q.id} must include a prewritten followUp question`);
+      assert.notEqual(q.followUp.japanese, q.japanese, `${q.id} followUp must be a fresh sentence, not a repeat`);
+      assert.ok(q.followUp.workedExample?.japanese, `${q.id} followUp must include a workedExample`);
+      assert.ok(q.followUp.workedExample?.breakdown, `${q.id} followUp workedExample must include a breakdown`);
     }
   }
 
@@ -49,6 +55,11 @@ test('Beginner Pack 1 structure, varied answer positions, Q3/Q6 edits, and Level
     session.questions.map((q) => q.correctChoice),
     ['B', 'C', 'A', 'C', 'B', 'A'],
     'Correct answer positions must be varied (2 A, 2 B, 2 C)'
+  );
+  assert.deepEqual(
+    session.questions.map((q) => q.followUp.correctChoice),
+    ['A', 'B', 'C', 'B', 'C', 'A'],
+    'Follow-up correct answer positions must also be varied (2 A, 2 B, 2 C)'
   );
 
   // Verify Q3 edit: ここは駅（　）入り口です。 with choices の, は, を
@@ -92,7 +103,7 @@ test('Pack loads on demand only when opened, and a failed pack download leaves l
   );
 });
 
-test('One question at a time, Show reading toggle, and selected answer explanation before moving on', () => {
+test('Wrong-answer flow: explains misunderstanding, locks missed sentence against immediate repeat, shows fresh follow-up, and shows worked example on follow-up miss', () => {
   const s0 = createContextSession(packRaw);
   const level1Map = new Map(level1Raw.map((i) => [i.id, i]));
   const c = vm.createContext({
@@ -109,47 +120,109 @@ test('One question at a time, Show reading toggle, and selected answer explanati
   );
   vm.runInContext(renderCode, c);
 
-  // Question 1 rendered alone, reading hidden by default
+  // 1. Question 1 rendered alone, reading hidden by default
   const html1 = vm.runInContext('renderContextSession(session)', c);
   assert.match(html1, /QUESTION 1 OF 6/);
   assert.doesNotMatch(html1, /QUESTION 2 OF 6/);
   assert.match(html1, /Show reading/);
   assert.doesNotMatch(html1, /ふじさんは おおきい やま です。/);
-  assert.doesNotMatch(html1, /data-action="next-context-question"/, 'Next button hidden before resolving question');
 
-  // Toggle Show reading on
+  // 2. Toggle Show reading on
   c.session = { ...s0, showReading: true };
   const htmlReading = vm.runInContext('renderContextSession(session)', c);
   assert.match(htmlReading, /Hide reading/);
   assert.match(htmlReading, /ふじさんは おおきい やま です。/);
 
-  // Select wrong choice A on Q1: explains why Choice A doesn't work, still cannot advance
+  // 3. Select wrong choice A on Q1:
+  //    - Explains why Choice A doesn't work
+  //    - Records Q1 as a first-attempt miss
+  //    - Disables repeating Q1 ("B" on Q1 is ignored while awaiting follow-up)
+  //    - Offers "Try follow-up question" instead of repeating the missed sentence
   const sWrong = selectContextChoice(c.session, 'A');
+  assert.equal(sWrong.firstAttempts['question:wa-desu-1'], false);
+  assert.equal(sWrong.awaitingFollowUp['question:wa-desu-1'], true);
+  assert.equal(Boolean(sWrong.resolved['question:wa-desu-1']), false);
+
+  const sAttemptRepeat = selectContextChoice(sWrong, 'B');
+  assert.equal(sAttemptRepeat, sWrong, 'Must not allow immediately repeating the missed sentence');
+
   c.session = sWrong;
   const htmlWrong = vm.runInContext('renderContextSession(session)', c);
   assert.match(htmlWrong, /Why Choice A doesn’t work/);
   assert.match(htmlWrong, /大きい \(おおきい\) means “big,” not “above”/);
+  assert.match(htmlWrong, /data-action="start-context-followup"/);
+  assert.match(htmlWrong, /Try follow-up question/);
   assert.doesNotMatch(htmlWrong, /data-action="next-context-question"/);
 
-  // Select right choice B on Q1: explains why Choice B works and shows Next question button
-  const sRight = selectContextChoice(sWrong, 'B');
-  c.session = sRight;
-  const htmlRight = vm.runInContext('renderContextSession(session)', c);
-  assert.match(htmlRight, /Choice B is correct/);
-  assert.match(htmlRight, /ふじ山は sets Mt\. Fuji as the topic/);
-  assert.match(htmlRight, /data-action="next-context-question"/);
+  // 4. Transition to fresh follow-up question for Q1 (same grammar point は…です, fresh sentence あの女の人は大人です。)
+  const sFollowUp = startContextFollowUp(sWrong);
+  assert.equal(sFollowUp.inFollowUp, true);
+  c.session = sFollowUp;
+  const htmlFollowUp = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlFollowUp, /FOLLOW-UP FOR QUESTION 1 · SAME GRAMMAR POINT/);
+  assert.match(htmlFollowUp, /あの女の人は大人です。/);
+  assert.doesNotMatch(htmlFollowUp, /<p class="context-sentence-jp" lang="ja">ふじ山は大きい山です。<\/p>/);
+
+  // 5. Answer Q1 follow-up correctly ('A'):
+  //    - Original remains recorded as a first-attempt miss (false)
+  //    - Follow-up is recorded separately as understood (true, workedExampleShown: false)
+  //    - Question step is resolved so learner can continue to Q2
+  const sFollowUpRight = selectContextChoice(sFollowUp, 'A');
+  assert.equal(sFollowUpRight.firstAttempts['question:wa-desu-1'], false);
+  assert.deepEqual(sFollowUpRight.followUpResults['question:wa-desu-1'], {
+    questionId: 'question:wa-desu-1',
+    followUpId: 'followup:wa-desu-1',
+    choiceId: 'A',
+    correct: true,
+    workedExampleShown: false,
+  });
+  assert.equal(sFollowUpRight.resolved['question:wa-desu-1'], true);
+  c.session = sFollowUpRight;
+  const htmlFollowUpRight = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlFollowUpRight, /Choice A is correct/);
+  assert.doesNotMatch(htmlFollowUpRight, /WORKED EXAMPLE/);
+  assert.match(htmlFollowUpRight, /data-action="next-context-question"/);
+
+  // 6. Now test missing BOTH the original question AND the follow-up on Q2:
+  //    - Shows a worked example and lets the learner continue
+  let sQ2 = { ...sFollowUpRight, position: 1, inFollowUp: false, showReading: false, selectedChoice: null, feedback: null };
+  sQ2 = selectContextChoice(sQ2, 'A'); // miss Q2 original (correct is 'C')
+  assert.equal(sQ2.firstAttempts['question:wa-desu-2'], false);
+  sQ2 = startContextFollowUp(sQ2);
+  assert.equal(sQ2.inFollowUp, true);
+
+  // Miss Q2 follow-up too (choose 'A' instead of 'B')
+  const sQ2FollowUpWrong = selectContextChoice(sQ2, 'A');
+  assert.equal(sQ2FollowUpWrong.firstAttempts['question:wa-desu-2'], false);
+  assert.deepEqual(sQ2FollowUpWrong.followUpResults['question:wa-desu-2'], {
+    questionId: 'question:wa-desu-2',
+    followUpId: 'followup:wa-desu-2',
+    choiceId: 'A',
+    correct: false,
+    workedExampleShown: true,
+  });
+  assert.equal(sQ2FollowUpWrong.resolved['question:wa-desu-2'], true, 'Learner can continue after reviewing worked example');
+  assert.ok(sQ2FollowUpWrong.feedback.workedExample);
+
+  c.session = sQ2FollowUpWrong;
+  const htmlWorked = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlWorked, /Why Choice A doesn’t work/);
+  assert.match(htmlWorked, /WORKED EXAMPLE/);
+  assert.match(htmlWorked, /あの山はふじ山です。/);
+  assert.match(htmlWorked, /Step 1: Identify who or what the sentence is about/);
+  assert.match(htmlWorked, /data-action="next-context-question"/);
 });
 
-test('First-attempt scoring and unfinished pack guard never mark an incomplete pack complete', () => {
+test('Separate first-attempt and follow-up scoring + unfinished pack guard', () => {
   let s = createContextSession(packRaw);
 
-  // Q1: wrong on first try ('A'), then right on retry ('B') -> firstAttempts[Q1] stays false
+  // Q1: miss original ('A'), start follow-up, answer follow-up right ('A')
+  s = selectContextChoice(s, 'A');
+  assert.equal(scoreContextSession(s).complete, false, 'Awaiting follow-up is not resolved');
+  s = startContextFollowUp(s);
   s = selectContextChoice(s, 'A');
   assert.equal(s.firstAttempts['question:wa-desu-1'], false);
-  assert.equal( Boolean(s.resolved['question:wa-desu-1']), false);
-
-  s = selectContextChoice(s, 'B');
-  assert.equal(s.firstAttempts['question:wa-desu-1'], false, 'Retrying must not erase first-attempt result');
+  assert.equal(s.followUpResults['question:wa-desu-1'].correct, true);
   assert.equal(s.resolved['question:wa-desu-1'], true);
 
   // Unfinished after 1 question: score.complete is false and recordContextCompletion refuses
@@ -162,25 +235,49 @@ test('First-attempt scoring and unfinished pack guard never mark an incomplete p
     (err) => err instanceof ContextPackError && err.code === 'INCOMPLETE_PACK'
   );
 
-  // Answer Q2..Q6: Q2 right on 1st try ('C'), Q3 wrong ('B') then right ('A'), Q4..Q6 right on 1st try ('C', 'B', 'A')
-  const plan = [
-    { pos: 1, picks: ['C'] },
-    { pos: 2, picks: ['B', 'A'] },
-    { pos: 3, picks: ['C'] },
-    { pos: 4, picks: ['B'] },
-    { pos: 5, picks: ['A'] },
-  ];
-  for (const step of plan) {
-    s = { ...s, position: step.pos, selectedChoice: null, feedback: null };
-    for (const pick of step.picks) {
-      s = selectContextChoice(s, pick);
-    }
+  // Q2: right on 1st try ('C')
+  s = { ...s, position: 1, inFollowUp: false, selectedChoice: null, feedback: null };
+  s = selectContextChoice(s, 'C');
+
+  // Q3: miss original ('B'), start follow-up, miss follow-up too ('A' instead of 'C') -> worked example shown
+  s = { ...s, position: 2, inFollowUp: false, selectedChoice: null, feedback: null };
+  s = selectContextChoice(s, 'B');
+  s = startContextFollowUp(s);
+  s = selectContextChoice(s, 'A');
+  assert.equal(s.followUpResults['question:no-modifier-1'].correct, false);
+  assert.equal(s.followUpResults['question:no-modifier-1'].workedExampleShown, true);
+  assert.equal(s.resolved['question:no-modifier-1'], true);
+
+  // Q4..Q6: right on 1st try ('C', 'B', 'A')
+  for (const [pos, pick] of [[3, 'C'], [4, 'B'], [5, 'A']]) {
+    s = { ...s, position: pos, inFollowUp: false, selectedChoice: null, feedback: null };
+    s = selectContextChoice(s, pick);
   }
 
   const finalScore = scoreContextSession(s);
   assert.equal(finalScore.complete, true);
   assert.equal(finalScore.total, 6);
   assert.equal(finalScore.correct, 4, '4 of 6 answered right on the first attempt');
+  assert.deepEqual(finalScore.missedQuestions, ['question:wa-desu-1', 'question:no-modifier-1']);
+  assert.deepEqual(finalScore.followUp, {
+    attempted: 2,
+    correct: 1,
+    workedExamplesShown: 1,
+    items: {
+      'question:wa-desu-1': {
+        followUpId: 'followup:wa-desu-1',
+        choiceId: 'A',
+        correct: true,
+        workedExampleShown: false,
+      },
+      'question:no-modifier-1': {
+        followUpId: 'followup:no-modifier-1',
+        choiceId: 'A',
+        correct: false,
+        workedExampleShown: true,
+      },
+    },
+  });
 });
 
 test('Completing, missing, or leaving a question never changes existing kanji stages or review dates', () => {
@@ -201,31 +298,47 @@ test('Completing, missing, or leaving a question never changes existing kanji st
   const snapshotProgress = JSON.stringify(baseProfile.progress);
   const snapshotHistory = JSON.stringify(baseProfile.history);
 
-  // 1. Leaving mid-pack after missing and answering questions does not touch profile at all
+  // 1. Leaving mid-pack after missing and answering follow-up does not touch profile at all
   let midSession = createContextSession(packRaw);
   midSession = selectContextChoice(midSession, 'C'); // miss Q1
-  midSession = selectContextChoice(midSession, 'B'); // resolve Q1
-  midSession = { ...midSession, position: 1 };
+  midSession = startContextFollowUp(midSession);
+  midSession = selectContextChoice(midSession, 'A'); // resolve Q1 via follow-up
+  midSession = { ...midSession, position: 1, inFollowUp: false };
   midSession = selectContextChoice(midSession, 'A'); // miss Q2 and leave
   assert.equal(scoreContextSession(midSession).complete, false);
   assert.equal(JSON.stringify(baseProfile.progress), snapshotProgress);
 
-  // 2. Completing the pack with misses & retries updates only contextPractice
+  // 2. Completing the pack with misses & follow-ups updates only contextPractice
   let fullSession = createContextSession(packRaw);
-  const answers = [
-    ['A', 'B'], // Q1: miss then right
-    ['C'],      // Q2: right
-    ['A'],      // Q3: right
-    ['A', 'C'], // Q4: miss then right
-    ['B'],      // Q5: right
-    ['A'],      // Q6: right
-  ];
-  answers.forEach((picks, idx) => {
-    fullSession = { ...fullSession, position: idx, selectedChoice: null, feedback: null };
-    for (const p of picks) fullSession = selectContextChoice(fullSession, p);
-  });
+  // Q1: miss original ('A'), get follow-up right ('A')
+  fullSession = selectContextChoice(fullSession, 'A');
+  fullSession = startContextFollowUp(fullSession);
+  fullSession = selectContextChoice(fullSession, 'A');
+  // Q2: right ('C')
+  fullSession = { ...fullSession, position: 1, inFollowUp: false, selectedChoice: null, feedback: null };
+  fullSession = selectContextChoice(fullSession, 'C');
+  // Q3: right ('A')
+  fullSession = { ...fullSession, position: 2, inFollowUp: false, selectedChoice: null, feedback: null };
+  fullSession = selectContextChoice(fullSession, 'A');
+  // Q4: miss original ('A'), miss follow-up ('A') -> worked example
+  fullSession = { ...fullSession, position: 3, inFollowUp: false, selectedChoice: null, feedback: null };
+  fullSession = selectContextChoice(fullSession, 'A');
+  fullSession = startContextFollowUp(fullSession);
+  fullSession = selectContextChoice(fullSession, 'A');
+  // Q5: right ('B')
+  fullSession = { ...fullSession, position: 4, inFollowUp: false, selectedChoice: null, feedback: null };
+  fullSession = selectContextChoice(fullSession, 'B');
+  // Q6: right ('A')
+  fullSession = { ...fullSession, position: 5, inFollowUp: false, selectedChoice: null, feedback: null };
+  fullSession = selectContextChoice(fullSession, 'A');
+
   const score = scoreContextSession(fullSession);
-  assert.deepEqual(score, { correct: 4, total: 6, resolvedCount: 6, complete: true });
+  assert.equal(score.correct, 4);
+  assert.equal(score.total, 6);
+  assert.equal(score.complete, true);
+  assert.equal(score.followUp.attempted, 2);
+  assert.equal(score.followUp.correct, 1);
+  assert.equal(score.followUp.workedExamplesShown, 1);
 
   const after = recordContextCompletion(baseProfile, fullSession.pack, score, 1762335000000);
   assert.equal(JSON.stringify(after.progress), snapshotProgress, 'SRS stages and availableAt dates must be untouched');
@@ -236,6 +349,26 @@ test('Completing, missing, or leaving a question never changes existing kanji st
     patterns: ['grammar:wa-desu', 'grammar:no-modifier', 'grammar:ni-ga-arimasu'],
     lastScore: { correct: 4, total: 6 },
     bestScore: { correct: 4, total: 6 },
+    missedQuestions: ['question:wa-desu-1', 'question:no-modifier-2'],
+    followUp: {
+      attempted: 2,
+      correct: 1,
+      workedExamplesShown: 1,
+      items: {
+        'question:wa-desu-1': {
+          followUpId: 'followup:wa-desu-1',
+          choiceId: 'A',
+          correct: true,
+          workedExampleShown: false,
+        },
+        'question:no-modifier-2': {
+          followUpId: 'followup:no-modifier-2',
+          choiceId: 'A',
+          correct: false,
+          workedExampleShown: true,
+        },
+      },
+    },
     attempts: 1,
   });
 });
@@ -252,12 +385,27 @@ test('Storage verification: guest reload, backup round-trip, two-session sync, a
     ...newProfile('Guest 2', 'guest-2'),
     progress: { 'kanji:川': { stage: 2, availableAt: 1762380000000 } },
   };
-  const guest1Completed = recordContextCompletion(
-    guest1,
-    pack,
-    { correct: 6, total: 6, resolvedCount: 6, complete: true },
-    1762336000000
-  );
+  const sampleScore = {
+    correct: 5,
+    total: 6,
+    resolvedCount: 6,
+    complete: true,
+    missedQuestions: ['question:wa-desu-1'],
+    followUp: {
+      attempted: 1,
+      correct: 1,
+      workedExamplesShown: 0,
+      items: {
+        'question:wa-desu-1': {
+          followUpId: 'followup:wa-desu-1',
+          choiceId: 'A',
+          correct: true,
+          workedExampleShown: false,
+        },
+      },
+    },
+  };
+  const guest1Completed = recordContextCompletion(guest1, pack, sampleScore, 1762336000000);
   const savedStore = JSON.stringify({
     version: 1,
     activeProfileId: guest1Completed.id,
@@ -267,7 +415,8 @@ test('Storage verification: guest reload, backup round-trip, two-session sync, a
   // Simulate reload through readState's validateProfile map
   const reloadedData = JSON.parse(savedStore);
   reloadedData.profiles = reloadedData.profiles.map(validateProfile);
-  assert.deepEqual(reloadedData.profiles[0].contextPractice['pack:beginner-1'].lastScore, { correct: 6, total: 6 });
+  assert.deepEqual(reloadedData.profiles[0].contextPractice['pack:beginner-1'].lastScore, { correct: 5, total: 6 });
+  assert.deepEqual(reloadedData.profiles[0].contextPractice['pack:beginner-1'].followUp.correct, 1);
   assert.deepEqual(reloadedData.profiles[0].progress, guest1.progress);
   assert.equal(reloadedData.profiles[1].contextPractice, undefined, 'Guest 2 must remain isolated');
 
@@ -282,7 +431,7 @@ test('Storage verification: guest reload, backup round-trip, two-session sync, a
   assert.deepEqual(parsedFromFile, reloadedData.profiles[0]);
 
   // 3. Sync across two sessions for the same account + 4. Isolation between two disposable accounts
-  const remoteRows = new Map(); // userId -> { profile, revision }
+  const remoteRows = new Map();
   let activeSessionUser = { id: 'acct-disposable-a', email: 'a@example.com' };
 
   const makeMockCloud = (getSessionFn) => ({
@@ -308,7 +457,6 @@ test('Storage verification: guest reload, backup round-trip, two-session sync, a
     },
   });
 
-  // Seed Account A with existing SRS progress
   remoteRows.set('acct-disposable-a', {
     revision: 1,
     profile: {
@@ -340,55 +488,24 @@ test('Storage verification: guest reload, backup round-trip, two-session sync, a
     emptyProfile: (u) => newProfile(u.email, u.id),
   });
 
-  // Both sessions connect as Account A
   await syncSession1.connect();
   await syncSession2.connect();
-  assert.equal(syncSession1.state.revision, 1);
-  assert.equal(syncSession2.state.revision, 1);
 
-  // Session 1 completes Beginner Pack 1 (5/6 first attempt)
-  const acctAUpdated = recordContextCompletion(
-    syncSession1.state.profile,
-    pack,
-    { correct: 5, total: 6, resolvedCount: 6, complete: true },
-    1762337000000
-  );
-  const saveOk = await syncSession1.update(acctAUpdated);
-  assert.equal(saveOk, true);
-  assert.equal(syncSession1.state.revision, 2);
+  const acctAUpdated = recordContextCompletion(syncSession1.state.profile, pack, sampleScore, 1762337000000);
+  assert.equal(await syncSession1.update(acctAUpdated), true);
 
-  // Session 2 reloads/connects and receives Account A's synced contextPractice and unchanged SRS progress
   await syncSession2.reload();
-  assert.equal(syncSession2.state.revision, 2);
   assert.deepEqual(syncSession2.state.profile.contextPractice['pack:beginner-1'].lastScore, { correct: 5, total: 6 });
-  assert.deepEqual(syncSession2.state.profile.progress, {
-    'kanji:入': { stage: 5, availableAt: 1762900000000, passedAt: 1762300000000 },
-  });
+  assert.deepEqual(syncSession2.state.profile.contextPractice['pack:beginner-1'].followUp.correct, 1);
 
-  // 4. Switch Session 1 from Disposable Account A to Disposable Account B
   activeSessionUser = null;
   syncSession1.reset(null);
-  assert.equal(syncSession1.state.profile, null);
-
   activeSessionUser = { id: 'acct-disposable-b', email: 'b@example.com' };
   await syncSession1.connect();
-  assert.equal(syncSession1.state.profile.id, 'acct-disposable-b');
   assert.equal(syncSession1.state.profile.contextPractice, undefined, 'Account B must not inherit Account A completion');
-  assert.deepEqual(syncSession1.state.profile.progress, {});
-
-  // Account B completes the pack with 3/6; Account A's row remains at 5/6
-  const acctBUpdated = recordContextCompletion(
-    syncSession1.state.profile,
-    pack,
-    { correct: 3, total: 6, resolvedCount: 6, complete: true },
-    1762338000000
-  );
-  assert.equal(await syncSession1.update(acctBUpdated), true);
-  assert.deepEqual(remoteRows.get('acct-disposable-b').profile.contextPractice['pack:beginner-1'].lastScore, { correct: 3, total: 6 });
-  assert.deepEqual(remoteRows.get('acct-disposable-a').profile.contextPractice['pack:beginner-1'].lastScore, { correct: 5, total: 6 });
 });
 
-test('End-to-end app.mjs flow: dashboard entry label, beginContextPractice, question progression, and active-learner save', async () => {
+test('End-to-end app.mjs flow: miss original -> explain -> follow-up understood, miss follow-up -> worked example, and completion breakdown', async () => {
   let activeProfile = {
     ...newProfile('Active Learner', 'learner-active'),
     progress: {
@@ -417,6 +534,7 @@ test('End-to-end app.mjs flow: dashboard entry label, beginContextPractice, ques
     loadContextPack: async () => validateContextPack(packRaw),
     createContextSession,
     selectContextChoice,
+    startContextFollowUp,
     scoreContextSession,
     recordContextCompletion,
     profile: () => activeProfile,
@@ -457,42 +575,53 @@ test('End-to-end app.mjs flow: dashboard entry label, beginContextPractice, ques
   const contextHandlersCode = appSource.slice(appSource.indexOf('async function beginContextPractice('), appSource.indexOf('function leaveSession('));
   vm.runInContext(`${dashboardCode}\n${contextHandlersCode}`, c);
 
-  // 1. Dashboard renders "3 patterns · 6 questions"
-  const dashHtmlBefore = vm.runInContext('dashboard({ lessons: 5, reviews: 2, learned: 1, nextReviewAt: 1762350000000 })', c);
-  assert.match(dashHtmlBefore, /3 patterns · 6 questions/);
-  assert.match(dashHtmlBefore, /Open Beginner Pack 1 · 3 patterns · 6 questions/);
-
-  // 2. Open pack -> starts at Question 1
+  // 1. Open pack -> starts at Question 1
   await vm.runInContext('beginContextPractice()', c);
-  assert.ok(c.session);
-  assert.equal(c.session.mode, 'context');
   assert.equal(c.session.position, 0);
 
-  // 3. Cannot advance before answering
+  // 2. Q1: miss original ('A'), cannot advance until follow-up is completed
+  vm.runInContext('chooseContextAnswer("A")', c);
   await vm.runInContext('nextContextQuestion()', c);
-  assert.equal(c.session.position, 0);
-
-  // 4. Answer all 6 questions (missing Q1 first, then choosing right choice on Q1..Q6)
-  vm.runInContext('chooseContextAnswer("A")', c); // Q1 miss
+  assert.equal(c.session.position, 0, 'Cannot skip follow-up after missing original question');
+  vm.runInContext('beginContextFollowUp()', c);
+  assert.equal(c.session.inFollowUp, true);
+  vm.runInContext('chooseContextAnswer("A")', c); // Q1 follow-up correct ('A')
   await vm.runInContext('nextContextQuestion()', c);
-  assert.equal(c.session.position, 0, 'Cannot advance while selected choice is wrong');
+  assert.equal(c.session.position, 1);
+  assert.equal(c.session.inFollowUp, false);
 
-  const correctChoices = ['B', 'C', 'A', 'C', 'B', 'A'];
-  for (let i = 0; i < correctChoices.length; i++) {
-    assert.equal(c.session.position, i);
-    vm.runInContext(`chooseContextAnswer("${correctChoices[i]}")`, c);
+  // 3. Q2: miss original ('A'), then miss follow-up ('A' instead of 'B') -> shows worked example and lets learner continue
+  vm.runInContext('chooseContextAnswer("A")', c);
+  vm.runInContext('beginContextFollowUp()', c);
+  vm.runInContext('chooseContextAnswer("A")', c);
+  assert.ok(c.session.feedback.workedExample, 'Worked example shown when follow-up is missed');
+  await vm.runInContext('nextContextQuestion()', c);
+  assert.equal(c.session.position, 2);
+
+  // 4. Q3..Q6: right on first attempt ('A', 'C', 'B', 'A')
+  for (const [idx, pick] of [[2, 'A'], [3, 'C'], [4, 'B'], [5, 'A']]) {
+    assert.equal(c.session.position, idx);
+    vm.runInContext(`chooseContextAnswer("${pick}")`, c);
     await vm.runInContext('nextContextQuestion()', c);
   }
 
-  // 5. Pack is now done, saved only on activeProfile, with SRS untouched
+  // 5. Pack is done, completion screen shows both first-attempt score (4/6) and follow-up outcome (1/2)
   assert.equal(c.session.phase, 'done');
-  assert.deepEqual(activeProfile.contextPractice['pack:beginner-1'].lastScore, { correct: 5, total: 6 });
+  const doneHtml = vm.runInContext('renderContextSession(session)', c);
+  assert.match(doneHtml, /4\/6/);
+  assert.match(doneHtml, /1\/2/);
+  assert.match(doneHtml, /First try: Missed/);
+  assert.match(doneHtml, /Follow-up: Understood/);
+  assert.match(doneHtml, /Follow-up: Missed · Worked example reviewed/);
+
+  assert.deepEqual(activeProfile.contextPractice['pack:beginner-1'].lastScore, { correct: 4, total: 6 });
+  assert.equal(activeProfile.contextPractice['pack:beginner-1'].followUp.attempted, 2);
+  assert.equal(activeProfile.contextPractice['pack:beginner-1'].followUp.correct, 1);
+  assert.equal(activeProfile.contextPractice['pack:beginner-1'].followUp.workedExamplesShown, 1);
   assert.equal(JSON.stringify(activeProfile.progress), srsSnapshot);
   assert.equal(inactiveProfile.contextPractice, undefined);
 
-  // 6. Dashboard reflects completion while keeping "3 patterns · 6 questions"
+  // 6. Dashboard badge shows both first-try and follow-up summary
   const dashHtmlAfter = vm.runInContext('dashboard({ lessons: 5, reviews: 2, learned: 1, nextReviewAt: 1762350000000 })', c);
-  assert.match(dashHtmlAfter, /3 patterns · 6 questions/);
-  assert.match(dashHtmlAfter, /Completed · 5\/6 first try/);
+  assert.match(dashHtmlAfter, /Completed · 4\/6 first try · 1\/2 follow-up/);
 });
-

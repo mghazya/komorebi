@@ -1954,6 +1954,112 @@ body.lesson-active main {
 .context-next-btn {
   margin-top: 16px;
 }
+.context-question-box.is-followup {
+  border-color: #c6d7be;
+  background: #fdfefb;
+}
+.context-worked-example {
+  text-align: left;
+  padding: 16px 18px;
+  border-radius: 12px;
+  margin-top: 14px;
+  background: #f5f8f1;
+  border: 1.5px solid #c5d6bd;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.context-worked-jp {
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.45;
+}
+.context-worked-en {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c513c;
+  margin: 0;
+}
+.context-worked-breakdown {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.55;
+  margin: 2px 0 0;
+}
+.context-recap-box {
+  text-align: left;
+  background: #f8faf5;
+  border: 1px solid #dde6d6;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 18px 0;
+}
+.context-recap-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.context-recap-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e7eee1;
+}
+.context-recap-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.context-recap-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.context-recap-main strong {
+  font-size: 13px;
+  color: var(--muted-aa);
+}
+.context-recap-jp {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.context-recap-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.context-recap-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.context-recap-badge.is-correct {
+  background: #e6f4ea;
+  color: #1e5735;
+}
+.context-recap-badge.is-missed {
+  background: #fcebe6;
+  color: #7c3120;
+}
+.context-recap-badge.is-followup-ok {
+  background: #e3f1f8;
+  color: #1d4e6b;
+}
+.context-recap-badge.is-worked {
+  background: #f5efe0;
+  color: #664918;
+}
 .context-sources {
   margin-top: 18px;
   border-top: 1px solid #e7ece1;

@@ -59,7 +59,7 @@
               "id": "A",
               "text": "Mt. Fuji is above the mountain.",
               "lang": "en",
-              "explanation": "Not quite. 大きい (おおきい) means “big,” not “above” (上, うえ). Try another choice."
+              "explanation": "Not quite. 大きい (おおきい) means “big,” not “above” (上, うえ). In ふじ山は大きい山です, 大きい modifies 山 (“a big mountain”)."
             },
             {
               "id": "B",
@@ -71,9 +71,44 @@
               "id": "C",
               "text": "There is a big person on Mt. Fuji.",
               "lang": "en",
-              "explanation": "Not quite. 大きい山 means “big mountain” (山), not “adult / big person” (大人), and です means “is,” not “there is a person” (います). Try another choice."
+              "explanation": "Not quite. 大きい山 means “big mountain” (山), not “adult / big person” (大人), and です means “is,” not “there is a person” (います)."
             }
-          ]
+          ],
+          "followUp": {
+            "id": "followup:wa-desu-1",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "あの女の人は大人です。",
+            "reading": "あの おんなの ひとは おとな です。",
+            "gloss": "あの女の人 that woman · 大人 adult",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "That woman is an adult.",
+                "lang": "en",
+                "explanation": "That’s right! あの女の人は sets “that woman” as the topic (A), and 大人です states what she is (B: “is an adult”)."
+              },
+              {
+                "id": "B",
+                "text": "That woman has two adults.",
+                "lang": "en",
+                "explanation": "Not quite. A は B です states that A is B; it does not mean “has” or “two people” (二人)."
+              },
+              {
+                "id": "C",
+                "text": "That person is a big mountain.",
+                "lang": "en",
+                "explanation": "Not quite. 大人 (おとな) means “adult” (not 大きい山, “big mountain”), and あの女の人 means “that woman.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "あの女の人は大人です。",
+              "reading": "あの おんなの ひとは おとな です。",
+              "english": "That woman is an adult.",
+              "breakdown": "Step 1: あの女の人 (“that woman”) + は marks the topic you are talking about (A). Step 2: 大人 (“adult”) + です politely states what that topic is (B). Together: “That woman is an adult.”"
+            }
+          }
         },
         {
           "id": "question:wa-desu-2",
@@ -91,13 +126,13 @@
               "id": "A",
               "text": "を",
               "lang": "ja",
-              "explanation": "Not quite. を marks the direct object of an action verb, so it cannot pair with the copula です. Try another choice."
+              "explanation": "Not quite. を marks the direct object of an action verb, so it cannot pair with the copula です in an “A is B” sentence."
             },
             {
               "id": "B",
               "text": "に",
               "lang": "ja",
-              "explanation": "Not quite. に marks a location, time, or destination, not the topic of an “A is B” (…です) sentence. Try another choice."
+              "explanation": "Not quite. に marks a location, time, or destination, not the topic of an “A is B” (…です) sentence."
             },
             {
               "id": "C",
@@ -105,7 +140,43 @@
               "lang": "ja",
               "explanation": "That’s right! は marks これ (“this”) as the topic of the A は B です identification sentence (“This is the building’s entrance”)."
             }
-          ]
+          ],
+          "followUp": {
+            "id": "followup:wa-desu-2",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that marks “that mountain (あの山)” as the topic:",
+            "japanese": "あの山（　）ふじ山です。",
+            "targetMeaning": "That mountain is Mt. Fuji.",
+            "reading": "あの やま（　）ふじさん です。",
+            "gloss": "あの山 that mountain · ふじ山 Mt. Fuji",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "Not quite. を marks the object of an action verb, whereas です needs a topic marked by は."
+              },
+              {
+                "id": "B",
+                "text": "は",
+                "lang": "ja",
+                "explanation": "That’s right! は marks あの山 (“that mountain”) as the topic (A) before ふじ山です (B: “is Mt. Fuji”)."
+              },
+              {
+                "id": "C",
+                "text": "に",
+                "lang": "ja",
+                "explanation": "Not quite. に marks where something exists or goes, not the topic of ふじ山です."
+              }
+            ],
+            "workedExample": {
+              "japanese": "あの山はふじ山です。",
+              "reading": "あの やまは ふじさん です。",
+              "english": "That mountain is Mt. Fuji.",
+              "breakdown": "Step 1: Identify who or what the sentence is about: あの山 (“that mountain”). Step 2: Place は right after the topic (あの山は). Step 3: State what it is with ふじ山です (“is Mt. Fuji”)."
+            }
+          }
         }
       ]
     },
@@ -164,15 +235,51 @@
               "id": "B",
               "text": "は",
               "lang": "ja",
-              "explanation": "Not quite. Putting は after 駅 creates an ungrammatical double-topic after ここは (“As for here, the station is an entrance”) instead of linking the two nouns. Try another choice."
+              "explanation": "Not quite. Putting は after 駅 creates an ungrammatical double-topic after ここは (“As for here, the station is an entrance”) instead of linking the two nouns with の."
             },
             {
               "id": "C",
               "text": "を",
               "lang": "ja",
-              "explanation": "Not quite. を marks the direct object of a transitive action verb, so it cannot connect two nouns before です. Try another choice."
+              "explanation": "Not quite. を marks the direct object of a transitive action verb, so it cannot connect two nouns before です."
             }
-          ]
+          ],
+          "followUp": {
+            "id": "followup:no-modifier-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that links ホテル (hotel) to 入り口 (entrance) to mean “the entrance to the hotel”:",
+            "japanese": "これはホテル（　）入り口です。",
+            "targetMeaning": "This is the entrance to the hotel.",
+            "reading": "これは ホテル（　）いりぐち です。",
+            "gloss": "これ this · ホテル hotel · 入り口 entrance",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "は",
+                "lang": "ja",
+                "explanation": "Not quite. これ is already marked as the topic with は; connecting the two nouns ホテル and 入り口 requires の."
+              },
+              {
+                "id": "B",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "Not quite. を marks the object of a verb, not a noun modifying another noun."
+              },
+              {
+                "id": "C",
+                "text": "の",
+                "lang": "ja",
+                "explanation": "That’s right! の links ホテル (A) to 入り口 (B) to form ホテルの入り口 (“the entrance to the hotel”)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "これはホテルの入り口です。",
+              "reading": "これは ホテルの いりぐち です。",
+              "english": "This is the entrance to the hotel.",
+              "breakdown": "Step 1: ホテル (“hotel”) narrows down which 入り口 (“entrance”) we mean. Step 2: Join the describing noun (A: ホテル) to the main noun (B: 入り口) with の → ホテルの入り口 (“the hotel’s entrance”)."
+            }
+          }
         },
         {
           "id": "question:no-modifier-2",
@@ -189,13 +296,13 @@
               "id": "A",
               "text": "above the table",
               "lang": "en",
-              "explanation": "Not quite. “Above / on” is 上 (うえ), whereas 下 (した) means “under / below.” Try another choice."
+              "explanation": "Not quite. “Above / on” is 上 (うえ), whereas 下 (した) means “under / below.”"
             },
             {
               "id": "B",
               "text": "a table that is under something",
               "lang": "en",
-              "explanation": "Not quite. That reverses the A の B order. In テーブルの下, the second noun 下 (“the area under”) is the main noun and テーブル tells you what it is under. Try another choice."
+              "explanation": "Not quite. That reverses the A の B order. In テーブルの下, the second noun 下 (“the area under”) is the main noun and テーブル tells you what it is under."
             },
             {
               "id": "C",
@@ -203,7 +310,42 @@
               "lang": "en",
               "explanation": "That’s right! In A の B, the second noun 下 (“under / area below”) is the head noun, and テーブル specifies what it belongs to: “under the table.”"
             }
-          ]
+          ],
+          "followUp": {
+            "id": "followup:no-modifier-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this phrase mean?",
+            "japanese": "机の上",
+            "reading": "つくえの うえ",
+            "gloss": "机 desk · 上 on / above",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "a desk that is above something",
+                "lang": "en",
+                "explanation": "Not quite. That reverses the A の B word order: the second noun 上 (“top / area above”) is the head noun, modified by 机 (“desk”)."
+              },
+              {
+                "id": "B",
+                "text": "on / above the desk",
+                "lang": "en",
+                "explanation": "That’s right! In 机の上, the second noun 上 (“top / area above”) is the head noun and 机 (“desk”) specifies what it belongs to: “on / above the desk.”"
+              },
+              {
+                "id": "C",
+                "text": "under the desk",
+                "lang": "en",
+                "explanation": "Not quite. “Under” is 下 (した), whereas 上 (うえ) means “on / above.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "机の上",
+              "reading": "つくえの うえ",
+              "english": "on / above the desk",
+              "breakdown": "Step 1: In A の B, the second noun (B) is always the main thing: 上 (うえ, “the top / space above”). Step 2: The first noun (A) tells you what it belongs to: 机 (つくえ, “desk”). Together: “the top of the desk” (“on / above the desk”)."
+            }
+          }
         }
       ]
     },
@@ -260,7 +402,7 @@
               "id": "A",
               "text": "います",
               "lang": "ja",
-              "explanation": "Not quite. います is only for living, animate beings (people and animals), whereas 入り口 (entrances) are non-living things. Try another choice."
+              "explanation": "Not quite. います is only for living, animate beings (people and animals), whereas 入り口 (entrances) are non-living things."
             },
             {
               "id": "B",
@@ -272,9 +414,45 @@
               "id": "C",
               "text": "入ります",
               "lang": "ja",
-              "explanation": "Not quite. 入ります (はいります) is the verb “to enter.” Although it shares the kanji 入 with 入り口, here it would mean “two entrances enter the building.” Try another choice."
+              "explanation": "Not quite. 入ります (はいります) is the verb “to enter.” Although it shares the kanji 入 with 入り口, here it would mean “two entrances enter the building.”"
             }
-          ]
+          ],
+          "followUp": {
+            "id": "followup:ni-ga-arimasu-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the word that completes “There is one big desk in the room”:",
+            "japanese": "へやに大きい机が一つ（　）。",
+            "targetMeaning": "There is one big desk in the room.",
+            "reading": "へやに おおきい つくえが ひとつ（　）。",
+            "gloss": "へや room · 大きい big · 机 desk · 一つ one thing",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "います",
+                "lang": "ja",
+                "explanation": "Not quite. います is reserved for living beings (people and animals), whereas a desk (机) is non-living."
+              },
+              {
+                "id": "B",
+                "text": "上げます",
+                "lang": "ja",
+                "explanation": "Not quite. 上げます (あげます) means “to raise / lift something,” not “there is.”"
+              },
+              {
+                "id": "C",
+                "text": "あります",
+                "lang": "ja",
+                "explanation": "That’s right! Because a desk (机) is a non-living thing, あります completes “There is one big desk in the room.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "へやに大きい机が一つあります。",
+              "reading": "へやに おおきい つくえが ひとつ あります。",
+              "english": "There is one big desk in the room.",
+              "breakdown": "Step 1: へやに marks the location (“in the room”). Step 2: 大きい机が一つ names the non-living object and count (“one big desk”). Step 3: Use あります (never います) for non-living things."
+            }
+          }
         },
         {
           "id": "question:ni-ga-arimasu-2",
@@ -297,15 +475,50 @@
               "id": "B",
               "text": "There are three people at the table.",
               "lang": "en",
-              "explanation": "Not quite. 三つ (みっつ) counts inanimate things (paired with あります), whereas three people would be 三人 (さんにん) with います. Try another choice."
+              "explanation": "Not quite. 三つ (みっつ) counts inanimate things (paired with あります), whereas three people would be 三人 (さんにん) with います."
             },
             {
               "id": "C",
               "text": "There are two apples under the table.",
               "lang": "en",
-              "explanation": "Not quite. 上 (うえ) means “on / above” (not 下, “under”), and 三つ (みっつ) means “three things” (not 二つ, “two things”). Try another choice."
+              "explanation": "Not quite. 上 (うえ) means “on / above” (not 下, “under”), and 三つ (みっつ) means “three things” (not 二つ, “two things”)."
             }
-          ]
+          ],
+          "followUp": {
+            "id": "followup:ni-ga-arimasu-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "机の下に箱が二つあります。",
+            "reading": "つくえの したに はこが ふたつ あります。",
+            "gloss": "机 desk · 下 under / below · 箱 box · 二つ two things",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "There are two boxes under the desk.",
+                "lang": "en",
+                "explanation": "That’s right! 机の下に marks the location (“under the desk”), 箱が二つ names the object and counter (“two boxes”), and あります states they exist there."
+              },
+              {
+                "id": "B",
+                "text": "There are two people under the desk.",
+                "lang": "en",
+                "explanation": "Not quite. 箱が二つ with あります counts non-living boxes (“two boxes”), whereas two people would be 二人 (ふたり) with います."
+              },
+              {
+                "id": "C",
+                "text": "There are three boxes on the desk.",
+                "lang": "en",
+                "explanation": "Not quite. 下 (した) means “under” (not 上, “on”), and 二つ (ふたつ) means “two things” (not 三つ, “three things”)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "机の下に箱が二つあります。",
+              "reading": "つくえの したに はこが ふたつ あります。",
+              "english": "There are two boxes under the desk.",
+              "breakdown": "Step 1: 机の下に = “under the desk” (location + に). Step 2: 箱が二つ = “two boxes” (non-living noun + が + counter 二つ). Step 3: あります = “there are” (for inanimate things)."
+            }
+          }
         }
       ]
     }
@@ -313,6 +526,6 @@
   "sources": [
     "Komorebi Level 1 curriculum (data/level-1.json): kanji 山, 大, 人, 入, 口, 上, 下, 二, 三 and vocabulary ふじ山, 大きい, 山, 人, 大人, 入り口, 上, 下, 二つ, 三つ, 入る, 三人.",
     "JLPT N5 foundational grammar progression: A は B です (topic + copula), A の B (noun modification, cf. Renshuu #109), and A に B が あります (inanimate existence, cf. Renshuu #108).",
-    "All example sentences, fresh transfer prompts, brief glosses, and distractor explanations are original reviewed study material authored for Komorebi."
+    "All example sentences, fresh transfer prompts, follow-up questions, worked examples, brief glosses, and distractor explanations are original reviewed study material authored for Komorebi."
   ]
 }

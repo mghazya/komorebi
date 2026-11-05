@@ -8,7 +8,7 @@ import { loadCurriculum, sanitizeSvg, svgDataUrl, isSafeImagePath } from './curr
 import { buildQuizQueue, feedbackSummary, hintBanners, ACTIVE_REVIEW_POOL_SIZE, questionsForItem, shuffle, toggleReviewWrapUp } from './quiz.mjs?v=20261105-reading-categories';
 import { createCloudSync } from './sync.mjs?v=20261028-reading-prompts';
 import { KANJI_READINGS } from './kanji-readings.mjs?v=20261105-reading-categories';
-import { CONTEXT_PACK_META, loadContextPack, createContextSession, selectContextChoice, scoreContextSession, recordContextCompletion } from './context.mjs?v=20261105-context-pack-1';
+import { CONTEXT_PACK_META, loadContextPack, createContextSession, selectContextChoice, startContextFollowUp, scoreContextSession, recordContextCompletion } from './context.mjs?v=20261105-context-pack-1';
 
 import { createCloudClient, AUTH_STORAGE_KEY, validateNewPassword, validatePasswordChange, MIN_PASSWORD_LENGTH } from './cloud.mjs?v=20261028-reading-prompts';
 import { CLOUD_CONFIG } from './config.js?v=20261028-reading-prompts';
@@ -264,7 +264,7 @@ function dashboard(s) {
  return `<section class="page-intro"><div><div class="eyebrow">THE EVERYDAY PRACTICE</div><h1>Your Japanese journey</h1><p>One character at a time. One step closer.</p></div><span class="date-label">${new Date().toLocaleDateString('en',{weekday:'short',month:'short',day:'numeric'})}</span></section>
  <section class="hero"><div class="hero-copy"><span class="hero-tag"><span></span> A GOOD DAY TO BEGIN</span><h2>Small steps.<br><em>Lasting knowledge.</em></h2><p>Build your foundation with radicals, bring kanji<br class="desktop-br"> to life, and make new words your own.</p><button class="button primary" data-action="lessons" ${s.lessons?'':'disabled'}>${heroBtnText} ${icon('arrow')}</button><span class="hero-caption">${heroCaptionText}</span></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="art-word word-one">日</span><span class="art-word word-two">山</span><span class="art-word word-three">人</span><span class="tree-tile">木</span><svg class="botanical" viewBox="0 0 180 220"><path d="M88 215C111 161 78 92 114 19"/><path d="M96 172C34 168 37 124 88 130C103 151 96 172 96 172Z"/><path d="M98 130C162 128 158 84 114 91C97 110 98 130 98 130Z"/><path d="M97 85C58 77 65 40 102 54C109 71 97 85 97 85Z"/><path d="M113 41C155 36 146 9 122 15C113 26 113 41 113 41Z"/></svg><span class="vertical-japanese">毎日、少しずつ。</span><span class="art-note">a little growth, every day</span></div></section>
  <section class="action-grid" aria-label="Study actions"><button class="action-card lessons-card" data-action="lessons" ${s.lessons?'':'disabled'}><div class="action-icon">${icon('book')}</div><div class="action-text"><span>Today’s lessons</span><strong>${dailyTarget > 0 ? (targetMet ? `${doneToday}/${dailyTarget}` : `${displayLessons}`) : s.lessons}<small>${dailyTarget > 0 ? (targetMet ? 'goal met · study more' : `left today · ${s.lessons} in reserve`) : 'ready to discover'}</small></strong></div><span class="round-arrow">${icon('arrow')}</span></button>${reviewCardHtml}</section>
- <section class="panel context-panel"><div class="panel-heading"><div><span class="eyebrow">PRACTICE IN CONTEXT · PREVIEW</span><h2>Beginner Pack 1</h2></div><div class="context-panel-badges"><span class="context-pack-badge">${esc(CONTEXT_PACK_META.label)}</span>${contextRecord ? `<span class="context-status-pill is-done">${icon('check')} Completed · ${contextRecord.lastScore.correct}/${contextRecord.lastScore.total} first try</span>` : ''}</div></div><p>Use familiar Level 1 words in everyday sentences (<span lang="ja">は…です</span>, <span lang="ja">の</span>, <span lang="ja">に…があります</span>). Separate from spaced reviews—never changes your kanji stages or review dates.</p><button class="button secondary" type="button" data-action="context-practice">${contextRecord ? 'Practice again' : 'Open Beginner Pack 1'} · ${esc(CONTEXT_PACK_META.label)} ${icon('arrow')}</button></section>
+ <section class="panel context-panel"><div class="panel-heading"><div><span class="eyebrow">PRACTICE IN CONTEXT · PREVIEW</span><h2>Beginner Pack 1</h2></div><div class="context-panel-badges"><span class="context-pack-badge">${esc(CONTEXT_PACK_META.label)}</span>${contextRecord ? `<span class="context-status-pill is-done">${icon('check')} Completed · ${contextRecord.lastScore.correct}/${contextRecord.lastScore.total} first try${contextRecord.followUp?.attempted ? ` · ${contextRecord.followUp.correct}/${contextRecord.followUp.attempted} follow-up` : ''}</span>` : ''}</div></div><p>Use familiar Level 1 words in everyday sentences (<span lang="ja">は…です</span>, <span lang="ja">の</span>, <span lang="ja">に…があります</span>). Separate from spaced reviews—never changes your kanji stages or review dates.</p><button class="button secondary" type="button" data-action="context-practice">${contextRecord ? 'Practice again' : 'Open Beginner Pack 1'} · ${esc(CONTEXT_PACK_META.label)} ${icon('arrow')}</button></section>
  <section class="panel placement-panel"><div class="panel-heading"><div><span class="eyebrow">ALREADY KNOW JAPANESE?</span><h2>Placement check</h2></div></div><p>A short meaning (and reading) quiz. Score ≥90% or a strong streak marks those subjects Guru I so you skip the early waits—without burning them.</p><button class="button secondary" data-action="placement">Start placement ${icon('arrow')}</button></section>
  <div class="dashboard-grid"><div class="dashboard-primary"><section class="panel level-panel">
   <div class="panel-heading">
@@ -594,10 +594,20 @@ function chooseContextAnswer(choiceId) {
   session = selectContextChoice(session, choiceId);
   render();
   requestAnimationFrame(() => {
-    if (session?.feedback?.correct) {
+    const q = session?.questions?.[session.position];
+    if (q && session?.resolved?.[q.id]) {
       $('[data-action="next-context-question"]')?.focus({ preventScroll: true });
+    } else if (q && session?.awaitingFollowUp?.[q.id] && !session.inFollowUp) {
+      $('[data-action="start-context-followup"]')?.focus({ preventScroll: true });
     }
   });
+}
+
+function beginContextFollowUp() {
+  if (!session || session.mode !== 'context' || session.phase !== 'quiz' || busy) return;
+  session = startContextFollowUp(session);
+  render();
+  window.scrollTo(0, 0);
 }
 
 function toggleContextReading() {
@@ -610,13 +620,18 @@ async function nextContextQuestion() {
   if (!session || session.mode !== 'context' || session.phase !== 'quiz' || busy) return;
   const q = session.questions[session.position];
   if (!q || !session.resolved?.[q.id]) {
-    toast('Choose the correct answer and read the explanation before moving on.');
+    if (q && session.awaitingFollowUp?.[q.id] && !session.inFollowUp) {
+      toast('Try the follow-up question for this grammar point before moving on.');
+    } else {
+      toast('Choose an answer and read the explanation before moving on.');
+    }
     return;
   }
   if (session.position < session.questions.length - 1) {
     session = {
       ...session,
       position: session.position + 1,
+      inFollowUp: false,
       showReading: false,
       selectedChoice: null,
       feedback: null,
@@ -656,30 +671,58 @@ function renderContextSession(s) {
   }
   if (s.phase === 'done') {
     const score = s.score || scoreContextSession(s);
+    const fu = score.followUp || { attempted: 0, correct: 0, workedExamplesShown: 0, items: {} };
+    const followUpSentence = fu.attempted > 0
+      ? ` On the follow-up questions for the ${fu.attempted} missed item${fu.attempted === 1 ? '' : 's'}, you understood ${fu.correct} of ${fu.attempted}${fu.workedExamplesShown ? ` and reviewed ${fu.workedExamplesShown} worked example${fu.workedExamplesShown === 1 ? '' : 's'}` : ''}.`
+      : '';
+    const recapRows = s.questions.map((qItem, idx) => {
+      const pat = s.pack.patterns[qItem.patternIndex];
+      const firstOk = s.firstAttempts?.[qItem.id] === true;
+      const fuRes = s.followUpResults?.[qItem.id] || fu.items?.[qItem.id] || null;
+      const statusBadge = firstOk
+        ? `<span class="context-recap-badge is-correct">First try: Correct</span>`
+        : `<span class="context-recap-badge is-missed">First try: Missed</span>`;
+      const followUpBadge = !firstOk && fuRes
+        ? (fuRes.correct
+          ? `<span class="context-recap-badge is-followup-ok">Follow-up: Understood</span>`
+          : `<span class="context-recap-badge is-worked">Follow-up: Missed · Worked example reviewed</span>`)
+        : '';
+      return `<li class="context-recap-item"><div class="context-recap-main"><strong>Q${idx + 1} · <span lang="ja">${esc(pat.pattern)}</span></strong><span class="context-recap-jp" lang="ja">${esc(qItem.japanese)}</span></div><div class="context-recap-badges">${statusBadge}${followUpBadge}</div></li>`;
+    }).join('');
     const sourcesHtml = s.pack.sources?.length
       ? `<details class="context-sources"><summary>Optional lesson sources &amp; notes</summary><ul>${s.pack.sources.map((src) => `<li>${esc(src)}</li>`).join('')}</ul></details>`
       : '';
-    return `<section class="session-done context-done"><div class="done-icon">${icon('check')}</div><span class="eyebrow">PRACTICE IN CONTEXT · ${esc(s.pack.title.toUpperCase())}</span><h1>Practice complete.</h1><p>${score.correct} of ${score.total} answered right on the first attempt.${s.contextSaveFailed ? ' Your completion could not be saved right now, so your profile is unchanged.' : ' Saved to your learner profile under Practice in context. Your kanji stages and review dates are unchanged.'}</p><div class="result-cards"><div><strong>${score.correct}/${score.total}</strong><span>correct on first attempt</span></div><div><strong>${s.pack.patterns.length}</strong><span>grammar patterns practiced</span></div></div><div class="context-done-actions"><button class="button primary" type="button" data-action="finish">Back to your dashboard ${icon('arrow')}</button><button class="button secondary" type="button" data-action="context-practice">Practice again</button></div>${sourcesHtml}</section>`;
+    return `<section class="session-done context-done"><div class="done-icon">${icon('check')}</div><span class="eyebrow">PRACTICE IN CONTEXT · ${esc(s.pack.title.toUpperCase())}</span><h1>Practice complete.</h1><p>${score.correct} of ${score.total} answered right on the first attempt.${followUpSentence}${s.contextSaveFailed ? ' Your completion could not be saved right now, so your profile is unchanged.' : ' Saved to your learner profile under Practice in context. Your kanji stages and review dates are unchanged.'}</p><div class="result-cards"><div><strong>${score.correct}/${score.total}</strong><span>correct on first attempt</span></div><div><strong>${fu.attempted ? `${fu.correct}/${fu.attempted}` : 'None needed'}</strong><span>${fu.attempted ? 'understood on follow-up' : 'all right on first try'}</span></div><div><strong>${s.pack.patterns.length}</strong><span>grammar patterns practiced</span></div></div><div class="context-recap-box" aria-label="Question breakdown"><span class="info-eyebrow">FIRST ATTEMPT &amp; FOLLOW-UP BREAKDOWN</span><ul class="context-recap-list">${recapRows}</ul></div><div class="context-done-actions"><button class="button primary" type="button" data-action="finish">Back to your dashboard ${icon('arrow')}</button><button class="button secondary" type="button" data-action="context-practice">Practice again</button></div>${sourcesHtml}</section>`;
   }
   const q = s.questions[s.position];
   const pattern = s.pack.patterns[q.patternIndex];
+  const activeQ = s.inFollowUp ? q.followUp : q;
   const resolvedCount = Object.keys(s.resolved || {}).length;
   const pct = Math.round((resolvedCount / s.questions.length) * 100);
-  const tried = s.triedChoices?.[q.id] || [];
+  const tried = s.triedChoices?.[activeQ.id] || [];
   const isResolved = Boolean(s.resolved?.[q.id]);
+  const isAwaitingFollowUp = !s.inFollowUp && Boolean(s.awaitingFollowUp?.[q.id]);
+  const choicesLocked = isResolved || isAwaitingFollowUp;
   const linkedSubjects = (pattern.subjectIds || []).map((id) => getItem(id)).filter(Boolean);
   const sourcesHtml = s.pack.sources?.length
     ? `<details class="context-sources"><summary>Optional lesson sources &amp; notes</summary><ul>${s.pack.sources.map((src) => `<li>${esc(src)}</li>`).join('')}</ul></details>`
     : '';
+  const questionEyebrow = s.inFollowUp
+    ? `FOLLOW-UP FOR QUESTION ${s.position + 1} · SAME GRAMMAR POINT`
+    : `QUESTION ${s.position + 1} OF ${s.questions.length} · ${q.isFreshSentence ? 'FRESH UNSEEN SENTENCE' : 'EXAMPLE CHECK'}`;
+  const workedExample = s.feedback?.workedExample;
+  const workedExampleHtml = workedExample
+    ? `<div class="context-worked-example" role="region" aria-label="Worked example"><span class="info-eyebrow">WORKED EXAMPLE · <span lang="ja">${esc(pattern.pattern)}</span></span><p class="context-worked-jp" lang="ja">${esc(workedExample.japanese)}</p>${workedExample.reading ? `<p class="context-reading" lang="ja">${esc(workedExample.reading)}</p>` : ''}<p class="context-worked-en">“${esc(workedExample.english)}”</p><p class="context-worked-breakdown">${esc(workedExample.breakdown)}</p></div>`
+    : '';
 
-  return `<section class="session-header"><div class="session-header-left"><button class="text-button" type="button" data-action="exit-session">${icon('back')} Dashboard</button></div><span>Practice in context <b>·</b> ${esc(s.pack.label)} <b>·</b> Question ${s.position + 1} of ${s.questions.length}</span></section><div class="session-progress" role="progressbar" aria-label="Practice progress" aria-valuenow="${resolvedCount}" aria-valuemin="0" aria-valuemax="${s.questions.length}"><span style="width:${pct}%"></span></div><div class="context-card"><section class="context-pattern-box" aria-labelledby="context-pattern-heading"><div class="context-pattern-head"><span class="eyebrow">PATTERN ${q.patternIndex + 1} OF ${s.pack.patterns.length} · ${esc(s.pack.title.toUpperCase())}</span><span class="context-pack-badge">${esc(s.pack.label)}</span></div><h2 id="context-pattern-heading" class="context-pattern-title"><span lang="ja">${esc(pattern.pattern)}</span> <small>— ${esc(pattern.gloss)}</small></h2><p class="context-pattern-summary">${esc(pattern.summary)}${pattern.readingNote ? ` <span class="context-reading-note">${esc(pattern.readingNote)}</span>` : ''}</p><div class="context-examples" aria-label="Pattern examples">${pattern.examples.map((ex, idx) => `<div class="context-example-item"><span class="context-example-num">Ex ${idx + 1}</span><div class="context-example-body"><p class="context-example-jp" lang="ja">${esc(ex.japanese)}</p>${s.showReading && ex.reading ? `<p class="context-reading" lang="ja">${esc(ex.reading)}</p>` : ''}<p class="context-example-en">${esc(ex.english)}</p>${ex.gloss ? `<small class="context-gloss">Glosses: ${esc(ex.gloss)}</small>` : ''}</div></div>`).join('')}</div>${linkedSubjects.length ? `<div class="context-subjects-row"><span class="info-eyebrow">FAMILIAR LEVEL 1 SUBJECTS</span><div class="component-list">${linkedSubjects.map((subj) => `<button type="button" class="component-chip ${subj.type}" data-action="view-subject" data-item="${esc(subj.id)}" title="${esc(subj.meaning)} (${subj.type})"><b>${glyph(subj, '')}</b><span class="component-name"><strong>${esc(subj.meaning)}</strong><small>${subj.type}</small></span></button>`).join('')}</div></div>` : ''}</section><section class="context-question-box" aria-labelledby="context-question-heading"><div class="context-question-top"><span class="eyebrow">QUESTION ${s.position + 1} OF ${s.questions.length} · ${q.isFreshSentence ? 'FRESH UNSEEN SENTENCE' : 'EXAMPLE CHECK'}</span><button type="button" class="button secondary context-reading-btn" data-action="toggle-context-reading" aria-pressed="${Boolean(s.showReading)}">${icon(s.showReading ? 'eyeOff' : 'eye')} <span>${s.showReading ? 'Hide reading' : 'Show reading'}</span></button></div><h1 id="context-question-heading">${esc(q.prompt)}</h1><div class="context-prompt-sentence"><p class="context-sentence-jp" lang="ja">${esc(q.japanese)}</p>${q.targetMeaning ? `<p class="context-target-meaning">“${esc(q.targetMeaning)}”</p>` : ''}${s.showReading && q.reading ? `<p class="context-reading" lang="ja">${esc(q.reading)}</p>` : ''}${q.gloss ? `<p class="context-gloss">Glosses: ${esc(q.gloss)}</p>` : ''}</div><div class="context-choices" role="group" aria-labelledby="context-question-heading">${q.choices.map((c) => {
+  return `<section class="session-header"><div class="session-header-left"><button class="text-button" type="button" data-action="exit-session">${icon('back')} Dashboard</button></div><span>Practice in context <b>·</b> ${esc(s.pack.label)} <b>·</b> Question ${s.position + 1} of ${s.questions.length}${s.inFollowUp ? ' (Follow-up)' : ''}</span></section><div class="session-progress" role="progressbar" aria-label="Practice progress" aria-valuenow="${resolvedCount}" aria-valuemin="0" aria-valuemax="${s.questions.length}"><span style="width:${pct}%"></span></div><div class="context-card"><section class="context-pattern-box" aria-labelledby="context-pattern-heading"><div class="context-pattern-head"><span class="eyebrow">PATTERN ${q.patternIndex + 1} OF ${s.pack.patterns.length} · ${esc(s.pack.title.toUpperCase())}</span><span class="context-pack-badge">${esc(s.pack.label)}</span></div><h2 id="context-pattern-heading" class="context-pattern-title"><span lang="ja">${esc(pattern.pattern)}</span> <small>— ${esc(pattern.gloss)}</small></h2><p class="context-pattern-summary">${esc(pattern.summary)}${pattern.readingNote ? ` <span class="context-reading-note">${esc(pattern.readingNote)}</span>` : ''}</p><div class="context-examples" aria-label="Pattern examples">${pattern.examples.map((ex, idx) => `<div class="context-example-item"><span class="context-example-num">Ex ${idx + 1}</span><div class="context-example-body"><p class="context-example-jp" lang="ja">${esc(ex.japanese)}</p>${s.showReading && ex.reading ? `<p class="context-reading" lang="ja">${esc(ex.reading)}</p>` : ''}<p class="context-example-en">${esc(ex.english)}</p>${ex.gloss ? `<small class="context-gloss">Glosses: ${esc(ex.gloss)}</small>` : ''}</div></div>`).join('')}</div>${linkedSubjects.length ? `<div class="context-subjects-row"><span class="info-eyebrow">FAMILIAR LEVEL 1 SUBJECTS</span><div class="component-list">${linkedSubjects.map((subj) => `<button type="button" class="component-chip ${subj.type}" data-action="view-subject" data-item="${esc(subj.id)}" title="${esc(subj.meaning)} (${subj.type})"><b>${glyph(subj, '')}</b><span class="component-name"><strong>${esc(subj.meaning)}</strong><small>${subj.type}</small></span></button>`).join('')}</div></div>` : ''}</section><section class="context-question-box ${s.inFollowUp ? 'is-followup' : ''}" aria-labelledby="context-question-heading"><div class="context-question-top"><span class="eyebrow">${questionEyebrow}</span><button type="button" class="button secondary context-reading-btn" data-action="toggle-context-reading" aria-pressed="${Boolean(s.showReading)}">${icon(s.showReading ? 'eyeOff' : 'eye')} <span>${s.showReading ? 'Hide reading' : 'Show reading'}</span></button></div><h1 id="context-question-heading">${esc(activeQ.prompt)}</h1><div class="context-prompt-sentence"><p class="context-sentence-jp" lang="ja">${esc(activeQ.japanese)}</p>${activeQ.targetMeaning ? `<p class="context-target-meaning">“${esc(activeQ.targetMeaning)}”</p>` : ''}${s.showReading && activeQ.reading ? `<p class="context-reading" lang="ja">${esc(activeQ.reading)}</p>` : ''}${activeQ.gloss ? `<p class="context-gloss">Glosses: ${esc(activeQ.gloss)}</p>` : ''}</div><div class="context-choices" role="group" aria-labelledby="context-question-heading">${activeQ.choices.map((c) => {
     const isSelected = s.selectedChoice === c.id;
     const wasTried = tried.includes(c.id);
     const stateClass = isSelected
-      ? (c.id === q.correctChoice ? 'is-correct' : 'is-incorrect')
-      : (wasTried ? (c.id === q.correctChoice ? 'is-correct' : 'is-tried-wrong') : '');
-    return `<button type="button" class="context-choice ${stateClass}" data-context-choice="${esc(c.id)}" ${isResolved ? 'disabled' : ''} aria-pressed="${isSelected}"><span class="context-choice-letter">${esc(c.id)}</span><span class="context-choice-text" ${c.lang === 'ja' ? 'lang="ja"' : ''}>${esc(c.text)}</span></button>`;
-  }).join('')}</div>${s.feedback ? `<div class="answer-feedback context-feedback ${s.feedback.correct ? 'correct' : 'incorrect'}" role="status"><strong>${s.feedback.correct ? `Choice ${esc(s.feedback.choiceId)} is correct` : `Why Choice ${esc(s.feedback.choiceId)} doesn’t work`}</strong><span>${esc(s.feedback.explanation)}</span></div>` : ''}${isResolved ? `<button type="button" class="button primary full-width context-next-btn" data-action="next-context-question">${s.position < s.questions.length - 1 ? `Next question (${s.position + 2} of ${s.questions.length})` : 'Finish practice'} ${icon('arrow')}</button>` : ''}${sourcesHtml}</section></div><p class="session-footnote">First-attempt answers determine your score; retrying helps you learn. Completing, missing, or leaving a question never changes your kanji stages or review dates.</p>`;
+      ? (c.id === activeQ.correctChoice ? 'is-correct' : 'is-incorrect')
+      : (wasTried ? (c.id === activeQ.correctChoice ? 'is-correct' : 'is-tried-wrong') : '');
+    return `<button type="button" class="context-choice ${stateClass}" data-context-choice="${esc(c.id)}" ${choicesLocked ? 'disabled' : ''} aria-pressed="${isSelected}"><span class="context-choice-letter">${esc(c.id)}</span><span class="context-choice-text" ${c.lang === 'ja' ? 'lang="ja"' : ''}>${esc(c.text)}</span></button>`;
+  }).join('')}</div>${s.feedback ? `<div class="answer-feedback context-feedback ${s.feedback.correct ? 'correct' : 'incorrect'}" role="status"><strong>${s.feedback.correct ? `Choice ${esc(s.feedback.choiceId)} is correct` : `Why Choice ${esc(s.feedback.choiceId)} doesn’t work`}</strong><span>${esc(s.feedback.explanation)}</span></div>` : ''}${workedExampleHtml}${isAwaitingFollowUp ? `<button type="button" class="button primary full-width context-next-btn" data-action="start-context-followup">Try follow-up question ${icon('arrow')}</button>` : ''}${isResolved ? `<button type="button" class="button primary full-width context-next-btn" data-action="next-context-question">${s.position < s.questions.length - 1 ? `Next question (${s.position + 2} of ${s.questions.length})` : 'Finish practice'} ${icon('arrow')}</button>` : ''}${sourcesHtml}</section></div><p class="session-footnote">First-attempt answers and follow-up questions are recorded separately so you can see both what you missed and what you understood afterward. Completing, missing, or leaving a question never changes your kanji stages or review dates.</p>`;
 }
 
 function leaveSession(){
@@ -1122,6 +1165,7 @@ function bind(){
   if(action==='practice')begin('practice');
   if(action==='placement')beginPlacement();
   if(action==='context-practice'){await beginContextPractice();return;}
+  if(action==='start-context-followup'){beginContextFollowUp();return;}
   if(action==='toggle-context-reading'){toggleContextReading();return;}
   if(action==='next-context-question'){await nextContextQuestion();return;}
   if(action==='mark-known'){const id=b.dataset.item;if(id)await markKnown(id);}
