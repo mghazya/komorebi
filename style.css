@@ -333,7 +333,8 @@ footer{font-size:14px;line-height:1.6;color:var(--muted-aa)}
  .quiz-active .session-header{position:fixed;top:var(--quiz-viewport-top,0px);left:0;right:0;height:44px;margin:0;padding:4px 12px;background:var(--paper,#f6f7f2);z-index:31;flex-wrap:nowrap;font-size:12px}
  .quiz-active .session-header .text-button{min-height:36px;font-size:14px}
  .quiz-active .quiz-card{position:fixed;top:calc(var(--quiz-viewport-top,0px) + 44px);left:8px;right:8px;height:calc(var(--quiz-viewport-height,100dvh) - 50px);margin:0;max-width:none;display:flex;flex-direction:column;overflow:hidden;z-index:30;border-radius:16px}
- .quiz-active .quiz-prompt{flex:none;padding:4px 12px;display:flex;align-items:center;justify-content:center;min-height:72px;max-height:104px}
+ .quiz-active .quiz-prompt{flex:none;padding:4px 12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:72px;max-height:110px}
+ .quiz-active .quiz-prompt .subject-kind{display:block;font-size:11px;line-height:1.2;margin:0}
  .quiz-active .quiz-character{font-size:64px;line-height:1.2;margin:0;overflow:hidden;scrollbar-width:none;max-height:92px}
  .quiz-active .quiz-character.char-len-1{font-size:64px}
  .quiz-active .quiz-character.char-len-2{font-size:56px}

@@ -711,6 +711,24 @@ function findMeaningTypoMatch(normalizedInput, rawAccepted) {
 }
 
 const READING_LABELS = { onyomi: 'on’yomi', kunyomi: 'kun’yomi', nanori: 'nanori (name reading)' };
+const SUBJECT_LABELS = { radical: 'Radical', kanji: 'Kanji', vocabulary: 'Vocabulary' };
+export function subjectKindLabel(item, kind) {
+  const type = SUBJECT_LABELS[item?.type] || 'Subject';
+  const part = kind === 'reading' ? 'Reading' : 'Meaning';
+  return `${type} · ${part}`;
+}
+export function meaningPrompt(item) {
+  if (item?.type === 'radical') return 'What is this radical’s name?';
+  if (item?.type === 'kanji') return 'What does this kanji mean?';
+  if (item?.type === 'vocabulary') return 'What does this word mean?';
+  return 'What does this mean?';
+}
+export function meaningSubtext(item) {
+  if (item?.type === 'radical') return 'Enter this radical’s name in English.';
+  if (item?.type === 'kanji') return 'Enter this kanji’s meaning in English.';
+  if (item?.type === 'vocabulary') return 'Enter this word’s meaning in English.';
+  return 'Enter an English meaning.';
+}
 export function readingTypeLabel(item) {
   if (item.type !== 'kanji') return '';
   const data = KANJI_READINGS[item.character];
@@ -724,6 +742,15 @@ export function readingPrompt(item) {
   if (item.type !== 'kanji') return 'How do you read this word?';
   const label = readingTypeLabel(item);
   return label ? `What is the ${label} reading?` : 'What is the taught kanji reading?';
+}
+export function answerInputLabel(item, kind) {
+  if (kind === 'meaning') {
+    if (item?.type === 'radical') return `${subjectKindLabel(item, 'meaning')} — What is this radical’s name? Enter the English name.`;
+    if (item?.type === 'kanji') return `${subjectKindLabel(item, 'meaning')} — What does this kanji mean? Enter an English meaning.`;
+    if (item?.type === 'vocabulary') return `${subjectKindLabel(item, 'meaning')} — What does this word mean? Enter an English meaning.`;
+    return 'Meaning in English';
+  }
+  return `${subjectKindLabel(item, 'reading')} — ${readingPrompt(item)} Enter kana or romaji.`;
 }
 
 export function checkAnswer(item, kind, answer) {
