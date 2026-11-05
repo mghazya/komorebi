@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "title": "Komorebi Practice in Context — Grammar Coverage Checklist",
-  "updatedAt": "2026-11-05T13:20:00Z",
+  "updatedAt": "2026-11-05T15:05:23.651Z",
   "policy": {
     "unitOfTracking": "Tracked by (renshuuGrammarId, meaningIndex) because a single Renshuu grammar ID can cover multiple distinct meanings/uses.",
     "taughtRule": "A grammar meaning is counted as taught (taught: true) ONLY when it is linked to at least one validated primary question and distinct follow-up exercise in a pack.",
@@ -21,7 +21,7 @@
       "title": "Beginner Pack 1",
       "subtitle": "Foundational Copula, Noun Modification & Inanimate Existence",
       "path": "./data/context-pack-1.json",
-      "status": "reviewed",
+      "status": "live",
       "patterns": [
         "grammar:wa-desu",
         "grammar:no-modifier",
@@ -43,7 +43,7 @@
       "title": "Beginner Pack 2",
       "subtitle": "Questions, Shared Topics & Requests",
       "path": "./data/context-pack-2.json",
-      "status": "reviewed",
+      "status": "live",
       "patterns": [
         "grammar:ka-question",
         "grammar:mo-also",
@@ -63,7 +63,7 @@
       "title": "Beginner Pack 3",
       "subtitle": "Living Beings, Joining Nouns & Past Facts",
       "path": "./data/context-pack-3.json",
-      "status": "reviewed",
+      "status": "live",
       "patterns": [
         "grammar:ni-ga-imasu",
         "grammar:to-and",
@@ -82,7 +82,7 @@
       "title": "Beginner Pack 4",
       "subtitle": "Everyday Actions — Destination, Direct Object & Polite Verbs",
       "path": "./data/context-pack-4.json",
-      "status": "reviewed",
+      "status": "live",
       "patterns": [
         "grammar:ni-destination",
         "grammar:wo-object",
@@ -103,8 +103,8 @@
     "taughtMeaningsCount": 16,
     "distinctPatternsTaught": 12,
     "byStatus": {
-      "live": 0,
-      "reviewed": 16,
+      "live": 16,
+      "reviewed": 0,
       "validated": 0,
       "draft": 0,
       "planned": 131
@@ -352,7 +352,7 @@
       ],
       "packId": "pack:beginner-2",
       "patternId": "grammar:ka-question",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:ka-question-1",
@@ -604,7 +604,7 @@
       ],
       "packId": "pack:beginner-3",
       "patternId": "grammar:to-and",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:to-and-1",
@@ -801,7 +801,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:ni-ga-arimasu",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:ni-ga-arimasu-1",
@@ -836,7 +836,7 @@
       ],
       "packId": "pack:beginner-4",
       "patternId": "grammar:ni-destination",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:ni-destination-1",
@@ -1015,7 +1015,7 @@
       ],
       "packId": "pack:beginner-4",
       "patternId": "grammar:wo-object",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:wo-object-1",
@@ -1122,7 +1122,7 @@
       ],
       "packId": "pack:beginner-2",
       "patternId": "grammar:mo-also",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:mo-also-1",
@@ -1297,7 +1297,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:no-modifier",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:no-modifier-1",
@@ -1346,7 +1346,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:no-modifier",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:no-modifier-1",
@@ -1612,7 +1612,7 @@
       ],
       "packId": "pack:beginner-2",
       "patternId": "grammar:wo-kudasai",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:wo-kudasai-1",
@@ -2426,7 +2426,7 @@
       ],
       "packId": "pack:beginner-4",
       "patternId": "grammar:masu-polite",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:masu-polite-1",
@@ -2588,7 +2588,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:ni-ga-arimasu",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:ni-ga-arimasu-1",
@@ -2645,7 +2645,7 @@
       ],
       "packId": "pack:beginner-3",
       "patternId": "grammar:ni-ga-imasu",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:ni-ga-imasu-1",
@@ -2678,7 +2678,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:wa-desu",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:wa-desu-1",
@@ -2727,7 +2727,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:no-modifier",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:no-modifier-1",
@@ -2817,7 +2817,7 @@
       ],
       "packId": "pack:beginner-2",
       "patternId": "grammar:ka-question",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:ka-question-1",
@@ -2997,7 +2997,7 @@
       ],
       "packId": "pack:beginner-3",
       "patternId": "grammar:deshita-past",
-      "status": "reviewed",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:deshita-past-1",
