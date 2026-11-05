@@ -1,0 +1,539 @@
+{
+  "schemaVersion": 1,
+  "id": "pack:beginner-4",
+  "title": "Beginner Pack 4",
+  "subtitle": "Everyday Actions — Destination, Direct Object & Polite Verbs",
+  "label": "3 patterns · 6 questions",
+  "level": 1,
+  "rationale": "Moves learners from static existence and identification (Packs 1–3) to active sentences using Level 1’s three action verbs (入る, 上げる, 下げる): (1) destination に extends Pack 1’s location に to mark the place someone enters with 入ります, (2) direct-object を extends Pack 2’s を下さい to mark what someone lifts (上げます) or lowers (下げます), and (3) polite present ます / ません lets learners state whether an action happens or does not happen.",
+  "description": "Use Level 1 action verbs (入る, 上げる, 下げる) with destination に, direct-object を, and polite present ます / ません.",
+  "patterns": [
+    {
+      "id": "grammar:ni-destination",
+      "order": 1,
+      "renshuuGrammarId": "113",
+      "renshuuMeaningIndex": 2,
+      "renshuuRef": "113#2",
+      "pattern": "A に 入ります",
+      "gloss": "enter A / go into A (destination に)",
+      "readingNote": "With motion verbs like 入ります (はいります, “to enter”), に marks the place you enter.",
+      "summary": "In Pack 1, に marked where something stays (へやにあります). With movement verbs like 入る → 入ります (“to enter”), に marks the destination or space someone enters (へやに入ります).",
+      "subjectIds": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:山",
+        "kanji:川",
+        "kanji:人",
+        "vocabulary:入る",
+        "vocabulary:入り口",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:人"
+      ],
+      "examples": [
+        {
+          "id": "example:ni-destination-1",
+          "japanese": "大人がビルに入ります。",
+          "reading": "おとなが ビルに はいります。",
+          "gloss": "大人 adult · ビル building · に into (destination) · 入ります enter",
+          "english": "An adult enters the building."
+        },
+        {
+          "id": "example:ni-destination-2",
+          "japanese": "あの人は駅に入ります。",
+          "reading": "あの ひとは えきに はいります。",
+          "gloss": "あの人 that person · 駅 station · に into (destination) · 入ります enter",
+          "english": "That person enters the station."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:ni-destination-1",
+          "patternId": "grammar:ni-destination",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the particle that marks ビル (building) as the place the adult enters:",
+          "japanese": "大人がビル（　）入ります。",
+          "targetMeaning": "An adult enters the building.",
+          "reading": "おとなが ビル（　）はいります。",
+          "gloss": "大人 adult · ビル building · 入ります enter",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "の",
+              "lang": "ja",
+              "explanation": "Not quite. の connects two nouns (A の B), so it cannot link the destination noun ビル to the verb 入ります."
+            },
+            {
+              "id": "B",
+              "text": "に",
+              "lang": "ja",
+              "explanation": "That’s right! With 入ります (“enter”), に marks the destination or enclosed place being entered (ビルに入ります)."
+            },
+            {
+              "id": "C",
+              "text": "と",
+              "lang": "ja",
+              "explanation": "Not quite. と means “and / with,” not the destination of 入ります (“enter the building”)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:ni-destination-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that marks へや (room) as the place the two people enter:",
+            "japanese": "二人がへや（　）入ります。",
+            "targetMeaning": "Two people enter the room.",
+            "reading": "ふたりが へや（　）はいります。",
+            "gloss": "二人 two people · へや room · 入ります enter",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "に",
+                "lang": "ja",
+                "explanation": "That’s right! に marks へや (“the room”) as the destination that the two people enter (へやに入ります)."
+              },
+              {
+                "id": "B",
+                "text": "の",
+                "lang": "ja",
+                "explanation": "Not quite. の links a noun to another noun, not to the action verb 入ります."
+              },
+              {
+                "id": "C",
+                "text": "か",
+                "lang": "ja",
+                "explanation": "Not quite. か goes at the end of a sentence to ask a question, not between a place and 入ります."
+              }
+            ],
+            "workedExample": {
+              "japanese": "二人がへやに入ります。",
+              "reading": "ふたりが へやに はいります。",
+              "english": "Two people enter the room.",
+              "breakdown": "Step 1: Name the place being entered: へや (“room”). Step 2: Mark that destination with に (へやに). Step 3: Finish with the movement verb 入ります (“enter”)."
+            }
+          }
+        },
+        {
+          "id": "question:ni-destination-2",
+          "patternId": "grammar:ni-destination",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "女の人はホテルに入ります。",
+          "reading": "おんなの ひとは ホテルに はいります。",
+          "gloss": "女の人 woman · ホテル hotel · 入ります enter",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "There is a hotel entrance here.",
+              "lang": "en",
+              "explanation": "Not quite. 入り口 means “entrance” and あります means “there is,” whereas 入ります (はいります) is the action verb “enters.”"
+            },
+            {
+              "id": "B",
+              "text": "The woman lifts the hotel.",
+              "lang": "en",
+              "explanation": "Not quite. “Lifts” is 上げます (あげます); 入ります (はいります) means “enters.”"
+            },
+            {
+              "id": "C",
+              "text": "The woman enters the hotel.",
+              "lang": "en",
+              "explanation": "That’s right! 女の人は sets “the woman” as the topic, ホテルに marks the hotel as her destination, and 入ります means “enters.”"
+            }
+          ],
+          "followUp": {
+            "id": "followup:ni-destination-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "三人が駅に入ります。",
+            "reading": "さんにんが えきに はいります。",
+            "gloss": "三人 three people · 駅 station · 入ります enter",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "There are three stations at the entrance.",
+                "lang": "en",
+                "explanation": "Not quite. 三人 (さんにん) means “three people,” and 駅に入ります means “enter the station.”"
+              },
+              {
+                "id": "B",
+                "text": "Three people enter the station.",
+                "lang": "en",
+                "explanation": "That’s right! 三人が is “three people,” 駅に marks the station as the destination, and 入ります means “enter.”"
+              },
+              {
+                "id": "C",
+                "text": "Please give me three stations.",
+                "lang": "en",
+                "explanation": "Not quite. “Please give me” is を下さい, whereas に + 入ります means “enter.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "三人が駅に入ります。",
+              "reading": "さんにんが えきに はいります。",
+              "english": "Three people enter the station.",
+              "breakdown": "Step 1: 三人が = “three people” (actor). Step 2: 駅に = “into the station” (destination + に). Step 3: 入ります = “enter.”"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:wo-object",
+      "order": 2,
+      "renshuuGrammarId": "114",
+      "renshuuMeaningIndex": 2,
+      "renshuuRef": "114#2",
+      "pattern": "A を B ます",
+      "gloss": "do B to A (direct object を)",
+      "readingNote": "The particle を is pronounced “o” and marks the thing directly acted upon by a transitive verb.",
+      "summary": "Place を after a noun (A) to mark it as the direct object of an action verb (B), such as Level 1’s 上げる → 上げます (“to lift / raise something”) and 下げる → 下げます (“to lower something”).",
+      "subjectIds": [
+        "kanji:上",
+        "kanji:下",
+        "kanji:力",
+        "kanji:口",
+        "vocabulary:上げる",
+        "vocabulary:下げる",
+        "vocabulary:力",
+        "vocabulary:口"
+      ],
+      "examples": [
+        {
+          "id": "example:wo-object-1",
+          "japanese": "大人が大きい箱を上げます。",
+          "reading": "おとなが おおきい はこを あげます。",
+          "gloss": "大人 adult · 大きい箱 big box · を object marker · 上げます lifts",
+          "english": "The adult lifts the big box."
+        },
+        {
+          "id": "example:wo-object-2",
+          "japanese": "あの人はかばんを下げます。",
+          "reading": "あの ひとは かばんを さげます。",
+          "gloss": "あの人 that person · かばん bag · を object marker · 下げます lowers",
+          "english": "That person lowers the bag."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:wo-object-1",
+          "patternId": "grammar:wo-object",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the particle that marks 大きい箱 (the big box) as the object being lifted:",
+          "japanese": "大人が大きい箱（　）上げます。",
+          "targetMeaning": "The adult lifts the big box.",
+          "reading": "おとなが おおきい はこ（　）あげます。",
+          "gloss": "大人 adult · 大きい箱 big box · 上げます lifts / raises",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "を",
+              "lang": "ja",
+              "explanation": "That’s right! を marks 大きい箱 (“the big box”) as the direct object that the adult lifts (上げます)."
+            },
+            {
+              "id": "B",
+              "text": "の",
+              "lang": "ja",
+              "explanation": "Not quite. の connects two nouns (A の B), so it cannot link the object 大きい箱 to the verb 上げます."
+            },
+            {
+              "id": "C",
+              "text": "と",
+              "lang": "ja",
+              "explanation": "Not quite. と means “and / with,” whereas 上げます needs a direct object marked by を."
+            }
+          ],
+          "followUp": {
+            "id": "followup:wo-object-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that marks かばん (the bag) as the object being lowered:",
+            "japanese": "あの人はかばん（　）下げます。",
+            "targetMeaning": "That person lowers the bag.",
+            "reading": "あの ひとは かばん（　）さげます。",
+            "gloss": "あの人 that person · かばん bag · 下げます lowers",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "の",
+                "lang": "ja",
+                "explanation": "Not quite. の modifies a following noun, not the action verb 下げます."
+              },
+              {
+                "id": "B",
+                "text": "に",
+                "lang": "ja",
+                "explanation": "Not quite. に marks a location or destination, whereas かばん is the direct object being lowered."
+              },
+              {
+                "id": "C",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "That’s right! を marks かばん (“the bag”) as the direct object of 下げます (“lowers the bag”)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "あの人はかばんを下げます。",
+              "reading": "あの ひとは かばんを さげます。",
+              "english": "That person lowers the bag.",
+              "breakdown": "Step 1: Identify the thing being acted on: かばん (“bag”). Step 2: Mark it with the direct-object particle を (かばんを). Step 3: Add the transitive verb 下げます (“lowers”)."
+            }
+          }
+        },
+        {
+          "id": "question:wo-object-2",
+          "patternId": "grammar:wo-object",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "女の人は箱を二つ下げます。",
+          "reading": "おんなの ひとは はこを ふたつ さげます。",
+          "gloss": "女の人 woman · 箱 box · 二つ two things · 下げます lowers",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The woman lifts two boxes.",
+              "lang": "en",
+              "explanation": "Not quite. “Lifts” is 上げます (あげます, with 上), whereas 下げます (さげます, with 下) means “lowers.”"
+            },
+            {
+              "id": "B",
+              "text": "The woman lowers two boxes.",
+              "lang": "en",
+              "explanation": "That’s right! 女の人は sets the topic, 箱を二つ marks “two boxes” as the direct object, and 下げます means “lowers.”"
+            },
+            {
+              "id": "C",
+              "text": "There are two boxes under the woman.",
+              "lang": "en",
+              "explanation": "Not quite. “Under” is the noun 下 (した) with あります, whereas 箱を二つ下げます uses the transitive verb 下げる (“lowers two boxes”)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:wo-object-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "二人が机を上げます。",
+            "reading": "ふたりが つくえを あげます。",
+            "gloss": "二人 two people · 机 desk · 上げます lift",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "There are two desks in the room.",
+                "lang": "en",
+                "explanation": "Not quite. 二人 (ふたり) means “two people,” and 机を上げます means “lift the desk.”"
+              },
+              {
+                "id": "B",
+                "text": "Two people lift the desk.",
+                "lang": "en",
+                "explanation": "That’s right! 二人が is “two people,” 机を marks the desk as the direct object, and 上げます means “lift.”"
+              },
+              {
+                "id": "C",
+                "text": "Two people lower the desk.",
+                "lang": "en",
+                "explanation": "Not quite. “Lower” is 下げます (さげます), whereas 上げます (あげます) means “lift / raise.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "二人が机を上げます。",
+              "reading": "ふたりが つくえを あげます。",
+              "english": "Two people lift the desk.",
+              "breakdown": "Step 1: 二人が = “two people.” Step 2: 机を = “the desk” (direct object + を). Step 3: 上げます = “lift / raise.”"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:masu-polite",
+      "order": 3,
+      "renshuuGrammarId": "476",
+      "renshuuMeaningIndex": 1,
+      "renshuuRef": "476#1",
+      "pattern": "〜ます / 〜ません",
+      "gloss": "polite present positive vs. negative verb",
+      "readingNote": "〜ます states that an action happens (or will happen); 〜ません states that it does NOT happen.",
+      "summary": "Polite action verbs end in 〜ます in the affirmative (入ります, 上げます, 下げます) and change 〜ます to 〜ません in the negative (入りません “does not enter,” 上げません “does not lift”).",
+      "subjectIds": [
+        "kanji:入",
+        "kanji:上",
+        "kanji:下",
+        "kanji:人",
+        "vocabulary:入る",
+        "vocabulary:上げる",
+        "vocabulary:下げる",
+        "vocabulary:一人",
+        "vocabulary:二人"
+      ],
+      "examples": [
+        {
+          "id": "example:masu-polite-1",
+          "japanese": "あの人はビルに入りません。",
+          "reading": "あの ひとは ビルに はいりません。",
+          "gloss": "あの人 that person · ビル building · 入りません does not enter",
+          "english": "That person does not enter the building."
+        },
+        {
+          "id": "example:masu-polite-2",
+          "japanese": "一人では大きい机を上げません。",
+          "reading": "ひとりでは おおきい つくえを あげません。",
+          "gloss": "一人で alone / by oneself · 大きい机 big desk · 上げません does not lift",
+          "english": "One does not lift a big desk alone."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:masu-polite-1",
+          "patternId": "grammar:masu-polite",
+          "kind": "comprehension",
+          "isFreshSentence": false,
+          "prompt": "What does this sentence mean?",
+          "japanese": "あの人はビルに入りません。",
+          "reading": "あの ひとは ビルに はいりません。",
+          "gloss": "あの人 that person · ビル building · 入りません does not enter",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "That person does not enter the building.",
+              "lang": "en",
+              "explanation": "That’s right! ビルに marks the building, and 入りません is the polite negative of 入ります (“does not enter”)."
+            },
+            {
+              "id": "B",
+              "text": "That person enters the building.",
+              "lang": "en",
+              "explanation": "Not quite. The affirmative “enters” is 入ります, whereas 〜ません in 入りません makes the verb negative (“does not enter”)."
+            },
+            {
+              "id": "C",
+              "text": "There is no entrance in the building.",
+              "lang": "en",
+              "explanation": "Not quite. 入りません is the negative form of the verb 入る (“to enter”), not 入り口がありません (“there is no entrance”)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:masu-polite-1",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "女の人は箱を下げません。",
+            "reading": "おんなの ひとは はこを さげません。",
+            "gloss": "女の人 woman · 箱 box · 下げません does not lower",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "The woman lowers the box.",
+                "lang": "en",
+                "explanation": "Not quite. “Lowers” is the affirmative 下げます, whereas 下げません ends in 〜ません (“does not lower”)."
+              },
+              {
+                "id": "B",
+                "text": "Please give the woman a box.",
+                "lang": "en",
+                "explanation": "Not quite. 下げません is the polite negative of 下げる (“to lower something”), not 下さい (“please give me”)."
+              },
+              {
+                "id": "C",
+                "text": "The woman does not lower the box.",
+                "lang": "en",
+                "explanation": "That’s right! 箱を marks the box as the direct object, and 下げません is the polite negative (“does not lower”)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "女の人は箱を下げません。",
+              "reading": "おんなの ひとは はこを さげません。",
+              "english": "The woman does not lower the box.",
+              "breakdown": "Step 1: 下げます means “lowers.” Step 2: Changing 〜ます to 〜ません (下げません) makes it polite negative: “does not lower.”"
+            }
+          }
+        },
+        {
+          "id": "question:masu-polite-2",
+          "patternId": "grammar:masu-polite",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Choose the verb form that completes “That woman does NOT enter the river”:",
+          "japanese": "あの女の人は川に（　）。",
+          "targetMeaning": "That woman does not enter the river.",
+          "reading": "あの おんなの ひとは かわに（　）。",
+          "gloss": "あの女の人 that woman · 川 river",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "入ります",
+              "lang": "ja",
+              "explanation": "Not quite. 入ります is the polite positive form (“enters”), whereas the target meaning is negative (“does NOT enter”)."
+            },
+            {
+              "id": "B",
+              "text": "上げます",
+              "lang": "ja",
+              "explanation": "Not quite. 上げます means “lifts / raises” (positive), not “does not enter.”"
+            },
+            {
+              "id": "C",
+              "text": "入りません",
+              "lang": "ja",
+              "explanation": "That’s right! 入りません replaces 〜ます with 〜ません to mean “does not enter” (“That woman does not enter the river”)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:masu-polite-2",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the verb form that completes “That person does NOT lift the big box”:",
+            "japanese": "あの人は大きい箱を（　）。",
+            "targetMeaning": "That person does not lift the big box.",
+            "reading": "あの ひとは おおきい はこを（　）。",
+            "gloss": "あの人 that person · 大きい箱 big box",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "上げません",
+                "lang": "ja",
+                "explanation": "That’s right! 上げません is the polite negative of 上げます (“does not lift”)."
+              },
+              {
+                "id": "B",
+                "text": "上げます",
+                "lang": "ja",
+                "explanation": "Not quite. 上げます is the positive form (“lifts”), whereas we need the negative “does not lift.”"
+              },
+              {
+                "id": "C",
+                "text": "入ります",
+                "lang": "ja",
+                "explanation": "Not quite. 入ります means “enters” (positive) and takes に, not 大きい箱を."
+              }
+            ],
+            "workedExample": {
+              "japanese": "あの人は大きい箱を上げません。",
+              "reading": "あの ひとは おおきい はこを あげません。",
+              "english": "That person does not lift the big box.",
+              "breakdown": "Step 1: 上げます means “lifts.” Step 2: Replace 〜ます with 〜ません → 上げません (“does not lift”)."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    "Komorebi Level 1 curriculum (data/level-1.json): kanji 入, 口, 山, 川, 人, 上, 下, 力 and vocabulary 入る, 入り口, 山, 川, 人, 上げる, 下げる, 力, 口, 一人, 二人.",
+    "JLPT N5 grammar progression (local Renshuu reference IDs): destination/goal particle に (113#2), direct-object particle を (114#2), and polite present positive/negative verb endings ます/ません (476#1).",
+    "All example sentences, fresh transfer prompts, follow-up questions, worked examples, brief glosses, and distractor explanations are original study material authored for Komorebi."
+  ]
+}

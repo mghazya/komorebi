@@ -1,0 +1,3034 @@
+{
+  "schemaVersion": 1,
+  "title": "Komorebi Practice in Context — Grammar Coverage Checklist",
+  "updatedAt": "2026-11-05T13:20:00Z",
+  "policy": {
+    "unitOfTracking": "Tracked by (renshuuGrammarId, meaningIndex) because a single Renshuu grammar ID can cover multiple distinct meanings/uses.",
+    "taughtRule": "A grammar meaning is counted as taught (taught: true) ONLY when it is linked to at least one validated primary question and distinct follow-up exercise in a pack.",
+    "statusValues": [
+      "planned",
+      "draft",
+      "validated",
+      "reviewed",
+      "live"
+    ],
+    "sourceLicensing": "Local Renshuu exports are used strictly as a local planning reference. All published explanations, sentences, glosses, distractors, follow-ups, and worked examples in data/context-pack-*.json are original material authored for Komorebi.",
+    "resumableWorkflow": "Rerunning scripts/validate-context-packs.mjs validates all packs and checklist invariants and skips regenerating packs whose status is live, reviewed, or validated."
+  },
+  "packs": [
+    {
+      "packId": "pack:beginner-1",
+      "title": "Beginner Pack 1",
+      "subtitle": "Foundational Copula, Noun Modification & Inanimate Existence",
+      "path": "./data/context-pack-1.json",
+      "status": "reviewed",
+      "patterns": [
+        "grammar:wa-desu",
+        "grammar:no-modifier",
+        "grammar:ni-ga-arimasu"
+      ],
+      "renshuuMeaningsCovered": [
+        "renshuu:735#1",
+        "renshuu:132#2",
+        "renshuu:132#4",
+        "renshuu:737#1",
+        "renshuu:718#1",
+        "renshuu:113#1"
+      ],
+      "questionsCount": 6,
+      "followUpsCount": 6
+    },
+    {
+      "packId": "pack:beginner-2",
+      "title": "Beginner Pack 2",
+      "subtitle": "Questions, Shared Topics & Requests",
+      "path": "./data/context-pack-2.json",
+      "status": "reviewed",
+      "patterns": [
+        "grammar:ka-question",
+        "grammar:mo-also",
+        "grammar:wo-kudasai"
+      ],
+      "renshuuMeaningsCovered": [
+        "renshuu:37#3",
+        "renshuu:741#1",
+        "renshuu:117#2",
+        "renshuu:333#1"
+      ],
+      "questionsCount": 6,
+      "followUpsCount": 6
+    },
+    {
+      "packId": "pack:beginner-3",
+      "title": "Beginner Pack 3",
+      "subtitle": "Living Beings, Joining Nouns & Past Facts",
+      "path": "./data/context-pack-3.json",
+      "status": "reviewed",
+      "patterns": [
+        "grammar:ni-ga-imasu",
+        "grammar:to-and",
+        "grammar:deshita-past"
+      ],
+      "renshuuMeaningsCovered": [
+        "renshuu:719#1",
+        "renshuu:110#2",
+        "renshuu:743#1"
+      ],
+      "questionsCount": 6,
+      "followUpsCount": 6
+    },
+    {
+      "packId": "pack:beginner-4",
+      "title": "Beginner Pack 4",
+      "subtitle": "Everyday Actions — Destination, Direct Object & Polite Verbs",
+      "path": "./data/context-pack-4.json",
+      "status": "reviewed",
+      "patterns": [
+        "grammar:ni-destination",
+        "grammar:wo-object",
+        "grammar:masu-polite"
+      ],
+      "renshuuMeaningsCovered": [
+        "renshuu:113#2",
+        "renshuu:114#2",
+        "renshuu:476#1"
+      ],
+      "questionsCount": 6,
+      "followUpsCount": 6
+    }
+  ],
+  "summary": {
+    "totalN5GrammarIds": 69,
+    "totalN5Meanings": 147,
+    "taughtMeaningsCount": 16,
+    "distinctPatternsTaught": 12,
+    "byStatus": {
+      "live": 0,
+      "reviewed": 16,
+      "validated": 0,
+      "draft": 0,
+      "planned": 131
+    },
+    "flaggedMeaningsCount": 8
+  },
+  "entries": [
+    {
+      "meaningId": "renshuu:5#1",
+      "renshuuGrammarId": "5",
+      "meaningIndex": 1,
+      "title": "たい",
+      "meaning": "Want to A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:6#1",
+      "renshuuGrammarId": "6",
+      "meaningIndex": 1,
+      "title": "乍ながら",
+      "meaning": "While A , B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:13#1",
+      "renshuuGrammarId": "13",
+      "meaningIndex": 1,
+      "title": "成なる",
+      "meaning": "To become A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:15#1",
+      "renshuuGrammarId": "15",
+      "meaningIndex": 1,
+      "title": "てから",
+      "meaning": "After doing A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:16#1",
+      "renshuuGrammarId": "16",
+      "meaningIndex": 1,
+      "title": "て居いる",
+      "meaning": "Describes a state after the action A takes place.",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:16#2",
+      "renshuuGrammarId": "16",
+      "meaningIndex": 2,
+      "title": "て居いる",
+      "meaning": "A -ing (Progressive tense)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:16#3",
+      "renshuuGrammarId": "16",
+      "meaningIndex": 3,
+      "title": "て居いる",
+      "meaning": "A is the subject's habitual/customary actions.",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:17#1",
+      "renshuuGrammarId": "17",
+      "meaningIndex": 1,
+      "title": "てある",
+      "meaning": "Describes a state after the action A takes place.",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:18#1",
+      "renshuuGrammarId": "18",
+      "meaningIndex": 1,
+      "title": "てもいい",
+      "meaning": "It is alright to A ; the subject may A ; it's alright if A (condition)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:23#1",
+      "renshuuGrammarId": "23",
+      "meaningIndex": 1,
+      "title": "たりたりする",
+      "meaning": "Do things like A and B ; states/conditions like A and B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:37#1",
+      "renshuuGrammarId": "37",
+      "meaningIndex": 1,
+      "title": "か",
+      "meaning": "A is a question within the sentence",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:37#2",
+      "renshuuGrammarId": "37",
+      "meaningIndex": 2,
+      "title": "か",
+      "meaning": "Some A ; Any A (somebody, somewhere, sometime, somehow, etc.)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:37#3",
+      "renshuuGrammarId": "37",
+      "meaningIndex": 3,
+      "title": "か",
+      "meaning": "Forms the question form of the sentence A",
+      "prerequisites": [
+        "renshuu:735#1",
+        "renshuu:132#4"
+      ],
+      "linkedWords": [
+        "kanji:山",
+        "kanji:入",
+        "kanji:口",
+        "kanji:人",
+        "kanji:大",
+        "vocabulary:ふじ山",
+        "vocabulary:山",
+        "vocabulary:入り口",
+        "vocabulary:大人",
+        "vocabulary:人"
+      ],
+      "packId": "pack:beginner-2",
+      "patternId": "grammar:ka-question",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:ka-question-1",
+        "followup:ka-question-1",
+        "question:ka-question-2",
+        "followup:ka-question-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:37#4",
+      "renshuuGrammarId": "37",
+      "meaningIndex": 4,
+      "title": "か",
+      "meaning": "A or B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:47#1",
+      "renshuuGrammarId": "47",
+      "meaningIndex": 1,
+      "title": "前まえに",
+      "meaning": "Before A (occurs/happens), B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:48#1",
+      "renshuuGrammarId": "48",
+      "meaningIndex": 1,
+      "title": "後あとで",
+      "meaning": "After A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:76#1",
+      "renshuuGrammarId": "76",
+      "meaningIndex": 1,
+      "title": "より~の方ほうが~",
+      "meaning": "B is more C than A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:76#2",
+      "renshuuGrammarId": "76",
+      "meaningIndex": 2,
+      "title": "より~の方ほうが~",
+      "meaning": "A is more C than B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:99#1",
+      "renshuuGrammarId": "99",
+      "meaningIndex": 1,
+      "title": "から",
+      "meaning": "Because A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:99#2",
+      "renshuuGrammarId": "99",
+      "meaningIndex": 2,
+      "title": "から",
+      "meaning": "From A , Since A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:101#1",
+      "renshuuGrammarId": "101",
+      "meaningIndex": 1,
+      "title": "て,で(てform)",
+      "meaning": "Since A ; As A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:101#2",
+      "renshuuGrammarId": "101",
+      "meaningIndex": 2,
+      "title": "て,で(てform)",
+      "meaning": "A , then B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:101#3",
+      "renshuuGrammarId": "101",
+      "meaningIndex": 3,
+      "title": "て,で(てform)",
+      "meaning": "A and B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:101#4",
+      "renshuuGrammarId": "101",
+      "meaningIndex": 4,
+      "title": "て,で(てform)",
+      "meaning": "Do B by means of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:110#1",
+      "renshuuGrammarId": "110",
+      "meaningIndex": 1,
+      "title": "と",
+      "meaning": "When/if A , then B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:110#2",
+      "renshuuGrammarId": "110",
+      "meaningIndex": 2,
+      "title": "と",
+      "meaning": "A and B (and C ,etc..)",
+      "prerequisites": [
+        "renshuu:735#1",
+        "renshuu:718#1",
+        "renshuu:719#1"
+      ],
+      "linkedWords": [
+        "kanji:山",
+        "kanji:川",
+        "kanji:人",
+        "kanji:大",
+        "kanji:女",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:大人",
+        "vocabulary:女",
+        "vocabulary:人"
+      ],
+      "packId": "pack:beginner-3",
+      "patternId": "grammar:to-and",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:to-and-1",
+        "followup:to-and-1",
+        "question:to-and-2",
+        "followup:to-and-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:110#3",
+      "renshuuGrammarId": "110",
+      "meaningIndex": 3,
+      "title": "と",
+      "meaning": "With A ; to A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:110#4",
+      "renshuuGrammarId": "110",
+      "meaningIndex": 4,
+      "title": "と",
+      "meaning": "Shows a sequence of two events A and B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:110#5",
+      "renshuuGrammarId": "110",
+      "meaningIndex": 5,
+      "title": "と",
+      "meaning": "When/if A (polite/formal version)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:112#1",
+      "renshuuGrammarId": "112",
+      "meaningIndex": 1,
+      "title": "で",
+      "meaning": "At A ; in A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:112#2",
+      "renshuuGrammarId": "112",
+      "meaningIndex": 2,
+      "title": "で",
+      "meaning": "For A ; in A (shows a length or amount of time)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:112#3",
+      "renshuuGrammarId": "112",
+      "meaningIndex": 3,
+      "title": "で",
+      "meaning": "Do B by using the object A ; Do B by means of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:112#4",
+      "renshuuGrammarId": "112",
+      "meaningIndex": 4,
+      "title": "で",
+      "meaning": "Shows the material A that something is made of/composed of",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:112#5",
+      "renshuuGrammarId": "112",
+      "meaningIndex": 5,
+      "title": "で",
+      "meaning": "Because of A ; Due to A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:112#6",
+      "renshuuGrammarId": "112",
+      "meaningIndex": 6,
+      "title": "で",
+      "meaning": "Used after nouns/な-adjectives to link a list of adjectives and/or nouns",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:113#1",
+      "renshuuGrammarId": "113",
+      "meaningIndex": 1,
+      "title": "に",
+      "meaning": "In A ; on A ; at A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:二",
+        "kanji:三",
+        "kanji:上",
+        "vocabulary:入り口",
+        "vocabulary:二つ",
+        "vocabulary:三つ",
+        "vocabulary:上",
+        "vocabulary:入る",
+        "vocabulary:三人"
+      ],
+      "packId": "pack:beginner-1",
+      "patternId": "grammar:ni-ga-arimasu",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:ni-ga-arimasu-1",
+        "followup:ni-ga-arimasu-1",
+        "question:ni-ga-arimasu-2",
+        "followup:ni-ga-arimasu-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:113#2",
+      "renshuuGrammarId": "113",
+      "meaningIndex": 2,
+      "title": "に",
+      "meaning": "To A ; towards A ; on A",
+      "prerequisites": [
+        "renshuu:113#1",
+        "renshuu:718#1"
+      ],
+      "linkedWords": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:山",
+        "kanji:川",
+        "kanji:人",
+        "vocabulary:入る",
+        "vocabulary:入り口",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:人"
+      ],
+      "packId": "pack:beginner-4",
+      "patternId": "grammar:ni-destination",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:ni-destination-1",
+        "followup:ni-destination-1",
+        "question:ni-destination-2",
+        "followup:ni-destination-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": [
+        "DISTRACTOR_OVERLAP_GUARD: Particle へ (468#1) can also mark direction/destination with motion verbs, so へ is never used as a distractor against に in grammar:ni-destination."
+      ]
+    },
+    {
+      "meaningId": "renshuu:113#3",
+      "renshuuGrammarId": "113",
+      "meaningIndex": 3,
+      "title": "に",
+      "meaning": "At A (time)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:113#4",
+      "renshuuGrammarId": "113",
+      "meaningIndex": 4,
+      "title": "に",
+      "meaning": "Used with passive verbs to identify who/what is doing the action",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:113#5",
+      "renshuuGrammarId": "113",
+      "meaningIndex": 5,
+      "title": "に",
+      "meaning": "To change into A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:113#6",
+      "renshuuGrammarId": "113",
+      "meaningIndex": 6,
+      "title": "に",
+      "meaning": "Every period of time A , B ; Per A , B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:113#7",
+      "renshuuGrammarId": "113",
+      "meaningIndex": 7,
+      "title": "に",
+      "meaning": "A and B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:113#8",
+      "renshuuGrammarId": "113",
+      "meaningIndex": 8,
+      "title": "に",
+      "meaning": "Going/coming/returning to do A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:113#9",
+      "renshuuGrammarId": "113",
+      "meaningIndex": 9,
+      "title": "に",
+      "meaning": "Shows the target/recipient A of the action",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:114#1",
+      "renshuuGrammarId": "114",
+      "meaningIndex": 1,
+      "title": "を",
+      "meaning": "Over A ; across A ; along A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:114#2",
+      "renshuuGrammarId": "114",
+      "meaningIndex": 2,
+      "title": "を",
+      "meaning": "A is the direct object of a transitive verb",
+      "prerequisites": [
+        "renshuu:333#1",
+        "renshuu:113#2"
+      ],
+      "linkedWords": [
+        "kanji:上",
+        "kanji:下",
+        "kanji:力",
+        "kanji:口",
+        "vocabulary:上げる",
+        "vocabulary:下げる",
+        "vocabulary:力",
+        "vocabulary:口"
+      ],
+      "packId": "pack:beginner-4",
+      "patternId": "grammar:wo-object",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:wo-object-1",
+        "followup:wo-object-1",
+        "question:wo-object-2",
+        "followup:wo-object-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:114#3",
+      "renshuuGrammarId": "114",
+      "meaningIndex": 3,
+      "title": "を",
+      "meaning": "Marks place of departure A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:114#4",
+      "renshuuGrammarId": "114",
+      "meaningIndex": 4,
+      "title": "を",
+      "meaning": "Shows state A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:114#5",
+      "renshuuGrammarId": "114",
+      "meaningIndex": 5,
+      "title": "を",
+      "meaning": "Shows the cause A of the subject's emotions",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:117#1",
+      "renshuuGrammarId": "117",
+      "meaningIndex": 1,
+      "title": "も",
+      "meaning": "As many/much as A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:117#2",
+      "renshuuGrammarId": "117",
+      "meaningIndex": 2,
+      "title": "も",
+      "meaning": "Also A ; A as well",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [
+        "kanji:人",
+        "kanji:大",
+        "kanji:女",
+        "kanji:山",
+        "kanji:川",
+        "vocabulary:大人",
+        "vocabulary:人",
+        "vocabulary:女",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:大きい"
+      ],
+      "packId": "pack:beginner-2",
+      "patternId": "grammar:mo-also",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:mo-also-1",
+        "followup:mo-also-1",
+        "question:mo-also-2",
+        "followup:mo-also-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:117#3",
+      "renshuuGrammarId": "117",
+      "meaningIndex": 3,
+      "title": "も",
+      "meaning": "Nothing/no one/nobody ( A )",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:117#4",
+      "renshuuGrammarId": "117",
+      "meaningIndex": 4,
+      "title": "も",
+      "meaning": "Even [T], not even A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:117#5",
+      "renshuuGrammarId": "117",
+      "meaningIndex": 5,
+      "title": "も",
+      "meaning": "Neither A nor B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:126#1",
+      "renshuuGrammarId": "126",
+      "meaningIndex": 1,
+      "title": "という",
+      "meaning": "B is called A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:126#2",
+      "renshuuGrammarId": "126",
+      "meaningIndex": 2,
+      "title": "という",
+      "meaning": "All A ; every A ; this (very) A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:126#3",
+      "renshuuGrammarId": "126",
+      "meaningIndex": 3,
+      "title": "という",
+      "meaning": "A is information about B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:126#4",
+      "renshuuGrammarId": "126",
+      "meaningIndex": 4,
+      "title": "という",
+      "meaning": "It's said that A (hearsay, rumor, report, or legend)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:132#1",
+      "renshuuGrammarId": "132",
+      "meaningIndex": 1,
+      "title": "の",
+      "meaning": "Follows A ; turning the sentence into a question (casual).",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:132#2",
+      "renshuuGrammarId": "132",
+      "meaningIndex": 2,
+      "title": "の",
+      "meaning": "A 's B (shows possession); the A B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:山",
+        "kanji:下",
+        "vocabulary:入り口",
+        "vocabulary:山",
+        "vocabulary:下"
+      ],
+      "packId": "pack:beginner-1",
+      "patternId": "grammar:no-modifier",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:no-modifier-1",
+        "followup:no-modifier-1",
+        "question:no-modifier-2",
+        "followup:no-modifier-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:132#3",
+      "renshuuGrammarId": "132",
+      "meaningIndex": 3,
+      "title": "の",
+      "meaning": "The A one",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:132#4",
+      "renshuuGrammarId": "132",
+      "meaningIndex": 4,
+      "title": "の",
+      "meaning": "A directly modifies B , B of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:山",
+        "kanji:下",
+        "vocabulary:入り口",
+        "vocabulary:山",
+        "vocabulary:下"
+      ],
+      "packId": "pack:beginner-1",
+      "patternId": "grammar:no-modifier",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:no-modifier-1",
+        "followup:no-modifier-1",
+        "question:no-modifier-2",
+        "followup:no-modifier-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:132#5",
+      "renshuuGrammarId": "132",
+      "meaningIndex": 5,
+      "title": "の",
+      "meaning": "B who/that is a(n) A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:132#6",
+      "renshuuGrammarId": "132",
+      "meaningIndex": 6,
+      "title": "の",
+      "meaning": "C which/whose A is B . C 's A is B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:224#1",
+      "renshuuGrammarId": "224",
+      "meaningIndex": 1,
+      "title": "くらい／ぐらい",
+      "meaning": "So A ; to the extent A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:224#2",
+      "renshuuGrammarId": "224",
+      "meaningIndex": 2,
+      "title": "くらい／ぐらい",
+      "meaning": "A non-exact amount A ; Around/about A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:224#3",
+      "renshuuGrammarId": "224",
+      "meaningIndex": 3,
+      "title": "くらい／ぐらい",
+      "meaning": "At least A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:328#1",
+      "renshuuGrammarId": "328",
+      "meaningIndex": 1,
+      "title": "でしょう",
+      "meaning": "I think A ; Probably A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:328#2",
+      "renshuuGrammarId": "328",
+      "meaningIndex": 2,
+      "title": "でしょう",
+      "meaning": "Don't you think A ?; A , right?",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:328#3",
+      "renshuuGrammarId": "328",
+      "meaningIndex": 3,
+      "title": "でしょう",
+      "meaning": "I wonder if A ; I was wondering if A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:329#1",
+      "renshuuGrammarId": "329",
+      "meaningIndex": 1,
+      "title": "に為する",
+      "meaning": "To make A ; To change into A .",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:329#2",
+      "renshuuGrammarId": "329",
+      "meaningIndex": 2,
+      "title": "に為する",
+      "meaning": "To choose A (when ordering/choosing)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:330#1",
+      "renshuuGrammarId": "330",
+      "meaningIndex": 1,
+      "title": "時とき",
+      "meaning": "At the time A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:331#1",
+      "renshuuGrammarId": "331",
+      "meaningIndex": 1,
+      "title": "が欲ほしい",
+      "meaning": "I want A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:332#1",
+      "renshuuGrammarId": "332",
+      "meaningIndex": 1,
+      "title": "て下ください",
+      "meaning": "Please do A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:333#1",
+      "renshuuGrammarId": "333",
+      "meaningIndex": 1,
+      "title": "を下ください",
+      "meaning": "Please give me A",
+      "prerequisites": [
+        "renshuu:718#1"
+      ],
+      "linkedWords": [
+        "kanji:下",
+        "kanji:一",
+        "kanji:二",
+        "kanji:三",
+        "vocabulary:下さい",
+        "vocabulary:一つ",
+        "vocabulary:二つ",
+        "vocabulary:三つ"
+      ],
+      "packId": "pack:beginner-2",
+      "patternId": "grammar:wo-kudasai",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:wo-kudasai-1",
+        "followup:wo-kudasai-1",
+        "question:wo-kudasai-2",
+        "followup:wo-kudasai-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:334#1",
+      "renshuuGrammarId": "334",
+      "meaningIndex": 1,
+      "title": "ないで下ください",
+      "meaning": "Please don't do A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:335#1",
+      "renshuuGrammarId": "335",
+      "meaningIndex": 1,
+      "title": "をくださいませんか",
+      "meaning": "Please give me A (polite)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:336#1",
+      "renshuuGrammarId": "336",
+      "meaningIndex": 1,
+      "title": "て下くださいませんか",
+      "meaning": "Please do A (polite)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:337#1",
+      "renshuuGrammarId": "337",
+      "meaningIndex": 1,
+      "title": "ましょう",
+      "meaning": "Let's A (together)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:337#2",
+      "renshuuGrammarId": "337",
+      "meaningIndex": 2,
+      "title": "ましょう",
+      "meaning": "Shall I/we A ?",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:338#1",
+      "renshuuGrammarId": "338",
+      "meaningIndex": 1,
+      "title": "ませんか",
+      "meaning": "Let's A (together, polite); Would you like to A ; Won't you A ?",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:341#1",
+      "renshuuGrammarId": "341",
+      "meaningIndex": 1,
+      "title": "など,なんて,なんか",
+      "meaning": "Marks the end of the non-exhaustive list A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:341#2",
+      "renshuuGrammarId": "341",
+      "meaningIndex": 2,
+      "title": "など,なんて,なんか",
+      "meaning": "Things like A ; for example A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:341#3",
+      "renshuuGrammarId": "341",
+      "meaningIndex": 3,
+      "title": "など,なんて,なんか",
+      "meaning": "Used to emphasize negative B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:341#4",
+      "renshuuGrammarId": "341",
+      "meaningIndex": 4,
+      "title": "など,なんて,なんか",
+      "meaning": "What (did) A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:341#5",
+      "renshuuGrammarId": "341",
+      "meaningIndex": 5,
+      "title": "など,なんて,なんか",
+      "meaning": "What is the name of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:341#6",
+      "renshuuGrammarId": "341",
+      "meaningIndex": 6,
+      "title": "など,なんて,なんか",
+      "meaning": "How A ; What A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:341#7",
+      "renshuuGrammarId": "341",
+      "meaningIndex": 7,
+      "title": "など,なんて,なんか",
+      "meaning": "Shows a strong emotion or feeling about A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:348#1",
+      "renshuuGrammarId": "348",
+      "meaningIndex": 1,
+      "title": "予よ定ていだ",
+      "meaning": "Plan to A ; Have plans for A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:350#1",
+      "renshuuGrammarId": "350",
+      "meaningIndex": 1,
+      "title": "別べつに~無ない",
+      "meaning": "Not really A ; not particularly A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:353#1",
+      "renshuuGrammarId": "353",
+      "meaningIndex": 1,
+      "title": "なあ",
+      "meaning": "Emphasizes feelings or wishes in the preceding sentence A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:354#1",
+      "renshuuGrammarId": "354",
+      "meaningIndex": 1,
+      "title": "は初はじめてです",
+      "meaning": "A is the subject's first (time to do something)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:460#1",
+      "renshuuGrammarId": "460",
+      "meaningIndex": 1,
+      "title": "未まだ",
+      "meaning": "A still exists; still doing A ; A is still occuring",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:460#2",
+      "renshuuGrammarId": "460",
+      "meaningIndex": 2,
+      "title": "未まだ",
+      "meaning": "Haven't done A yet",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:461#1",
+      "renshuuGrammarId": "461",
+      "meaningIndex": 1,
+      "title": "もう",
+      "meaning": "A has already occurred/been done; A has already started (with ている)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:461#2",
+      "renshuuGrammarId": "461",
+      "meaningIndex": 2,
+      "title": "もう",
+      "meaning": "Not A (anymore)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:461#3",
+      "renshuuGrammarId": "461",
+      "meaningIndex": 3,
+      "title": "もう",
+      "meaning": "(one, a little, etc.) more A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:462#1",
+      "renshuuGrammarId": "462",
+      "meaningIndex": 1,
+      "title": "が",
+      "meaning": "A , but/however B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:462#2",
+      "renshuuGrammarId": "462",
+      "meaningIndex": 2,
+      "title": "が",
+      "meaning": "Marks the subject A in the sentence",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:462#3",
+      "renshuuGrammarId": "462",
+      "meaningIndex": 3,
+      "title": "が",
+      "meaning": "That A (negative, abusive)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": [
+        "REGISTER_WARNING: Renshuu 462#3 ('That A — negative, abusive') is derogatory/register-sensitive and unsuitable for beginner family practice."
+      ]
+    },
+    {
+      "meaningId": "renshuu:463#1",
+      "renshuuGrammarId": "463",
+      "meaningIndex": 1,
+      "title": "余あまり~無ない",
+      "meaning": "Not very A ; doesn't do A very much (only a little)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:464#1",
+      "renshuuGrammarId": "464",
+      "meaningIndex": 1,
+      "title": "中ちゅう／中じゅう",
+      "meaning": "Throughout A ; all over A ; during the course of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:464#2",
+      "renshuuGrammarId": "464",
+      "meaningIndex": 2,
+      "title": "中ちゅう／中じゅう",
+      "meaning": "During A (period of time); in the middle of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:464#3",
+      "renshuuGrammarId": "464",
+      "meaningIndex": 3,
+      "title": "中ちゅう／中じゅう",
+      "meaning": "Action A is currently ongoing/in the middle of",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:465#1",
+      "renshuuGrammarId": "465",
+      "meaningIndex": 1,
+      "title": "達たち",
+      "meaning": "Marks a group of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:466#1",
+      "renshuuGrammarId": "466",
+      "meaningIndex": 1,
+      "title": "方がた",
+      "meaning": "(Polite) forms the plural of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:467#1",
+      "renshuuGrammarId": "467",
+      "meaningIndex": 1,
+      "title": "から~迄まで",
+      "meaning": "From A until B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:468#1",
+      "renshuuGrammarId": "468",
+      "meaningIndex": 1,
+      "title": "へ",
+      "meaning": "Go to A ; head to A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": [
+        "OVERLAP_WITH_113_2: Direction particle へ overlaps with destination に (113#2) on motion verbs like 入る/行く. Do not test へ vs. に in multiple-choice without a dedicated contrast note."
+      ]
+    },
+    {
+      "meaningId": "renshuu:469#1",
+      "renshuuGrammarId": "469",
+      "meaningIndex": 1,
+      "title": "や",
+      "meaning": "A and B (shows a non-exhaustive list of items)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:469#2",
+      "renshuuGrammarId": "469",
+      "meaningIndex": 2,
+      "title": "や",
+      "meaning": "A or B (small amount)",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:470#1",
+      "renshuuGrammarId": "470",
+      "meaningIndex": 1,
+      "title": "わ",
+      "meaning": "(weakly) marks an assertion or intention A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": [
+        "GENDERED_SPEECH_REVIEW: Renshuu 470#1 (sentence-final わ) carries gendered/dialectal nuances and needs native Japanese review before designing beginner exercises."
+      ]
+    },
+    {
+      "meaningId": "renshuu:471#1",
+      "renshuuGrammarId": "471",
+      "meaningIndex": 1,
+      "title": "よ",
+      "meaning": "Indicates certainty or emphasis in A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:472#1",
+      "renshuuGrammarId": "472",
+      "meaningIndex": 1,
+      "title": "ね",
+      "meaning": "Requests confirmation from the listener about A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:473#1",
+      "renshuuGrammarId": "473",
+      "meaningIndex": 1,
+      "title": "だけ",
+      "meaning": "Because of A , (natural results) B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:473#2",
+      "renshuuGrammarId": "473",
+      "meaningIndex": 2,
+      "title": "だけ",
+      "meaning": "As much as A can be done; as much as one wants/likes A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:473#3",
+      "renshuuGrammarId": "473",
+      "meaningIndex": 3,
+      "title": "だけ",
+      "meaning": "Only A 、Just A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:473#4",
+      "renshuuGrammarId": "473",
+      "meaningIndex": 4,
+      "title": "だけ",
+      "meaning": "Do A to some extent, to try A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:473#5",
+      "renshuuGrammarId": "473",
+      "meaningIndex": 5,
+      "title": "だけ",
+      "meaning": "Do A as much as possible",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:476#1",
+      "renshuuGrammarId": "476",
+      "meaningIndex": 1,
+      "title": "ます/ません",
+      "meaning": "Polite, present form of verb A",
+      "prerequisites": [
+        "renshuu:113#2",
+        "renshuu:114#2"
+      ],
+      "linkedWords": [
+        "kanji:入",
+        "kanji:上",
+        "kanji:下",
+        "kanji:人",
+        "vocabulary:入る",
+        "vocabulary:上げる",
+        "vocabulary:下げる",
+        "vocabulary:一人",
+        "vocabulary:二人"
+      ],
+      "packId": "pack:beginner-4",
+      "patternId": "grammar:masu-polite",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:masu-polite-1",
+        "followup:masu-polite-1",
+        "question:masu-polite-2",
+        "followup:masu-polite-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:477#1",
+      "renshuuGrammarId": "477",
+      "meaningIndex": 1,
+      "title": "ました/ませんでした",
+      "meaning": "Polite, past form of verb A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:478#1",
+      "renshuuGrammarId": "478",
+      "meaningIndex": 1,
+      "title": "Present (Non-past) Casual",
+      "meaning": "Casual, present (non-past) positive form of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:478#2",
+      "renshuuGrammarId": "478",
+      "meaningIndex": 2,
+      "title": "Present (Non-past) Casual",
+      "meaning": "Casual, present (non-past) negative form of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:479#1",
+      "renshuuGrammarId": "479",
+      "meaningIndex": 1,
+      "title": "Past Casual",
+      "meaning": "Casual, past positive form of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:479#2",
+      "renshuuGrammarId": "479",
+      "meaningIndex": 2,
+      "title": "Past Casual",
+      "meaning": "Casual, past negative form of A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:503#1",
+      "renshuuGrammarId": "503",
+      "meaningIndex": 1,
+      "title": "一いち番ばん~です",
+      "meaning": "A is the most B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:669#1",
+      "renshuuGrammarId": "669",
+      "meaningIndex": 1,
+      "title": "以い外がい",
+      "meaning": "Other than A ; except for A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:718#1",
+      "renshuuGrammarId": "718",
+      "meaningIndex": 1,
+      "title": "が有ある",
+      "meaning": "There is/are A",
+      "prerequisites": [
+        "renshuu:735#1",
+        "renshuu:132#4"
+      ],
+      "linkedWords": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:二",
+        "kanji:三",
+        "kanji:上",
+        "vocabulary:入り口",
+        "vocabulary:二つ",
+        "vocabulary:三つ",
+        "vocabulary:上",
+        "vocabulary:入る",
+        "vocabulary:三人"
+      ],
+      "packId": "pack:beginner-1",
+      "patternId": "grammar:ni-ga-arimasu",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:ni-ga-arimasu-1",
+        "followup:ni-ga-arimasu-1",
+        "question:ni-ga-arimasu-2",
+        "followup:ni-ga-arimasu-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:718#2",
+      "renshuuGrammarId": "718",
+      "meaningIndex": 2,
+      "title": "が有ある",
+      "meaning": "A has B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:719#1",
+      "renshuuGrammarId": "719",
+      "meaningIndex": 1,
+      "title": "が居いる",
+      "meaning": "There is/are A",
+      "prerequisites": [
+        "renshuu:718#1",
+        "renshuu:113#1"
+      ],
+      "linkedWords": [
+        "kanji:人",
+        "kanji:一",
+        "kanji:二",
+        "kanji:三",
+        "kanji:女",
+        "kanji:入",
+        "kanji:口",
+        "vocabulary:人",
+        "vocabulary:一人",
+        "vocabulary:二人",
+        "vocabulary:三人",
+        "vocabulary:大人",
+        "vocabulary:女",
+        "vocabulary:入り口"
+      ],
+      "packId": "pack:beginner-3",
+      "patternId": "grammar:ni-ga-imasu",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:ni-ga-imasu-1",
+        "followup:ni-ga-imasu-1",
+        "question:ni-ga-imasu-2",
+        "followup:ni-ga-imasu-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:735#1",
+      "renshuuGrammarId": "735",
+      "meaningIndex": 1,
+      "title": "AはBです",
+      "meaning": "A is/are B",
+      "prerequisites": [],
+      "linkedWords": [
+        "kanji:山",
+        "kanji:大",
+        "kanji:人",
+        "kanji:入",
+        "kanji:口",
+        "vocabulary:ふじ山",
+        "vocabulary:大きい",
+        "vocabulary:山",
+        "vocabulary:人",
+        "vocabulary:大人",
+        "vocabulary:入り口"
+      ],
+      "packId": "pack:beginner-1",
+      "patternId": "grammar:wa-desu",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:wa-desu-1",
+        "followup:wa-desu-1",
+        "question:wa-desu-2",
+        "followup:wa-desu-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:736#1",
+      "renshuuGrammarId": "736",
+      "meaningIndex": 1,
+      "title": "Adjectives",
+      "meaning": "The adjective modifies the noun that directly follows it.",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:737#1",
+      "renshuuGrammarId": "737",
+      "meaningIndex": 1,
+      "title": "AのB",
+      "meaning": "A 's B (shows possession); B is A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:山",
+        "kanji:下",
+        "vocabulary:入り口",
+        "vocabulary:山",
+        "vocabulary:下"
+      ],
+      "packId": "pack:beginner-1",
+      "patternId": "grammar:no-modifier",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:no-modifier-1",
+        "followup:no-modifier-1",
+        "question:no-modifier-2",
+        "followup:no-modifier-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": [
+        "DUPLICATE_RENSHUU_ID: Renshuu 737#1 (AのB) duplicates 132#2 and 132#4 (の). Both are mapped to grammar:no-modifier in pack:beginner-1."
+      ]
+    },
+    {
+      "meaningId": "renshuu:738#1",
+      "renshuuGrammarId": "738",
+      "meaningIndex": 1,
+      "title": "Adjectives-negative",
+      "meaning": "B is not A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:739#1",
+      "renshuuGrammarId": "739",
+      "meaningIndex": 1,
+      "title": "Adjectives-linking",
+      "meaning": "C is A and B",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:740#1",
+      "renshuuGrammarId": "740",
+      "meaningIndex": 1,
+      "title": "好すき・嫌きらい・欲ほしい",
+      "meaning": "I (don't) like/dislike/want A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:741#1",
+      "renshuuGrammarId": "741",
+      "meaningIndex": 1,
+      "title": "Questions",
+      "meaning": "Turns the sentence A into a yes/no question.",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [
+        "kanji:山",
+        "kanji:入",
+        "kanji:口",
+        "kanji:人",
+        "kanji:大",
+        "vocabulary:ふじ山",
+        "vocabulary:山",
+        "vocabulary:入り口",
+        "vocabulary:大人",
+        "vocabulary:人"
+      ],
+      "packId": "pack:beginner-2",
+      "patternId": "grammar:ka-question",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:ka-question-1",
+        "followup:ka-question-1",
+        "question:ka-question-2",
+        "followup:ka-question-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": [
+        "DUPLICATE_RENSHUU_ID: Renshuu 741#1 (Turns sentence A into a yes/no question) duplicates 37#3 (sentence-final か). Both are mapped to grammar:ka-question in pack:beginner-2."
+      ]
+    },
+    {
+      "meaningId": "renshuu:741#2",
+      "renshuuGrammarId": "741",
+      "meaningIndex": 2,
+      "title": "Questions",
+      "meaning": "What is A ?",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:741#3",
+      "renshuuGrammarId": "741",
+      "meaningIndex": 3,
+      "title": "Questions",
+      "meaning": "Where is A ?",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:741#4",
+      "renshuuGrammarId": "741",
+      "meaningIndex": 4,
+      "title": "Questions",
+      "meaning": "Who is A ?",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:741#5",
+      "renshuuGrammarId": "741",
+      "meaningIndex": 5,
+      "title": "Questions",
+      "meaning": "What do you like/dislike/want?",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:741#6",
+      "renshuuGrammarId": "741",
+      "meaningIndex": 6,
+      "title": "Questions",
+      "meaning": "What kind of A do you like/dislike/want?",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:742#1",
+      "renshuuGrammarId": "742",
+      "meaningIndex": 1,
+      "title": "行いく・来くる・帰かえる",
+      "meaning": "(I) go to A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:742#2",
+      "renshuuGrammarId": "742",
+      "meaningIndex": 2,
+      "title": "行いく・来くる・帰かえる",
+      "meaning": "(I) come to A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:742#3",
+      "renshuuGrammarId": "742",
+      "meaningIndex": 3,
+      "title": "行いく・来くる・帰かえる",
+      "meaning": "(I) return to A",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": []
+    },
+    {
+      "meaningId": "renshuu:743#1",
+      "renshuuGrammarId": "743",
+      "meaningIndex": 1,
+      "title": "でした/ではありませんでした",
+      "meaning": "A was/were B .",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [
+        "kanji:人",
+        "kanji:大",
+        "kanji:山",
+        "kanji:入",
+        "kanji:口",
+        "vocabulary:人",
+        "vocabulary:大人",
+        "vocabulary:山",
+        "vocabulary:大きい",
+        "vocabulary:入り口"
+      ],
+      "packId": "pack:beginner-3",
+      "patternId": "grammar:deshita-past",
+      "status": "reviewed",
+      "taught": true,
+      "exerciseIds": [
+        "question:deshita-past-1",
+        "followup:deshita-past-1",
+        "question:deshita-past-2",
+        "followup:deshita-past-2"
+      ],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": [
+        "PARTIAL_MEANING_SPLIT: Renshuu 743 bundles affirmative でした (743#1, taught in pack:beginner-3) and negative ではありませんでした (743#2, kept planned for a later pack)."
+      ]
+    },
+    {
+      "meaningId": "renshuu:743#2",
+      "renshuuGrammarId": "743",
+      "meaningIndex": 2,
+      "title": "でした/ではありませんでした",
+      "meaning": "A was/were not B / C .",
+      "prerequisites": [
+        "renshuu:735#1"
+      ],
+      "linkedWords": [],
+      "packId": null,
+      "patternId": null,
+      "status": "planned",
+      "taught": false,
+      "exerciseIds": [],
+      "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
+      "flags": [
+        "SPLIT_FROM_743_1: Polite past negative (ではありませんでした / じゃありませんでした) is deferred so Pack 3 focuses cleanly on affirmative でした (743#1)."
+      ]
+    }
+  ]
+}

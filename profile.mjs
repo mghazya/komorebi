@@ -31,6 +31,31 @@ export function validateProfile(value) {
   if (value.unlockedLevel !== undefined && (!Number.isInteger(value.unlockedLevel) || value.unlockedLevel < 1)) {
     throw new ProfileError('This backup contains an invalid level.');
   }
+  if (value.contextPractice !== undefined) {
+    if (!isPlainObject(value.contextPractice)) {
+      throw new ProfileError('This backup contains invalid practice-in-context data.');
+    }
+    for (const [packId, entry] of Object.entries(value.contextPractice)) {
+      if (!packId || !isPlainObject(entry) || !Number.isFinite(entry.completedAt) || entry.completedAt < 0 ||
+        !Array.isArray(entry.patterns) || !entry.patterns.every((p) => typeof p === 'string' && p) ||
+        !isPlainObject(entry.lastScore) || !Number.isInteger(entry.lastScore.correct) || !Number.isInteger(entry.lastScore.total) ||
+        entry.lastScore.total <= 0 || entry.lastScore.correct < 0 || entry.lastScore.correct > entry.lastScore.total) {
+        throw new ProfileError('This backup contains invalid practice-in-context data.');
+      }
+      if (entry.missedQuestions !== undefined && (!Array.isArray(entry.missedQuestions) || !entry.missedQuestions.every((q) => typeof q === 'string' && q))) {
+        throw new ProfileError('This backup contains invalid practice-in-context data.');
+      }
+      if (entry.followUp !== undefined) {
+        if (!isPlainObject(entry.followUp) ||
+          !Number.isInteger(entry.followUp.attempted) || entry.followUp.attempted < 0 ||
+          !Number.isInteger(entry.followUp.correct) || entry.followUp.correct < 0 || entry.followUp.correct > entry.followUp.attempted ||
+          (entry.followUp.workedExamplesShown !== undefined && (!Number.isInteger(entry.followUp.workedExamplesShown) || entry.followUp.workedExamplesShown < 0)) ||
+          (entry.followUp.items !== undefined && !isPlainObject(entry.followUp.items))) {
+          throw new ProfileError('This backup contains invalid practice-in-context data.');
+        }
+      }
+    }
+  }
   return deepCopy(value);
 }
 

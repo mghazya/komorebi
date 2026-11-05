@@ -1636,6 +1636,536 @@ body.lesson-active main {
   letter-spacing: 0.5px;
   opacity: 0.75;
 }
+.component-chip.vocabulary {
+  background: #f4f2fb;
+  border-color: #d8d2ee;
+  color: #5c4b8b;
+}
+.component-chip.vocabulary b {
+  color: #4c3b7a;
+}
+
+/* ==========================================================================
+   Practice in Context (Beginner Pack 1 Preview)
+   ========================================================================== */
+.context-panel {
+  padding: 24px;
+  margin: 0 0 1.25rem;
+}
+.context-panel .panel-heading {
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.context-panel p {
+  margin: 0.5rem 0 1.1rem;
+  color: var(--muted-aa, var(--muted));
+  font-size: 16px;
+  line-height: 1.65;
+}
+.context-panel-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.context-pack-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #edf3e7;
+  border: 1px solid #d5e2c8;
+  color: #2f5b41;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.context-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #e3f0e0;
+  border: 1px solid #bdd9b7;
+  color: #255438;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.context-status-pill .icon {
+  width: 14px;
+  height: 14px;
+}
+.context-pack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+.context-pack-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #dce6d4;
+  border-radius: 13px;
+  padding: 16px 18px;
+}
+.context-pack-card.is-completed {
+  border-color: #b7d4b0;
+  background: #fafdf8;
+}
+.context-pack-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.context-pack-card-head strong {
+  display: block;
+  font-size: 16px;
+  color: var(--ink);
+}
+.context-pack-card-head small {
+  display: block;
+  font-size: 13px;
+  color: var(--muted-aa);
+  margin-top: 2px;
+}
+.context-pack-patterns {
+  font-size: 14px;
+  color: #2f5b41;
+  background: #eef5ea;
+  border-radius: 7px;
+  padding: 5px 10px;
+  margin: 0;
+  width: fit-content;
+}
+.context-pack-status {
+  display: flex;
+  flex-wrap: wrap;
+}
+@media (max-width: 700px) {
+  .context-pack-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.session-done-actions,
+.context-done-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.session-done-actions .button.secondary,
+.context-done-actions .button.secondary {
+  margin-top: 0;
+}
+.context-card {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.context-pattern-box,
+.context-question-box {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px 28px;
+}
+.context-pattern-head,
+.context-question-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.context-pattern-head .eyebrow,
+.context-question-top .eyebrow {
+  margin-bottom: 0;
+}
+.context-pattern-title {
+  font-size: 24px;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.context-pattern-title small {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--muted-aa);
+}
+.context-pattern-summary {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.context-reading-note {
+  color: var(--muted-aa);
+}
+.context-examples {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.context-example-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #f8faf5;
+  border: 1px solid #e2ead9;
+  border-radius: 12px;
+}
+.context-example-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: #e5efe0;
+  color: #2f5b41;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.context-example-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.context-example-jp {
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.context-example-en {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.45;
+}
+.context-reading {
+  font-size: 15px;
+  color: #2c5e43;
+  background: #eef5ea;
+  border-radius: 6px;
+  padding: 4px 9px;
+  width: fit-content;
+  max-width: 100%;
+  line-height: 1.45;
+}
+.context-gloss {
+  font-size: 13px;
+  color: var(--muted-aa);
+  line-height: 1.5;
+}
+.context-subjects-row {
+  border-top: 1px solid #edf1e8;
+  padding-top: 14px;
+}
+.context-subjects-row .info-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--muted-aa);
+  margin-bottom: 6px;
+}
+.context-question-box h1 {
+  font-size: 22px;
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+.context-reading-btn {
+  min-height: 38px;
+  padding: 7px 13px;
+  font-size: 14px;
+  gap: 7px;
+}
+.context-prompt-sentence {
+  background: #f6f9f2;
+  border: 1px solid #dce6d2;
+  border-radius: 13px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.context-sentence-jp {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.context-target-meaning {
+  font-size: 15px;
+  color: var(--ink);
+  font-style: italic;
+}
+.context-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.context-choice {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid #d4dfd0;
+  background: #ffffff;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.45;
+  min-height: 54px;
+}
+.context-choice:not(:disabled):hover {
+  border-color: #688e73;
+  background: #f7faf4;
+}
+.context-choice-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #eef3ea;
+  color: #2f5841;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.context-choice-text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.context-choice.is-correct {
+  border-color: #3c7d56;
+  background: #edf7ef;
+  color: #1c4c30;
+}
+.context-choice.is-correct .context-choice-letter {
+  background: #2f6c48;
+  color: #ffffff;
+}
+.context-choice.is-incorrect {
+  border-color: #c26d5a;
+  background: #fdf1ee;
+  color: #6e2e20;
+}
+.context-choice.is-incorrect .context-choice-letter {
+  background: #b55540;
+  color: #ffffff;
+}
+.context-choice.is-tried-wrong {
+  border-color: #d8bcb4;
+  background: #faf4f2;
+  color: #6c463d;
+}
+.context-feedback {
+  text-align: left;
+  padding: 16px 18px;
+  border-radius: 12px;
+  margin-top: 16px;
+  border: 1px solid transparent;
+}
+.context-feedback.correct {
+  background: #edf6ee;
+  border-color: #b7d8be;
+  color: #1f4f32;
+}
+.context-feedback.incorrect {
+  background: #fcf0ec;
+  border-color: #e3bdb3;
+  color: #743222;
+}
+.context-feedback strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+.context-feedback span {
+  font-size: 15px;
+  line-height: 1.55;
+}
+.context-next-btn {
+  margin-top: 16px;
+}
+.context-question-box.is-followup {
+  border-color: #c6d7be;
+  background: #fdfefb;
+}
+.context-worked-example {
+  text-align: left;
+  padding: 16px 18px;
+  border-radius: 12px;
+  margin-top: 14px;
+  background: #f5f8f1;
+  border: 1.5px solid #c5d6bd;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.context-worked-jp {
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.45;
+}
+.context-worked-en {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2c513c;
+  margin: 0;
+}
+.context-worked-breakdown {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.55;
+  margin: 2px 0 0;
+}
+.context-recap-box {
+  text-align: left;
+  background: #f8faf5;
+  border: 1px solid #dde6d6;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 18px 0;
+}
+.context-recap-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.context-recap-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e7eee1;
+}
+.context-recap-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.context-recap-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.context-recap-main strong {
+  font-size: 13px;
+  color: var(--muted-aa);
+}
+.context-recap-jp {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.context-recap-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.context-recap-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.context-recap-badge.is-correct {
+  background: #e6f4ea;
+  color: #1e5735;
+}
+.context-recap-badge.is-missed {
+  background: #fcebe6;
+  color: #7c3120;
+}
+.context-recap-badge.is-followup-ok {
+  background: #e3f1f8;
+  color: #1d4e6b;
+}
+.context-recap-badge.is-worked {
+  background: #f5efe0;
+  color: #664918;
+}
+.context-sources {
+  margin-top: 18px;
+  border-top: 1px solid #e7ece1;
+  padding-top: 14px;
+  font-size: 14px;
+  color: var(--muted-aa);
+  text-align: left;
+}
+.context-sources summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--link-aa);
+  padding: 4px 0;
+}
+.context-sources[open] summary {
+  margin-bottom: 8px;
+}
+.context-sources::details-content {
+  padding-top: 4px;
+}
+.context-sources ul {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  line-height: 1.55;
+}
+@media (max-width: 700px) {
+  .context-panel {
+    padding: 18px 16px;
+  }
+  .context-pattern-box,
+  .context-question-box {
+    padding: 18px 16px;
+  }
+  .context-examples {
+    grid-template-columns: 1fr;
+  }
+  .context-sentence-jp {
+    font-size: 22px;
+  }
+  .context-question-box h1 {
+    font-size: 19px;
+  }
+  .context-choice {
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+}
+
 
 
 
