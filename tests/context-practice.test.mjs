@@ -4,7 +4,12 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import {
   CONTEXT_PACK_1_PATH,
+  CONTEXT_PACK_2_PATH,
+  CONTEXT_PACK_3_PATH,
+  CONTEXT_PACK_4_PATH,
+  CONTEXT_PACKS,
   CONTEXT_PACK_META,
+  getContextPackMeta,
   ContextPackError,
   validateContextPack,
   loadContextPack,
@@ -14,6 +19,7 @@ import {
   scoreContextSession,
   recordContextCompletion,
 } from '../context.mjs';
+import { runMechanicalChecks } from '../scripts/validate-context-packs.mjs';
 import {
   validateProfile,
   serializeBackup,
@@ -624,4 +630,83 @@ test('End-to-end app.mjs flow: miss original -> explain -> follow-up understood,
   // 6. Dashboard badge shows both first-try and follow-up summary
   const dashHtmlAfter = vm.runInContext('dashboard({ lessons: 5, reviews: 2, learned: 1, nextReviewAt: 1762350000000 })', c);
   assert.match(dashHtmlAfter, /Completed · 4\/6 first try · 1\/2 follow-up/);
+});
+
+test('Automated mechanical checks: coverage checklist, resumable skip, Packs 2-4 structure, on-demand loading, and multi-pack completion isolation', async () => {
+  // 1. Run mechanical validator twice to verify idempotency and resumable skip of approved packs
+  const checkRun1 = runMechanicalChecks();
+  const checkRun2 = runMechanicalChecks();
+  assert.equal(checkRun1.ok, true);
+  assert.deepEqual(checkRun1, checkRun2, 'Rerunning mechanical checks must be idempotent and resume from checklist');
+  assert.deepEqual(checkRun1.skippedApprovedPacks, [
+    'pack:beginner-1',
+    'pack:beginner-2',
+    'pack:beginner-3',
+    'pack:beginner-4',
+  ]);
+  assert.equal(checkRun1.totalChecklistEntries, 147);
+  assert.equal(checkRun1.taughtMeaningsCount, 16);
+  assert.ok(checkRun1.flaggedMeaningsCount >= 8, 'Ambiguous/overlapping or deferred items must be flagged');
+
+  // 2. Verify each of the three new packs (Pack 2, Pack 3, Pack 4) loads on demand by packId
+  const packPathsById = {
+    'pack:beginner-1': CONTEXT_PACK_1_PATH,
+    'pack:beginner-2': CONTEXT_PACK_2_PATH,
+    'pack:beginner-3': CONTEXT_PACK_3_PATH,
+    'pack:beginner-4': CONTEXT_PACK_4_PATH,
+  };
+  let learner = {
+    ...newProfile('Multi-Pack Learner', 'learner-multipack'),
+    progress: {
+      'kanji:山': { stage: 5, availableAt: 1762900000000, passedAt: 1762300000000 },
+      'vocabulary:入る': { stage: 3, availableAt: 1762360000000 },
+    },
+  };
+  const srsBefore = JSON.stringify(learner.progress);
+
+  for (const meta of CONTEXT_PACKS.slice(1)) {
+    assert.equal(getContextPackMeta(meta.id)?.path, packPathsById[meta.id]);
+    const raw = JSON.parse(fs.readFileSync(new URL(`.${meta.path}`, import.meta.url), 'utf8'));
+    let fetchedUrl = null;
+    const loadedPack = await loadContextPack({
+      packId: meta.id,
+      fetch: async (url) => {
+        fetchedUrl = url;
+        return { ok: true, json: async () => raw };
+      },
+    });
+    assert.equal(fetchedUrl, meta.path, `${meta.id} must load on demand from ${meta.path}`);
+
+    let sess = createContextSession(loadedPack);
+    assert.equal(sess.questions.length, 6);
+
+    // Miss Q1 on first attempt, then get Q1 follow-up right; answer Q2..Q6 right on first attempt
+    const q1Wrong = sess.questions[0].choices.find((c) => c.id !== sess.questions[0].correctChoice).id;
+    sess = selectContextChoice(sess, q1Wrong);
+    sess = startContextFollowUp(sess);
+    sess = selectContextChoice(sess, sess.questions[0].followUp.correctChoice);
+
+    for (let i = 1; i < sess.questions.length; i++) {
+      sess = { ...sess, position: i, inFollowUp: false, selectedChoice: null, feedback: null };
+      sess = selectContextChoice(sess, sess.questions[i].correctChoice);
+    }
+
+    const score = scoreContextSession(sess);
+    assert.equal(score.complete, true);
+    assert.equal(score.correct, 5);
+    assert.equal(score.followUp.attempted, 1);
+    assert.equal(score.followUp.correct, 1);
+
+    learner = recordContextCompletion(learner, loadedPack, score, 1762340000000);
+  }
+
+  // Verify all 3 new packs saved their separate first-attempt and follow-up scores without touching SRS
+  assert.equal(JSON.stringify(learner.progress), srsBefore, 'Completing Packs 2-4 must never alter kanji/vocab stages or review dates');
+  for (const pid of ['pack:beginner-2', 'pack:beginner-3', 'pack:beginner-4']) {
+    assert.deepEqual(learner.contextPractice[pid].lastScore, { correct: 5, total: 6 });
+    assert.equal(learner.contextPractice[pid].followUp.attempted, 1);
+    assert.equal(learner.contextPractice[pid].followUp.correct, 1);
+  }
+  const validatedLearner = validateProfile(learner);
+  assert.deepEqual(validatedLearner, learner);
 });

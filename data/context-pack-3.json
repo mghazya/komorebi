@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "id": "pack:beginner-3",
+  "title": "Beginner Pack 3",
+  "subtitle": "Living Beings, Joining Nouns & Past Facts",
+  "label": "3 patterns · 6 questions",
+  "level": 1,
+  "rationale": "Builds directly on Pack 1’s existence, noun-linking, and copula patterns: (1) A に B が います completes the animate/inanimate contrast introduced with Pack 1’s あります using Level 1 people counters (一人, 二人, 三人), (2) A と B joins two equal nouns (“A and B”) in contrast to Pack 1’s modifier A の B, and (3) A は B でした shifts Pack 1’s A は B です into the polite past.",
+  "description": "Describe where people are with います, join nouns with と (“and”), and talk about the past with でした (“was / were”).",
+  "patterns": [
+    {
+      "id": "grammar:ni-ga-imasu",
+      "order": 1,
+      "renshuuGrammarId": "719",
+      "renshuuMeaningIndex": 1,
+      "renshuuRef": "719#1",
+      "pattern": "A に B が います",
+      "gloss": "There is B in/at A (people & animals)",
+      "readingNote": "Use います for living people and animals; use あります (from Pack 1) for non-living things.",
+      "summary": "Use Location に + Person/Animal が います to say that a living being (B) is at a place (A). People counters like 一人 (ひとり), 二人 (ふたり), or 三人 (さんにん) can go right before います.",
+      "subjectIds": [
+        "kanji:人",
+        "kanji:一",
+        "kanji:二",
+        "kanji:三",
+        "kanji:女",
+        "kanji:入",
+        "kanji:口",
+        "vocabulary:人",
+        "vocabulary:一人",
+        "vocabulary:二人",
+        "vocabulary:三人",
+        "vocabulary:大人",
+        "vocabulary:女",
+        "vocabulary:入り口"
+      ],
+      "examples": [
+        {
+          "id": "example:ni-ga-imasu-1",
+          "japanese": "入り口に人が二人います。",
+          "reading": "いりぐちに ひとが ふたり います。",
+          "gloss": "入り口 entrance · 人 person · 二人 two people · います there are (living)",
+          "english": "There are two people at the entrance."
+        },
+        {
+          "id": "example:ni-ga-imasu-2",
+          "japanese": "へやに大人が三人います。",
+          "reading": "へやに おとなが さんにん います。",
+          "gloss": "へや room · 大人 adult · 三人 three people · います there are (living)",
+          "english": "There are three adults in the room."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:ni-ga-imasu-1",
+          "patternId": "grammar:ni-ga-imasu",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the verb that completes “There are two people at the entrance”:",
+          "japanese": "入り口に人が二人（　）。",
+          "targetMeaning": "There are two people at the entrance.",
+          "reading": "いりぐちに ひとが ふたり（　）。",
+          "gloss": "入り口 entrance · 人 person · 二人 two people",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "います",
+              "lang": "ja",
+              "explanation": "That’s right! People (人) are living beings, so we use います (“There are two people at the entrance”)."
+            },
+            {
+              "id": "B",
+              "text": "あります",
+              "lang": "ja",
+              "explanation": "Not quite. あります is only for non-living things (like desks, boxes, or entrances), whereas people (人) take います."
+            },
+            {
+              "id": "C",
+              "text": "下げます",
+              "lang": "ja",
+              "explanation": "Not quite. 下げます (さげます) means “to lower something,” not “there are.”"
+            }
+          ],
+          "followUp": {
+            "id": "followup:ni-ga-imasu-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the verb that completes “There are three adults in the room”:",
+            "japanese": "へやに大人が三人（　）。",
+            "targetMeaning": "There are three adults in the room.",
+            "reading": "へやに おとなが さんにん（　）。",
+            "gloss": "へや room · 大人 adult · 三人 three people",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "あります",
+                "lang": "ja",
+                "explanation": "Not quite. あります is used for non-living things; living people like 大人 (adults) require います."
+              },
+              {
+                "id": "B",
+                "text": "います",
+                "lang": "ja",
+                "explanation": "That’s right! Adults (大人) are living people, so います completes “There are three adults in the room.”"
+              },
+              {
+                "id": "C",
+                "text": "上げます",
+                "lang": "ja",
+                "explanation": "Not quite. 上げます (あげます) means “to lift / raise something,” not “there are.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "へやに大人が三人います。",
+              "reading": "へやに おとなが さんにん います。",
+              "english": "There are three adults in the room.",
+              "breakdown": "Step 1: へやに marks the place (“in the room”). Step 2: 大人が三人 names the living people and count (“three adults”). Step 3: Use います (never あります) for living beings."
+            }
+          }
+        },
+        {
+          "id": "question:ni-ga-imasu-2",
+          "patternId": "grammar:ni-ga-imasu",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "駅の入り口に女の人が一人います。",
+          "reading": "えきの いりぐちに おんなの ひとが ひとり います。",
+          "gloss": "駅 station · 入り口 entrance · 女の人 woman · 一人 one person",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "There is one entrance at the station.",
+              "lang": "en",
+              "explanation": "Not quite. 駅の入り口に marks the location (“at the station’s entrance”), and 女の人が一人います means “there is one woman.”"
+            },
+            {
+              "id": "B",
+              "text": "There are two women at the station’s entrance.",
+              "lang": "en",
+              "explanation": "Not quite. 一人 (ひとり) means “one person,” whereas “two people” is 二人 (ふたり)."
+            },
+            {
+              "id": "C",
+              "text": "There is one woman at the station’s entrance.",
+              "lang": "en",
+              "explanation": "That’s right! 駅の入り口に sets the location (“at the station’s entrance”), 女の人が一人 names “one woman,” and います states she is there."
+            }
+          ],
+          "followUp": {
+            "id": "followup:ni-ga-imasu-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "ビルの下に人が三人います。",
+            "reading": "ビルの したに ひとが さんにん います。",
+            "gloss": "ビル building · 下 under / below · 人 person · 三人 three people",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "There are three people below the building.",
+                "lang": "en",
+                "explanation": "That’s right! ビルの下に marks the location (“below the building”), 人が三人 means “three people,” and います states they are there."
+              },
+              {
+                "id": "B",
+                "text": "There are three buildings below the person.",
+                "lang": "en",
+                "explanation": "Not quite. In ビルの下に, 下 (“below”) is the head noun modified by ビル (“below the building”), and 人が三人います means “there are three people.”"
+              },
+              {
+                "id": "C",
+                "text": "There are two people above the building.",
+                "lang": "en",
+                "explanation": "Not quite. 下 (した) means “below” (not 上, “above”), and 三人 (さんにん) means “three people” (not 二人, “two people”)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "ビルの下に人が三人います。",
+              "reading": "ビルの したに ひとが さんにん います。",
+              "english": "There are three people below the building.",
+              "breakdown": "Step 1: ビルの下に = “below the building” (location + に). Step 2: 人が三人 = “three people” (living noun + が + people counter 三人). Step 3: います = “there are” (for living beings)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:to-and",
+      "order": 2,
+      "renshuuGrammarId": "110",
+      "renshuuMeaningIndex": 2,
+      "renshuuRef": "110#2",
+      "pattern": "A と B",
+      "gloss": "A and B (complete list of nouns)",
+      "readingNote": "と joins nouns only (“mountain and river”); it cannot join two whole sentences.",
+      "summary": "Place と between two nouns (A と B) to list them together as “A and B,” in contrast to の (which makes A modify B).",
+      "subjectIds": [
+        "kanji:山",
+        "kanji:川",
+        "kanji:人",
+        "kanji:大",
+        "kanji:女",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:大人",
+        "vocabulary:女",
+        "vocabulary:人"
+      ],
+      "examples": [
+        {
+          "id": "example:to-and-1",
+          "japanese": "あそこに山と川があります。",
+          "reading": "あそこに やまと かわが あります。",
+          "gloss": "あそこ over there · 山 mountain · と and · 川 river · あります there are",
+          "english": "There are a mountain and a river over there."
+        },
+        {
+          "id": "example:to-and-2",
+          "japanese": "テーブルの上にりんごと箱があります。",
+          "reading": "テーブルの うえに りんごと はこが あります。",
+          "gloss": "テーブルの上 on the table · りんご apple · と and · 箱 box",
+          "english": "There are an apple and a box on the table."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:to-and-1",
+          "patternId": "grammar:to-and",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the particle that joins 山 (mountain) and 川 (river) to mean “a mountain and a river”:",
+          "japanese": "あそこに山（　）川があります。",
+          "targetMeaning": "There are a mountain and a river over there.",
+          "reading": "あそこに やま（　）かわが あります。",
+          "gloss": "あそこ over there · 山 mountain · 川 river",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "の",
+              "lang": "ja",
+              "explanation": "Not quite. 山の川 uses の to make 山 modify 川 (“a mountain river”), rather than listing “a mountain and a river.”"
+            },
+            {
+              "id": "B",
+              "text": "と",
+              "lang": "ja",
+              "explanation": "That’s right! と joins the two nouns 山 and 川 as equal items: “a mountain and a river.”"
+            },
+            {
+              "id": "C",
+              "text": "を",
+              "lang": "ja",
+              "explanation": "Not quite. を marks the direct object of an action verb and cannot join two nouns before あります."
+            }
+          ],
+          "followUp": {
+            "id": "followup:to-and-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that joins りんご (apple) and 箱 (box) to mean “an apple and a box”:",
+            "japanese": "テーブルの上にりんご（　）箱があります。",
+            "targetMeaning": "There are an apple and a box on the table.",
+            "reading": "テーブルの うえに りんご（　）はこが あります。",
+            "gloss": "テーブルの上 on the table · りんご apple · 箱 box",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "Not quite. を marks the object of a transitive verb, not a pair of nouns."
+              },
+              {
+                "id": "B",
+                "text": "の",
+                "lang": "ja",
+                "explanation": "Not quite. りんごの箱 means “an apple box / box of apples” (one thing modifying the other), not “an apple and a box.”"
+              },
+              {
+                "id": "C",
+                "text": "と",
+                "lang": "ja",
+                "explanation": "That’s right! と links りんご and 箱 together as “an apple and a box.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "テーブルの上にりんごと箱があります。",
+              "reading": "テーブルの うえに りんごと はこが あります。",
+              "english": "There are an apple and a box on the table.",
+              "breakdown": "Step 1: Place と between the two nouns りんご (“apple”) and 箱 (“box”) → りんごと箱 (“an apple and a box”). Step 2: Follow with があります (“there are”)."
+            }
+          }
+        },
+        {
+          "id": "question:to-and-2",
+          "patternId": "grammar:to-and",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "へやに机と箱があります。",
+          "reading": "へやに つくえと はこが あります。",
+          "gloss": "へや room · 机 desk · と and · 箱 box",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "There are a desk and a box in the room.",
+              "lang": "en",
+              "explanation": "That’s right! へやに means “in the room,” 机と箱 joins “a desk and a box” with と, and あります states they are there."
+            },
+            {
+              "id": "B",
+              "text": "There is a box on the desk in the room.",
+              "lang": "en",
+              "explanation": "Not quite. “On the desk” would be 机の上に, whereas 机と箱 joins the two nouns with と (“a desk and a box”)."
+            },
+            {
+              "id": "C",
+              "text": "Please give me a desk and a box.",
+              "lang": "en",
+              "explanation": "Not quite. “Please give me” uses を下さい, whereas があります means “there is / there are.”"
+            }
+          ],
+          "followUp": {
+            "id": "followup:to-and-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "りんご一つとみずを下さい。",
+            "reading": "りんご ひとつと みずを ください。",
+            "gloss": "りんご一つ one apple · と and · みず water · 下さい please give me",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "There are one apple and water here.",
+                "lang": "en",
+                "explanation": "Not quite. 下さい means “please give me,” not “there are” (あります)."
+              },
+              {
+                "id": "B",
+                "text": "Please give me one apple and water.",
+                "lang": "en",
+                "explanation": "That’s right! と joins りんご一つ (“one apple”) and みず (“water”), and を下さい politely asks “please give me.”"
+              },
+              {
+                "id": "C",
+                "text": "Please give me two apples.",
+                "lang": "en",
+                "explanation": "Not quite. 一つ (ひとつ) is “one,” and とみず adds “and water.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "りんご一つとみずを下さい。",
+              "reading": "りんご ひとつと みずを ください。",
+              "english": "Please give me one apple and water.",
+              "breakdown": "Step 1: Join the two requested nouns with と: りんご一つとみず (“one apple and water”). Step 2: Add を下さい (“please give me”)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:deshita-past",
+      "order": 3,
+      "renshuuGrammarId": "743",
+      "renshuuMeaningIndex": 1,
+      "renshuuRef": "743#1",
+      "pattern": "A は B でした",
+      "gloss": "A was B (polite past)",
+      "readingNote": "です is present/non-past (“is”); でした is the polite past (“was / were”).",
+      "summary": "Replace です with でした at the end of a noun sentence to say what something was in the past (“A was B”).",
+      "subjectIds": [
+        "kanji:人",
+        "kanji:大",
+        "kanji:山",
+        "kanji:入",
+        "kanji:口",
+        "vocabulary:人",
+        "vocabulary:大人",
+        "vocabulary:山",
+        "vocabulary:大きい",
+        "vocabulary:入り口"
+      ],
+      "examples": [
+        {
+          "id": "example:deshita-past-1",
+          "japanese": "ここは駅の入り口でした。",
+          "reading": "ここは えきの いりぐち でした。",
+          "gloss": "ここ here · 駅 station · 入り口 entrance · でした was",
+          "english": "Here was the entrance to the station."
+        },
+        {
+          "id": "example:deshita-past-2",
+          "japanese": "きのうはいい日でした。",
+          "reading": "きのうは いい ひ でした。",
+          "gloss": "きのう yesterday · いい日 good day · でした was",
+          "english": "Yesterday was a good day."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:deshita-past-1",
+          "patternId": "grammar:deshita-past",
+          "kind": "comprehension",
+          "isFreshSentence": false,
+          "prompt": "What does this sentence mean?",
+          "japanese": "ここは駅の入り口でした。",
+          "reading": "ここは えきの いりぐち でした。",
+          "gloss": "ここ here · 駅 station · 入り口 entrance · でした was",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Here is the entrance to the station now.",
+              "lang": "en",
+              "explanation": "Not quite. Present “is” uses です (入り口です), whereas でした is the polite past (“was”)."
+            },
+            {
+              "id": "B",
+              "text": "Here was the entrance to the station.",
+              "lang": "en",
+              "explanation": "That’s right! ここは駅の入り口 names “the entrance to the station,” and でした places it in the past (“was”)."
+            },
+            {
+              "id": "C",
+              "text": "Please enter the station here.",
+              "lang": "en",
+              "explanation": "Not quite. 入り口 is the noun “entrance” and でした means “was,” not a request."
+            }
+          ],
+          "followUp": {
+            "id": "followup:deshita-past-1",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "あそこはホテルでした。",
+            "reading": "あそこは ホテル でした。",
+            "gloss": "あそこ over there · ホテル hotel · でした was",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Over there is a hotel now.",
+                "lang": "en",
+                "explanation": "Not quite. Present “is” would be ホテルです, whereas でした is the past tense (“was”)."
+              },
+              {
+                "id": "B",
+                "text": "Is over there a hotel?",
+                "lang": "en",
+                "explanation": "Not quite. There is no question particle か; でした states “was” in the past."
+              },
+              {
+                "id": "C",
+                "text": "That place over there was a hotel.",
+                "lang": "en",
+                "explanation": "That’s right! あそこは sets “that place over there” as the topic, and ホテルでした states that it was a hotel."
+              }
+            ],
+            "workedExample": {
+              "japanese": "あそこはホテルでした。",
+              "reading": "あそこは ホテル でした。",
+              "english": "That place over there was a hotel.",
+              "breakdown": "Step 1: あそこは marks the topic (“that place over there”). Step 2: ホテルでした uses the polite past でした instead of です to mean “was a hotel.”"
+            }
+          }
+        },
+        {
+          "id": "question:deshita-past-2",
+          "patternId": "grammar:deshita-past",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Choose the ending that completes “Yesterday was a good day” (in the past):",
+          "japanese": "きのうはいい日（　）。",
+          "targetMeaning": "Yesterday was a good day.",
+          "reading": "きのうは いい ひ（　）。",
+          "gloss": "きのう yesterday · いい日 good day",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "です",
+              "lang": "ja",
+              "explanation": "Not quite. です is non-past (“is / will be”), which clashes with きのう (“yesterday”)."
+            },
+            {
+              "id": "B",
+              "text": "います",
+              "lang": "ja",
+              "explanation": "Not quite. います means “there is (a living being)” and cannot follow いい日 to mean “was a good day.”"
+            },
+            {
+              "id": "C",
+              "text": "でした",
+              "lang": "ja",
+              "explanation": "That’s right! Because きのう (“yesterday”) is in the past, いい日でした (“was a good day”) is required."
+            }
+          ],
+          "followUp": {
+            "id": "followup:deshita-past-2",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the ending that completes “Yesterday, here was the reception desk” (in the past):",
+            "japanese": "きのう、ここはうけつけ（　）。",
+            "targetMeaning": "Yesterday, here was the reception desk.",
+            "reading": "きのう、ここは うけつけ（　）。",
+            "gloss": "きのう yesterday · ここ here · うけつけ reception desk",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "でした",
+                "lang": "ja",
+                "explanation": "That’s right! きのう (“yesterday”) calls for the polite past copula でした (“was the reception desk”)."
+              },
+              {
+                "id": "B",
+                "text": "です",
+                "lang": "ja",
+                "explanation": "Not quite. です is present/future (“is”), whereas きのう (“yesterday”) requires the past form でした."
+              },
+              {
+                "id": "C",
+                "text": "下さい",
+                "lang": "ja",
+                "explanation": "Not quite. 下さい means “please give me,” not “was.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "きのう、ここはうけつけでした。",
+              "reading": "きのう、ここは うけつけ でした。",
+              "english": "Yesterday, here was the reception desk.",
+              "breakdown": "Step 1: きのう (“yesterday”) tells us the sentence is about the past. Step 2: End the noun predicate うけつけ (“reception desk”) with でした (“was”)."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    "Komorebi Level 1 curriculum (data/level-1.json): kanji 人, 一, 二, 三, 女, 入, 口, 山, 川, 大 and vocabulary 人, 一人, 二人, 三人, 大人, 女, 入り口, 山, 川, 大きい.",
+    "JLPT N5 grammar progression (local Renshuu reference IDs): animate existence A に B が います (719#1), noun coordinator A と B (110#2), and polite past copula A は B でした (743#1).",
+    "All example sentences, fresh transfer prompts, follow-up questions, worked examples, brief glosses, and distractor explanations are original study material authored for Komorebi."
+  ]
+}

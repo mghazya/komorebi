@@ -9,14 +9,62 @@
 import { isSafeDataPath } from './curriculum.mjs?v=20261028-reading-prompts';
 
 export const CONTEXT_PACK_1_PATH = './data/context-pack-1.json';
-export const CONTEXT_PACK_META = Object.freeze({
-  id: 'pack:beginner-1',
-  title: 'Beginner Pack 1',
-  label: '3 patterns · 6 questions',
-  patternsCount: 3,
-  questionsCount: 6,
-  path: CONTEXT_PACK_1_PATH,
-});
+export const CONTEXT_PACK_2_PATH = './data/context-pack-2.json';
+export const CONTEXT_PACK_3_PATH = './data/context-pack-3.json';
+export const CONTEXT_PACK_4_PATH = './data/context-pack-4.json';
+
+export const CONTEXT_PACKS = Object.freeze([
+  Object.freeze({
+    id: 'pack:beginner-1',
+    title: 'Beginner Pack 1',
+    subtitle: 'Copula, Noun Modifier & Inanimate Existence',
+    label: '3 patterns · 6 questions',
+    patternsSummary: 'は…です, の, に…があります',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_1_PATH,
+    status: 'live',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-2',
+    title: 'Beginner Pack 2',
+    subtitle: 'Questions, Shared Topics & Requests',
+    label: '3 patterns · 6 questions',
+    patternsSummary: '…ですか, も, を下さい',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_2_PATH,
+    status: 'validated',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-3',
+    title: 'Beginner Pack 3',
+    subtitle: 'Living Beings, Joining Nouns & Past Facts',
+    label: '3 patterns · 6 questions',
+    patternsSummary: 'に…がいます, と, でした',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_3_PATH,
+    status: 'validated',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-4',
+    title: 'Beginner Pack 4',
+    subtitle: 'Everyday Actions — Destination, Direct Object & Polite Verbs',
+    label: '3 patterns · 6 questions',
+    patternsSummary: 'に (enter), を (object), ます / ません',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_4_PATH,
+    status: 'validated',
+  }),
+]);
+
+export const CONTEXT_PACK_META = CONTEXT_PACKS[0];
+
+export function getContextPackMeta(packId = CONTEXT_PACK_META.id) {
+  return CONTEXT_PACKS.find((p) => p.id === packId) || null;
+}
 
 export class ContextPackError extends Error {
   constructor(message, code = 'CONTEXT_PACK_ERROR') {
@@ -35,13 +83,19 @@ function validateChoicesList(choices, correctChoice, ownerId) {
     throw new ContextPackError(`Question ${ownerId} has invalid choices.`, 'BAD_PACK');
   }
   const choiceIds = new Set();
+  const choiceTexts = new Set();
   for (const c of choices) {
     if (!isPlainObject(c) || typeof c.id !== 'string' || !c.id || choiceIds.has(c.id) ||
       typeof c.text !== 'string' || !c.text.trim() ||
       typeof c.explanation !== 'string' || !c.explanation.trim()) {
       throw new ContextPackError(`Question ${ownerId} has an invalid answer choice.`, 'BAD_PACK');
     }
+    const normText = c.text.trim();
+    if (choiceTexts.has(normText)) {
+      throw new ContextPackError(`Question ${ownerId} has duplicate choice text "${normText}".`, 'BAD_PACK');
+    }
     choiceIds.add(c.id);
+    choiceTexts.add(normText);
   }
   if (!choiceIds.has(correctChoice)) {
     throw new ContextPackError(`Question ${ownerId} is missing its expected choice.`, 'BAD_PACK');
@@ -110,8 +164,13 @@ export function validateContextPack(data) {
   return deepCopy(data);
 }
 
-export async function loadContextPack({ fetch = globalThis.fetch?.bind(globalThis), path = CONTEXT_PACK_1_PATH } = {}) {
-  if (!isSafeDataPath(path)) {
+export async function loadContextPack({
+  fetch = globalThis.fetch?.bind(globalThis),
+  packId = null,
+  path = null,
+} = {}) {
+  const resolvedPath = path || (packId ? getContextPackMeta(packId)?.path : CONTEXT_PACK_1_PATH);
+  if (!resolvedPath || !isSafeDataPath(resolvedPath)) {
     throw new ContextPackError('Invalid practice pack path.', 'BAD_PATH');
   }
   if (typeof fetch !== 'function') {
@@ -119,7 +178,7 @@ export async function loadContextPack({ fetch = globalThis.fetch?.bind(globalThi
   }
   let response;
   try {
-    response = await fetch(path, { cache: 'no-cache' });
+    response = await fetch(resolvedPath, { cache: 'no-cache' });
   } catch {
     throw new ContextPackError('Practice pack could not be loaded. Check your connection and try again.', 'NETWORK');
   }

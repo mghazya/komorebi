@@ -1,0 +1,541 @@
+{
+  "schemaVersion": 1,
+  "id": "pack:beginner-2",
+  "title": "Beginner Pack 2",
+  "subtitle": "Questions, Shared Topics & Requests",
+  "label": "3 patterns · 6 questions",
+  "level": 1,
+  "rationale": "Builds directly on Pack 1’s A は B です, A の B, and A に B が あります: (1) adding sentence-final か turns Pack 1 statements into polite yes/no questions, (2) replacing は with も marks a second topic sharing the same description, and (3) pairing Level 1’s 下さい with counters (一つ, 二つ, 三つ) lets learners politely request the items introduced in Pack 1.",
+  "description": "Ask polite yes/no questions with か, connect shared topics with も (“also / too”), and make everyday requests with を下さい.",
+  "patterns": [
+    {
+      "id": "grammar:ka-question",
+      "order": 1,
+      "renshuuGrammarId": "37",
+      "renshuuMeaningIndex": 3,
+      "renshuuRef": "37#3 (paired with 741#1)",
+      "pattern": "A は B ですか",
+      "gloss": "Is A B?",
+      "readingNote": "Add か at the end of a polite です sentence with rising intonation to ask a yes/no question.",
+      "summary": "Adding か after です turns a statement (“A is B”) into a polite question (“Is A B?”) without changing word order.",
+      "subjectIds": [
+        "kanji:山",
+        "kanji:入",
+        "kanji:口",
+        "kanji:人",
+        "kanji:大",
+        "vocabulary:ふじ山",
+        "vocabulary:山",
+        "vocabulary:入り口",
+        "vocabulary:大人",
+        "vocabulary:人"
+      ],
+      "examples": [
+        {
+          "id": "example:ka-question-1",
+          "japanese": "ここは駅の入り口ですか。",
+          "reading": "ここは えきの いりぐち ですか。",
+          "gloss": "ここ here · 駅 station · 入り口 entrance · か question particle",
+          "english": "Is here the entrance to the station?"
+        },
+        {
+          "id": "example:ka-question-2",
+          "japanese": "あの人は大人ですか。",
+          "reading": "あの ひとは おとな ですか。",
+          "gloss": "あの人 that person · 大人 adult · か question particle",
+          "english": "Is that person an adult?"
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:ka-question-1",
+          "patternId": "grammar:ka-question",
+          "kind": "comprehension",
+          "isFreshSentence": false,
+          "prompt": "What does this sentence mean?",
+          "japanese": "ここは駅の入り口ですか。",
+          "reading": "ここは えきの いりぐち ですか。",
+          "gloss": "ここ here · 駅 station · 入り口 entrance",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Is here the entrance to the station?",
+              "lang": "en",
+              "explanation": "That’s right! ここは駅の入り口です means “Here is the entrance to the station,” and sentence-final か turns it into the polite question “Is here the entrance to the station?”"
+            },
+            {
+              "id": "B",
+              "text": "Here is the entrance to the station.",
+              "lang": "en",
+              "explanation": "Not quite. That translation ignores the sentence-final particle か, which turns the statement into a yes/no question."
+            },
+            {
+              "id": "C",
+              "text": "Are there two entrances at the station?",
+              "lang": "en",
+              "explanation": "Not quite. ここは駅の入り口ですか asks whether “here (ここ)” is the station’s entrance (です + か), not how many entrances exist (二つありますか)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:ka-question-1",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "あの人は大人ですか。",
+            "reading": "あの ひとは おとな ですか。",
+            "gloss": "あの人 that person · 大人 adult",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "That person is an adult.",
+                "lang": "en",
+                "explanation": "Not quite. あの人は大人です is a statement, whereas the final か in 大人ですか makes it a question (“Is that person an adult?”)."
+              },
+              {
+                "id": "B",
+                "text": "Is that person a big mountain?",
+                "lang": "en",
+                "explanation": "Not quite. 大人 (おとな) means “adult,” not 大きい山 (“big mountain”)."
+              },
+              {
+                "id": "C",
+                "text": "Is that person an adult?",
+                "lang": "en",
+                "explanation": "That’s right! あの人は大人です states “That person is an adult,” and か at the end asks “Is that person an adult?”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "あの人は大人ですか。",
+              "reading": "あの ひとは おとな ですか。",
+              "english": "Is that person an adult?",
+              "breakdown": "Step 1: Start with the statement あの人は大人です (“That person is an adult”). Step 2: Add か at the end (大人ですか) to ask a yes/no question: “Is that person an adult?”"
+            }
+          }
+        },
+        {
+          "id": "question:ka-question-2",
+          "patternId": "grammar:ka-question",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Choose the particle at the end that turns this statement into “Is that mountain Mt. Fuji?”:",
+          "japanese": "あの山はふじ山です（　）。",
+          "targetMeaning": "Is that mountain Mt. Fuji?",
+          "reading": "あの やまは ふじさん です（　）。",
+          "gloss": "あの山 that mountain · ふじ山 Mt. Fuji",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "の",
+              "lang": "ja",
+              "explanation": "Not quite. In polite sentences, の links two nouns (A の B); after です, a polite yes/no question takes か (ですか)."
+            },
+            {
+              "id": "B",
+              "text": "か",
+              "lang": "ja",
+              "explanation": "That’s right! Placing か right after です (ふじ山ですか) turns “That mountain is Mt. Fuji” into the polite question “Is that mountain Mt. Fuji?”"
+            },
+            {
+              "id": "C",
+              "text": "を",
+              "lang": "ja",
+              "explanation": "Not quite. を marks the direct object before a verb and cannot follow です at the end of a sentence."
+            }
+          ],
+          "followUp": {
+            "id": "followup:ka-question-2",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that turns this statement into “Is this the hotel’s entrance?”:",
+            "japanese": "これはホテルの入り口です（　）。",
+            "targetMeaning": "Is this the hotel’s entrance?",
+            "reading": "これは ホテルの いりぐち です（　）。",
+            "gloss": "これ this · ホテル hotel · 入り口 entrance",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "か",
+                "lang": "ja",
+                "explanation": "That’s right! か after です (入り口ですか) turns the statement into “Is this the hotel’s entrance?”"
+              },
+              {
+                "id": "B",
+                "text": "に",
+                "lang": "ja",
+                "explanation": "Not quite. に follows a noun to mark location or destination, not the end of a です question."
+              },
+              {
+                "id": "C",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "Not quite. を marks a direct object before an action verb, not a sentence-final question."
+              }
+            ],
+            "workedExample": {
+              "japanese": "これはホテルの入り口ですか。",
+              "reading": "これは ホテルの いりぐち ですか。",
+              "english": "Is this the hotel’s entrance?",
+              "breakdown": "Step 1: これはホテルの入り口です states “This is the hotel’s entrance.” Step 2: Attach か after です (ですか) to ask a polite yes/no question."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:mo-also",
+      "order": 2,
+      "renshuuGrammarId": "117",
+      "renshuuMeaningIndex": 2,
+      "renshuuRef": "117#2",
+      "pattern": "A も B です",
+      "gloss": "A is also B / A too",
+      "readingNote": "も replaces the topic particle は directly (never say はも).",
+      "summary": "When a new topic (A) shares the same description (B) as something already mentioned, use も (“also / too”) in place of は.",
+      "subjectIds": [
+        "kanji:人",
+        "kanji:大",
+        "kanji:女",
+        "kanji:山",
+        "kanji:川",
+        "vocabulary:大人",
+        "vocabulary:人",
+        "vocabulary:女",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:大きい"
+      ],
+      "examples": [
+        {
+          "id": "example:mo-also-1",
+          "japanese": "あの女の人も大人です。",
+          "reading": "あの おんなの ひとも おとな です。",
+          "gloss": "あの女の人 that woman · も also / too · 大人 adult",
+          "english": "That woman is also an adult."
+        },
+        {
+          "id": "example:mo-also-2",
+          "japanese": "この川も大きいです。",
+          "reading": "この かわも おおきい です。",
+          "gloss": "この川 this river · も also / too · 大きい big",
+          "english": "This river is big, too."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:mo-also-1",
+          "patternId": "grammar:mo-also",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the particle that means “That woman is ALSO an adult”:",
+          "japanese": "あの女の人（　）大人です。",
+          "targetMeaning": "That woman is also an adult.",
+          "reading": "あの おんなの ひと（　）おとな です。",
+          "gloss": "あの女の人 that woman · 大人 adult",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "の",
+              "lang": "ja",
+              "explanation": "Not quite. あの女の人の大人 would try to make 大人 belong to あの女の人 (“that woman’s adult”) rather than saying she is also an adult."
+            },
+            {
+              "id": "B",
+              "text": "を",
+              "lang": "ja",
+              "explanation": "Not quite. を marks the direct object of an action verb and cannot link a topic to 大人です."
+            },
+            {
+              "id": "C",
+              "text": "も",
+              "lang": "ja",
+              "explanation": "That’s right! も replaces は to mean “also / too,” giving あの女の人も大人です (“That woman is also an adult”)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:mo-also-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that means “This mountain is big, TOO”:",
+            "japanese": "この山（　）大きいです。",
+            "targetMeaning": "This mountain is big, too.",
+            "reading": "この やま（　）おおきい です。",
+            "gloss": "この山 this mountain · 大きい big",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "Not quite. を marks the direct object of an action verb, whereas 大きいです describes the topic."
+              },
+              {
+                "id": "B",
+                "text": "も",
+                "lang": "ja",
+                "explanation": "That’s right! も replaces は after この山 to express “This mountain is big, too.”"
+              },
+              {
+                "id": "C",
+                "text": "に",
+                "lang": "ja",
+                "explanation": "Not quite. に marks a location or destination, not “also / too.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "この山も大きいです。",
+              "reading": "この やまも おおきい です。",
+              "english": "This mountain is big, too.",
+              "breakdown": "Step 1: この山は大きいです means “This mountain is big.” Step 2: Replace は with も (この山も) to add “also / too”: “This mountain is big, too.”"
+            }
+          }
+        },
+        {
+          "id": "question:mo-also-2",
+          "patternId": "grammar:mo-also",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "ここもビルの入り口です。",
+          "reading": "ここも ビルの いりぐち です。",
+          "gloss": "ここ here · も also / too · ビル building · 入り口 entrance",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Here is the only entrance to the building.",
+              "lang": "en",
+              "explanation": "Not quite. も means “also / too,” which implies there is another entrance as well—the opposite of “only.”"
+            },
+            {
+              "id": "B",
+              "text": "Here is also an entrance to the building.",
+              "lang": "en",
+              "explanation": "That’s right! ここも means “here, too / here also,” and ビルの入り口です means “is an entrance to the building.”"
+            },
+            {
+              "id": "C",
+              "text": "Is here the entrance to the building?",
+              "lang": "en",
+              "explanation": "Not quite. There is no sentence-final か, so this is a statement with も (“also”), not a question."
+            }
+          ],
+          "followUp": {
+            "id": "followup:mo-also-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "この川も大きいです。",
+            "reading": "この かわも おおきい です。",
+            "gloss": "この川 this river · も also / too · 大きい big",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "This river is big, too.",
+                "lang": "en",
+                "explanation": "That’s right! この川も marks “this river, too,” and 大きいです states that it is big."
+              },
+              {
+                "id": "B",
+                "text": "Is this river big?",
+                "lang": "en",
+                "explanation": "Not quite. There is no か at the end; も after この川 means “this river, too.”"
+              },
+              {
+                "id": "C",
+                "text": "There is a big river here.",
+                "lang": "en",
+                "explanation": "Not quite. “There is a river” uses 川があります; この川も大きいです means “This river is big, too.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "この川も大きいです。",
+              "reading": "この かわも おおきい です。",
+              "english": "This river is big, too.",
+              "breakdown": "Step 1: この川 (“this river”) + も (“also / too”) sets the topic as an additional item. Step 2: 大きいです (“is big”) describes it."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:wo-kudasai",
+      "order": 3,
+      "renshuuGrammarId": "333",
+      "renshuuMeaningIndex": 1,
+      "renshuuRef": "333#1",
+      "pattern": "A を 下さい",
+      "gloss": "Please give me A",
+      "readingNote": "When requesting a specific number of items, the counter (一つ, 二つ, 三つ) can sit between を and 下さい.",
+      "summary": "Mark the item you want with を and finish with 下さい (ください, “please give me”) to politely ask for something at a shop, table, or counter.",
+      "subjectIds": [
+        "kanji:下",
+        "kanji:一",
+        "kanji:二",
+        "kanji:三",
+        "vocabulary:下さい",
+        "vocabulary:一つ",
+        "vocabulary:二つ",
+        "vocabulary:三つ"
+      ],
+      "examples": [
+        {
+          "id": "example:wo-kudasai-1",
+          "japanese": "りんごを二つ下さい。",
+          "reading": "りんごを ふたつ ください。",
+          "gloss": "りんご apple · 二つ two things · 下さい please give me",
+          "english": "Please give me two apples."
+        },
+        {
+          "id": "example:wo-kudasai-2",
+          "japanese": "これを一つ下さい。",
+          "reading": "これを ひとつ ください。",
+          "gloss": "これ this · 一つ one thing · 下さい please give me",
+          "english": "Please give me one of these."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:wo-kudasai-1",
+          "patternId": "grammar:wo-kudasai",
+          "kind": "comprehension",
+          "isFreshSentence": false,
+          "prompt": "What does this sentence mean?",
+          "japanese": "りんごを二つ下さい。",
+          "reading": "りんごを ふたつ ください。",
+          "gloss": "りんご apple · 二つ two things · 下さい please give me",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "There are two apples under the table.",
+              "lang": "en",
+              "explanation": "Not quite. Although 下さい uses the kanji 下, 下さい (ください) means “please give me,” not 下 (した, “under”) or あります (“there are”)."
+            },
+            {
+              "id": "B",
+              "text": "Please lower the two apples.",
+              "lang": "en",
+              "explanation": "Not quite. “To lower something” is 下げる (さげる); 下さい (ください) is the polite request word “please give me.”"
+            },
+            {
+              "id": "C",
+              "text": "Please give me two apples.",
+              "lang": "en",
+              "explanation": "That’s right! りんごを marks apples as the requested item, 二つ specifies “two,” and 下さい means “please give me.”"
+            }
+          ],
+          "followUp": {
+            "id": "followup:wo-kudasai-1",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this new sentence mean?",
+            "japanese": "これを三つ下さい。",
+            "reading": "これを みっつ ください。",
+            "gloss": "これ this · 三つ three things · 下さい please give me",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "There are three of these here.",
+                "lang": "en",
+                "explanation": "Not quite. “There are three” would end with 三つあります, whereas 下さい asks “please give me.”"
+              },
+              {
+                "id": "B",
+                "text": "Please give me three of these.",
+                "lang": "en",
+                "explanation": "That’s right! これを marks “this,” 三つ specifies “three things,” and 下さい politely requests “please give me.”"
+              },
+              {
+                "id": "C",
+                "text": "Please give me two of these.",
+                "lang": "en",
+                "explanation": "Not quite. 三つ (みっつ) means “three things,” whereas “two things” is 二つ (ふたつ)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "これを三つ下さい。",
+              "reading": "これを みっつ ください。",
+              "english": "Please give me three of these.",
+              "breakdown": "Step 1: これを marks the item you want (“this”). Step 2: 三つ states the quantity (“three things”). Step 3: 下さい means “please give me.”"
+            }
+          }
+        },
+        {
+          "id": "question:wo-kudasai-2",
+          "patternId": "grammar:wo-kudasai",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Choose the word that completes “Please give me one box”:",
+          "japanese": "箱を一つ（　）。",
+          "targetMeaning": "Please give me one box.",
+          "reading": "はこを ひとつ（　）。",
+          "gloss": "箱 box · 一つ one thing",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "下さい",
+              "lang": "ja",
+              "explanation": "That’s right! 箱を一つ下さい uses A を + counter + 下さい to politely say “Please give me one box.”"
+            },
+            {
+              "id": "B",
+              "text": "あります",
+              "lang": "ja",
+              "explanation": "Not quite. あります means “there is” and takes が (箱が一つあります), not the object particle を."
+            },
+            {
+              "id": "C",
+              "text": "います",
+              "lang": "ja",
+              "explanation": "Not quite. います means “there is” for living beings and takes が, whereas 箱を一つ下さい requests a box."
+            }
+          ],
+          "followUp": {
+            "id": "followup:wo-kudasai-2",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that marks みず (water) as the item requested in “Please give me water”:",
+            "japanese": "みず（　）下さい。",
+            "targetMeaning": "Please give me water.",
+            "reading": "みず（　）ください。",
+            "gloss": "みず water · 下さい please give me",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "の",
+                "lang": "ja",
+                "explanation": "Not quite. の connects two nouns (A の B), whereas 下さい needs the object particle を."
+              },
+              {
+                "id": "B",
+                "text": "に",
+                "lang": "ja",
+                "explanation": "Not quite. に marks a location or destination, not the item requested with 下さい."
+              },
+              {
+                "id": "C",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "That’s right! を marks みず (“water”) as the object of 下さい (“Please give me water”)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "みずを下さい。",
+              "reading": "みずを ください。",
+              "english": "Please give me water.",
+              "breakdown": "Step 1: Name the item you are asking for: みず (“water”). Step 2: Mark it with を. Step 3: Add 下さい (“please give me”)."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    "Komorebi Level 1 curriculum (data/level-1.json): kanji 山, 入, 口, 人, 大, 女, 川, 下, 一, 二, 三 and vocabulary ふじ山, 山, 入り口, 大人, 人, 女, 川, 大きい, 下さい, 一つ, 二つ, 三つ.",
+    "JLPT N5 grammar progression (local Renshuu reference IDs): sentence-final question か (37#3 / 741#1), inclusive topic particle も (117#2), and polite noun request A を下さい (333#1).",
+    "All example sentences, fresh transfer prompts, follow-up questions, worked examples, brief glosses, and distractor explanations are original study material authored for Komorebi."
+  ]
+}

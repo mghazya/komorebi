@@ -1697,6 +1697,61 @@ body.lesson-active main {
   width: 14px;
   height: 14px;
 }
+.context-pack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+.context-pack-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  background: #ffffff;
+  border: 1px solid #dce6d4;
+  border-radius: 13px;
+  padding: 16px 18px;
+}
+.context-pack-card.is-completed {
+  border-color: #b7d4b0;
+  background: #fafdf8;
+}
+.context-pack-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.context-pack-card-head strong {
+  display: block;
+  font-size: 16px;
+  color: var(--ink);
+}
+.context-pack-card-head small {
+  display: block;
+  font-size: 13px;
+  color: var(--muted-aa);
+  margin-top: 2px;
+}
+.context-pack-patterns {
+  font-size: 14px;
+  color: #2f5b41;
+  background: #eef5ea;
+  border-radius: 7px;
+  padding: 5px 10px;
+  margin: 0;
+  width: fit-content;
+}
+.context-pack-status {
+  display: flex;
+  flex-wrap: wrap;
+}
+@media (max-width: 700px) {
+  .context-pack-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .session-done-actions,
 .context-done-actions {
   display: flex;
