@@ -68,12 +68,17 @@ test('Meaning prompts, visible labels, and accessible input labels distinguish r
  assert.equal(checkAnswer(vTen, 'meaning', 'Cross').correct, false);
 });
 test('Known alternatives retry; taught readings pass; unrelated answers fail',()=>{
- for(const [c,answer] of [['山','yama'],['川','セン'],['玉','gyoku'],['一','かず']]) {
-  const r=checkAnswer(kanji(c),'reading',answer);assert.equal(r.retry,true,c);assert.match(r.message,/No mistake counted/);
+ for(const [c,answer,expectedType] of [['山','yama','on’yomi'],['川','セン','kun’yomi'],['叔','shuku','nanori (name reading)'],['玉','gyoku','kun’yomi'],['一','かず','on’yomi']]) {
+  const r=checkAnswer(kanji(c),'reading',answer);
+  assert.equal(r.retry,true,c);
+  assert.equal(r.message,`We’re looking for the ${expectedType} reading. No mistake counted.`);
  }
  assert.equal(checkAnswer(kanji('山'),'reading','san').correct,true);
+ assert.equal(checkAnswer(kanji('川'),'reading','kawa').correct,true);
+ assert.equal(checkAnswer(kanji('叔'),'reading','o').correct,true);
  assert.equal(checkAnswer(kanji('山'),'reading','ねこ').retry,undefined);
  assert.equal(checkAnswer({type:'vocabulary',character:'山',readings:['やま']},'reading','さん').retry,undefined);
+ assert.equal(checkAnswer({type:'vocabulary',character:'山',readings:['やま']},'reading','さん').correct,false);
 });
 test('All taught course readings remain accepted and every mapped alternative permits retry',()=>{
  for(const i of subjects.filter(i=>i.type==='kanji')){

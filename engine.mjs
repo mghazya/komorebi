@@ -1,4 +1,4 @@
-import { KANJI_READINGS } from './kanji-readings.mjs?v=20261028-reading-prompts';
+import { KANJI_READINGS } from './kanji-readings.mjs?v=20261105-reading-categories';
 /**
  * Komorebi's WaniKani-inspired learning engine. No storage or DOM dependencies.
  *
@@ -787,19 +787,10 @@ export function checkAnswer(item, kind, answer) {
   const data = item.type === 'kanji' ? KANJI_READINGS[item.character] : null;
   const alternatives = [...(item.otherReadings || []), ...(data?.onyomi || []), ...(data?.kunyomi || []), ...(data?.nanori || [])].map(readingText).map(normalizeReading);
   if (item.type === 'kanji' && alternatives.includes(normalized)) {
-    let message = `That is another valid reading of this kanji. Try the ${readingTypeLabel(item) || 'kanji'} reading taught in this lesson. No mistake counted.`;
-    const kd = KANJI_READINGS?.[item.character];
-    if (kd) {
-      const onyomi = (kd.onyomi || []).map(readingText).map(normalizeReading);
-      const kunyomi = (kd.kunyomi || []).map(readingText).map(normalizeReading);
-      const taughtIsOnyomi = accepted.some(r => onyomi.includes(r));
-      const taughtIsKunyomi = accepted.some(r => kunyomi.includes(r));
-      if (taughtIsOnyomi && kunyomi.includes(normalized)) {
-        message = 'We’re looking for the on’yomi reading. No mistake counted.';
-      } else if (taughtIsKunyomi && onyomi.includes(normalized)) {
-        message = 'We’re looking for the kun’yomi reading. No mistake counted.';
-      }
-    }
+    const label = readingTypeLabel(item);
+    const message = label
+      ? `We’re looking for the ${label} reading. No mistake counted.`
+      : 'That is another valid reading of this kanji. Try the kanji reading taught in this lesson. No mistake counted.';
     return { correct: false, retry: true, message };
   }
   return { correct: false, message: `Reading: ${(item.readings || []).map(readingText).join(' / ')}` };
