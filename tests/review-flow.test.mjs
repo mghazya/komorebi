@@ -3,14 +3,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {buildQuizQueue,feedbackSummary,hintBanners,toggleReviewWrapUp} from '../quiz.mjs';
-import {scorePlacement, checkAnswer, subjectKindLabel, meaningPrompt, meaningSubtext, answerInputLabel, readingPrompt, readingTypeLabel} from '../engine.mjs';
+import {scorePlacement, checkAnswer, subjectKindLabel, meaningPrompt, meaningSubtext, answerInputLabel, readingPrompt, readingSubtext, readingTypeLabel} from '../engine.mjs';
 const app=fs.readFileSync(new URL('../app.mjs',import.meta.url),'utf8');
 function fn(name){const start=app.indexOf(`function ${name}(`);assert.ok(start>=0);const tail=app.slice(start);const end=name==='renderSession'?tail.search(/\n(async\s+)?function submitAnswer/):tail.indexOf('\nfunction ',1);return end<0?tail:tail.slice(0,end);}
 import {KANJI_READINGS} from '../kanji-readings.mjs';
 const item={id:'kanji:test',type:'kanji',character:'去',meaning:'Past',meanings:['Past'],readings:['きょ','こ'],otherReadings:['さ'],meaningMnemonic:'meaning-story',readingMnemonic:'reading-story',sentences:[{japanese:'context-secret',english:'context-translation'}]};
 function renderer(kind,remaining,feedback={correct:true,answer:'answer'}){
  const session={phase:'quiz',mode:'placement',selected:[item],finished:[],queue:[{id:item.id,kind},...remaining],totalQuestions:2,infoOpen:true,feedback};
- const c=vm.createContext({session,getItem:()=>item,subjectKindLabel,meaningPrompt,meaningSubtext,answerInputLabel,readingPrompt,readingTypeLabel,feedbackSummary,hintBanners,esc:String,readingsOf:i=>i.readings,icon:()=>'',glyph:i=>i.character,charLenClass:i=>'char-len-1',KANJI_READINGS,renderKanjiReadings:(it)=>{
+ const c=vm.createContext({session,getItem:()=>item,subjectKindLabel,meaningPrompt,meaningSubtext,answerInputLabel,readingPrompt,readingSubtext,readingTypeLabel,feedbackSummary,hintBanners,esc:String,readingsOf:i=>i.readings,icon:()=>'',glyph:i=>i.character,charLenClass:i=>'char-len-1',KANJI_READINGS,renderKanjiReadings:(it)=>{
   const d=KANJI_READINGS[it.character];
   return `<div class="kanji-readings-grid"><div class="reading-column is-primary"><span class="reading-column-title">On’yomi</span><p class="reading-column-items">${d.onyomi.join(', ')}</p></div><div class="reading-column"><span class="reading-column-title">Kun’yomi</span><p class="reading-column-items">${d.kunyomi.join(', ')}</p></div><div class="reading-column"><span class="reading-column-title">Nanori</span><p class="reading-column-items is-none">None</p></div></div>`;
  }});
@@ -38,7 +38,7 @@ test('Retry does not expose item info',()=>{
 test('Hint banner rendered as interactive button with toggle-info action',()=>{
  const multiItem = { ...item, meanings: ['Past', 'Previous'] };
  const session={phase:'quiz',mode:'placement',selected:[multiItem],finished:[],queue:[{id:multiItem.id,kind:'meaning'}],totalQuestions:1,infoOpen:false,feedback:{correct:true,answer:'Past'}};
- const c=vm.createContext({session,getItem:()=>multiItem,subjectKindLabel,meaningPrompt,meaningSubtext,answerInputLabel,readingPrompt,readingTypeLabel,feedbackSummary,hintBanners,esc:String,readingsOf:i=>i.readings,icon:()=>'',glyph:i=>i.character,charLenClass:i=>'char-len-1',KANJI_READINGS,renderKanjiReadings:()=>''});
+ const c=vm.createContext({session,getItem:()=>multiItem,subjectKindLabel,meaningPrompt,meaningSubtext,answerInputLabel,readingPrompt,readingSubtext,readingTypeLabel,feedbackSummary,hintBanners,esc:String,readingsOf:i=>i.readings,icon:()=>'',glyph:i=>i.character,charLenClass:i=>'char-len-1',KANJI_READINGS,renderKanjiReadings:()=>''});
  vm.runInContext(fn('renderSession'),c);
  const html = vm.runInContext('renderSession()',c);
  assert.match(html, /class="hint-banner"[^>]*data-action="toggle-info"/);
@@ -146,7 +146,7 @@ test('Kanji alternative reading retry returns specific on’yomi/kun’yomi/nano
  const resUncle = checkAnswer(kanjiUncle, 'reading', 'しゅく');
  assert.equal(resUncle.correct, false);
  assert.equal(resUncle.retry, true);
- assert.equal(resUncle.message, 'We’re looking for the nanori (name reading) reading. No mistake counted.');
+ assert.equal(resUncle.message, 'This question asks for nanori (a name reading). No mistake counted.');
 
  const kanjiOne = { id: 'kanji:一', type: 'kanji', character: '一', readings: ['いち', 'いつ'], otherReadings: ['ひと', 'かず'] };
  const resOneNanori = checkAnswer(kanjiOne, 'reading', 'かず');

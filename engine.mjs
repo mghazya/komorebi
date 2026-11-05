@@ -741,7 +741,14 @@ export function readingTypeLabel(item) {
 export function readingPrompt(item) {
   if (item.type !== 'kanji') return 'How do you read this word?';
   const label = readingTypeLabel(item);
+  if (label === READING_LABELS.nanori) return 'What is the nanori (name reading)?';
   return label ? `What is the ${label} reading?` : 'What is the taught kanji reading?';
+}
+export function readingSubtext(item) {
+  if (item?.type !== 'kanji') return 'Enter this word’s reading in kana or romaji.';
+  const label = readingTypeLabel(item);
+  if (label === READING_LABELS.nanori) return 'Enter the nanori (name reading) taught in this lesson, in kana or romaji.';
+  return `Enter the ${label || 'kanji'} reading taught in this lesson, in kana or romaji.`;
 }
 export function answerInputLabel(item, kind) {
   if (kind === 'meaning') {
@@ -788,9 +795,11 @@ export function checkAnswer(item, kind, answer) {
   const alternatives = [...(item.otherReadings || []), ...(data?.onyomi || []), ...(data?.kunyomi || []), ...(data?.nanori || [])].map(readingText).map(normalizeReading);
   if (item.type === 'kanji' && alternatives.includes(normalized)) {
     const label = readingTypeLabel(item);
-    const message = label
-      ? `We’re looking for the ${label} reading. No mistake counted.`
-      : 'That is another valid reading of this kanji. Try the kanji reading taught in this lesson. No mistake counted.';
+    const message = label === READING_LABELS.nanori
+      ? 'This question asks for nanori (a name reading). No mistake counted.'
+      : label
+        ? `We’re looking for the ${label} reading. No mistake counted.`
+        : 'That is another valid reading of this kanji. Try the kanji reading taught in this lesson. No mistake counted.';
     return { correct: false, retry: true, message };
   }
   return { correct: false, message: `Reading: ${(item.readings || []).map(readingText).join(' / ')}` };
