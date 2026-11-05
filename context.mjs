@@ -23,7 +23,7 @@ export const CONTEXT_PACKS = Object.freeze([
     patternsCount: 3,
     questionsCount: 6,
     path: CONTEXT_PACK_1_PATH,
-    status: 'live',
+    status: 'reviewed',
   }),
   Object.freeze({
     id: 'pack:beginner-2',

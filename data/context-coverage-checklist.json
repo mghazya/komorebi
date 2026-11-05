@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "title": "Komorebi Practice in Context — Grammar Coverage Checklist",
-  "updatedAt": "2026-11-05T09:40:00Z",
+  "updatedAt": "2026-11-05T13:20:00Z",
   "policy": {
     "unitOfTracking": "Tracked by (renshuuGrammarId, meaningIndex) because a single Renshuu grammar ID can cover multiple distinct meanings/uses.",
     "taughtRule": "A grammar meaning is counted as taught (taught: true) ONLY when it is linked to at least one validated primary question and distinct follow-up exercise in a pack.",
@@ -21,7 +21,7 @@
       "title": "Beginner Pack 1",
       "subtitle": "Foundational Copula, Noun Modification & Inanimate Existence",
       "path": "./data/context-pack-1.json",
-      "status": "live",
+      "status": "reviewed",
       "patterns": [
         "grammar:wa-desu",
         "grammar:no-modifier",
@@ -103,8 +103,8 @@
     "taughtMeaningsCount": 16,
     "distinctPatternsTaught": 12,
     "byStatus": {
-      "live": 6,
-      "reviewed": 0,
+      "live": 0,
+      "reviewed": 6,
       "validated": 10,
       "draft": 0,
       "planned": 131
@@ -801,7 +801,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:ni-ga-arimasu",
-      "status": "live",
+      "status": "reviewed",
       "taught": true,
       "exerciseIds": [
         "question:ni-ga-arimasu-1",
@@ -1297,7 +1297,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:no-modifier",
-      "status": "live",
+      "status": "reviewed",
       "taught": true,
       "exerciseIds": [
         "question:no-modifier-1",
@@ -1346,7 +1346,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:no-modifier",
-      "status": "live",
+      "status": "reviewed",
       "taught": true,
       "exerciseIds": [
         "question:no-modifier-1",
@@ -2588,7 +2588,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:ni-ga-arimasu",
-      "status": "live",
+      "status": "reviewed",
       "taught": true,
       "exerciseIds": [
         "question:ni-ga-arimasu-1",
@@ -2678,7 +2678,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:wa-desu",
-      "status": "live",
+      "status": "reviewed",
       "taught": true,
       "exerciseIds": [
         "question:wa-desu-1",
@@ -2727,7 +2727,7 @@
       ],
       "packId": "pack:beginner-1",
       "patternId": "grammar:no-modifier",
-      "status": "live",
+      "status": "reviewed",
       "taught": true,
       "exerciseIds": [
         "question:no-modifier-1",

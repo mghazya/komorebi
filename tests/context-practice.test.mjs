@@ -82,7 +82,7 @@ test('Beginner Pack 1 structure, varied answer positions, Q3/Q6 edits, follow-up
   assert.equal(q6.correctChoice, 'A');
   assert.equal(q6.choices[0].text, 'There are three apples on the table.');
   assert.equal(q6.choices[1].text, 'There are three people at the table.');
-  assert.equal(q6.choices[2].text, 'There are two apples under the table.');
+  assert.equal(q6.choices[2].text, 'There are three apples under the table.');
 });
 
 test('Pack loads on demand only when opened, and a failed pack download leaves lessons/reviews usable', async () => {

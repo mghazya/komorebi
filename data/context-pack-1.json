@@ -479,9 +479,9 @@
             },
             {
               "id": "C",
-              "text": "There are two apples under the table.",
+              "text": "There are three apples under the table.",
               "lang": "en",
-              "explanation": "Not quite. 上 (うえ) means “on / above” (not 下, “under”), and 三つ (みっつ) means “three things” (not 二つ, “two things”)."
+              "explanation": "Not quite. 上 (うえ) means “on / above,” not 下 (した, “under”). In テーブルの上にりんごが三つあります, the three apples are on top of the table."
             }
           ],
           "followUp": {
