@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "id": "pack:beginner-1",
+  "title": "Beginner Pack 1",
+  "subtitle": "Practice in context · Preview",
+  "label": "3 patterns · 6 questions",
+  "level": 1,
+  "description": "Use familiar Level 1 kanji and vocabulary in short everyday sentences across three foundational grammar patterns.",
+  "patterns": [
+    {
+      "id": "grammar:wa-desu",
+      "order": 1,
+      "pattern": "A は B です",
+      "gloss": "A is B",
+      "readingNote": "は is pronounced “wa” when used as the topic particle.",
+      "summary": "は marks the topic you are talking about (A), and です politely states what that topic is (B).",
+      "subjectIds": [
+        "kanji:山",
+        "kanji:大",
+        "kanji:人",
+        "kanji:入",
+        "kanji:口",
+        "vocabulary:ふじ山",
+        "vocabulary:大きい",
+        "vocabulary:山",
+        "vocabulary:人",
+        "vocabulary:大人",
+        "vocabulary:入り口"
+      ],
+      "examples": [
+        {
+          "id": "example:wa-desu-1",
+          "japanese": "ふじ山は大きい山です。",
+          "reading": "ふじさんは おおきい やま です。",
+          "gloss": "ふじ山 Mt. Fuji · 大きい big · 山 mountain",
+          "english": "Mt. Fuji is a big mountain."
+        },
+        {
+          "id": "example:wa-desu-2",
+          "japanese": "あの人は大人です。",
+          "reading": "あの ひとは おとな です。",
+          "gloss": "あの人 that person · 大人 adult",
+          "english": "That person is an adult."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:wa-desu-1",
+          "patternId": "grammar:wa-desu",
+          "kind": "comprehension",
+          "isFreshSentence": false,
+          "prompt": "What does this sentence mean?",
+          "japanese": "ふじ山は大きい山です。",
+          "reading": "ふじさんは おおきい やま です。",
+          "gloss": "ふじ山 Mt. Fuji · 大きい big · 山 mountain",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Mt. Fuji is above the mountain.",
+              "lang": "en",
+              "explanation": "Not quite. 大きい (おおきい) means “big,” not “above” (上, うえ). Try another choice."
+            },
+            {
+              "id": "B",
+              "text": "Mt. Fuji is a big mountain.",
+              "lang": "en",
+              "explanation": "That’s right! ふじ山は sets Mt. Fuji as the topic (A), and 大きい山です states what it is (B: “is a big mountain”)."
+            },
+            {
+              "id": "C",
+              "text": "There is a big person on Mt. Fuji.",
+              "lang": "en",
+              "explanation": "Not quite. 大きい山 means “big mountain” (山), not “adult / big person” (大人), and です means “is,” not “there is a person” (います). Try another choice."
+            }
+          ]
+        },
+        {
+          "id": "question:wa-desu-2",
+          "patternId": "grammar:wa-desu",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Choose the particle that marks “this (これ)” as the topic of the sentence:",
+          "japanese": "これ（　）ビルの入り口です。",
+          "targetMeaning": "This is the building’s entrance.",
+          "reading": "これ（　）ビルの いりぐち です。",
+          "gloss": "これ this · ビル building · 入り口 entrance",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "を",
+              "lang": "ja",
+              "explanation": "Not quite. を marks the direct object of an action verb, so it cannot pair with the copula です. Try another choice."
+            },
+            {
+              "id": "B",
+              "text": "に",
+              "lang": "ja",
+              "explanation": "Not quite. に marks a location, time, or destination, not the topic of an “A is B” (…です) sentence. Try another choice."
+            },
+            {
+              "id": "C",
+              "text": "は",
+              "lang": "ja",
+              "explanation": "That’s right! は marks これ (“this”) as the topic of the A は B です identification sentence (“This is the building’s entrance”)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grammar:no-modifier",
+      "order": 2,
+      "pattern": "A の B",
+      "gloss": "B of A / A’s B",
+      "readingNote": "In A の B, the main noun being talked about always comes second (B).",
+      "summary": "の connects two nouns so the first noun (A) describes or narrows down the second noun (B).",
+      "subjectIds": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:山",
+        "kanji:下",
+        "vocabulary:入り口",
+        "vocabulary:山",
+        "vocabulary:下"
+      ],
+      "examples": [
+        {
+          "id": "example:no-modifier-1",
+          "japanese": "ここは駅の入り口です。",
+          "reading": "ここは えきの いりぐち です。",
+          "gloss": "ここ here · 駅 station · 入り口 entrance",
+          "english": "Here is the entrance to the station."
+        },
+        {
+          "id": "example:no-modifier-2",
+          "japanese": "日本の山はきれいです。",
+          "reading": "にほんの やまは きれいです。",
+          "gloss": "日本 Japan · 山 mountain · きれい beautiful",
+          "english": "Japan’s mountains are beautiful."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:no-modifier-1",
+          "patternId": "grammar:no-modifier",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the particle that links 駅 (station) to 入り口 (entrance) to mean “the entrance to the station”:",
+          "japanese": "ここは駅（　）入り口です。",
+          "targetMeaning": "Here is the entrance to the station.",
+          "reading": "ここは えき（　）いりぐち です。",
+          "gloss": "ここ here · 駅 station · 入り口 entrance",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "の",
+              "lang": "ja",
+              "explanation": "That’s right! の connects the two nouns (駅 + 入り口) so 駅 modifies 入り口 (“the entrance to the station”)."
+            },
+            {
+              "id": "B",
+              "text": "は",
+              "lang": "ja",
+              "explanation": "Not quite. Putting は after 駅 creates an ungrammatical double-topic after ここは (“As for here, the station is an entrance”) instead of linking the two nouns. Try another choice."
+            },
+            {
+              "id": "C",
+              "text": "を",
+              "lang": "ja",
+              "explanation": "Not quite. を marks the direct object of a transitive action verb, so it cannot connect two nouns before です. Try another choice."
+            }
+          ]
+        },
+        {
+          "id": "question:no-modifier-2",
+          "patternId": "grammar:no-modifier",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this phrase mean?",
+          "japanese": "テーブルの下",
+          "reading": "テーブルの した",
+          "gloss": "テーブル table · 下 under / below",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "above the table",
+              "lang": "en",
+              "explanation": "Not quite. “Above / on” is 上 (うえ), whereas 下 (した) means “under / below.” Try another choice."
+            },
+            {
+              "id": "B",
+              "text": "a table that is under something",
+              "lang": "en",
+              "explanation": "Not quite. That reverses the A の B order. In テーブルの下, the second noun 下 (“the area under”) is the main noun and テーブル tells you what it is under. Try another choice."
+            },
+            {
+              "id": "C",
+              "text": "under the table",
+              "lang": "en",
+              "explanation": "That’s right! In A の B, the second noun 下 (“under / area below”) is the head noun, and テーブル specifies what it belongs to: “under the table.”"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grammar:ni-ga-arimasu",
+      "order": 3,
+      "pattern": "A に B が あります",
+      "gloss": "There is B in/at/on A (non-living things)",
+      "readingNote": "あります is used for non-living things; living people and animals use います.",
+      "summary": "Use Location に + Thing が あります to say that a non-living thing (B) exists at a place (A). Quantity counters like 二つ or 三つ can go right before あります.",
+      "subjectIds": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:二",
+        "kanji:三",
+        "kanji:上",
+        "vocabulary:入り口",
+        "vocabulary:二つ",
+        "vocabulary:三つ",
+        "vocabulary:上",
+        "vocabulary:入る",
+        "vocabulary:三人"
+      ],
+      "examples": [
+        {
+          "id": "example:ni-ga-arimasu-1",
+          "japanese": "このビルに入り口が二つあります。",
+          "reading": "この ビルに いりぐちが ふたつ あります。",
+          "gloss": "このビル this building · 入り口 entrance · 二つ two things",
+          "english": "There are two entrances in this building."
+        },
+        {
+          "id": "example:ni-ga-arimasu-2",
+          "japanese": "へやに机があります。",
+          "reading": "へやに つくえが あります。",
+          "gloss": "へや room · 机 desk",
+          "english": "There is a desk in the room."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:ni-ga-arimasu-1",
+          "patternId": "grammar:ni-ga-arimasu",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the word that completes “There are two entrances in this building”:",
+          "japanese": "このビルに入り口が二つ（　）。",
+          "targetMeaning": "There are two entrances in this building.",
+          "reading": "この ビルに いりぐちが ふたつ（　）。",
+          "gloss": "このビル this building · 入り口 entrance · 二つ two things",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "います",
+              "lang": "ja",
+              "explanation": "Not quite. います is only for living, animate beings (people and animals), whereas 入り口 (entrances) are non-living things. Try another choice."
+            },
+            {
+              "id": "B",
+              "text": "あります",
+              "lang": "ja",
+              "explanation": "That’s right! あります expresses the existence of non-living things like 入り口 (“There are two entrances in this building”)."
+            },
+            {
+              "id": "C",
+              "text": "入ります",
+              "lang": "ja",
+              "explanation": "Not quite. 入ります (はいります) is the verb “to enter.” Although it shares the kanji 入 with 入り口, here it would mean “two entrances enter the building.” Try another choice."
+            }
+          ]
+        },
+        {
+          "id": "question:ni-ga-arimasu-2",
+          "patternId": "grammar:ni-ga-arimasu",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "テーブルの上にりんごが三つあります。",
+          "reading": "テーブルの うえに りんごが みっつ あります。",
+          "gloss": "テーブル table · 上 on / above · りんご apple · 三つ three things",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "There are three apples on the table.",
+              "lang": "en",
+              "explanation": "That’s right! テーブルの上に marks the location (“on the table”), りんごが三つ names the item and counter (“three apples”), and あります states they are there."
+            },
+            {
+              "id": "B",
+              "text": "There are three people at the table.",
+              "lang": "en",
+              "explanation": "Not quite. 三つ (みっつ) counts inanimate things (paired with あります), whereas three people would be 三人 (さんにん) with います. Try another choice."
+            },
+            {
+              "id": "C",
+              "text": "There are two apples under the table.",
+              "lang": "en",
+              "explanation": "Not quite. 上 (うえ) means “on / above” (not 下, “under”), and 三つ (みっつ) means “three things” (not 二つ, “two things”). Try another choice."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    "Komorebi Level 1 curriculum (data/level-1.json): kanji 山, 大, 人, 入, 口, 上, 下, 二, 三 and vocabulary ふじ山, 大きい, 山, 人, 大人, 入り口, 上, 下, 二つ, 三つ, 入る, 三人.",
+    "JLPT N5 foundational grammar progression: A は B です (topic + copula), A の B (noun modification, cf. Renshuu #109), and A に B が あります (inanimate existence, cf. Renshuu #108).",
+    "All example sentences, fresh transfer prompts, brief glosses, and distractor explanations are original reviewed study material authored for Komorebi."
+  ]
+}
