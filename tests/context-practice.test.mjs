@@ -864,17 +864,28 @@ test('Tap-to-read word help: interactive words, cloze blank hiding, contextual r
     /does not match sentence/
   );
 
-  assert.throws(
-    () => validateContextPack({
-      ...pack1,
-      patterns: [{
-        ...pack1.patterns[0],
-        questions: [{
-          ...pack1.patterns[0].questions[0],
-          words: [{ text: pack1.patterns[0].questions[0].japanese }], // missing kana, romaji, meaning
-        }],
-      }],
-    }),
-    /must specify kana, romaji, and meaning/
-  );
+  // 8. Verify across all 7 packs that every primary and follow-up question includes validated word help
+  for (let packNum = 1; packNum <= 7; packNum++) {
+    const raw = JSON.parse(fs.readFileSync(`data/context-pack-${packNum}.json`, 'utf8'));
+    const validated = validateContextPack(raw);
+    for (const pat of validated.patterns) {
+      for (const q of pat.questions) {
+        assert.ok(Array.isArray(q.words) && q.words.length > 0, `Missing words in ${q.id}`);
+        assert.equal(q.words.map((w) => w.text).join(''), q.japanese, `Mismatch in ${q.id}`);
+        assert.ok(Array.isArray(q.followUp.words) && q.followUp.words.length > 0, `Missing words in ${q.followUp.id}`);
+        assert.equal(q.followUp.words.map((w) => w.text).join(''), q.followUp.japanese, `Mismatch in ${q.followUp.id}`);
+
+        for (const item of [q, q.followUp]) {
+          for (const w of item.words) {
+            if (w.blank) {
+              assert.equal(w.kana, undefined, `Blank in ${item.id} must not leak kana`);
+              assert.equal(w.meaning, undefined, `Blank in ${item.id} must not leak meaning`);
+            } else if (!w.punctuation) {
+              assert.ok(w.text && w.kana && w.romaji && w.meaning, `Missing fields in ${item.id} word ${w.text}`);
+            }
+          }
+        }
+      }
+    }
+  }
 });

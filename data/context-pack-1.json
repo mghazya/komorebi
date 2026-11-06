@@ -52,12 +52,40 @@
           "prompt": "What does this sentence mean?",
           "japanese": "ふじ山は大きい山です。",
           "words": [
-            { "text": "ふじ山", "kana": "ふじさん", "romaji": "fujisan", "meaning": "Mt. Fuji" },
-            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
-            { "text": "大きい", "kana": "おおきい", "romaji": "ookii", "meaning": "big, large" },
-            { "text": "山", "kana": "やま", "romaji": "yama", "meaning": "mountain" },
-            { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
-            { "text": "。", "punctuation": true }
+            {
+              "text": "ふじ山",
+              "kana": "ふじさん",
+              "romaji": "fujisan",
+              "meaning": "Mt. Fuji"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "大きい",
+              "kana": "おおきい",
+              "romaji": "ookii",
+              "meaning": "big, large"
+            },
+            {
+              "text": "山",
+              "kana": "やま",
+              "romaji": "yama",
+              "meaning": "mountain"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
           ],
           "reading": "ふじさんは おおきい やま です。",
           "gloss": "ふじ山 Mt. Fuji · 大きい big · 山 mountain",
@@ -88,12 +116,40 @@
             "prompt": "Follow-up check — What does this new sentence mean?",
             "japanese": "あの女の人は大人です。",
             "words": [
-              { "text": "あの", "kana": "あの", "romaji": "ano", "meaning": "that (over there)" },
-              { "text": "女の人", "kana": "おんなのひと", "romaji": "onna no hito", "meaning": "woman" },
-              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
-              { "text": "大人", "kana": "おとな", "romaji": "otona", "meaning": "adult" },
-              { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
-              { "text": "。", "punctuation": true }
+              {
+                "text": "あの",
+                "kana": "あの",
+                "romaji": "ano",
+                "meaning": "that (over there)"
+              },
+              {
+                "text": "女の人",
+                "kana": "おんなのひと",
+                "romaji": "onna no hito",
+                "meaning": "woman"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "大人",
+                "kana": "おとな",
+                "romaji": "otona",
+                "meaning": "adult"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
             ],
             "reading": "あの おんなの ひとは おとな です。",
             "gloss": "あの女の人 that woman · 大人 adult",
@@ -134,13 +190,44 @@
           "prompt": "Choose the particle that marks “this (これ)” as the topic of the sentence:",
           "japanese": "これ（　）ビルの入り口です。",
           "words": [
-            { "text": "これ", "kana": "これ", "romaji": "kore", "meaning": "this" },
-            { "text": "（　）", "blank": true },
-            { "text": "ビル", "kana": "びる", "romaji": "biru", "meaning": "building" },
-            { "text": "の", "kana": "の", "romaji": "no", "meaning": "modifier / of ('s)" },
-            { "text": "入り口", "kana": "いりぐち", "romaji": "iriguchi", "meaning": "entrance" },
-            { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
-            { "text": "。", "punctuation": true }
+            {
+              "text": "これ",
+              "kana": "これ",
+              "romaji": "kore",
+              "meaning": "this"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "ビル",
+              "kana": "びる",
+              "romaji": "biru",
+              "meaning": "building"
+            },
+            {
+              "text": "の",
+              "kana": "の",
+              "romaji": "no",
+              "meaning": "modifier / of ('s)"
+            },
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
           ],
           "targetMeaning": "This is the building’s entrance.",
           "reading": "これ（　）ビルの いりぐち です。",
@@ -200,7 +287,41 @@
               "reading": "あの やまは ふじさん です。",
               "english": "That mountain is Mt. Fuji.",
               "breakdown": "Step 1: Identify who or what the sentence is about: あの山 (“that mountain”). Step 2: Place は right after the topic (あの山は). Step 3: State what it is with ふじ山です (“is Mt. Fuji”)."
-            }
+            },
+            "words": [
+              {
+                "text": "あの",
+                "kana": "あの",
+                "romaji": "ano",
+                "meaning": "that (over there)"
+              },
+              {
+                "text": "山",
+                "kana": "やま",
+                "romaji": "yama",
+                "meaning": "mountain"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "ふじ山",
+                "kana": "ふじさん",
+                "romaji": "fujisan",
+                "meaning": "Mt. Fuji"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
           }
         }
       ]
@@ -246,13 +367,44 @@
           "prompt": "Choose the particle that links 駅 (station) to 入り口 (entrance) to mean “the entrance to the station”:",
           "japanese": "ここは駅（　）入り口です。",
           "words": [
-            { "text": "ここ", "kana": "ここ", "romaji": "koko", "meaning": "here" },
-            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
-            { "text": "駅", "kana": "えき", "romaji": "eki", "meaning": "station" },
-            { "text": "（　）", "blank": true },
-            { "text": "入り口", "kana": "いりぐち", "romaji": "iriguchi", "meaning": "entrance" },
-            { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
-            { "text": "。", "punctuation": true }
+            {
+              "text": "ここ",
+              "kana": "ここ",
+              "romaji": "koko",
+              "meaning": "here"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
           ],
           "targetMeaning": "Here is the entrance to the station.",
           "reading": "ここは えき（　）いりぐち です。",
@@ -284,13 +436,44 @@
             "prompt": "Follow-up check — Choose the particle that links ホテル (hotel) to 入り口 (entrance) to mean “the entrance to the hotel”:",
             "japanese": "これはホテル（　）入り口です。",
             "words": [
-              { "text": "これ", "kana": "これ", "romaji": "kore", "meaning": "this" },
-              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
-              { "text": "ホテル", "kana": "ほてる", "romaji": "hoteru", "meaning": "hotel" },
-              { "text": "（　）", "blank": true },
-              { "text": "入り口", "kana": "いりぐち", "romaji": "iriguchi", "meaning": "entrance" },
-              { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
-              { "text": "。", "punctuation": true }
+              {
+                "text": "これ",
+                "kana": "これ",
+                "romaji": "kore",
+                "meaning": "this"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "ホテル",
+                "kana": "ほてる",
+                "romaji": "hoteru",
+                "meaning": "hotel"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "入り口",
+                "kana": "いりぐち",
+                "romaji": "iriguchi",
+                "meaning": "entrance"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
             ],
             "targetMeaning": "This is the entrance to the hotel.",
             "reading": "これは ホテル（　）いりぐち です。",
@@ -387,8 +570,48 @@
               "reading": "つくえの うえ",
               "english": "on / above the desk",
               "breakdown": "Step 1: In A の B, the second noun (B) is always the main thing: 上 (うえ, “the top / space above”). Step 2: The first noun (A) tells you what it belongs to: 机 (つくえ, “desk”). Together: “the top of the desk” (“on / above the desk”)."
+            },
+            "words": [
+              {
+                "text": "机",
+                "kana": "つくえ",
+                "romaji": "tsukue",
+                "meaning": "desk"
+              },
+              {
+                "text": "の",
+                "kana": "の",
+                "romaji": "no",
+                "meaning": "modifier / of ('s)"
+              },
+              {
+                "text": "上",
+                "kana": "うえ",
+                "romaji": "ue",
+                "meaning": "on, above"
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "テーブル",
+              "kana": "てーぶる",
+              "romaji": "teeburu",
+              "meaning": "table"
+            },
+            {
+              "text": "の",
+              "kana": "の",
+              "romaji": "no",
+              "meaning": "modifier / of ('s)"
+            },
+            {
+              "text": "下",
+              "kana": "した",
+              "romaji": "shita",
+              "meaning": "under, below"
             }
-          }
+          ]
         }
       ]
     },
@@ -494,8 +717,100 @@
               "reading": "へやに おおきい つくえが ひとつ あります。",
               "english": "There is one big desk in the room.",
               "breakdown": "Step 1: へやに marks the location (“in the room”). Step 2: 大きい机が一つ names the non-living object and count (“one big desk”). Step 3: Use あります (never います) for non-living things."
+            },
+            "words": [
+              {
+                "text": "へや",
+                "kana": "へや",
+                "romaji": "heya",
+                "meaning": "room"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "location marker (at, in)"
+              },
+              {
+                "text": "大きい",
+                "kana": "おおきい",
+                "romaji": "ookii",
+                "meaning": "big, large"
+              },
+              {
+                "text": "机",
+                "kana": "つくえ",
+                "romaji": "tsukue",
+                "meaning": "desk"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "subject marker"
+              },
+              {
+                "text": "一つ",
+                "kana": "ひとつ",
+                "romaji": "hitotsu",
+                "meaning": "one (thing)"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "この",
+              "kana": "この",
+              "romaji": "kono",
+              "meaning": "this"
+            },
+            {
+              "text": "ビル",
+              "kana": "びる",
+              "romaji": "biru",
+              "meaning": "building"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "location marker (at, in)"
+            },
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "subject marker"
+            },
+            {
+              "text": "二つ",
+              "kana": "ふたつ",
+              "romaji": "futatsu",
+              "meaning": "two (things)"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:ni-ga-arimasu-2",
@@ -560,8 +875,116 @@
               "reading": "つくえの したに はこが ふたつ あります。",
               "english": "There are two boxes under the desk.",
               "breakdown": "Step 1: 机の下に = “under the desk” (location + に). Step 2: 箱が二つ = “two boxes” (non-living noun + が + counter 二つ). Step 3: あります = “there are” (for inanimate things)."
+            },
+            "words": [
+              {
+                "text": "机",
+                "kana": "つくえ",
+                "romaji": "tsukue",
+                "meaning": "desk"
+              },
+              {
+                "text": "の",
+                "kana": "の",
+                "romaji": "no",
+                "meaning": "modifier / of ('s)"
+              },
+              {
+                "text": "下",
+                "kana": "した",
+                "romaji": "shita",
+                "meaning": "under, below"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "location marker (at, in)"
+              },
+              {
+                "text": "箱",
+                "kana": "はこ",
+                "romaji": "hako",
+                "meaning": "box"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "subject marker"
+              },
+              {
+                "text": "二つ",
+                "kana": "ふたつ",
+                "romaji": "futatsu",
+                "meaning": "two (things)"
+              },
+              {
+                "text": "あります",
+                "kana": "あります",
+                "romaji": "arimasu",
+                "meaning": "there is, exists"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "テーブル",
+              "kana": "てーぶる",
+              "romaji": "teeburu",
+              "meaning": "table"
+            },
+            {
+              "text": "の",
+              "kana": "の",
+              "romaji": "no",
+              "meaning": "modifier / of ('s)"
+            },
+            {
+              "text": "上",
+              "kana": "うえ",
+              "romaji": "ue",
+              "meaning": "on, above"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "location marker (at, in)"
+            },
+            {
+              "text": "りんご",
+              "kana": "りんご",
+              "romaji": "ringo",
+              "meaning": "apple"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "subject marker"
+            },
+            {
+              "text": "三つ",
+              "kana": "みっつ",
+              "romaji": "mittsu",
+              "meaning": "three (things)"
+            },
+            {
+              "text": "あります",
+              "kana": "あります",
+              "romaji": "arimasu",
+              "meaning": "there is, exists"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     }

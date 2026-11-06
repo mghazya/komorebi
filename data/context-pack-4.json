@@ -112,8 +112,76 @@
               "reading": "ふたりが へやに はいります。",
               "english": "Two people enter the room.",
               "breakdown": "Step 1: Name the place being entered: へや (“room”). Step 2: Mark that destination with に (へやに). Step 3: Finish with the movement verb 入ります (“enter”)."
+            },
+            "words": [
+              {
+                "text": "二人",
+                "kana": "ふたり",
+                "romaji": "futari",
+                "meaning": "two people"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "subject marker"
+              },
+              {
+                "text": "へや",
+                "kana": "へや",
+                "romaji": "heya",
+                "meaning": "room"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "入ります",
+                "kana": "はいります",
+                "romaji": "hairimasu",
+                "meaning": "enters, goes in"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "大人",
+              "kana": "おとな",
+              "romaji": "otona",
+              "meaning": "adult"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "subject marker"
+            },
+            {
+              "text": "ビル",
+              "kana": "びる",
+              "romaji": "biru",
+              "meaning": "building"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "入ります",
+              "kana": "はいります",
+              "romaji": "hairimasu",
+              "meaning": "enters, goes in"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:ni-destination-2",
@@ -178,8 +246,80 @@
               "reading": "さんにんが えきに はいります。",
               "english": "Three people enter the station.",
               "breakdown": "Step 1: 三人が = “three people” (actor). Step 2: 駅に = “into the station” (destination + に). Step 3: 入ります = “enter.”"
+            },
+            "words": [
+              {
+                "text": "三人",
+                "kana": "さんにん",
+                "romaji": "sannin",
+                "meaning": "three people"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "subject marker"
+              },
+              {
+                "text": "駅",
+                "kana": "えき",
+                "romaji": "eki",
+                "meaning": "station"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "destination marker (to, into)"
+              },
+              {
+                "text": "入ります",
+                "kana": "はいります",
+                "romaji": "hairimasu",
+                "meaning": "enters, goes in"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "女の人",
+              "kana": "おんなのひと",
+              "romaji": "onna no hito",
+              "meaning": "woman"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "ホテル",
+              "kana": "ほてる",
+              "romaji": "hoteru",
+              "meaning": "hotel"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "destination marker (to, into)"
+            },
+            {
+              "text": "入ります",
+              "kana": "はいります",
+              "romaji": "hairimasu",
+              "meaning": "enters, goes in"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -285,8 +425,88 @@
               "reading": "あの ひとは かばんを さげます。",
               "english": "That person lowers the bag.",
               "breakdown": "Step 1: Identify the thing being acted on: かばん (“bag”). Step 2: Mark it with the direct-object particle を (かばんを). Step 3: Add the transitive verb 下げます (“lowers”)."
+            },
+            "words": [
+              {
+                "text": "あの",
+                "kana": "あの",
+                "romaji": "ano",
+                "meaning": "that (over there)"
+              },
+              {
+                "text": "人",
+                "kana": "ひと",
+                "romaji": "hito",
+                "meaning": "person"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "かばん",
+                "kana": "かばん",
+                "romaji": "kaban",
+                "meaning": "bag"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "下げます",
+                "kana": "さげます",
+                "romaji": "sagemasu",
+                "meaning": "lowers, brings down"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "大人",
+              "kana": "おとな",
+              "romaji": "otona",
+              "meaning": "adult"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "subject marker"
+            },
+            {
+              "text": "大きい",
+              "kana": "おおきい",
+              "romaji": "ookii",
+              "meaning": "big, large"
+            },
+            {
+              "text": "箱",
+              "kana": "はこ",
+              "romaji": "hako",
+              "meaning": "box"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "上げます",
+              "kana": "あげます",
+              "romaji": "agemasu",
+              "meaning": "raises, lifts up"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:wo-object-2",
@@ -351,8 +571,86 @@
               "reading": "ふたりが つくえを あげます。",
               "english": "Two people lift the desk.",
               "breakdown": "Step 1: 二人が = “two people.” Step 2: 机を = “the desk” (direct object + を). Step 3: 上げます = “lift / raise.”"
+            },
+            "words": [
+              {
+                "text": "二人",
+                "kana": "ふたり",
+                "romaji": "futari",
+                "meaning": "two people"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "subject marker"
+              },
+              {
+                "text": "机",
+                "kana": "つくえ",
+                "romaji": "tsukue",
+                "meaning": "desk"
+              },
+              {
+                "text": "を",
+                "kana": "お",
+                "romaji": "o",
+                "meaning": "object marker"
+              },
+              {
+                "text": "上げます",
+                "kana": "あげます",
+                "romaji": "agemasu",
+                "meaning": "raises, lifts up"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "女の人",
+              "kana": "おんなのひと",
+              "romaji": "onna no hito",
+              "meaning": "woman"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "箱",
+              "kana": "はこ",
+              "romaji": "hako",
+              "meaning": "box"
+            },
+            {
+              "text": "を",
+              "kana": "お",
+              "romaji": "o",
+              "meaning": "object marker"
+            },
+            {
+              "text": "二つ",
+              "kana": "ふたつ",
+              "romaji": "futatsu",
+              "meaning": "two (things)"
+            },
+            {
+              "text": "下げます",
+              "kana": "さげます",
+              "romaji": "sagemasu",
+              "meaning": "lowers, brings down"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -457,8 +755,86 @@
               "reading": "おんなの ひとは はこを さげません。",
               "english": "The woman does not lower the box.",
               "breakdown": "Step 1: 下げます means “lowers.” Step 2: Changing 〜ます to 〜ません (下げません) makes it polite negative: “does not lower.”"
+            },
+            "words": [
+              {
+                "text": "女の人",
+                "kana": "おんなのひと",
+                "romaji": "onna no hito",
+                "meaning": "woman"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "箱",
+                "kana": "はこ",
+                "romaji": "hako",
+                "meaning": "box"
+              },
+              {
+                "text": "を",
+                "kana": "お",
+                "romaji": "o",
+                "meaning": "object marker"
+              },
+              {
+                "text": "下げません",
+                "kana": "さげません",
+                "romaji": "sagemasen",
+                "meaning": "does not lower"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "あの",
+              "kana": "あの",
+              "romaji": "ano",
+              "meaning": "that (over there)"
+            },
+            {
+              "text": "人",
+              "kana": "ひと",
+              "romaji": "hito",
+              "meaning": "person"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "ビル",
+              "kana": "びる",
+              "romaji": "biru",
+              "meaning": "building"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "destination marker (to, into)"
+            },
+            {
+              "text": "入りません",
+              "kana": "はいりません",
+              "romaji": "hairimasen",
+              "meaning": "does not enter"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:masu-polite-2",
@@ -525,8 +901,94 @@
               "reading": "あの ひとは おおきい はこを あげません。",
               "english": "That person does not lift the big box.",
               "breakdown": "Step 1: 上げます means “lifts.” Step 2: Replace 〜ます with 〜ません → 上げません (“does not lift”)."
+            },
+            "words": [
+              {
+                "text": "あの",
+                "kana": "あの",
+                "romaji": "ano",
+                "meaning": "that (over there)"
+              },
+              {
+                "text": "人",
+                "kana": "ひと",
+                "romaji": "hito",
+                "meaning": "person"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "大きい",
+                "kana": "おおきい",
+                "romaji": "ookii",
+                "meaning": "big, large"
+              },
+              {
+                "text": "箱",
+                "kana": "はこ",
+                "romaji": "hako",
+                "meaning": "box"
+              },
+              {
+                "text": "を",
+                "kana": "お",
+                "romaji": "o",
+                "meaning": "object marker"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "あの",
+              "kana": "あの",
+              "romaji": "ano",
+              "meaning": "that (over there)"
+            },
+            {
+              "text": "女の人",
+              "kana": "おんなのひと",
+              "romaji": "onna no hito",
+              "meaning": "woman"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "川",
+              "kana": "かわ",
+              "romaji": "kawa",
+              "meaning": "river"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "destination marker (to, into)"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     }

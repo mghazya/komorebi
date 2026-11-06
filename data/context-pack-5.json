@@ -109,8 +109,88 @@
               "reading": "ふたりが ホテルで はなします。",
               "english": "Two people talk at the hotel.",
               "breakdown": "Step 1: Identify the setting where the action occurs: ホテル (“hotel”). Step 2: Use で to mark the location of active conduct (ホテルで). Step 3: Complete with the action verb 話します (“talk”)."
+            },
+            "words": [
+              {
+                "text": "二人",
+                "kana": "ふたり",
+                "romaji": "futari",
+                "meaning": "two people"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "subject marker"
+              },
+              {
+                "text": "ホテル",
+                "kana": "ほてる",
+                "romaji": "hoteru",
+                "meaning": "hotel"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "話します",
+                "kana": "はなします",
+                "romaji": "hanashimasu",
+                "meaning": "talks, speaks"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "大人",
+              "kana": "おとな",
+              "romaji": "otona",
+              "meaning": "adult"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "水",
+              "kana": "みず",
+              "romaji": "mizu",
+              "meaning": "water"
+            },
+            {
+              "text": "を",
+              "kana": "お",
+              "romaji": "o",
+              "meaning": "object marker"
+            },
+            {
+              "text": "買います",
+              "kana": "かいます",
+              "romaji": "kaimasu",
+              "meaning": "buys"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:de-action-2",
@@ -175,8 +255,92 @@
               "reading": "おんなの ひとは へやで ほんを よみます。",
               "english": "The woman reads a book in the room.",
               "breakdown": "Step 1: Identify the topic: 女の人は (“the woman”). Step 2: Identify where she conducts the action: へやで (“in the room”). Step 3: Identify the direct object and action: 本を読みます (“reads a book”)."
+            },
+            "words": [
+              {
+                "text": "女の人",
+                "kana": "おんなのひと",
+                "romaji": "onna no hito",
+                "meaning": "woman"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "へや",
+                "kana": "へや",
+                "romaji": "heya",
+                "meaning": "room"
+              },
+              {
+                "text": "で",
+                "kana": "で",
+                "romaji": "de",
+                "meaning": "action location marker (at, in)"
+              },
+              {
+                "text": "本",
+                "kana": "ほん",
+                "romaji": "hon",
+                "meaning": "book"
+              },
+              {
+                "text": "を",
+                "kana": "お",
+                "romaji": "o",
+                "meaning": "object marker"
+              },
+              {
+                "text": "読みます",
+                "kana": "よみます",
+                "romaji": "yomimasu",
+                "meaning": "reads"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "男の人",
+              "kana": "おとこのひと",
+              "romaji": "otoko no hito",
+              "meaning": "man"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "ビル",
+              "kana": "びる",
+              "romaji": "biru",
+              "meaning": "building"
+            },
+            {
+              "text": "で",
+              "kana": "で",
+              "romaji": "de",
+              "meaning": "action location marker (at, in)"
+            },
+            {
+              "text": "休みます",
+              "kana": "やすみます",
+              "romaji": "yasumimasu",
+              "meaning": "rests, takes a break"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -280,8 +444,100 @@
               "reading": "おとなは こどもと かわを みます。",
               "english": "The adult looks at the river with a child.",
               "breakdown": "Step 1: Identify the companion: 子ども (“child”). Step 2: Mark accompaniment with と (子どもと = “with a child”). Step 3: State the action and object: 川を見ます (“looks at the river”)."
+            },
+            "words": [
+              {
+                "text": "大人",
+                "kana": "おとな",
+                "romaji": "otona",
+                "meaning": "adult"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "子ども",
+                "kana": "こども",
+                "romaji": "kodomo",
+                "meaning": "child"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "川",
+                "kana": "かわ",
+                "romaji": "kawa",
+                "meaning": "river"
+              },
+              {
+                "text": "を",
+                "kana": "お",
+                "romaji": "o",
+                "meaning": "object marker"
+              },
+              {
+                "text": "見ます",
+                "kana": "みます",
+                "romaji": "mimasu",
+                "meaning": "looks at, watches"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "女の人",
+              "kana": "おんなのひと",
+              "romaji": "onna no hito",
+              "meaning": "woman"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "友だち",
+              "kana": "ともだち",
+              "romaji": "tomodachi",
+              "meaning": "friend"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "destination marker (to)"
+            },
+            {
+              "text": "行きます",
+              "kana": "いきます",
+              "romaji": "ikimasu",
+              "meaning": "goes"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:to-accompaniment-2",
@@ -346,8 +602,104 @@
               "reading": "おんなの ひとは おとな ひとりと あるきます。",
               "english": "The woman walks with one adult.",
               "breakdown": "Step 1: Identify topic: 女の人は (“the woman”). Step 2: Identify companion marked by と: 大人一人と (“with one adult”). Step 3: Complete with verb: 歩きます (“walks”)."
+            },
+            "words": [
+              {
+                "text": "女の人",
+                "kana": "おんなのひと",
+                "romaji": "onna no hito",
+                "meaning": "woman"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "大人",
+                "kana": "おとな",
+                "romaji": "otona",
+                "meaning": "adult"
+              },
+              {
+                "text": "一人",
+                "kana": "ひとり",
+                "romaji": "hitori",
+                "meaning": "one person"
+              },
+              {
+                "text": "と",
+                "kana": "と",
+                "romaji": "to",
+                "meaning": "with (accompaniment)"
+              },
+              {
+                "text": "歩きます",
+                "kana": "あるきます",
+                "romaji": "arukimasu",
+                "meaning": "walks"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "あの",
+              "kana": "あの",
+              "romaji": "ano",
+              "meaning": "that (over there)"
+            },
+            {
+              "text": "人",
+              "kana": "ひと",
+              "romaji": "hito",
+              "meaning": "person"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "二人",
+              "kana": "ふたり",
+              "romaji": "futari",
+              "meaning": "two people"
+            },
+            {
+              "text": "と",
+              "kana": "と",
+              "romaji": "to",
+              "meaning": "with (accompaniment)"
+            },
+            {
+              "text": "ホテル",
+              "kana": "ほてる",
+              "romaji": "hoteru",
+              "meaning": "hotel"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "destination marker (to, into)"
+            },
+            {
+              "text": "入ります",
+              "kana": "はいります",
+              "romaji": "hairimasu",
+              "meaning": "enters, goes in"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -452,8 +804,76 @@
               "reading": "おとなは やまから きます。",
               "english": "The adult comes from the mountain.",
               "breakdown": "Step 1: Identify the starting point/origin: 山 (“mountain”). Step 2: Attach origin particle から (山から = “from the mountain”). Step 3: Complete with the movement verb 来ます (“comes”)."
+            },
+            "words": [
+              {
+                "text": "大人",
+                "kana": "おとな",
+                "romaji": "otona",
+                "meaning": "adult"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "山",
+                "kana": "やま",
+                "romaji": "yama",
+                "meaning": "mountain"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "来ます",
+                "kana": "きます",
+                "romaji": "kimasu",
+                "meaning": "comes"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "二人",
+              "kana": "ふたり",
+              "romaji": "futari",
+              "meaning": "two people"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "歩きます",
+              "kana": "あるきます",
+              "romaji": "arukimasu",
+              "meaning": "walks"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:kara-origin-2",
@@ -518,8 +938,86 @@
               "reading": "ふたりは いりぐちから はいります。",
               "english": "The two people enter through the entrance.",
               "breakdown": "Step 1: Identify who is acting: 二人は (“the two people”). Step 2: Note the access point marked with から: 入り口から (“from / through the entrance”). Step 3: Complete with the verb: 入ります (“enter”)."
+            },
+            "words": [
+              {
+                "text": "二人",
+                "kana": "ふたり",
+                "romaji": "futari",
+                "meaning": "two people"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "入り口",
+                "kana": "いりぐち",
+                "romaji": "iriguchi",
+                "meaning": "entrance"
+              },
+              {
+                "text": "から",
+                "kana": "から",
+                "romaji": "kara",
+                "meaning": "from, through"
+              },
+              {
+                "text": "入ります",
+                "kana": "はいります",
+                "romaji": "hairimasu",
+                "meaning": "enters, goes in"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "あの",
+              "kana": "あの",
+              "romaji": "ano",
+              "meaning": "that (over there)"
+            },
+            {
+              "text": "人",
+              "kana": "ひと",
+              "romaji": "hito",
+              "meaning": "person"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "川",
+              "kana": "かわ",
+              "romaji": "kawa",
+              "meaning": "river"
+            },
+            {
+              "text": "から",
+              "kana": "から",
+              "romaji": "kara",
+              "meaning": "from (starting point)"
+            },
+            {
+              "text": "上がります",
+              "kana": "あがります",
+              "romaji": "agarimasu",
+              "meaning": "comes up, ascends"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     }

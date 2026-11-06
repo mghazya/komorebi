@@ -111,8 +111,94 @@
               "reading": "かわの ちかくに おおきい きが あります。",
               "english": "There is a big tree near the river.",
               "breakdown": "Step 1: Identify the noun to describe: 木 (“tree”). Step 2: Use the plain い-adjective directly: 大きい木 (“big tree”). Step 3: Complete with existence frame: 川の近くに…があります (“There is… near the river”)."
+            },
+            "words": [
+              {
+                "text": "川",
+                "kana": "かわ",
+                "romaji": "kawa",
+                "meaning": "river"
+              },
+              {
+                "text": "の",
+                "kana": "の",
+                "romaji": "no",
+                "meaning": "modifier / of ('s)"
+              },
+              {
+                "text": "近く",
+                "kana": "ちかく",
+                "romaji": "chikaku",
+                "meaning": "near, vicinity"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "location marker (at, near)"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "木",
+                "kana": "き",
+                "romaji": "ki",
+                "meaning": "tree"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "subject marker"
+              },
+              {
+                "text": "あります",
+                "kana": "あります",
+                "romaji": "arimasu",
+                "meaning": "there is, exists"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "ふじ山",
+              "kana": "ふじさん",
+              "romaji": "fujisan",
+              "meaning": "Mt. Fuji"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "山",
+              "kana": "やま",
+              "romaji": "yama",
+              "meaning": "mountain"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:i-adjective-2",
@@ -177,8 +263,80 @@
               "reading": "ふじさんは たかい やまです。",
               "english": "Mt. Fuji is a tall mountain.",
               "breakdown": "Step 1: Topic: ふじ山は (“Mt. Fuji”). Step 2: Modified noun: 高い山 (“tall mountain”). Step 3: Polite copula: です (“is”)."
+            },
+            "words": [
+              {
+                "text": "ふじ山",
+                "kana": "ふじさん",
+                "romaji": "fujisan",
+                "meaning": "Mt. Fuji"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "高い",
+                "kana": "たかい",
+                "romaji": "takai",
+                "meaning": "tall, high"
+              },
+              {
+                "text": "山",
+                "kana": "やま",
+                "romaji": "yama",
+                "meaning": "mountain"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "あの",
+              "kana": "あの",
+              "romaji": "ano",
+              "meaning": "that (over there)"
+            },
+            {
+              "text": "川",
+              "kana": "かわ",
+              "romaji": "kawa",
+              "meaning": "river"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "大きい",
+              "kana": "おおきい",
+              "romaji": "ookii",
+              "meaning": "big, large"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -282,8 +440,76 @@
               "reading": "あの やまは たかくないです。",
               "english": "That mountain is not tall.",
               "breakdown": "Step 1: Start with plain adjective: 高い (“tall”). Step 2: Drop final い → 高 (taka). Step 3: Add negative ending 〜くないです → 高くないです (“is not tall”)."
+            },
+            "words": [
+              {
+                "text": "あの",
+                "kana": "あの",
+                "romaji": "ano",
+                "meaning": "that (over there)"
+              },
+              {
+                "text": "山",
+                "kana": "やま",
+                "romaji": "yama",
+                "meaning": "mountain"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "この",
+              "kana": "この",
+              "romaji": "kono",
+              "meaning": "this"
+            },
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "の",
+              "kana": "の",
+              "romaji": "no",
+              "meaning": "modifier / of ('s)"
+            },
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:adjective-negative-2",
@@ -348,8 +574,80 @@
               "reading": "あの ビルは たかくないです。",
               "english": "That building is not tall.",
               "breakdown": "Step 1: Topic: あのビルは (“that building”). Step 2: Negative adjective predicate: 高くないです (“is not tall”)."
+            },
+            "words": [
+              {
+                "text": "あの",
+                "kana": "あの",
+                "romaji": "ano",
+                "meaning": "that (over there)"
+              },
+              {
+                "text": "ビル",
+                "kana": "びる",
+                "romaji": "biru",
+                "meaning": "building"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "高くない",
+                "kana": "たかくない",
+                "romaji": "takakunai",
+                "meaning": "not tall"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "この",
+              "kana": "この",
+              "romaji": "kono",
+              "meaning": "this"
+            },
+            {
+              "text": "部屋",
+              "kana": "へや",
+              "romaji": "heya",
+              "meaning": "room"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "広くない",
+              "kana": "ひろくない",
+              "romaji": "hirokunai",
+              "meaning": "not spacious"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -454,8 +752,124 @@
               "reading": "あの ホテルは ふるいですが、きれいです。",
               "english": "That hotel is old, but it is clean.",
               "breakdown": "Step 1: First clause: あのホテルは古い (“That hotel is old”). Step 2: Add contrast conjunction: ですが、 (“is old, but”). Step 3: Second clause: きれいです (“it is clean”). Notice how が balances the drawback (old) with the positive feature (clean)."
+            },
+            "words": [
+              {
+                "text": "あの",
+                "kana": "あの",
+                "romaji": "ano",
+                "meaning": "that (over there)"
+              },
+              {
+                "text": "ホテル",
+                "kana": "ほてる",
+                "romaji": "hoteru",
+                "meaning": "hotel"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "古い",
+                "kana": "ふるい",
+                "romaji": "furui",
+                "meaning": "old"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "but, however"
+              },
+              {
+                "text": "、",
+                "punctuation": true
+              },
+              {
+                "text": "きれい",
+                "kana": "きれい",
+                "romaji": "kirei",
+                "meaning": "clean, pretty"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "この",
+              "kana": "この",
+              "romaji": "kono",
+              "meaning": "this"
+            },
+            {
+              "text": "部屋",
+              "kana": "へや",
+              "romaji": "heya",
+              "meaning": "room"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "小さい",
+              "kana": "ちいさい",
+              "romaji": "chiisai",
+              "meaning": "small"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "but, however"
+            },
+            {
+              "text": "、",
+              "punctuation": true
+            },
+            {
+              "text": "明るい",
+              "kana": "あかるい",
+              "romaji": "akarui",
+              "meaning": "bright, well-lit"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:ga-contrast-2",
@@ -521,8 +935,124 @@
               "reading": "あの ひとは おとなですが、ちからは ありません。",
               "english": "That person is an adult, but has no strength.",
               "breakdown": "Step 1: First clause: あの人は大人ですが (“That person is an adult, but”). Step 2: Contrasting second clause: 力はありません (“has no strength / power”)."
+            },
+            "words": [
+              {
+                "text": "あの",
+                "kana": "あの",
+                "romaji": "ano",
+                "meaning": "that (over there)"
+              },
+              {
+                "text": "人",
+                "kana": "ひと",
+                "romaji": "hito",
+                "meaning": "person"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "大人",
+                "kana": "おとな",
+                "romaji": "otona",
+                "meaning": "adult"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "but, however"
+              },
+              {
+                "text": "、",
+                "punctuation": true
+              },
+              {
+                "text": "力",
+                "kana": "ちから",
+                "romaji": "chikara",
+                "meaning": "strength, power"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker (contrastive)"
+              },
+              {
+                "text": "ありません",
+                "kana": "ありません",
+                "romaji": "arimasen",
+                "meaning": "there is not"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "水",
+              "kana": "みず",
+              "romaji": "mizu",
+              "meaning": "water"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker (contrastive)"
+            },
+            {
+              "text": "あります",
+              "kana": "あります",
+              "romaji": "arimasu",
+              "meaning": "there is, exists"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "but, however"
+            },
+            {
+              "text": "、",
+              "punctuation": true
+            },
+            {
+              "text": "お茶",
+              "kana": "おちゃ",
+              "romaji": "ocha",
+              "meaning": "tea"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker (contrastive)"
+            },
+            {
+              "text": "ありません",
+              "kana": "ありません",
+              "romaji": "arimasen",
+              "meaning": "there is not"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     }

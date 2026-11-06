@@ -110,8 +110,98 @@
               "reading": "あの ひとは おとな ですか。",
               "english": "Is that person an adult?",
               "breakdown": "Step 1: Start with the statement あの人は大人です (“That person is an adult”). Step 2: Add か at the end (大人ですか) to ask a yes/no question: “Is that person an adult?”"
+            },
+            "words": [
+              {
+                "text": "あの",
+                "kana": "あの",
+                "romaji": "ano",
+                "meaning": "that (over there)"
+              },
+              {
+                "text": "人",
+                "kana": "ひと",
+                "romaji": "hito",
+                "meaning": "person"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "大人",
+                "kana": "おとな",
+                "romaji": "otona",
+                "meaning": "adult"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "か",
+                "kana": "か",
+                "romaji": "ka",
+                "meaning": "question marker"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "ここ",
+              "kana": "ここ",
+              "romaji": "koko",
+              "meaning": "here"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "の",
+              "kana": "の",
+              "romaji": "no",
+              "meaning": "modifier / of ('s)"
+            },
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "か",
+              "kana": "か",
+              "romaji": "ka",
+              "meaning": "question marker"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:ka-question-2",
@@ -178,8 +268,94 @@
               "reading": "これは ホテルの いりぐち ですか。",
               "english": "Is this the hotel’s entrance?",
               "breakdown": "Step 1: これはホテルの入り口です states “This is the hotel’s entrance.” Step 2: Attach か after です (ですか) to ask a polite yes/no question."
+            },
+            "words": [
+              {
+                "text": "これ",
+                "kana": "これ",
+                "romaji": "kore",
+                "meaning": "this"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "ホテル",
+                "kana": "ほてる",
+                "romaji": "hoteru",
+                "meaning": "hotel"
+              },
+              {
+                "text": "の",
+                "kana": "の",
+                "romaji": "no",
+                "meaning": "modifier / of ('s)"
+              },
+              {
+                "text": "入り口",
+                "kana": "いりぐち",
+                "romaji": "iriguchi",
+                "meaning": "entrance"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "あの",
+              "kana": "あの",
+              "romaji": "ano",
+              "meaning": "that (over there)"
+            },
+            {
+              "text": "山",
+              "kana": "やま",
+              "romaji": "yama",
+              "meaning": "mountain"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "ふじ山",
+              "kana": "ふじさん",
+              "romaji": "fujisan",
+              "meaning": "Mt. Fuji"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -288,8 +464,76 @@
               "reading": "この やまも おおきい です。",
               "english": "This mountain is big, too.",
               "breakdown": "Step 1: この山は大きいです means “This mountain is big.” Step 2: Replace は with も (この山も) to add “also / too”: “This mountain is big, too.”"
+            },
+            "words": [
+              {
+                "text": "この",
+                "kana": "この",
+                "romaji": "kono",
+                "meaning": "this"
+              },
+              {
+                "text": "山",
+                "kana": "やま",
+                "romaji": "yama",
+                "meaning": "mountain"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "大きい",
+                "kana": "おおきい",
+                "romaji": "ookii",
+                "meaning": "big, large"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "あの",
+              "kana": "あの",
+              "romaji": "ano",
+              "meaning": "that (over there)"
+            },
+            {
+              "text": "女の人",
+              "kana": "おんなのひと",
+              "romaji": "onna no hito",
+              "meaning": "woman"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "大人",
+              "kana": "おとな",
+              "romaji": "otona",
+              "meaning": "adult"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:mo-also-2",
@@ -354,8 +598,86 @@
               "reading": "この かわも おおきい です。",
               "english": "This river is big, too.",
               "breakdown": "Step 1: この川 (“this river”) + も (“also / too”) sets the topic as an additional item. Step 2: 大きいです (“is big”) describes it."
+            },
+            "words": [
+              {
+                "text": "この",
+                "kana": "この",
+                "romaji": "kono",
+                "meaning": "this"
+              },
+              {
+                "text": "川",
+                "kana": "かわ",
+                "romaji": "kawa",
+                "meaning": "river"
+              },
+              {
+                "text": "も",
+                "kana": "も",
+                "romaji": "mo",
+                "meaning": "also, too"
+              },
+              {
+                "text": "大きい",
+                "kana": "おおきい",
+                "romaji": "ookii",
+                "meaning": "big, large"
+              },
+              {
+                "text": "です",
+                "kana": "です",
+                "romaji": "desu",
+                "meaning": "is, to be"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "ここ",
+              "kana": "ここ",
+              "romaji": "koko",
+              "meaning": "here"
+            },
+            {
+              "text": "も",
+              "kana": "も",
+              "romaji": "mo",
+              "meaning": "also, too"
+            },
+            {
+              "text": "ビル",
+              "kana": "びる",
+              "romaji": "biru",
+              "meaning": "building"
+            },
+            {
+              "text": "の",
+              "kana": "の",
+              "romaji": "no",
+              "meaning": "modifier / of ('s)"
+            },
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "です",
+              "kana": "です",
+              "romaji": "desu",
+              "meaning": "is, to be"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -459,8 +781,68 @@
               "reading": "これを みっつ ください。",
               "english": "Please give me three of these.",
               "breakdown": "Step 1: これを marks the item you want (“this”). Step 2: 三つ states the quantity (“three things”). Step 3: 下さい means “please give me.”"
+            },
+            "words": [
+              {
+                "text": "これ",
+                "kana": "これ",
+                "romaji": "kore",
+                "meaning": "this"
+              },
+              {
+                "text": "を",
+                "kana": "お",
+                "romaji": "o",
+                "meaning": "object marker"
+              },
+              {
+                "text": "三つ",
+                "kana": "みっつ",
+                "romaji": "mittsu",
+                "meaning": "three (things)"
+              },
+              {
+                "text": "下さい",
+                "kana": "ください",
+                "romaji": "kudasai",
+                "meaning": "please give me"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "りんご",
+              "kana": "りんご",
+              "romaji": "ringo",
+              "meaning": "apple"
+            },
+            {
+              "text": "を",
+              "kana": "お",
+              "romaji": "o",
+              "meaning": "object marker"
+            },
+            {
+              "text": "二つ",
+              "kana": "ふたつ",
+              "romaji": "futatsu",
+              "meaning": "two (things)"
+            },
+            {
+              "text": "下さい",
+              "kana": "ください",
+              "romaji": "kudasai",
+              "meaning": "please give me"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:wo-kudasai-2",
@@ -527,8 +909,58 @@
               "reading": "みずを ください。",
               "english": "Please give me water.",
               "breakdown": "Step 1: Name the item you are asking for: みず (“water”). Step 2: Mark it with を. Step 3: Add 下さい (“please give me”)."
+            },
+            "words": [
+              {
+                "text": "みず",
+                "kana": "みず",
+                "romaji": "mizu",
+                "meaning": "water"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "下さい",
+                "kana": "ください",
+                "romaji": "kudasai",
+                "meaning": "please give me"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "箱",
+              "kana": "はこ",
+              "romaji": "hako",
+              "meaning": "box"
+            },
+            {
+              "text": "を",
+              "kana": "お",
+              "romaji": "o",
+              "meaning": "object marker"
+            },
+            {
+              "text": "一つ",
+              "kana": "ひとつ",
+              "romaji": "hitotsu",
+              "meaning": "one (thing)"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     }
