@@ -396,28 +396,28 @@
           "isFreshSentence": false,
           "prompt": "What does this sentence mean?",
           "japanese": "この部屋は小さいですが、明るいです。",
-          "targetMeaning": "This room is small, but it is bright.",
+          "targetMeaning": "This room is small, but bright.",
           "reading": "この へやは ちいさいですが、あかるいです。",
           "gloss": "この部屋 this room · 小さい small · ですが but · 明るい bright · です is",
           "correctChoice": "A",
           "choices": [
             {
               "id": "A",
-              "text": "This room is small, but it is bright.",
+              "text": "This room is small, but bright.",
               "lang": "en",
               "explanation": "That’s right! この部屋は is “this room,” 小さいですが is “is small, but,” and 明るいです is “is bright.”"
             },
             {
               "id": "B",
-              "text": "This room is small and dark.",
+              "text": "This room is small, but dark.",
               "lang": "en",
-              "explanation": "Not quite. While 小さい does mean “small,” 明るい (あかるい) means “bright,” not “dark,” and ですが expresses contrast (“but,” not “and”)."
+              "explanation": "Not quite. While 小さい (ちいさい) does mean “small,” the second adjective 明るい (あかるい) means “bright,” not “dark.”"
             },
             {
               "id": "C",
-              "text": "This room is large and bright.",
+              "text": "This room is large, but bright.",
               "lang": "en",
-              "explanation": "Not quite. While 明るい does mean “bright,” 小さい (ちいさい) means “small,” not “large.”"
+              "explanation": "Not quite. While 明るい (あかるい) does mean “bright,” the first adjective 小さい (ちいさい) means “small,” not “large” (which would be 大きい)."
             }
           ],
           "followUp": {
@@ -425,26 +425,26 @@
             "kind": "comprehension",
             "prompt": "Follow-up check — What does this sentence mean?",
             "japanese": "あのホテルは古いですが、きれいです。",
-            "targetMeaning": "That hotel is old, but it is clean.",
+            "targetMeaning": "That hotel is old, but clean.",
             "reading": "あの ホテルは ふるいですが、きれいです。",
             "gloss": "あのホテル that hotel · 古い old · ですが but · きれい clean/pretty · です is",
             "correctChoice": "C",
             "choices": [
               {
                 "id": "A",
-                "text": "That hotel is old and dirty.",
+                "text": "That hotel is old, but dirty.",
                 "lang": "en",
-                "explanation": "Not quite. While 古い does mean “old,” きれい means “clean/pretty,” not “dirty,” and ですが expresses contrast (“but”)."
+                "explanation": "Not quite. While 古い (ふるい) does mean “old,” the second adjective きれい means “clean/pretty,” not “dirty.”"
               },
               {
                 "id": "B",
-                "text": "That hotel is new and clean.",
+                "text": "That hotel is new, but clean.",
                 "lang": "en",
-                "explanation": "Not quite. While きれい does mean “clean,” 古い (ふるい) means “old,” not “new.”"
+                "explanation": "Not quite. While きれい does mean “clean,” the first adjective 古い (ふるい) means “old,” not “new” (which would be 新しい)."
               },
               {
                 "id": "C",
-                "text": "That hotel is old, but it is clean.",
+                "text": "That hotel is old, but clean.",
                 "lang": "en",
                 "explanation": "That’s right! あのホテルは is “that hotel,” 古いですが is “is old, but,” and きれいです is “is clean.”"
               }
