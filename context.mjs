@@ -138,6 +138,38 @@ function validateChoicesList(choices, correctChoice, ownerId) {
   }
 }
 
+function validateWordsList(words, sentenceText, ownerId) {
+  if (!Array.isArray(words) || !words.length) {
+    throw new ContextPackError(`Word help for ${ownerId} must be a non-empty array.`, 'BAD_PACK');
+  }
+  let reconstructed = '';
+  for (const w of words) {
+    if (!isPlainObject(w) || typeof w.text !== 'string' || !w.text) {
+      throw new ContextPackError(`Word help item in ${ownerId} has invalid text.`, 'BAD_PACK');
+    }
+    reconstructed += w.text;
+    if (w.blank) {
+      if (w.text !== '（　）' && w.text !== '(  )' && w.text !== '（ ）') {
+        throw new ContextPackError(`Blank word item in ${ownerId} must represent the sentence blank.`, 'BAD_PACK');
+      }
+    } else if (w.punctuation) {
+      // Punctuation like '。' or '、' without word help
+    } else {
+      if (typeof w.kana !== 'string' || !w.kana.trim() ||
+        typeof w.romaji !== 'string' || !w.romaji.trim() ||
+        typeof w.meaning !== 'string' || !w.meaning.trim()) {
+        throw new ContextPackError(`Word "${w.text}" in ${ownerId} must specify kana, romaji, and meaning.`, 'BAD_PACK');
+      }
+    }
+  }
+  if (reconstructed !== sentenceText) {
+    throw new ContextPackError(
+      `Word help in ${ownerId} does not match sentence: "${reconstructed}" vs "${sentenceText}".`,
+      'BAD_PACK'
+    );
+  }
+}
+
 export function validateContextPack(data) {
   if (!isPlainObject(data) || data.schemaVersion !== 1 || typeof data.id !== 'string' || !data.id.startsWith('pack:') ||
     typeof data.title !== 'string' || !data.title.trim() || !Array.isArray(data.patterns) || !data.patterns.length) {
@@ -176,6 +208,9 @@ export function validateContextPack(data) {
       }
       questionIds.add(q.id);
       validateChoicesList(q.choices, q.correctChoice, q.id);
+      if (q.words !== undefined) {
+        validateWordsList(q.words, q.japanese, q.id);
+      }
 
       const fu = q.followUp;
       if (!isPlainObject(fu) || typeof fu.id !== 'string' || !fu.id.startsWith('followup:') ||
@@ -187,6 +222,9 @@ export function validateContextPack(data) {
       }
       followUpIds.add(fu.id);
       validateChoicesList(fu.choices, fu.correctChoice, fu.id);
+      if (fu.words !== undefined) {
+        validateWordsList(fu.words, fu.japanese, fu.id);
+      }
 
       const we = fu.workedExample;
       if (!isPlainObject(we) || typeof we.japanese !== 'string' || !we.japanese.trim() ||
@@ -252,6 +290,7 @@ export function createContextSession(pack) {
     position: 0,
     inFollowUp: false,
     showReading: false,
+    activeWordHelp: null,
     selectedChoice: null,
     triedChoices: {},
     feedback: null,
@@ -373,8 +412,27 @@ export function startContextFollowUp(session) {
     ...session,
     inFollowUp: true,
     showReading: false,
+    activeWordHelp: null,
     selectedChoice: null,
     feedback: null,
+  };
+}
+
+/**
+ * Sets or toggles the active word help index.
+ * Calling with the currently active index or null toggles it off.
+ * This is an optional, unscored assistance feature that never alters
+ * score, answers, or kanji review schedules.
+ */
+export function setContextWordHelp(session, wordIndexOrNull) {
+  if (!session || session.mode !== 'context' || session.phase !== 'quiz') return session;
+  const current = session.activeWordHelp;
+  const next = (wordIndexOrNull === null || wordIndexOrNull === undefined || current === wordIndexOrNull)
+    ? null
+    : wordIndexOrNull;
+  return {
+    ...session,
+    activeWordHelp: next,
   };
 }
 

@@ -19,6 +19,7 @@ import {
   createContextSession,
   selectContextChoice,
   startContextFollowUp,
+  setContextWordHelp,
   scoreContextSession,
   recordContextCompletion,
 } from '../context.mjs';
@@ -725,4 +726,155 @@ test('Automated mechanical checks: coverage checklist, resumable skip, Packs 2-4
   }
   const validatedLearner = validateProfile(learner);
   assert.deepEqual(validatedLearner, learner);
+});
+
+test('Tap-to-read word help: interactive words, cloze blank hiding, contextual readings, and answer isolation', async () => {
+  const pack1 = await loadContextPack({
+    fetch: async () => ({
+      ok: true,
+      json: async () => JSON.parse(fs.readFileSync(CONTEXT_PACK_1_PATH, 'utf8')),
+    }),
+  });
+
+  // 1. Session initialization includes activeWordHelp: null
+  let session = createContextSession(pack1);
+  assert.equal(session.activeWordHelp, null);
+
+  // 2. Q1 words are defined and match sentence exactly
+  const q1 = session.questions[0];
+  assert.ok(Array.isArray(q1.words) && q1.words.length > 0);
+  const q1Reconstructed = q1.words.map((w) => w.text).join('');
+  assert.equal(q1Reconstructed, q1.japanese);
+
+  // Contextual particles: は has kana 'わ' and romaji 'wa'
+  const waWord = q1.words.find((w) => w.text === 'は');
+  assert.ok(waWord);
+  assert.equal(waWord.kana, 'わ');
+  assert.equal(waWord.romaji, 'wa');
+  assert.equal(waWord.meaning, 'topic marker');
+
+  // 3. Toggling word help with setContextWordHelp
+  session = setContextWordHelp(session, 0); // activate word 0: ふじ山
+  assert.equal(session.activeWordHelp, 0);
+
+  // Calling again with the same index toggles off (null)
+  session = setContextWordHelp(session, 0);
+  assert.equal(session.activeWordHelp, null);
+
+  // Setting another word
+  session = setContextWordHelp(session, 2); // 大きい
+  assert.equal(session.activeWordHelp, 2);
+
+  // 4. Word help does not alter answer choice selection or scores
+  assert.equal(session.selectedChoice, null);
+  session = selectContextChoice(session, 'B'); // Choose correct answer B
+  assert.equal(session.selectedChoice, 'B');
+  assert.equal(session.firstAttempts[q1.id], true);
+  // Word help is preserved when an answer is selected (does not clear)
+  assert.equal(session.activeWordHelp, 2);
+
+  // Toggling word help after an answer has been selected does not clear or change the chosen answer
+  session = setContextWordHelp(session, 1);
+  assert.equal(session.activeWordHelp, 1);
+  assert.equal(session.selectedChoice, 'B');
+  assert.equal(session.firstAttempts[q1.id], true);
+
+  // 5. App rendering test for word buttons and word help tray
+  const appCode = fs.readFileSync(new URL('../app.mjs', import.meta.url), 'utf8');
+  const c = vm.createContext({
+    window: { scrollTo: () => {}, location: { pathname: '/', search: '', hash: '' } },
+    document: {
+      querySelector: () => null,
+      querySelectorAll: () => [],
+      createElement: () => ({ setAttribute: () => {}, appendChild: () => {} }),
+      body: { appendChild: () => {} },
+    },
+    history: { state: null, pushState: () => {}, replaceState: () => {} },
+    session,
+    profile: () => ({ id: 'learner-1', name: 'Learner', progress: {}, contextPractice: {} }),
+    getItem: () => null,
+    glyph: () => '',
+  });
+
+  const renderSnippet = `
+    const esc = ${c.esc ? 'esc' : "value => String(value ?? '').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]))"};
+    const icon = () => '';
+    ${appCode.slice(appCode.indexOf('function renderContextSession('), appCode.indexOf('function leaveSession('))}
+  `;
+  vm.runInContext(renderSnippet, c);
+
+  // Render when word 1 (は) is active
+  const htmlWordActive = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlWordActive, /class="context-word-btn is-active"[^>]*data-word-index="1"/);
+  assert.match(htmlWordActive, /aria-expanded="true"/);
+  assert.match(htmlWordActive, /aria-controls="context-word-help-tray"/);
+  assert.match(htmlWordActive, /class="context-word-help-tray has-word"/);
+  assert.match(htmlWordActive, /class="context-word-help-kana"[^>]*>わ<\/span>/);
+  assert.match(htmlWordActive, /class="context-word-help-romaji">wa<\/span>/);
+  assert.match(htmlWordActive, /class="context-word-help-meaning">topic marker<\/span>/);
+  assert.match(htmlWordActive, /data-action="close-context-word-help"/);
+
+  // Render when word help is closed (idle)
+  session = setContextWordHelp(session, null);
+  c.session = session;
+  const htmlIdle = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlIdle, /class="context-word-help-tray is-idle"/);
+  assert.match(htmlIdle, /Tap or click a word for reading &amp; meaning/);
+  assert.doesNotMatch(htmlIdle, /class="context-word-help-tray has-word"/);
+
+  // 6. Q3 Cloze blank hiding and compound word:
+  //    ここは駅（　）入り口です。
+  const q3 = session.questions[2];
+  assert.ok(q3.words);
+  const blankWord = q3.words.find((w) => w.blank);
+  assert.ok(blankWord, 'Cloze question must include a blank word item');
+  assert.equal(blankWord.text, '（　）');
+  assert.equal(blankWord.kana, undefined);
+  assert.equal(blankWord.meaning, undefined);
+
+  // Compound word: 入り口 is treated as one word
+  const entranceWord = q3.words.find((w) => w.text === '入り口');
+  assert.ok(entranceWord, '入り口 must be a single entry');
+  assert.equal(entranceWord.kana, 'いりぐち');
+  assert.equal(entranceWord.romaji, 'iriguchi');
+  assert.equal(entranceWord.meaning, 'entrance');
+
+  // Render Q3 to check blank rendering
+  session = { ...session, position: 2, inFollowUp: false, selectedChoice: null, feedback: null, activeWordHelp: null };
+  c.session = session;
+  const htmlQ3 = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlQ3, /<span class="context-word-blank" aria-label="blank">（　）<\/span>/);
+  // Ensure the blank is NOT wrapped in a word button
+  assert.doesNotMatch(htmlQ3, /<button[^>]*class="context-word-btn"[^>]*>（　）<\/button>/);
+  // Ensure 入り口 is rendered as one button
+  assert.match(htmlQ3, /<button type="button" class="context-word-btn "[^>]*>入り口<\/button>/);
+
+  // 7. Validation rejects malformed word definitions
+  assert.throws(
+    () => validateContextPack({
+      ...pack1,
+      patterns: [{
+        ...pack1.patterns[0],
+        questions: [{
+          ...pack1.patterns[0].questions[0],
+          words: [{ text: 'wrong', kana: 'w', romaji: 'w', meaning: 'm' }], // mismatch
+        }],
+      }],
+    }),
+    /does not match sentence/
+  );
+
+  assert.throws(
+    () => validateContextPack({
+      ...pack1,
+      patterns: [{
+        ...pack1.patterns[0],
+        questions: [{
+          ...pack1.patterns[0].questions[0],
+          words: [{ text: pack1.patterns[0].questions[0].japanese }], // missing kana, romaji, meaning
+        }],
+      }],
+    }),
+    /must specify kana, romaji, and meaning/
+  );
 });

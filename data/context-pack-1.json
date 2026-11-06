@@ -51,6 +51,14 @@
           "isFreshSentence": false,
           "prompt": "What does this sentence mean?",
           "japanese": "ふじ山は大きい山です。",
+          "words": [
+            { "text": "ふじ山", "kana": "ふじさん", "romaji": "fujisan", "meaning": "Mt. Fuji" },
+            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+            { "text": "大きい", "kana": "おおきい", "romaji": "ookii", "meaning": "big, large" },
+            { "text": "山", "kana": "やま", "romaji": "yama", "meaning": "mountain" },
+            { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+            { "text": "。", "punctuation": true }
+          ],
           "reading": "ふじさんは おおきい やま です。",
           "gloss": "ふじ山 Mt. Fuji · 大きい big · 山 mountain",
           "correctChoice": "B",
@@ -79,6 +87,14 @@
             "kind": "comprehension",
             "prompt": "Follow-up check — What does this new sentence mean?",
             "japanese": "あの女の人は大人です。",
+            "words": [
+              { "text": "あの", "kana": "あの", "romaji": "ano", "meaning": "that (over there)" },
+              { "text": "女の人", "kana": "おんなのひと", "romaji": "onna no hito", "meaning": "woman" },
+              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+              { "text": "大人", "kana": "おとな", "romaji": "otona", "meaning": "adult" },
+              { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+              { "text": "。", "punctuation": true }
+            ],
             "reading": "あの おんなの ひとは おとな です。",
             "gloss": "あの女の人 that woman · 大人 adult",
             "correctChoice": "A",
@@ -117,6 +133,15 @@
           "isFreshSentence": true,
           "prompt": "Choose the particle that marks “this (これ)” as the topic of the sentence:",
           "japanese": "これ（　）ビルの入り口です。",
+          "words": [
+            { "text": "これ", "kana": "これ", "romaji": "kore", "meaning": "this" },
+            { "text": "（　）", "blank": true },
+            { "text": "ビル", "kana": "びる", "romaji": "biru", "meaning": "building" },
+            { "text": "の", "kana": "の", "romaji": "no", "meaning": "modifier / of ('s)" },
+            { "text": "入り口", "kana": "いりぐち", "romaji": "iriguchi", "meaning": "entrance" },
+            { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+            { "text": "。", "punctuation": true }
+          ],
           "targetMeaning": "This is the building’s entrance.",
           "reading": "これ（　）ビルの いりぐち です。",
           "gloss": "これ this · ビル building · 入り口 entrance",
@@ -220,6 +245,15 @@
           "isFreshSentence": false,
           "prompt": "Choose the particle that links 駅 (station) to 入り口 (entrance) to mean “the entrance to the station”:",
           "japanese": "ここは駅（　）入り口です。",
+          "words": [
+            { "text": "ここ", "kana": "ここ", "romaji": "koko", "meaning": "here" },
+            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+            { "text": "駅", "kana": "えき", "romaji": "eki", "meaning": "station" },
+            { "text": "（　）", "blank": true },
+            { "text": "入り口", "kana": "いりぐち", "romaji": "iriguchi", "meaning": "entrance" },
+            { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+            { "text": "。", "punctuation": true }
+          ],
           "targetMeaning": "Here is the entrance to the station.",
           "reading": "ここは えき（　）いりぐち です。",
           "gloss": "ここ here · 駅 station · 入り口 entrance",
@@ -249,6 +283,15 @@
             "kind": "cloze",
             "prompt": "Follow-up check — Choose the particle that links ホテル (hotel) to 入り口 (entrance) to mean “the entrance to the hotel”:",
             "japanese": "これはホテル（　）入り口です。",
+            "words": [
+              { "text": "これ", "kana": "これ", "romaji": "kore", "meaning": "this" },
+              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+              { "text": "ホテル", "kana": "ほてる", "romaji": "hoteru", "meaning": "hotel" },
+              { "text": "（　）", "blank": true },
+              { "text": "入り口", "kana": "いりぐち", "romaji": "iriguchi", "meaning": "entrance" },
+              { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+              { "text": "。", "punctuation": true }
+            ],
             "targetMeaning": "This is the entrance to the hotel.",
             "reading": "これは ホテル（　）いりぐち です。",
             "gloss": "これ this · ホテル hotel · 入り口 entrance",

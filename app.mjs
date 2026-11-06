@@ -8,7 +8,7 @@ import { loadCurriculum, sanitizeSvg, svgDataUrl, isSafeImagePath } from './curr
 import { buildQuizQueue, feedbackSummary, hintBanners, ACTIVE_REVIEW_POOL_SIZE, questionsForItem, shuffle, toggleReviewWrapUp } from './quiz.mjs?v=20261105-reading-categories';
 import { createCloudSync } from './sync.mjs?v=20261028-reading-prompts';
 import { KANJI_READINGS } from './kanji-readings.mjs?v=20261105-reading-categories';
-import { CONTEXT_PACK_META, CONTEXT_PACKS, getContextPackMeta, loadContextPack, createContextSession, selectContextChoice, startContextFollowUp, scoreContextSession, recordContextCompletion } from './context.mjs?v=20261106-packs-5-7';
+import { CONTEXT_PACK_META, CONTEXT_PACKS, getContextPackMeta, loadContextPack, createContextSession, selectContextChoice, startContextFollowUp, setContextWordHelp, scoreContextSession, recordContextCompletion } from './context.mjs?v=20261106-packs-5-7';
 
 import { createCloudClient, AUTH_STORAGE_KEY, validateNewPassword, validatePasswordChange, MIN_PASSWORD_LENGTH } from './cloud.mjs?v=20261028-reading-prompts';
 import { CLOUD_CONFIG } from './config.js?v=20261028-reading-prompts';
@@ -623,6 +623,12 @@ function toggleContextReading() {
   render();
 }
 
+function toggleWordHelp(wordIndex) {
+  if (!session || session.mode !== 'context' || session.phase !== 'quiz') return;
+  session = setContextWordHelp(session, wordIndex);
+  render();
+}
+
 async function nextContextQuestion() {
   if (!session || session.mode !== 'context' || session.phase !== 'quiz' || busy) return;
   const q = session.questions[session.position];
@@ -640,6 +646,7 @@ async function nextContextQuestion() {
       position: session.position + 1,
       inFollowUp: false,
       showReading: false,
+      activeWordHelp: null,
       selectedChoice: null,
       feedback: null,
     };
@@ -725,7 +732,41 @@ function renderContextSession(s) {
     ? `<div class="context-worked-example" role="region" aria-label="Worked example"><span class="info-eyebrow">WORKED EXAMPLE · <span lang="ja">${esc(pattern.pattern)}</span></span><p class="context-worked-jp" lang="ja">${esc(workedExample.japanese)}</p>${workedExample.reading ? `<p class="context-reading" lang="ja">${esc(workedExample.reading)}</p>` : ''}<p class="context-worked-en">“${esc(workedExample.english)}”</p><p class="context-worked-breakdown">${esc(workedExample.breakdown)}</p></div>`
     : '';
 
-  return `<section class="session-header"><div class="session-header-left"><button class="text-button" type="button" data-action="exit-session">${icon('back')} Dashboard</button></div><span>Practice in context <b>·</b> ${esc(s.pack.label)} <b>·</b> Question ${s.position + 1} of ${s.questions.length}${s.inFollowUp ? ' (Follow-up)' : ''}</span></section><div class="session-progress" role="progressbar" aria-label="Practice progress" aria-valuenow="${resolvedCount}" aria-valuemin="0" aria-valuemax="${s.questions.length}"><span style="width:${pct}%"></span></div><div class="context-card"><section class="context-pattern-box" aria-labelledby="context-pattern-heading"><div class="context-pattern-head"><span class="eyebrow">PATTERN ${q.patternIndex + 1} OF ${s.pack.patterns.length} · ${esc(s.pack.title.toUpperCase())}</span><span class="context-pack-badge">${esc(s.pack.label)}</span></div><h2 id="context-pattern-heading" class="context-pattern-title"><span lang="ja">${esc(pattern.pattern)}</span> <small>— ${esc(pattern.gloss)}</small></h2><p class="context-pattern-summary">${esc(pattern.summary)}${pattern.readingNote ? ` <span class="context-reading-note">${esc(pattern.readingNote)}</span>` : ''}</p><div class="context-examples" aria-label="Pattern examples">${pattern.examples.map((ex, idx) => `<div class="context-example-item"><span class="context-example-num">Ex ${idx + 1}</span><div class="context-example-body"><p class="context-example-jp" lang="ja">${esc(ex.japanese)}</p>${s.showReading && ex.reading ? `<p class="context-reading" lang="ja">${esc(ex.reading)}</p>` : ''}<p class="context-example-en">${esc(ex.english)}</p>${ex.gloss ? `<small class="context-gloss">Glosses: ${esc(ex.gloss)}</small>` : ''}</div></div>`).join('')}</div>${linkedSubjects.length ? `<div class="context-subjects-row"><span class="info-eyebrow">FAMILIAR LEVEL 1 SUBJECTS</span><div class="component-list">${linkedSubjects.map((subj) => `<button type="button" class="component-chip ${subj.type}" data-action="view-subject" data-item="${esc(subj.id)}" title="${esc(subj.meaning)} (${subj.type})"><b>${glyph(subj, '')}</b><span class="component-name"><strong>${esc(subj.meaning)}</strong><small>${subj.type}</small></span></button>`).join('')}</div></div>` : ''}</section><section class="context-question-box ${s.inFollowUp ? 'is-followup' : ''}" aria-labelledby="context-question-heading"><div class="context-question-top"><span class="eyebrow">${questionEyebrow}</span><button type="button" class="button secondary context-reading-btn" data-action="toggle-context-reading" aria-pressed="${Boolean(s.showReading)}">${icon(s.showReading ? 'eyeOff' : 'eye')} <span>${s.showReading ? 'Hide reading' : 'Show reading'}</span></button></div><h1 id="context-question-heading">${esc(activeQ.prompt)}</h1><div class="context-prompt-sentence"><p class="context-sentence-jp" lang="ja">${esc(activeQ.japanese)}</p>${activeQ.targetMeaning ? `<p class="context-target-meaning">“${esc(activeQ.targetMeaning)}”</p>` : ''}${s.showReading && activeQ.reading ? `<p class="context-reading" lang="ja">${esc(activeQ.reading)}</p>` : ''}${activeQ.gloss ? `<p class="context-gloss">Glosses: ${esc(activeQ.gloss)}</p>` : ''}</div><div class="context-choices" role="group" aria-labelledby="context-question-heading">${activeQ.choices.map((c) => {
+  const words = Array.isArray(activeQ.words) && activeQ.words.length ? activeQ.words : null;
+  const sentenceHtml = words
+    ? words.map((w, idx) => {
+        if (w.blank) {
+          return `<span class="context-word-blank" aria-label="blank">（　）</span>`;
+        }
+        if (w.punctuation) {
+          return `<span class="context-word-punct">${esc(w.text)}</span>`;
+        }
+        const isActive = s.activeWordHelp === idx;
+        return `<button type="button" class="context-word-btn ${isActive ? 'is-active' : ''}" data-action="context-word-help" data-word-index="${idx}" aria-expanded="${isActive}" aria-controls="context-word-help-tray" title="Tap or click for reading and meaning">${esc(w.text)}</button>`;
+      }).join('')
+    : esc(activeQ.japanese);
+
+  const activeWord = words && typeof s.activeWordHelp === 'number' ? words[s.activeWordHelp] : null;
+  const wordHelpTrayHtml = words
+    ? `<div class="context-word-help-tray ${activeWord ? 'has-word' : 'is-idle'}" id="context-word-help-tray" role="region" aria-live="polite">` +
+      (activeWord
+        ? `<div class="context-word-help-card">` +
+            `<div class="context-word-help-main">` +
+              `<strong class="context-word-help-text" lang="ja">${esc(activeWord.text)}</strong>` +
+              `<span class="context-word-help-kana" lang="ja">${esc(activeWord.kana)}</span>` +
+              `<span class="context-word-help-romaji">${esc(activeWord.romaji)}</span>` +
+              `<span class="context-word-help-sep" aria-hidden="true">·</span>` +
+              `<span class="context-word-help-meaning">${esc(activeWord.meaning)}</span>` +
+            `</div>` +
+            `<button type="button" class="context-word-help-close" data-action="close-context-word-help" aria-label="Close word help">✕</button>` +
+          `</div>`
+        : `<div class="context-word-help-idle">` +
+            `<span class="context-word-help-hint">💡 Tap or click a word for reading &amp; meaning</span>` +
+          `</div>`) +
+      `</div>`
+    : '';
+
+  return `<section class="session-header"><div class="session-header-left"><button class="text-button" type="button" data-action="exit-session">${icon('back')} Dashboard</button></div><span>Practice in context <b>·</b> ${esc(s.pack.label)} <b>·</b> Question ${s.position + 1} of ${s.questions.length}${s.inFollowUp ? ' (Follow-up)' : ''}</span></section><div class="session-progress" role="progressbar" aria-label="Practice progress" aria-valuenow="${resolvedCount}" aria-valuemin="0" aria-valuemax="${s.questions.length}"><span style="width:${pct}%"></span></div><div class="context-card"><section class="context-pattern-box" aria-labelledby="context-pattern-heading"><div class="context-pattern-head"><span class="eyebrow">PATTERN ${q.patternIndex + 1} OF ${s.pack.patterns.length} · ${esc(s.pack.title.toUpperCase())}</span><span class="context-pack-badge">${esc(s.pack.label)}</span></div><h2 id="context-pattern-heading" class="context-pattern-title"><span lang="ja">${esc(pattern.pattern)}</span> <small>— ${esc(pattern.gloss)}</small></h2><p class="context-pattern-summary">${esc(pattern.summary)}${pattern.readingNote ? ` <span class="context-reading-note">${esc(pattern.readingNote)}</span>` : ''}</p><div class="context-examples" aria-label="Pattern examples">${pattern.examples.map((ex, idx) => `<div class="context-example-item"><span class="context-example-num">Ex ${idx + 1}</span><div class="context-example-body"><p class="context-example-jp" lang="ja">${esc(ex.japanese)}</p>${s.showReading && ex.reading ? `<p class="context-reading" lang="ja">${esc(ex.reading)}</p>` : ''}<p class="context-example-en">${esc(ex.english)}</p>${ex.gloss ? `<small class="context-gloss">Glosses: ${esc(ex.gloss)}</small>` : ''}</div></div>`).join('')}</div>${linkedSubjects.length ? `<div class="context-subjects-row"><span class="info-eyebrow">FAMILIAR LEVEL 1 SUBJECTS</span><div class="component-list">${linkedSubjects.map((subj) => `<button type="button" class="component-chip ${subj.type}" data-action="view-subject" data-item="${esc(subj.id)}" title="${esc(subj.meaning)} (${subj.type})"><b>${glyph(subj, '')}</b><span class="component-name"><strong>${esc(subj.meaning)}</strong><small>${subj.type}</small></span></button>`).join('')}</div></div>` : ''}</section><section class="context-question-box ${s.inFollowUp ? 'is-followup' : ''}" aria-labelledby="context-question-heading"><div class="context-question-top"><span class="eyebrow">${questionEyebrow}</span><button type="button" class="button secondary context-reading-btn" data-action="toggle-context-reading" aria-pressed="${Boolean(s.showReading)}">${icon(s.showReading ? 'eyeOff' : 'eye')} <span>${s.showReading ? 'Hide reading' : 'Show reading'}</span></button></div><h1 id="context-question-heading">${esc(activeQ.prompt)}</h1><div class="context-prompt-sentence"><p class="context-sentence-jp" lang="ja" aria-label="${esc(activeQ.japanese)}">${sentenceHtml}</p>${wordHelpTrayHtml}${activeQ.targetMeaning ? `<p class="context-target-meaning">“${esc(activeQ.targetMeaning)}”</p>` : ''}${s.showReading && activeQ.reading ? `<p class="context-reading" lang="ja">${esc(activeQ.reading)}</p>` : ''}${activeQ.gloss ? `<p class="context-gloss">Glosses: ${esc(activeQ.gloss)}</p>` : ''}</div><div class="context-choices" role="group" aria-labelledby="context-question-heading">${activeQ.choices.map((c) => {
     const isSelected = s.selectedChoice === c.id;
     const wasTried = tried.includes(c.id);
     const stateClass = isSelected
@@ -1177,6 +1218,15 @@ function bind(){
   if(action==='context-practice'){await beginContextPractice(b.dataset.pack);return;}
   if(action==='start-context-followup'){beginContextFollowUp();return;}
   if(action==='toggle-context-reading'){toggleContextReading();return;}
+  if(action==='context-word-help'){
+    const idx = Number(b.dataset.wordIndex);
+    if (!Number.isNaN(idx)) toggleWordHelp(idx);
+    return;
+  }
+  if(action==='close-context-word-help'){
+    toggleWordHelp(null);
+    return;
+  }
   if(action==='next-context-question'){await nextContextQuestion();return;}
   if(action==='mark-known'){const id=b.dataset.item;if(id)await markKnown(id);}
   if(action==='graduate-level')await graduatePlacementLevel();
@@ -1338,6 +1388,11 @@ window.addEventListener('keydown',e=>{
  if(e.defaultPrevented||e.isComposing)return;
  const tag = e.target?.tagName?.toLowerCase();
  if(tag === 'input' || tag === 'textarea') return;
+ if(e.key === 'Escape' && session && session.mode === 'context' && session.activeWordHelp !== null) {
+  e.preventDefault();
+  toggleWordHelp(null);
+  return;
+ }
  if((e.key === 'f' || e.key === 'F') && session && session.phase === 'quiz' && session.feedback && !session.feedback.retry) {
   e.preventDefault();
   session.infoOpen = !session.infoOpen;
