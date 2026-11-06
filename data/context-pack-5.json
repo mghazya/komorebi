@@ -1,0 +1,532 @@
+{
+  "schemaVersion": 1,
+  "id": "pack:beginner-5",
+  "title": "Beginner Pack 5",
+  "subtitle": "Actions, Accompaniment & Movement Origin",
+  "label": "3 patterns · 6 questions",
+  "level": 1,
+  "rationale": "Builds directly on Pack 4’s action verbs by expanding the circumstances surrounding an action: (1) location particle で marks where an active conduct happens (contrasting with static に from Pack 1), (2) accompaniment particle と extends Pack 3’s noun-listing と to mark doing something together with another person, and (3) movement origin から introduces the starting point of motion (contrasting with destination に from Pack 4).",
+  "description": "Learn location particle で for actions, accompaniment particle と for companions, and origin particle から for starting points.",
+  "patterns": [
+    {
+      "id": "grammar:de-action",
+      "order": 1,
+      "renshuuGrammarId": "112",
+      "renshuuMeaningIndex": 1,
+      "renshuuRef": "112#1",
+      "pattern": "Place で [action]",
+      "gloss": "at / in (location of action で)",
+      "readingNote": "で marks the location where an activity or action takes place, unlike に which marks where something exists or enters.",
+      "summary": "In Pack 1, に marked where something statically sits or exists (へやにあります). When an active conduct happens—such as drinking, buying, reading, or resting—the location is marked with で (駅で買います / ホテルで休みます).",
+      "subjectIds": [
+        "kanji:人",
+        "kanji:大",
+        "kanji:入",
+        "kanji:口",
+        "vocabulary:人",
+        "vocabulary:大人",
+        "vocabulary:入り口"
+      ],
+      "examples": [
+        {
+          "id": "example:de-action-1",
+          "japanese": "大人は駅で水を買います。",
+          "reading": "おとなは えきで みずを かいます。",
+          "gloss": "大人 adult · 駅 station · で at · 水 water · 買います buy",
+          "english": "The adult buys water at the station."
+        },
+        {
+          "id": "example:de-action-2",
+          "japanese": "二人はホテルで休みます。",
+          "reading": "ふたりは ホテルで やすみます。",
+          "gloss": "二人 two people · ホテル hotel · で at · 休みます rest",
+          "english": "The two people rest at the hotel."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:de-action-1",
+          "patternId": "grammar:de-action",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the particle that marks 駅 (station) as the place where the adult buys water:",
+          "japanese": "大人は駅（　）水を買います。",
+          "targetMeaning": "The adult buys water at the station.",
+          "reading": "おとなは えき（　）みずを かいます。",
+          "gloss": "大人 adult · 駅 station · 水 water · 買います buy",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "で",
+              "lang": "ja",
+              "explanation": "That’s right! で marks the physical location where an active conduct takes place (駅で買います = buys at the station)."
+            },
+            {
+              "id": "B",
+              "text": "に",
+              "lang": "ja",
+              "explanation": "Not quite. に marks a destination (駅に行きます) or static location of existence (駅にあります), not the setting where an active verb like 買います occurs."
+            },
+            {
+              "id": "C",
+              "text": "の",
+              "lang": "ja",
+              "explanation": "Not quite. の connects two nouns (駅の水 = station’s water), so it cannot link the location noun directly to the verb phrase."
+            }
+          ],
+          "followUp": {
+            "id": "followup:de-action-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that marks ホテル (hotel) as the location where the two people talk:",
+            "japanese": "二人がホテル（　）話します。",
+            "targetMeaning": "Two people talk at the hotel.",
+            "reading": "ふたりが ホテル（　）はなします。",
+            "gloss": "二人 two people · ホテル hotel · 話します talk",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "に",
+                "lang": "ja",
+                "explanation": "Not quite. に marks where someone enters or stays, not the venue where an activity like talking (話します) takes place."
+              },
+              {
+                "id": "B",
+                "text": "で",
+                "lang": "ja",
+                "explanation": "That’s right! で marks the place where the action occurs (ホテルで話します = talk at the hotel)."
+              },
+              {
+                "id": "C",
+                "text": "と",
+                "lang": "ja",
+                "explanation": "Not quite. と marks a companion (with someone) or links nouns; it does not mark the setting of an action."
+              }
+            ],
+            "workedExample": {
+              "japanese": "二人がホテルで話します。",
+              "reading": "ふたりが ホテルで はなします。",
+              "english": "Two people talk at the hotel.",
+              "breakdown": "Step 1: Identify the setting where the action occurs: ホテル (“hotel”). Step 2: Use で to mark the location of active conduct (ホテルで). Step 3: Complete with the action verb 話します (“talk”)."
+            }
+          }
+        },
+        {
+          "id": "question:de-action-2",
+          "patternId": "grammar:de-action",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "男の人はビルで休みます。",
+          "reading": "おとこの ひとは ビルで やすみます。",
+          "gloss": "男の人 man · ビル building · で at · 休みます rest",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The man enters the building.",
+              "lang": "en",
+              "explanation": "Not quite. “Enters” is 入ります with に (ビルに入ります); 休みます means “rests” and で marks where the resting happens."
+            },
+            {
+              "id": "B",
+              "text": "There is a building at the hotel.",
+              "lang": "en",
+              "explanation": "Not quite. あります means “there is,” but 休みます means “rests.”"
+            },
+            {
+              "id": "C",
+              "text": "The man rests at the building.",
+              "lang": "en",
+              "explanation": "That’s right! 男の人は sets “the man” as the topic, ビルで marks the building as the location of action, and 休みます means “rests.”"
+            }
+          ],
+          "followUp": {
+            "id": "followup:de-action-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "女の人はへやで本を読みます。",
+            "reading": "おんなの ひとは へやで ほんを よみます。",
+            "gloss": "女の人 woman · へや room · で in/at · 本 book · 読みます read",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "The woman reads a book in the room.",
+                "lang": "en",
+                "explanation": "That’s right! 女の人は is “the woman,” へやで marks the room as the place of reading, and 本を読みます is “reads a book.”"
+              },
+              {
+                "id": "B",
+                "text": "The woman enters the room with a book.",
+                "lang": "en",
+                "explanation": "Not quite. 読みます means “reads,” not “enters” (入ります)."
+              },
+              {
+                "id": "C",
+                "text": "There are books inside the woman’s room.",
+                "lang": "en",
+                "explanation": "Not quite. This is an active sentence with 読みます (“reads”), not an existence sentence with あります."
+              }
+            ],
+            "workedExample": {
+              "japanese": "女の人はへやで本を読みます。",
+              "reading": "おんなの ひとは へやで ほんを よみます。",
+              "english": "The woman reads a book in the room.",
+              "breakdown": "Step 1: Identify the topic: 女の人は (“the woman”). Step 2: Identify where she conducts the action: へやで (“in the room”). Step 3: Identify the direct object and action: 本を読みます (“reads a book”)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:to-accompaniment",
+      "order": 2,
+      "renshuuGrammarId": "110",
+      "renshuuMeaningIndex": 3,
+      "renshuuRef": "110#3",
+      "pattern": "Person と [verb]",
+      "gloss": "with (accompaniment と)",
+      "readingNote": "と follows a person noun to indicate the companion who joins in an action.",
+      "summary": "In Pack 3, と joined items in a noun list (山と川 = mountain and river). When used before an action verb with a person, と indicates doing the action together with that companion (友だちと行きます = go with a friend).",
+      "subjectIds": [
+        "kanji:人",
+        "kanji:二",
+        "kanji:女",
+        "vocabulary:人",
+        "vocabulary:二人",
+        "vocabulary:女"
+      ],
+      "examples": [
+        {
+          "id": "example:to-accompaniment-1",
+          "japanese": "女の人は友だちと駅に行きます。",
+          "reading": "おんなの ひとは ともだちと えきに いきます。",
+          "gloss": "女の人 woman · 友だち friend · と with · 駅 station · に to · 行きます go",
+          "english": "The woman goes to the station with a friend."
+        },
+        {
+          "id": "example:to-accompaniment-2",
+          "japanese": "大人は二人と話します。",
+          "reading": "おとなは ふたりと はなします。",
+          "gloss": "大人 adult · 二人 two people · と with · 話します talk",
+          "english": "The adult talks with two people."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:to-accompaniment-1",
+          "patternId": "grammar:to-accompaniment",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the particle that marks 友だち (friend) as the companion the woman goes to the station with:",
+          "japanese": "女の人は友だち（　）駅に行きます。",
+          "targetMeaning": "The woman goes to the station with a friend.",
+          "reading": "おんなの ひとは ともだち（　）えきに いきます。",
+          "gloss": "女の人 woman · 友だち friend · 駅 station · 行きます go",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "を",
+              "lang": "ja",
+              "explanation": "Not quite. を marks the direct object of a transitive action, but 友だち is a companion joining in the motion."
+            },
+            {
+              "id": "B",
+              "text": "と",
+              "lang": "ja",
+              "explanation": "That’s right! と marks the person with whom you perform the action (友だちと行きます = go with a friend)."
+            },
+            {
+              "id": "C",
+              "text": "に",
+              "lang": "ja",
+              "explanation": "Not quite. に marks the destination (駅に), not the companion you travel with."
+            }
+          ],
+          "followUp": {
+            "id": "followup:to-accompaniment-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that marks 子ども (child) as the companion the adult looks at the river with:",
+            "japanese": "大人は子ども（　）川を見ます。",
+            "targetMeaning": "The adult looks at the river with a child.",
+            "reading": "おとなは こども（　）かわを みます。",
+            "gloss": "大人 adult · 子ども child · 川 river · 見ます look/see",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "の",
+                "lang": "ja",
+                "explanation": "Not quite. 子どもの川 would mean “the child’s river,” which alters the meaning."
+              },
+              {
+                "id": "B",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "Not quite. 川 (river) is already the object marked with を (川を見ます); 子ども is the companion."
+              },
+              {
+                "id": "C",
+                "text": "と",
+                "lang": "ja",
+                "explanation": "That’s right! と marks 子ども as the person accompanying the adult (子どもと見ます = looks with a child)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "大人は子どもと川を見ます。",
+              "reading": "おとなは こどもと かわを みます。",
+              "english": "The adult looks at the river with a child.",
+              "breakdown": "Step 1: Identify the companion: 子ども (“child”). Step 2: Mark accompaniment with と (子どもと = “with a child”). Step 3: State the action and object: 川を見ます (“looks at the river”)."
+            }
+          }
+        },
+        {
+          "id": "question:to-accompaniment-2",
+          "patternId": "grammar:to-accompaniment",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "あの人は二人とホテルに入ります。",
+          "reading": "あの ひとは ふたりと ホテルに はいります。",
+          "gloss": "あの人 that person · 二人 two people · と with · ホテル hotel · に into · 入ります enter",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "That person enters the hotel with two people.",
+              "lang": "en",
+              "explanation": "That’s right! あの人は is the subject/topic, 二人と indicates accompaniment (“with two people”), and ホテルに入ります is “enters the hotel.”"
+            },
+            {
+              "id": "B",
+              "text": "Those two people enter the hotel alone.",
+              "lang": "en",
+              "explanation": "Not quite. The topic is あの人は (“that person”), and 二人と means “with two people,” not alone."
+            },
+            {
+              "id": "C",
+              "text": "Two people are waiting at the hotel entrance.",
+              "lang": "en",
+              "explanation": "Not quite. The verb is 入ります (“enters”), not 待ちます or います."
+            }
+          ],
+          "followUp": {
+            "id": "followup:to-accompaniment-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "女の人は大人一人と歩きます。",
+            "reading": "おんなの ひとは おとな ひとりと あるきます。",
+            "gloss": "女の人 woman · 大人一人 one adult · と with · 歩きます walk",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "The woman walks to the station alone.",
+                "lang": "en",
+                "explanation": "Not quite. 大人一人と specifically means “with one adult,” so she is accompanied."
+              },
+              {
+                "id": "B",
+                "text": "The woman walks with one adult.",
+                "lang": "en",
+                "explanation": "That’s right! 女の人は is “the woman,” 大人一人と means “with one adult,” and 歩きます is “walks.”"
+              },
+              {
+                "id": "C",
+                "text": "One adult woman is walking away.",
+                "lang": "en",
+                "explanation": "Not quite. 女の人は is the topic and 大人一人と is the accompanying companion."
+              }
+            ],
+            "workedExample": {
+              "japanese": "女の人は大人一人と歩きます。",
+              "reading": "おんなの ひとは おとな ひとりと あるきます。",
+              "english": "The woman walks with one adult.",
+              "breakdown": "Step 1: Identify topic: 女の人は (“the woman”). Step 2: Identify companion marked by と: 大人一人と (“with one adult”). Step 3: Complete with verb: 歩きます (“walks”)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:kara-origin",
+      "order": 3,
+      "renshuuGrammarId": "99",
+      "renshuuMeaningIndex": 2,
+      "renshuuRef": "99#2",
+      "pattern": "Place から [verb]",
+      "gloss": "from (movement origin から)",
+      "readingNote": "から follows a location to indicate the starting point of motion or source.",
+      "summary": "In Pack 4, に marked the destination you enter (駅に入ります). The starting point or point of departure is marked with から (駅から歩きます = walk from the station).",
+      "subjectIds": [
+        "kanji:山",
+        "kanji:川",
+        "kanji:入",
+        "kanji:口",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:入り口"
+      ],
+      "examples": [
+        {
+          "id": "example:kara-origin-1",
+          "japanese": "二人は駅から歩きます。",
+          "reading": "ふたりは えきから あるきます。",
+          "gloss": "二人 two people · 駅 station · から from · 歩きます walk",
+          "english": "The two people walk from the station."
+        },
+        {
+          "id": "example:kara-origin-2",
+          "japanese": "大人は山から来ます。",
+          "reading": "おとなは やまから きます。",
+          "gloss": "大人 adult · 山 mountain · から from · 来ます come",
+          "english": "The adult comes from the mountain."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:kara-origin-1",
+          "patternId": "grammar:kara-origin",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the particle that marks 駅 (station) as the starting point from which the two people walk:",
+          "japanese": "二人は駅（　）歩きます。",
+          "targetMeaning": "The two people walk from the station.",
+          "reading": "ふたりは えき（　）あるきます。",
+          "gloss": "二人 two people · 駅 station · 歩きます walk",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "で",
+              "lang": "ja",
+              "explanation": "Not quite. で would mean walking inside the station (as an area of activity), but here the station is the starting origin of the journey."
+            },
+            {
+              "id": "B",
+              "text": "に",
+              "lang": "ja",
+              "explanation": "Not quite. に marks the destination you are walking towards, whereas we want the starting point “from the station.”"
+            },
+            {
+              "id": "C",
+              "text": "から",
+              "lang": "ja",
+              "explanation": "That’s right! から marks the starting point or origin of movement (駅から歩きます = walk from the station)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:kara-origin-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that marks 山 (mountain) as the place of origin the adult comes from:",
+            "japanese": "大人は山（　）来ます。",
+            "targetMeaning": "The adult comes from the mountain.",
+            "reading": "おとなは やま（　）きます。",
+            "gloss": "大人 adult · 山 mountain · 来ます come",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "から",
+                "lang": "ja",
+                "explanation": "That’s right! から marks the origin or place of departure (山から来ます = comes from the mountain)."
+              },
+              {
+                "id": "B",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "Not quite. を marks a direct object, but 来ます is an intransitive motion verb."
+              },
+              {
+                "id": "C",
+                "text": "の",
+                "lang": "ja",
+                "explanation": "Not quite. の links two nouns together, not a noun to a motion verb."
+              }
+            ],
+            "workedExample": {
+              "japanese": "大人は山から来ます。",
+              "reading": "おとなは やまから きます。",
+              "english": "The adult comes from the mountain.",
+              "breakdown": "Step 1: Identify the starting point/origin: 山 (“mountain”). Step 2: Attach origin particle から (山から = “from the mountain”). Step 3: Complete with the movement verb 来ます (“comes”)."
+            }
+          }
+        },
+        {
+          "id": "question:kara-origin-2",
+          "patternId": "grammar:kara-origin",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "あの人は川から上がります。",
+          "reading": "あの ひとは かわから あがります。",
+          "gloss": "あの人 that person · 川 river · から from/out of · 上がります comes up",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "That person goes down into the river.",
+              "lang": "en",
+              "explanation": "Not quite. “Goes down” is 下がります; 上がります (あがります) means “comes up / climbs out.”"
+            },
+            {
+              "id": "B",
+              "text": "That person comes up out of the river.",
+              "lang": "en",
+              "explanation": "That’s right! あの人は is “that person,” 川から marks the river as the origin/starting point (“from the river”), and 上がります means “comes up / steps out.”"
+            },
+            {
+              "id": "C",
+              "text": "There is a person by the river.",
+              "lang": "en",
+              "explanation": "Not quite. This is an active movement sentence with 上がります, not an existence sentence with います."
+            }
+          ],
+          "followUp": {
+            "id": "followup:kara-origin-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "二人は入り口から入ります。",
+            "reading": "ふたりは いりぐちから はいります。",
+            "gloss": "二人 two people · 入り口 entrance · から from/through · 入ります enter",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Two people leave through the exit.",
+                "lang": "en",
+                "explanation": "Not quite. 入り口 is “entrance” and 入ります means “enter,” not “leave.”"
+              },
+              {
+                "id": "B",
+                "text": "There are two entrances to the building.",
+                "lang": "en",
+                "explanation": "Not quite. 二人は marks “the two people” as the subject performing the action 入ります (“enter”)."
+              },
+              {
+                "id": "C",
+                "text": "The two people enter through the entrance.",
+                "lang": "en",
+                "explanation": "That’s right! 二人は is “the two people,” 入り口から marks the entrance as the starting access point, and 入ります is “enter.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "二人は入り口から入ります。",
+              "reading": "ふたりは いりぐちから はいります。",
+              "english": "The two people enter through the entrance.",
+              "breakdown": "Step 1: Identify who is acting: 二人は (“the two people”). Step 2: Note the access point marked with から: 入り口から (“from / through the entrance”). Step 3: Complete with the verb: 入ります (“enter”)."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    "Komorebi Level 1 curriculum (data/level-1.json): kanji 人, 大, 入, 口, 二, 女, 山, 川 and vocabulary 人, 大人, 入り口, 二人, 女, 山, 川, 上げる, 下げる.",
+    "JLPT N5 grammar progression (local Renshuu reference IDs): action location particle で (112#1), accompaniment particle と (110#3), and movement origin particle から (99#2).",
+    "All example sentences, fresh transfer prompts, follow-up questions, worked examples, brief glosses, and distractor explanations are original study material authored for Komorebi."
+  ]
+}

@@ -12,6 +12,9 @@ export const CONTEXT_PACK_1_PATH = './data/context-pack-1.json';
 export const CONTEXT_PACK_2_PATH = './data/context-pack-2.json';
 export const CONTEXT_PACK_3_PATH = './data/context-pack-3.json';
 export const CONTEXT_PACK_4_PATH = './data/context-pack-4.json';
+export const CONTEXT_PACK_5_PATH = './data/context-pack-5.json';
+export const CONTEXT_PACK_6_PATH = './data/context-pack-6.json';
+export const CONTEXT_PACK_7_PATH = './data/context-pack-7.json';
 
 export const CONTEXT_PACKS = Object.freeze([
   Object.freeze({
@@ -57,6 +60,39 @@ export const CONTEXT_PACKS = Object.freeze([
     questionsCount: 6,
     path: CONTEXT_PACK_4_PATH,
     status: 'live',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-5',
+    title: 'Beginner Pack 5',
+    subtitle: 'Actions, Accompaniment & Movement Origin',
+    label: '3 patterns · 6 questions',
+    patternsSummary: 'で (action), と (with), から (from)',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_5_PATH,
+    status: 'validated',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-6',
+    title: 'Beginner Pack 6',
+    subtitle: 'Time Points, Movement Extent & Polite Past Actions',
+    label: '3 patterns · 6 questions',
+    patternsSummary: 'に (time), から…まで, ました / ませんでした',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_6_PATH,
+    status: 'validated',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-7',
+    title: 'Beginner Pack 7',
+    subtitle: 'Describing Things — Adjectives, Negative Forms & Clause Contrast',
+    label: '3 patterns · 6 questions',
+    patternsSummary: '大きい (adjective), 〜くないです, …ですが、…',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_7_PATH,
+    status: 'validated',
   }),
 ]);
 

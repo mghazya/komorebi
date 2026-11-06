@@ -1,0 +1,535 @@
+{
+  "schemaVersion": 1,
+  "id": "pack:beginner-6",
+  "title": "Beginner Pack 6",
+  "subtitle": "Time Points, Movement Extent & Polite Past Actions",
+  "label": "3 patterns · 6 questions",
+  "level": 1,
+  "rationale": "Extends the learner's toolkit to temporal anchors and completed events: (1) specific time particle に pins an action to a clock hour, (2) span pattern から…まで connects a starting boundary to an ending boundary across time or space, and (3) polite past endings ました / ませんでした build directly on Pack 4’s ます / ません so learners can describe completed or non-completed past actions.",
+  "description": "Learn time particle に for clock hours, span pattern から…まで for spans of time and space, and polite past verbs ました / ませんでした.",
+  "patterns": [
+    {
+      "id": "grammar:ni-time",
+      "order": 1,
+      "renshuuGrammarId": "113",
+      "renshuuMeaningIndex": 3,
+      "renshuuRef": "113#3",
+      "pattern": "[Specific Time] に [verb]",
+      "gloss": "at (specific time に)",
+      "readingNote": "に marks the specific clock hour or point in time when an event happens.",
+      "summary": "You have seen に for location (Pack 1) and destination (Pack 4). When paired with specific clock times containing numbers (一時, 三時, 七時), に marks the exact point in time when an action takes place (三時に行きます = go at 3 o'clock).",
+      "subjectIds": [
+        "kanji:一",
+        "kanji:二",
+        "kanji:三",
+        "kanji:七",
+        "kanji:八",
+        "vocabulary:一",
+        "vocabulary:二",
+        "vocabulary:三",
+        "vocabulary:七",
+        "vocabulary:八"
+      ],
+      "examples": [
+        {
+          "id": "example:ni-time-1",
+          "japanese": "大人は三時にホテルに入ります。",
+          "reading": "おとなは さんじに ホテルに はいります。",
+          "gloss": "大人 adult · 三時 3 o'clock · に at (time) · ホテル hotel · 入ります enter",
+          "english": "The adult enters the hotel at 3 o'clock."
+        },
+        {
+          "id": "example:ni-time-2",
+          "japanese": "女の人は一時に来ます。",
+          "reading": "おんなの ひとは いちじに きます。",
+          "gloss": "女の人 woman · 一時 1 o'clock · に at (time) · 来ます come",
+          "english": "The woman comes at 1 o'clock."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:ni-time-1",
+          "patternId": "grammar:ni-time",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the particle that marks 三時 (3 o'clock) as the specific time the adult enters the hotel:",
+          "japanese": "大人は三時（　）ホテルに入ります。",
+          "targetMeaning": "The adult enters the hotel at 3 o'clock.",
+          "reading": "おとなは さんじ（　）ホテルに はいります。",
+          "gloss": "大人 adult · 三時 3 o'clock · ホテル hotel · 入ります enter",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "を",
+              "lang": "ja",
+              "explanation": "Not quite. を marks the direct object of an action, but 三時 is a specific time marker."
+            },
+            {
+              "id": "B",
+              "text": "に",
+              "lang": "ja",
+              "explanation": "That’s right! に marks specific points in time, such as clock hours (三時に = at 3 o'clock)."
+            },
+            {
+              "id": "C",
+              "text": "と",
+              "lang": "ja",
+              "explanation": "Not quite. と marks accompaniment (with someone) or links nouns, not a specific point in time."
+            }
+          ],
+          "followUp": {
+            "id": "followup:ni-time-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that marks 一時 (1 o'clock) as the time the woman comes:",
+            "japanese": "女の人は一時（　）来ます。",
+            "targetMeaning": "The woman comes at 1 o'clock.",
+            "reading": "おんなの ひとは いちじ（　）きます。",
+            "gloss": "女の人 woman · 一時 1 o'clock · 来ます come",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "に",
+                "lang": "ja",
+                "explanation": "That’s right! に attaches to numerical clock times to indicate when an event happens (一時に = at 1 o'clock)."
+              },
+              {
+                "id": "B",
+                "text": "で",
+                "lang": "ja",
+                "explanation": "Not quite. で marks the location of an activity or total duration, not a single clock time point."
+              },
+              {
+                "id": "C",
+                "text": "の",
+                "lang": "ja",
+                "explanation": "Not quite. の connects two nouns together, not a time noun to the verb 来ます."
+              }
+            ],
+            "workedExample": {
+              "japanese": "女の人は一時に来ます。",
+              "reading": "おんなの ひとは いちじに きます。",
+              "english": "The woman comes at 1 o'clock.",
+              "breakdown": "Step 1: State the time: 一時 (“1 o'clock”). Step 2: Mark specific time with に (一時に = “at 1 o'clock”). Step 3: Complete with the action verb 来ます (“comes”)."
+            }
+          }
+        },
+        {
+          "id": "question:ni-time-2",
+          "patternId": "grammar:ni-time",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "二人は七時に駅に行きます。",
+          "reading": "ふたりは しちじに えきに いきます。",
+          "gloss": "二人 two people · 七時 7 o'clock · に at · 駅 station · に to · 行きます go",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Seven people go to the station together.",
+              "lang": "en",
+              "explanation": "Not quite. 七人 (しちにん) is seven people, but 七時 (しちじ) means 7 o'clock; the topic is 二人は (two people)."
+            },
+            {
+              "id": "B",
+              "text": "Two people stay at the station for seven hours.",
+              "lang": "en",
+              "explanation": "Not quite. 七時間 would mean seven hours; 七時に means “at 7 o'clock,” and 行きます is “go.”"
+            },
+            {
+              "id": "C",
+              "text": "The two people go to the station at 7 o'clock.",
+              "lang": "en",
+              "explanation": "That’s right! 二人は is “the two people,” 七時に is “at 7 o'clock,” and 駅に行きます is “go to the station.”"
+            }
+          ],
+          "followUp": {
+            "id": "followup:ni-time-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "あの人は八時にへやを出ます。",
+            "reading": "あの ひとは はちじに へやを でます。",
+            "gloss": "あの人 that person · 八時 8 o'clock · に at · へや room · 出ます leave",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Eight people enter the room together.",
+                "lang": "en",
+                "explanation": "Not quite. 八人は is eight people; 八時に is the time “at 8 o'clock,” and 出ます means “leaves,” not “enters.”"
+              },
+              {
+                "id": "B",
+                "text": "That person leaves the room at 8 o'clock.",
+                "lang": "en",
+                "explanation": "That’s right! あの人は is “that person,” 八時に is “at 8 o'clock,” and へやを出ます is “leaves the room.”"
+              },
+              {
+                "id": "C",
+                "text": "That person rests in the room until 8 o'clock.",
+                "lang": "en",
+                "explanation": "Not quite. 出ます means “leaves,” not “rests” (休みます), and に marks the time of departure, not “until” (まで)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "あの人は八時にへやを出ます。",
+              "reading": "あの ひとは はちじに へやを でます。",
+              "english": "That person leaves the room at 8 o'clock.",
+              "breakdown": "Step 1: Identify topic: あの人は (“that person”). Step 2: Identify time marked by に: 八時に (“at 8 o'clock”). Step 3: Identify action and space left: へやを出ます (“leaves the room”)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:kara-made",
+      "order": 2,
+      "renshuuGrammarId": "467",
+      "renshuuMeaningIndex": 1,
+      "renshuuRef": "467#1",
+      "pattern": "A から B まで",
+      "gloss": "from A to/until B (span pattern から…まで)",
+      "readingNote": "から marks the starting point and まで marks the ending limit across time or physical distance.",
+      "summary": "In Pack 5, you learned から as an origin point (駅から). When paired with まで (“until / as far as”), it frames an entire span: 一時から三時まで (from 1 to 3 o'clock) or 駅からホテルまで (from the station to the hotel).",
+      "subjectIds": [
+        "kanji:一",
+        "kanji:三",
+        "kanji:入",
+        "kanji:口",
+        "vocabulary:一",
+        "vocabulary:三",
+        "vocabulary:入り口"
+      ],
+      "examples": [
+        {
+          "id": "example:kara-made-1",
+          "japanese": "一時から三時まで勉強します。",
+          "reading": "いちじから さんじまで べんきょうします。",
+          "gloss": "一時 1 o'clock · から from · 三時 3 o'clock · まで until · 勉強します study",
+          "english": "Study from 1 o'clock until 3 o'clock."
+        },
+        {
+          "id": "example:kara-made-2",
+          "japanese": "駅からホテルまで歩きます。",
+          "reading": "えきから ホテルまで あるきます。",
+          "gloss": "駅 station · から from · ホテル hotel · まで as far as · 歩きます walk",
+          "english": "Walk from the station to the hotel."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:kara-made-1",
+          "patternId": "grammar:kara-made",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the particle that marks 三時 (3 o'clock) as the ending limit of the study session:",
+          "japanese": "一時から三時（　）勉強します。",
+          "targetMeaning": "Study from 1 o'clock until 3 o'clock.",
+          "reading": "いちじから さんじ（　）べんきょうします。",
+          "gloss": "一時 1 o'clock · から from · 三時 3 o'clock · 勉強します study",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "まで",
+              "lang": "ja",
+              "explanation": "That’s right! まで marks the final endpoint or limit of a duration (三時まで = until 3 o'clock)."
+            },
+            {
+              "id": "B",
+              "text": "から",
+              "lang": "ja",
+              "explanation": "Not quite. から marks the starting point (一時から); repeating から would mean starting at 3 o'clock."
+            },
+            {
+              "id": "C",
+              "text": "に",
+              "lang": "ja",
+              "explanation": "Not quite. に marks a single point in time, but here we are stating a continuous span ending at 3 o'clock (から…まで)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:kara-made-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle that marks ホテル (hotel) as the destination limit of the walk:",
+            "japanese": "駅からホテル（　）歩きます。",
+            "targetMeaning": "Walk from the station to the hotel.",
+            "reading": "えきから ホテル（　）あるきます。",
+            "gloss": "駅 station · から from · ホテル hotel · 歩きます walk",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "で",
+                "lang": "ja",
+                "explanation": "Not quite. で marks the area where an activity happens, not the target endpoint of a journey across distance."
+              },
+              {
+                "id": "B",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "Not quite. を marks a direct object, but 歩きます is an intransitive verb of movement."
+              },
+              {
+                "id": "C",
+                "text": "まで",
+                "lang": "ja",
+                "explanation": "That’s right! まで marks the physical destination endpoint (ホテルまで = as far as the hotel)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "駅からホテルまで歩きます。",
+              "reading": "えきから ホテルまで あるきます。",
+              "english": "Walk from the station to the hotel.",
+              "breakdown": "Step 1: Starting point: 駅から (“from the station”). Step 2: Ending limit: ホテルまで (“to the hotel”). Step 3: Action: 歩きます (“walk”)."
+            }
+          }
+        },
+        {
+          "id": "question:kara-made-2",
+          "patternId": "grammar:kara-made",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "入り口から川まで大人二人が歩きます。",
+          "reading": "いりぐちから かわまで おとな ふたりが あるきます。",
+          "gloss": "入り口 entrance · から from · 川 river · まで to · 大人大人 adults · 二人 two people · 歩きます walk",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "Two adults enter the river through the entrance.",
+              "lang": "en",
+              "explanation": "Not quite. 川まで means “as far as / to the river,” not into it (川に入ります), and 歩きます means “walk.”"
+            },
+            {
+              "id": "B",
+              "text": "Two adults walk from the entrance to the river.",
+              "lang": "en",
+              "explanation": "That’s right! 入り口から is “from the entrance,” 川まで is “to the river,” and 大人二人が歩きます is “two adults walk.”"
+            },
+            {
+              "id": "C",
+              "text": "There are two adults between the entrance and the river.",
+              "lang": "en",
+              "explanation": "Not quite. This describes an active walking journey with 歩きます, not static location."
+            }
+          ],
+          "followUp": {
+            "id": "followup:kara-made-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "九時から十時までへやで休みます。",
+            "reading": "くじから じゅうじまで へやで やすみます。",
+            "gloss": "九時 9 o'clock · から from · 十時 10 o'clock · まで until · へや room · で in · 休みます rest",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Rest in the room from 9 o'clock until 10 o'clock.",
+                "lang": "en",
+                "explanation": "That’s right! 九時から is “from 9 o'clock,” 十時まで is “until 10 o'clock,” へやで is “in the room,” and 休みます is “rest.”"
+              },
+              {
+                "id": "B",
+                "text": "Ten people leave the room at 9 o'clock.",
+                "lang": "en",
+                "explanation": "Not quite. 九時 and 十時 are clock hours, not numbers of people, and 休みます is “rest,” not “leave.”"
+              },
+              {
+                "id": "C",
+                "text": "The room is open from 9 o'clock to 10 o'clock.",
+                "lang": "en",
+                "explanation": "Not quite. 休みます is “rest,” describing a person taking a break, not a room schedule."
+              }
+            ],
+            "workedExample": {
+              "japanese": "九時から十時までへやで休みます。",
+              "reading": "くじから じゅうじまで へやで やすみます。",
+              "english": "Rest in the room from 9 o'clock until 10 o'clock.",
+              "breakdown": "Step 1: Time span: 九時から (“from 9”) + 十時まで (“until 10”). Step 2: Location of action: へやで (“in the room”). Step 3: Verb: 休みます (“rest”)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:mashita-past",
+      "order": 3,
+      "renshuuGrammarId": "477",
+      "renshuuMeaningIndex": 1,
+      "renshuuRef": "477#1",
+      "pattern": "〜ました / 〜ませんでした",
+      "gloss": "did / did not (polite past verb endings)",
+      "readingNote": "〜ました marks polite completed past action; 〜ませんでした marks polite past negative.",
+      "summary": "In Pack 4, you used polite present verbs (入ります = enter, 入りません = does not enter). Changing 〜ます to 〜ました forms the polite past affirmative (“entered / did”), and changing to 〜ませんでした forms the polite past negative (“did not enter / did not do”).",
+      "subjectIds": [
+        "kanji:入",
+        "kanji:上",
+        "kanji:下",
+        "vocabulary:入る",
+        "vocabulary:上げる",
+        "vocabulary:下げる"
+      ],
+      "examples": [
+        {
+          "id": "example:mashita-past-1",
+          "japanese": "きのう、あの人はビルに入りました。",
+          "reading": "きのう、あの ひとは ビルに はいりました。",
+          "gloss": "きのう yesterday · あの人 that person · ビル building · 入りました entered",
+          "english": "Yesterday, that person entered the building."
+        },
+        {
+          "id": "example:mashita-past-2",
+          "japanese": "大人は手を上げませんでした。",
+          "reading": "おとなは てを あげませんでした。",
+          "gloss": "大人 adult · 手 hand · を object · 上げませんでした did not raise/lift",
+          "english": "The adult did not raise their hand."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:mashita-past-1",
+          "patternId": "grammar:mashita-past",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the verb form that completes “Yesterday, that person entered the building” (completed past):",
+          "japanese": "きのう、あの人はビルに入り（　）。",
+          "targetMeaning": "Yesterday, that person entered the building.",
+          "reading": "きのう、あの ひとは ビルに はいり（　）。",
+          "gloss": "きのう yesterday · あの人 that person · ビル building",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "ます",
+              "lang": "ja",
+              "explanation": "Not quite. ます is the present/future tense (“enters / will enter”), but きのう indicates a completed past event."
+            },
+            {
+              "id": "B",
+              "text": "ません",
+              "lang": "ja",
+              "explanation": "Not quite. ません is present negative (“does not enter”), not affirmative past."
+            },
+            {
+              "id": "C",
+              "text": "ました",
+              "lang": "ja",
+              "explanation": "That’s right! ました marks the completed polite past affirmative (入りました = “entered”)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:mashita-past-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the verb form that completes “The adult did NOT raise their hand” (polite past negative):",
+            "japanese": "大人は手を上げ（　）。",
+            "targetMeaning": "The adult did not raise their hand.",
+            "reading": "おとなは てを あげ（　）。",
+            "gloss": "大人 adult · 手 hand · を object",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "ました",
+                "lang": "ja",
+                "explanation": "Not quite. ました is positive past (“raised / lifted”), but we need the negative “did not raise.”"
+              },
+              {
+                "id": "B",
+                "text": "ませんでした",
+                "lang": "ja",
+                "explanation": "That’s right! ませんでした is the polite past negative ending (上げませんでした = “did not raise”)."
+              },
+              {
+                "id": "C",
+                "text": "ます",
+                "lang": "ja",
+                "explanation": "Not quite. ます is present positive (“raises”), not past negative."
+              }
+            ],
+            "workedExample": {
+              "japanese": "大人は手を上げませんでした。",
+              "reading": "おとなは てを あげませんでした。",
+              "english": "The adult did not raise their hand.",
+              "breakdown": "Step 1: Start with verb stem: 上げ (age). Step 2: Attach polite past negative: 〜ませんでした → 上げませんでした (“did not raise”)."
+            }
+          }
+        },
+        {
+          "id": "question:mashita-past-2",
+          "patternId": "grammar:mashita-past",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "女の人は大きい箱を下げませんでした。",
+          "reading": "おんなの ひとは おおきい はこを さげませんでした。",
+          "gloss": "女の人 woman · 大きい箱 big box · 下げませんでした did not lower",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The woman did not lower the big box.",
+              "lang": "en",
+              "explanation": "That’s right! 女の人は is “the woman,” 大きい箱を is “the big box,” and 下げませんでした is the polite past negative “did not lower.”"
+            },
+            {
+              "id": "B",
+              "text": "The woman will lower the big box now.",
+              "lang": "en",
+              "explanation": "Not quite. 下げません would be present negative and 下げます present affirmative; 下げませんでした is past negative (“did not lower”)."
+            },
+            {
+              "id": "C",
+              "text": "The woman lifted the big box yesterday.",
+              "lang": "en",
+              "explanation": "Not quite. “Lifted” is 上げました; 下げませんでした means “did not lower.”"
+            }
+          ],
+          "followUp": {
+            "id": "followup:mashita-past-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "二人は川に入りました。",
+            "reading": "ふたりは かわに はいりました。",
+            "gloss": "二人 two people · 川 river · に into · 入りました entered/went into",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Two people do not go into the river.",
+                "lang": "en",
+                "explanation": "Not quite. 入りません is present negative; 入りました is affirmative past (“went into”)."
+              },
+              {
+                "id": "B",
+                "text": "There are two people by the river.",
+                "lang": "en",
+                "explanation": "Not quite. This is a completed action sentence with 入りました (“entered”), not an existence sentence."
+              },
+              {
+                "id": "C",
+                "text": "The two people went into the river.",
+                "lang": "en",
+                "explanation": "That’s right! 二人は is “the two people,” 川に is “into the river,” and 入りました is the polite past “went into / entered.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "二人は川に入りました。",
+              "reading": "ふたりは かわに はいりました。",
+              "english": "The two people went into the river.",
+              "breakdown": "Step 1: Subject/topic: 二人は (“the two people”). Step 2: Destination: 川に (“into the river”). Step 3: Polite past verb: 入りました (“entered / went into”)."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    "Komorebi Level 1 curriculum (data/level-1.json): kanji 一, 二, 三, 七, 八, 入, 上, 下, 口, 人, 女, 川 and vocabulary 一, 二, 三, 七, 八, 入る, 上げる, 下げる, 入り口, 人, 女, 川, ふじ山.",
+    "JLPT N5 grammar progression (local Renshuu reference IDs): specific time particle に (113#3), span pattern から~まで (467#1), and polite past verb endings ました/ませんでした (477#1).",
+    "All example sentences, fresh transfer prompts, follow-up questions, worked examples, brief glosses, and distractor explanations are original study material authored for Komorebi."
+  ]
+}

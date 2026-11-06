@@ -9,18 +9,24 @@
 
 - **Total JLPT N5 Grammar IDs**: 69
 - **Total JLPT N5 Distinct Meanings Tracked**: 147
-- **Distinct Patterns Taught Across Packs 1–4**: 12 patterns (24 primary questions + 24 fresh follow-up questions)
-- **Renshuu N5 Meanings Taught (`taught: true`)**: 16 (`live`: 16, `reviewed`: 0, `validated`: 0, `planned`: 131)
-- **Flagged Items Requiring Review / Disambiguation**: 8
+- **Distinct Patterns Taught Across Packs 1–7**: 21 patterns (42 primary questions + 42 fresh follow-up questions)
+- **Renshuu N5 Meanings Taught (`taught: true`)**: 25 (`live`: 16, `reviewed`: 0, `validated`: 9, `planned`: 122)
+- **Flagged Items Requiring Review / Disambiguation**: 11
 
-## Active & Validated Beginner Packs (Packs 1–4)
+## Active & Validated Beginner Packs (Packs 1–7)
 
 | Pack ID | Title | Subtitle | Status | Patterns (`grammar:*`) | Renshuu Meanings Taught | Questions |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `pack:beginner-1` | Beginner Pack 1 | Foundational Copula, Noun Modification & Inanimate Existence | `live` | `grammar:wa-desu`, `grammar:no-modifier`, `grammar:ni-ga-arimasu` | `renshuu:735#1`, `renshuu:132#2`, `renshuu:132#4`, `renshuu:737#1`, `renshuu:718#1`, `renshuu:113#1` | 6 primary + 6 follow-up |
 | `pack:beginner-2` | Beginner Pack 2 | Questions, Shared Topics & Requests | `live` | `grammar:ka-question`, `grammar:mo-also`, `grammar:wo-kudasai` | `renshuu:37#3`, `renshuu:741#1`, `renshuu:117#2`, `renshuu:333#1` | 6 primary + 6 follow-up |
 | `pack:beginner-3` | Beginner Pack 3 | Living Beings, Joining Nouns & Past Facts | `live` | `grammar:ni-ga-imasu`, `grammar:to-and`, `grammar:deshita-past` | `renshuu:719#1`, `renshuu:110#2`, `renshuu:743#1` | 6 primary + 6 follow-up |
-| `pack:beginner-4` | Beginner Pack 4 | Everyday Actions — Destination, Direct Object & Polite Verbs | `live` | `grammar:ni-destination`, `grammar:wo-object`, `grammar:masu-polite` | `renshuu:113#2`, `renshuu:114#2`, `renshuu:476#1` | 6 primary + 6 follow-up |
+| `pack:beginner-4` | Beginner Pack 4 | Everyday Actions — Destination, Direct Object & Polite Verbs | `live` | `grammar:ni-destination`, `grammar:wo-object`, `grammar:masu-polite` | `renshuu:112#1` | で | `validated` | LOCATION_CONTRAST_NOTE: で marks where an active conduct takes place, distinct from に which marks static presence (113#1) or destination (113#2). |
+| `renshuu:462#1` | が | `validated` | DISAMBIGUATION_FROM_SUBJECT_GA: Conjunctive が joins clauses with 'but', distinct from case particle が (462#2) which marks grammatical subject. |
+| `renshuu:467#1` | から~迄まで | `validated` | COMPOUND_PATTERN_NOTE: Bundles starting point から (99#2) and endpoint まで (115#1) into a single span expression across time or space. |
+| `renshuu:113#2`, `renshuu:114#2`, `renshuu:476#1` | 6 primary + 6 follow-up |
+| `pack:beginner-5` | Beginner Pack 5 | Actions, Accompaniment & Movement Origin | `validated` | `grammar:de-action`, `grammar:to-accompaniment`, `grammar:kara-origin` | `renshuu:112#1`, `renshuu:110#3`, `renshuu:99#2` | 6 primary + 6 follow-up |
+| `pack:beginner-6` | Beginner Pack 6 | Time Points, Movement Extent & Polite Past Actions | `validated` | `grammar:ni-time`, `grammar:kara-made`, `grammar:mashita-past` | `renshuu:113#3`, `renshuu:467#1`, `renshuu:477#1` | 6 primary + 6 follow-up |
+| `pack:beginner-7` | Beginner Pack 7 | Describing Things — Adjectives, Negative Forms & Clause Contrast | `validated` | `grammar:i-adjective`, `grammar:adjective-negative`, `grammar:ga-contrast` | `renshuu:736#1`, `renshuu:738#1`, `renshuu:462#1` | 6 primary + 6 follow-up |
 
 ## Flagged Items & Uncertainty Log
 
@@ -58,17 +64,17 @@
 | `renshuu:76#1` | より~の方ほうが~ | B is more C than A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:76#2` | より~の方ほうが~ | A is more C than B | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:99#1` | から | Because A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
-| `renshuu:99#2` | から | From A , Since A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
+| `renshuu:99#2` | から | From A , Since A | `renshuu:735#1` | `vocabulary:山`, `vocabulary:川`, `vocabulary:入り口` (+1 more) | `pack:beginner-5` | `grammar:kara-origin` | 4 (`question:kara-origin-1`…) | Yes | `validated` |
 | `renshuu:101#1` | て,で(てform) | Since A ; As A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:101#2` | て,で(てform) | A , then B | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:101#3` | て,で(てform) | A and B | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:101#4` | て,で(てform) | Do B by means of A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:110#1` | と | When/if A , then B | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:110#2` | と | A and B (and C ,etc..) | `renshuu:735#1`, `renshuu:718#1`, `renshuu:719#1` | `kanji:山`, `kanji:川`, `kanji:人`, `kanji:大`, `kanji:女` (+5 more) | `pack:beginner-3` | `grammar:to-and` | 4 (`question:to-and-1`…) | Yes | `live` |
-| `renshuu:110#3` | と | With A ; to A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
+| `renshuu:110#3` | と | With A ; to A | `renshuu:735#1` | `vocabulary:人`, `vocabulary:二人`, `vocabulary:女` | `pack:beginner-5` | `grammar:to-accompaniment` | 4 (`question:to-accompaniment-1`…) | Yes | `validated` |
 | `renshuu:110#4` | と | Shows a sequence of two events A and B | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:110#5` | と | When/if A (polite/formal version) | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
-| `renshuu:112#1` | で | At A ; in A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
+| `renshuu:112#1` | で | At A ; in A | `renshuu:735#1` | `vocabulary:人`, `vocabulary:大人`, `vocabulary:入り口` | `pack:beginner-5` | `grammar:de-action` | 4 (`question:de-action-1`…) | Yes | `validated` |
 | `renshuu:112#2` | で | For A ; in A (shows a length or amount of time) | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:112#3` | で | Do B by using the object A ; Do B by means of A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:112#4` | で | Shows the material A that something is made of/composed of | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
@@ -76,7 +82,7 @@
 | `renshuu:112#6` | で | Used after nouns/な-adjectives to link a list of adjectives and/or nouns | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:113#1` | に | In A ; on A ; at A | `renshuu:735#1` | `kanji:入`, `kanji:口`, `kanji:二`, `kanji:三`, `kanji:上` (+6 more) | `pack:beginner-1` | `grammar:ni-ga-arimasu` | 4 (`question:ni-ga-arimasu-1`…) | Yes | `live` |
 | `renshuu:113#2` | に | To A ; towards A ; on A | `renshuu:113#1`, `renshuu:718#1` | `kanji:入`, `kanji:口`, `kanji:山`, `kanji:川`, `kanji:人` (+5 more) | `pack:beginner-4` | `grammar:ni-destination` | 4 (`question:ni-destination-1`…) | Yes | `live` |
-| `renshuu:113#3` | に | At A (time) | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
+| `renshuu:113#3` | に | At A (time) | `renshuu:735#1` | `vocabulary:一`, `vocabulary:二`, `vocabulary:三`, `vocabulary:七`, `vocabulary:八` | `pack:beginner-6` | `grammar:ni-time` | 4 (`question:ni-time-1`…) | Yes | `validated` |
 | `renshuu:113#4` | に | Used with passive verbs to identify who/what is doing the action | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:113#5` | に | To change into A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:113#6` | に | Every period of time A , B ; Per A , B | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
@@ -137,7 +143,7 @@
 | `renshuu:461#1` | もう | A has already occurred/been done; A has already started (with ている) | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:461#2` | もう | Not A (anymore) | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:461#3` | もう | (one, a little, etc.) more A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
-| `renshuu:462#1` | が | A , but/however B | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
+| `renshuu:462#1` | が | A , but/however B | `renshuu:735#1` | `vocabulary:ふじ山`, `vocabulary:山`, `vocabulary:人`, `vocabulary:大人`, `vocabulary:力` | `pack:beginner-7` | `grammar:ga-contrast` | 4 (`question:ga-contrast-1`…) | Yes | `validated` |
 | `renshuu:462#2` | が | Marks the subject A in the sentence | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:462#3` | が | That A (negative, abusive) | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:463#1` | 余あまり~無ない | Not very A ; doesn't do A very much (only a little) | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
@@ -146,7 +152,7 @@
 | `renshuu:464#3` | 中ちゅう／中じゅう | Action A is currently ongoing/in the middle of | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:465#1` | 達たち | Marks a group of A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:466#1` | 方がた | (Polite) forms the plural of A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
-| `renshuu:467#1` | から~迄まで | From A until B | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
+| `renshuu:467#1` | から~迄まで | From A until B | `renshuu:735#1` | `vocabulary:一`, `vocabulary:三`, `vocabulary:入り口`, `vocabulary:川` | `pack:beginner-6` | `grammar:kara-made` | 4 (`question:kara-made-1`…) | Yes | `validated` |
 | `renshuu:468#1` | へ | Go to A ; head to A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:469#1` | や | A and B (shows a non-exhaustive list of items) | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:469#2` | や | A or B (small amount) | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
@@ -159,7 +165,7 @@
 | `renshuu:473#4` | だけ | Do A to some extent, to try A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:473#5` | だけ | Do A as much as possible | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:476#1` | ます/ません | Polite, present form of verb A | `renshuu:113#2`, `renshuu:114#2` | `kanji:入`, `kanji:上`, `kanji:下`, `kanji:人`, `vocabulary:入る` (+4 more) | `pack:beginner-4` | `grammar:masu-polite` | 4 (`question:masu-polite-1`…) | Yes | `live` |
-| `renshuu:477#1` | ました/ませんでした | Polite, past form of verb A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
+| `renshuu:477#1` | ました/ませんでした | Polite, past form of verb A | `renshuu:735#1` | `vocabulary:入る`, `vocabulary:上げる`, `vocabulary:下げる`, `vocabulary:川` | `pack:beginner-6` | `grammar:mashita-past` | 4 (`question:mashita-past-1`…) | Yes | `validated` |
 | `renshuu:478#1` | Present (Non-past) Casual | Casual, present (non-past) positive form of A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:478#2` | Present (Non-past) Casual | Casual, present (non-past) negative form of A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:479#1` | Past Casual | Casual, past positive form of A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
@@ -170,9 +176,9 @@
 | `renshuu:718#2` | が有ある | A has B | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:719#1` | が居いる | There is/are A | `renshuu:718#1`, `renshuu:113#1` | `kanji:人`, `kanji:一`, `kanji:二`, `kanji:三`, `kanji:女` (+9 more) | `pack:beginner-3` | `grammar:ni-ga-imasu` | 4 (`question:ni-ga-imasu-1`…) | Yes | `live` |
 | `renshuu:735#1` | AはBです | A is/are B | — | `kanji:山`, `kanji:大`, `kanji:人`, `kanji:入`, `kanji:口` (+6 more) | `pack:beginner-1` | `grammar:wa-desu` | 4 (`question:wa-desu-1`…) | Yes | `live` |
-| `renshuu:736#1` | Adjectives | The adjective modifies the noun that directly follows it. | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
+| `renshuu:736#1` | Adjectives | The adjective modifies the noun that directly follows it. | `renshuu:735#1` | `vocabulary:大きい`, `vocabulary:山`, `vocabulary:川`, `vocabulary:ふじ山` | `pack:beginner-7` | `grammar:i-adjective` | 4 (`question:i-adjective-1`…) | Yes | `validated` |
 | `renshuu:737#1` | AのB | A 's B (shows possession); B is A | `renshuu:735#1` | `kanji:入`, `kanji:口`, `kanji:山`, `kanji:下`, `vocabulary:入り口` (+2 more) | `pack:beginner-1` | `grammar:no-modifier` | 4 (`question:no-modifier-1`…) | Yes | `live` |
-| `renshuu:738#1` | Adjectives-negative | B is not A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
+| `renshuu:738#1` | Adjectives-negative | B is not A | `renshuu:735#1` | `vocabulary:大きい`, `vocabulary:山`, `vocabulary:入り口` | `pack:beginner-7` | `grammar:adjective-negative` | 4 (`question:adjective-negative-1`…) | Yes | `validated` |
 | `renshuu:739#1` | Adjectives-linking | C is A and B | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:740#1` | 好すき・嫌きらい・欲ほしい | I (don't) like/dislike/want A | `renshuu:735#1` | — | — | — | 0 | No | `planned` |
 | `renshuu:741#1` | Questions | Turns the sentence A into a yes/no question. | `renshuu:735#1` | `kanji:山`, `kanji:入`, `kanji:口`, `kanji:人`, `kanji:大` (+5 more) | `pack:beginner-2` | `grammar:ka-question` | 4 (`question:ka-question-1`…) | Yes | `live` |
