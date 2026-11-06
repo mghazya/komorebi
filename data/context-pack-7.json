@@ -362,7 +362,7 @@
       "pattern": "[Clause 1] が、[Clause 2]",
       "gloss": "but / however (conjunctive が)",
       "readingNote": "が connects two contrasting clauses, meaning “but” or “however.”",
-      "summary": "You have seen が marking existence subjects (水があります). When placed between two complete clauses with a comma (〜ですが、…), が acts as a conjunction meaning “but” or “however” (小さいですが、きれいです = It is small, but clean).",
+      "summary": "You have seen が marking existence subjects (水があります). When placed between two complete clauses with a comma (〜ですが、…), が acts as a conjunction meaning “but” or “however” (小さいですが、明るいです = It is small, but bright).",
       "subjectIds": [
         "kanji:大",
         "kanji:山",
@@ -375,85 +375,85 @@
       "examples": [
         {
           "id": "example:ga-contrast-1",
-          "japanese": "ふじ山は高いですが、きれいです。",
-          "reading": "ふじさんは たかいですが、きれいです。",
-          "gloss": "ふじ山 Mt. Fuji · 高い tall · ですが but · きれいです is pretty",
-          "english": "Mt. Fuji is tall, but it is beautiful."
+          "japanese": "この部屋は小さいですが、明るいです。",
+          "reading": "この へやは ちいさいですが、あかるいです。",
+          "gloss": "この部屋 this room · 小さい small · ですが but · 明るい bright · です is",
+          "english": "This room is small, but it is bright."
         },
         {
           "id": "example:ga-contrast-2",
-          "japanese": "部屋は小さいですが、静かです。",
-          "reading": "へやは ちいさいですが、しずかです。",
-          "gloss": "部屋 room · 小さい small · ですが but · 静か quiet · です is",
-          "english": "The room is small, but it is quiet."
+          "japanese": "あのホテルは古いですが、きれいです。",
+          "reading": "あの ホテルは ふるいですが、きれいです。",
+          "gloss": "あのホテル that hotel · 古い old · ですが but · きれい clean/pretty · です is",
+          "english": "That hotel is old, but it is clean."
         }
       ],
       "questions": [
         {
           "id": "question:ga-contrast-1",
           "patternId": "grammar:ga-contrast",
-          "kind": "cloze",
+          "kind": "comprehension",
           "isFreshSentence": false,
-          "prompt": "Choose the particle that joins the two clauses with “but / however”:",
-          "japanese": "ふじ山は高いです（　）、きれいです。",
-          "targetMeaning": "Mt. Fuji is tall, but it is beautiful.",
-          "reading": "ふじさんは たかいです（　）、きれいです。",
-          "gloss": "ふじ山 Mt. Fuji · 高いです is tall · きれいです is beautiful",
+          "prompt": "What does this sentence mean?",
+          "japanese": "この部屋は小さいですが、明るいです。",
+          "targetMeaning": "This room is small, but it is bright.",
+          "reading": "この へやは ちいさいですが、あかるいです。",
+          "gloss": "この部屋 this room · 小さい small · ですが but · 明るい bright · です is",
           "correctChoice": "A",
           "choices": [
             {
               "id": "A",
-              "text": "が",
-              "lang": "ja",
-              "explanation": "That’s right! Conjunctive が connects two clauses with the meaning “but / however” (高いですが、きれいです)."
+              "text": "This room is small, but it is bright.",
+              "lang": "en",
+              "explanation": "That’s right! この部屋は is “this room,” 小さいですが is “is small, but,” and 明るいです is “is bright.”"
             },
             {
               "id": "B",
-              "text": "を",
-              "lang": "ja",
-              "explanation": "Not quite. を marks the direct object of a verb, not a conjunction between clauses."
+              "text": "This room is small and dark.",
+              "lang": "en",
+              "explanation": "Not quite. While 小さい does mean “small,” 明るい (あかるい) means “bright,” not “dark,” and ですが expresses contrast (“but,” not “and”)."
             },
             {
               "id": "C",
-              "text": "の",
-              "lang": "ja",
-              "explanation": "Not quite. の links two nouns together; it cannot connect two clauses after です."
+              "text": "This room is large and bright.",
+              "lang": "en",
+              "explanation": "Not quite. While 明るい does mean “bright,” 小さい (ちいさい) means “small,” not “large.”"
             }
           ],
           "followUp": {
             "id": "followup:ga-contrast-1",
-            "kind": "cloze",
-            "prompt": "Follow-up check — Choose the particle that joins “There is water” and “there is no tea” with “but”:",
-            "japanese": "水はあります（　）、お茶はありません。",
-            "targetMeaning": "There is water, but there is no tea.",
-            "reading": "みずは あります（　）、おちゃは ありません。",
-            "gloss": "水 water · あります there is · お茶 tea · ありません there is not",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "あのホテルは古いですが、きれいです。",
+            "targetMeaning": "That hotel is old, but it is clean.",
+            "reading": "あの ホテルは ふるいですが、きれいです。",
+            "gloss": "あのホテル that hotel · 古い old · ですが but · きれい clean/pretty · です is",
             "correctChoice": "C",
             "choices": [
               {
                 "id": "A",
-                "text": "と",
-                "lang": "ja",
-                "explanation": "Not quite. と connects nouns in a list (水とお茶), but here we are joining two full clauses with contrast."
+                "text": "That hotel is old and dirty.",
+                "lang": "en",
+                "explanation": "Not quite. While 古い does mean “old,” きれい means “clean/pretty,” not “dirty,” and ですが expresses contrast (“but”)."
               },
               {
                 "id": "B",
-                "text": "に",
-                "lang": "ja",
-                "explanation": "Not quite. に marks location or destination, not a conjunction between clauses."
+                "text": "That hotel is new and clean.",
+                "lang": "en",
+                "explanation": "Not quite. While きれい does mean “clean,” 古い (ふるい) means “old,” not “new.”"
               },
               {
                 "id": "C",
-                "text": "が",
-                "lang": "ja",
-                "explanation": "That’s right! が connects the two contrasting clauses (あります が、ありません = there is..., but there isn’t...)."
+                "text": "That hotel is old, but it is clean.",
+                "lang": "en",
+                "explanation": "That’s right! あのホテルは is “that hotel,” 古いですが is “is old, but,” and きれいです is “is clean.”"
               }
             ],
             "workedExample": {
-              "japanese": "水はありますが、お茶はありません。",
-              "reading": "みずは ありますが、おちゃは ありません。",
-              "english": "There is water, but there is no tea.",
-              "breakdown": "Step 1: First clause: 水はあります (“There is water”). Step 2: Add contrastive conjunction: が、 (“but,”). Step 3: Second clause: お茶はありません (“there is no tea”)."
+              "japanese": "あのホテルは古いですが、きれいです。",
+              "reading": "あの ホテルは ふるいですが、きれいです。",
+              "english": "That hotel is old, but it is clean.",
+              "breakdown": "Step 1: First clause: あのホテルは古い (“That hotel is old”). Step 2: Add contrast conjunction: ですが、 (“is old, but”). Step 3: Second clause: きれいです (“it is clean”). Notice how が balances the drawback (old) with the positive feature (clean)."
             }
           }
         },
@@ -463,28 +463,29 @@
           "kind": "comprehension",
           "isFreshSentence": true,
           "prompt": "What does this sentence mean?",
-          "japanese": "部屋は小さいですが、静かです。",
-          "reading": "へやは ちいさいですが、しずかです。",
-          "gloss": "部屋 room · 小さい small · ですが but · 静か quiet · です is",
+          "japanese": "水はありますが、お茶はありません。",
+          "targetMeaning": "There is water, but there is no tea.",
+          "reading": "みずは ありますが、おちゃは ありません。",
+          "gloss": "水 water · あります there is · ですが but · お茶 tea · ありません there is not",
           "correctChoice": "B",
           "choices": [
             {
               "id": "A",
-              "text": "The room is small and noisy.",
+              "text": "There is both water and tea.",
               "lang": "en",
-              "explanation": "Not quite. 静か (しずか) means “quiet,” not noisy, and ですが means “but.”"
+              "explanation": "Not quite. お茶はありません is negative (“there is no tea”), and ですが indicates contrast."
             },
             {
               "id": "B",
-              "text": "The room is small, but it is quiet.",
+              "text": "There is water, but there is no tea.",
               "lang": "en",
-              "explanation": "That’s right! 部屋は小さいですが is “the room is small, but,” and 静かです is “it is quiet.”"
+              "explanation": "That’s right! 水はありますが means “there is water, but,” and お茶はありません means “there is no tea.”"
             },
             {
               "id": "C",
-              "text": "There is a small quiet room over there.",
+              "text": "There is tea, but there is no water.",
               "lang": "en",
-              "explanation": "Not quite. This is a compound predicate sentence with ですが, not a simple noun phrase."
+              "explanation": "Not quite. 水 (water) is affirmative with あります, while お茶 (tea) is negative with ありません."
             }
           ],
           "followUp": {
