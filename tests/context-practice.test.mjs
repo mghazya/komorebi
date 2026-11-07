@@ -889,3 +889,99 @@ test('Tap-to-read word help: interactive words, cloze blank hiding, contextual r
     }
   }
 });
+
+test('Release readiness: fresh asset version tags, 360px / 200% zoom styling, cloze secrecy, and scoring invariance', async () => {
+  // 1. Fresh asset version tags
+  const indexHtml = fs.readFileSync('index.html', 'utf8');
+  assert.match(indexHtml, /href="\.\/style\.css\?v=20261107-context-word-help"/, 'index.html must have fresh style.css version tag');
+  assert.match(indexHtml, /src="\.\/app\.mjs\?v=20261107-context-word-help"/, 'index.html must have fresh app.mjs version tag');
+
+  const appCode = fs.readFileSync('app.mjs', 'utf8');
+  assert.match(appCode, /profile\.mjs\?v=20261107-context-word-help/, 'app.mjs must have fresh profile.mjs version tag');
+  assert.match(appCode, /context\.mjs\?v=20261107-context-word-help/, 'app.mjs must have fresh context.mjs version tag');
+
+  // 2. CSS supports long word-help cards at 360px viewport and 200% text size
+  const css = fs.readFileSync('style.css', 'utf8');
+  assert.match(css, /\.context-word-help-main[\s\S]*?overflow-wrap:\s*anywhere;/, 'context-word-help-main must support overflow-wrap: anywhere');
+  assert.match(css, /\.context-word-help-main[\s\S]*?word-break:\s*break-word;/, 'context-word-help-main must support word-break: break-word');
+  assert.match(css, /\.context-word-help-card[\s\S]*?align-items:\s*flex-start;/, 'context-word-help-card must align top to keep close button stable');
+  assert.match(css, /@media\s*\(max-width:\s*380px\)/, 'style.css must have dedicated 360-380px narrow phone media query');
+
+  // 3. Render longest word card (下げませんでした in Pack 6 Q6)
+  const pack6 = await loadContextPack({
+    fetch: async () => ({
+      ok: true,
+      json: async () => JSON.parse(fs.readFileSync(CONTEXT_PACK_6_PATH, 'utf8')),
+    }),
+  });
+  let session6 = createContextSession(pack6);
+  // Find question:mashita-past-2
+  const qIdx = session6.questions.findIndex((q) => q.id === 'question:mashita-past-2');
+  assert.ok(qIdx >= 0);
+  session6 = { ...session6, position: qIdx };
+  // Find word index for 下げませんでした
+  const wordIdx = session6.questions[qIdx].words.findIndex((w) => w.text === '下げませんでした');
+  assert.ok(wordIdx >= 0);
+  session6 = setContextWordHelp(session6, wordIdx);
+
+  const c = vm.createContext({
+    window: { scrollTo: () => {}, location: { pathname: '/', search: '', hash: '' } },
+    document: {
+      querySelector: () => null,
+      querySelectorAll: () => [],
+      createElement: () => ({ setAttribute: () => {}, appendChild: () => {} }),
+      body: { appendChild: () => {} },
+    },
+    history: { state: null, pushState: () => {}, replaceState: () => {} },
+    session: session6,
+    profile: () => ({ id: 'learner-1', name: 'Learner', progress: {}, contextPractice: {} }),
+    getItem: () => null,
+    glyph: () => '',
+  });
+
+  const renderSnippet = `
+    const esc = value => String(value ?? '').replace(/[&<>\"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));
+    const icon = () => '';
+    ${appCode.slice(appCode.indexOf('function renderContextSession('), appCode.indexOf('function leaveSession('))}
+  `;
+  vm.runInContext(renderSnippet, c);
+  const htmlLongCard = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlLongCard, /下げませんでした/);
+  assert.match(htmlLongCard, /さげませんでした/);
+  assert.match(htmlLongCard, /sagemasen deshita/);
+  assert.match(htmlLongCard, /did not lower/);
+  assert.match(htmlLongCard, /data-action="close-context-word-help"/);
+
+  // 4. Hidden cloze answers across all fill-in-the-blank questions
+  for (let pNum = 1; pNum <= 7; pNum++) {
+    const raw = JSON.parse(fs.readFileSync(`data/context-pack-${pNum}.json`, 'utf8'));
+    for (const pat of raw.patterns) {
+      for (const q of pat.questions) {
+        for (const item of [q, q.followUp]) {
+          if (item.kind === 'cloze') {
+            assert.ok(item.japanese.includes('（　）') || item.japanese.includes('(  )'), `${item.id} cloze must contain blank indicator`);
+            const blankW = item.words.find((w) => w.blank);
+            assert.ok(blankW, `${item.id} must define a blank word object`);
+            assert.equal(blankW.kana, undefined);
+            assert.equal(blankW.romaji, undefined);
+            assert.equal(blankW.meaning, undefined);
+          }
+        }
+      }
+    }
+  }
+
+  // 5. Unchanged scoring & isolation when toggling word help
+  let sScoring = createContextSession(pack6);
+  const initialAttempts = JSON.stringify(sScoring.firstAttempts);
+  sScoring = setContextWordHelp(sScoring, 0);
+  sScoring = setContextWordHelp(sScoring, 1);
+  sScoring = setContextWordHelp(sScoring, null);
+  assert.equal(JSON.stringify(sScoring.firstAttempts), initialAttempts, 'Word help lookup must never change firstAttempts');
+  assert.equal(sScoring.selectedChoice, null, 'Word help lookup must never select a choice');
+
+  const beforeScore = scoreContextSession(sScoring);
+  sScoring = setContextWordHelp(sScoring, 2);
+  const afterScore = scoreContextSession(sScoring);
+  assert.deepEqual(beforeScore, afterScore, 'Word help lookup must never alter session score');
+});

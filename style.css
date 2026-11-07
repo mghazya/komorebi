@@ -1994,41 +1994,53 @@ body.lesson-active main {
 }
 .context-word-help-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  gap: 10px;
+  gap: 8px;
 }
 .context-word-help-main {
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
-  gap: 6px 10px;
+  gap: 4px 8px;
   font-size: 15px;
   min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .context-word-help-text {
   font-size: 18px;
   font-weight: 700;
   color: #1e452e;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .context-word-help-kana {
   font-size: 15px;
   font-weight: 600;
   color: #2f5841;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .context-word-help-romaji {
   font-size: 14px;
   color: #4b6b55;
   font-style: italic;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .context-word-help-sep {
   color: #9cb8a5;
+  flex-shrink: 0;
 }
 .context-word-help-meaning {
   font-size: 15px;
   font-weight: 500;
   color: var(--ink);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 .context-word-help-close {
   appearance: none;
@@ -2037,7 +2049,7 @@ body.lesson-active main {
   color: #557962;
   font-size: 16px;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 4px 8px;
   min-height: 36px;
   min-width: 36px;
   display: inline-flex;
@@ -2047,6 +2059,7 @@ body.lesson-active main {
   line-height: 1;
   flex-shrink: 0;
   touch-action: manipulation;
+  margin-top: -2px;
 }
 .context-word-help-close:hover {
   background: #d4e4cc;
