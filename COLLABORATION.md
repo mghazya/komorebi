@@ -67,6 +67,38 @@ All checks executed against `https://mghazya.github.io/komorebi/` using automate
 
 ---
 
+### Verification Gap Closures (Populated SRS Invariance & Structural Validator Invariants)
+
+1. **Populated SRS Invariance Verification (Live Production Check)**
+   - **Environment**: Automated headless Chrome session against live production ([`https://mghazya.github.io/komorebi/`](https://mghazya.github.io/komorebi/)) using an isolated disposable user data directory (`--user-data-dir`). No real accounts modified.
+   - **Populated Progress Profile**: Pre-seeded with 9 distinct items across all 9 SRS stages and varied review dates:
+     - **Radicals**: `radical:barb` (stage 1 / Apprentice I, overdue by 3h), `radical:big` (stage 5 / Guru I, due in 48h), `radical:construction` (stage 9 / Burned, burned 90d ago)
+     - **Kanji**: `kanji:上` (stage 2 / Apprentice II, due in 8h), `kanji:下` (stage 4 / Apprentice IV, due now), `kanji:大` (stage 7 / Master, due in 14d)
+     - **Vocabulary**: `vocabulary:上` (stage 3 / Apprentice III, due in 24h), `vocabulary:大人` (stage 6 / Guru II, due in 7d), `vocabulary:一人` (stage 8 / Enlightened, due in 30d)
+   - **Context Practice Run**:
+     - Conducted word lookups on `ふじ山` and `は`.
+     - Deliberately submitted an incorrect answer on Q1 (Choice A distractor) to trigger feedback and unlock follow-up.
+     - Verified that tapping word help while an answer is selected preserves the selected choice state.
+     - Opened the fresh follow-up question (`あの女の人は大人です。`), performed word lookup, and answered correctly.
+     - Completed all remaining questions (Q2–Q6) to the "Practice complete" summary screen and returned to dashboard.
+   - **Result**: `profile.contextPractice['pack:beginner-1']` was successfully recorded, while `profile.progress` was verified via deep equality against the initial populated snapshot: 100% byte-for-byte identical across all 9 items, stages, and review dates.
+   - **Verification Script**: Added as automated runnable tool `scripts/verify-srs-isolation-populated.mjs`.
+
+2. **Structural Validation of Live/Approved Packs (Validator Invariant Fix & Regression Tests)**
+   - **Audit Finding**: `scripts/validate-context-packs.mjs` evaluates all packs in `CONTEXT_PACKS` unconditionally through `validateContextPack(rawPack)`. However, the return property `skippedApprovedPacks` created ambiguity by conflating "skipping content re-authoring/regeneration during batch runs" with "skipping validation".
+   - **Clarification & Fix**:
+     - Explicitly separated structural validation from authoring resumption: `structurallyValidatedPacks` now enumerates all packs validated, and `skippedFromRegeneration` replaces the ambiguous wording (with `skippedApprovedPacks` retained for backward compatibility).
+     - Documented in code comments that mechanical checks are mandatory and universal across all packs regardless of approval status (`planned`, `draft`, `validated`, `reviewed`, `live`).
+   - **Regression Suite**: Added regression tests in `tests/context-practice.test.mjs` verifying:
+     - All 7 packs are unconditionally present in `structurallyValidatedPacks`.
+     - Live pack with missing follow-up fails validation (`context-pack-1.json`).
+     - Live pack with non-affirming choice feedback fails validation (`context-pack-5.json`).
+     - Live pack with unvaried answer key distribution fails validation (`context-pack-7.json`).
+     - Populated SRS progress invariance is verified in-memory across stages 1–9.
+   - **PR**: Submitted in separate PR branch `fix/validator-structural-invariants`.
+
+---
+
 ### Grammar Coverage Summary
 
 - **Total JLPT N5 Grammar IDs**: 69
