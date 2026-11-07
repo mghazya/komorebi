@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "title": "Komorebi Practice in Context — Grammar Coverage Checklist",
-  "updatedAt": "2026-11-06T03:47:38.614Z",
+  "updatedAt": "2026-11-07T05:42:51.977Z",
   "policy": {
     "unitOfTracking": "Tracked by (renshuuGrammarId, meaningIndex) because a single Renshuu grammar ID can cover multiple distinct meanings/uses.",
     "taughtRule": "A grammar meaning is counted as taught (taught: true) ONLY when it is linked to at least one validated primary question and distinct follow-up exercise in a pack.",
@@ -101,7 +101,7 @@
       "title": "Beginner Pack 5",
       "subtitle": "Actions, Accompaniment & Movement Origin",
       "path": "./data/context-pack-5.json",
-      "status": "validated",
+      "status": "live",
       "patterns": [
         "grammar:de-action",
         "grammar:to-accompaniment",
@@ -118,7 +118,7 @@
       "title": "Beginner Pack 6",
       "subtitle": "Time Points, Movement Extent & Polite Past Actions",
       "path": "./data/context-pack-6.json",
-      "status": "validated",
+      "status": "live",
       "patterns": [
         "grammar:ni-time",
         "grammar:kara-made",
@@ -135,7 +135,7 @@
       "title": "Beginner Pack 7",
       "subtitle": "Describing Things — Adjectives, Negative Forms & Clause Contrast",
       "path": "./data/context-pack-7.json",
-      "status": "validated",
+      "status": "live",
       "patterns": [
         "grammar:i-adjective",
         "grammar:adjective-negative",
@@ -154,9 +154,9 @@
     "taughtMeaningsCount": 25,
     "distinctPatternsTaught": 21,
     "byStatus": {
-      "live": 16,
+      "live": 25,
       "reviewed": 0,
-      "validated": 9,
+      "validated": 0,
       "draft": 0,
       "planned": 122
     },
@@ -539,7 +539,7 @@
       ],
       "packId": "pack:beginner-5",
       "patternId": "grammar:kara-origin",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:kara-origin-1",
@@ -692,7 +692,7 @@
       ],
       "packId": "pack:beginner-5",
       "patternId": "grammar:to-accompaniment",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:to-accompaniment-1",
@@ -755,7 +755,7 @@
       ],
       "packId": "pack:beginner-5",
       "patternId": "grammar:de-action",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:de-action-1",
@@ -948,7 +948,7 @@
       ],
       "packId": "pack:beginner-6",
       "patternId": "grammar:ni-time",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:ni-time-1",
@@ -2129,7 +2129,7 @@
       ],
       "packId": "pack:beginner-7",
       "patternId": "grammar:ga-contrast",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:ga-contrast-1",
@@ -2305,7 +2305,7 @@
       ],
       "packId": "pack:beginner-6",
       "patternId": "grammar:kara-made",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:kara-made-1",
@@ -2571,7 +2571,7 @@
       ],
       "packId": "pack:beginner-6",
       "patternId": "grammar:mashita-past",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:mashita-past-1",
@@ -2833,7 +2833,7 @@
       ],
       "packId": "pack:beginner-7",
       "patternId": "grammar:i-adjective",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:i-adjective-1",
@@ -2893,7 +2893,7 @@
       ],
       "packId": "pack:beginner-7",
       "patternId": "grammar:adjective-negative",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:adjective-negative-1",
