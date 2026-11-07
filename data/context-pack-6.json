@@ -112,8 +112,88 @@
               "reading": "おんなの ひとは いちじに きます。",
               "english": "The woman comes at 1 o'clock.",
               "breakdown": "Step 1: State the time: 一時 (“1 o'clock”). Step 2: Mark specific time with に (一時に = “at 1 o'clock”). Step 3: Complete with the action verb 来ます (“comes”)."
+            },
+            "words": [
+              {
+                "text": "女の人",
+                "kana": "おんなのひと",
+                "romaji": "onna no hito",
+                "meaning": "woman"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "一時",
+                "kana": "いちじ",
+                "romaji": "ichiji",
+                "meaning": "1 o'clock"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "来ます",
+                "kana": "きます",
+                "romaji": "kimasu",
+                "meaning": "comes"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "大人",
+              "kana": "おとな",
+              "romaji": "otona",
+              "meaning": "adult"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "三時",
+              "kana": "さんじ",
+              "romaji": "sanji",
+              "meaning": "3 o'clock"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "ホテル",
+              "kana": "ほてる",
+              "romaji": "hoteru",
+              "meaning": "hotel"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "destination marker (to, into)"
+            },
+            {
+              "text": "入ります",
+              "kana": "はいります",
+              "romaji": "hairimasu",
+              "meaning": "enters, goes in"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:ni-time-2",
@@ -178,8 +258,110 @@
               "reading": "あの ひとは はちじに へやを でます。",
               "english": "That person leaves the room at 8 o'clock.",
               "breakdown": "Step 1: Identify topic: あの人は (“that person”). Step 2: Identify time marked by に: 八時に (“at 8 o'clock”). Step 3: Identify action and space left: へやを出ます (“leaves the room”)."
+            },
+            "words": [
+              {
+                "text": "あの",
+                "kana": "あの",
+                "romaji": "ano",
+                "meaning": "that (over there)"
+              },
+              {
+                "text": "人",
+                "kana": "ひと",
+                "romaji": "hito",
+                "meaning": "person"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "八時",
+                "kana": "はちじ",
+                "romaji": "hachiji",
+                "meaning": "8 o'clock"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "time marker (at)"
+              },
+              {
+                "text": "へや",
+                "kana": "へや",
+                "romaji": "heya",
+                "meaning": "room"
+              },
+              {
+                "text": "を",
+                "kana": "お",
+                "romaji": "o",
+                "meaning": "departure marker (out of)"
+              },
+              {
+                "text": "出ます",
+                "kana": "でます",
+                "romaji": "demasu",
+                "meaning": "leaves, exits"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "二人",
+              "kana": "ふたり",
+              "romaji": "futari",
+              "meaning": "two people"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "七時",
+              "kana": "しちじ",
+              "romaji": "shichiji",
+              "meaning": "7 o'clock"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "time marker (at)"
+            },
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "destination marker (to)"
+            },
+            {
+              "text": "行きます",
+              "kana": "いきます",
+              "romaji": "ikimasu",
+              "meaning": "goes"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -284,8 +466,76 @@
               "reading": "えきから ホテルまで あるきます。",
               "english": "Walk from the station to the hotel.",
               "breakdown": "Step 1: Starting point: 駅から (“from the station”). Step 2: Ending limit: ホテルまで (“to the hotel”). Step 3: Action: 歩きます (“walk”)."
+            },
+            "words": [
+              {
+                "text": "駅",
+                "kana": "えき",
+                "romaji": "eki",
+                "meaning": "station"
+              },
+              {
+                "text": "から",
+                "kana": "から",
+                "romaji": "kara",
+                "meaning": "from"
+              },
+              {
+                "text": "ホテル",
+                "kana": "ほてる",
+                "romaji": "hoteru",
+                "meaning": "hotel"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "歩きます",
+                "kana": "あるきます",
+                "romaji": "arukimasu",
+                "meaning": "walks"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "一時",
+              "kana": "いちじ",
+              "romaji": "ichiji",
+              "meaning": "1 o'clock"
+            },
+            {
+              "text": "から",
+              "kana": "から",
+              "romaji": "kara",
+              "meaning": "from"
+            },
+            {
+              "text": "三時",
+              "kana": "さんじ",
+              "romaji": "sanji",
+              "meaning": "3 o'clock"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "勉強します",
+              "kana": "べんきょうします",
+              "romaji": "benkyoushimasu",
+              "meaning": "studies"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:kara-made-2",
@@ -350,8 +600,110 @@
               "reading": "くじから じゅうじまで へやで やすみます。",
               "english": "Rest in the room from 9 o'clock until 10 o'clock.",
               "breakdown": "Step 1: Time span: 九時から (“from 9”) + 十時まで (“until 10”). Step 2: Location of action: へやで (“in the room”). Step 3: Verb: 休みます (“rest”)."
+            },
+            "words": [
+              {
+                "text": "九時",
+                "kana": "くじ",
+                "romaji": "kuji",
+                "meaning": "9 o'clock"
+              },
+              {
+                "text": "から",
+                "kana": "から",
+                "romaji": "kara",
+                "meaning": "from"
+              },
+              {
+                "text": "十時",
+                "kana": "じゅうじ",
+                "romaji": "juuji",
+                "meaning": "10 o'clock"
+              },
+              {
+                "text": "まで",
+                "kana": "まで",
+                "romaji": "made",
+                "meaning": "until, to"
+              },
+              {
+                "text": "へや",
+                "kana": "へや",
+                "romaji": "heya",
+                "meaning": "room"
+              },
+              {
+                "text": "で",
+                "kana": "で",
+                "romaji": "de",
+                "meaning": "action location marker (at, in)"
+              },
+              {
+                "text": "休みます",
+                "kana": "やすみます",
+                "romaji": "yasumimasu",
+                "meaning": "rests, takes a break"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "から",
+              "kana": "から",
+              "romaji": "kara",
+              "meaning": "from"
+            },
+            {
+              "text": "川",
+              "kana": "かわ",
+              "romaji": "kawa",
+              "meaning": "river"
+            },
+            {
+              "text": "まで",
+              "kana": "まで",
+              "romaji": "made",
+              "meaning": "until, to"
+            },
+            {
+              "text": "大人",
+              "kana": "おとな",
+              "romaji": "otona",
+              "meaning": "adult"
+            },
+            {
+              "text": "二人",
+              "kana": "ふたり",
+              "romaji": "futari",
+              "meaning": "two people"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "subject marker"
+            },
+            {
+              "text": "歩きます",
+              "kana": "あるきます",
+              "romaji": "arukimasu",
+              "meaning": "walks"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -455,8 +807,104 @@
               "reading": "おとなは てを あげませんでした。",
               "english": "The adult did not raise their hand.",
               "breakdown": "Step 1: Start with verb stem: 上げ (age). Step 2: Attach polite past negative: 〜ませんでした → 上げませんでした (“did not raise”)."
+            },
+            "words": [
+              {
+                "text": "大人",
+                "kana": "おとな",
+                "romaji": "otona",
+                "meaning": "adult"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "手",
+                "kana": "て",
+                "romaji": "te",
+                "meaning": "hand"
+              },
+              {
+                "text": "を",
+                "kana": "お",
+                "romaji": "o",
+                "meaning": "object marker"
+              },
+              {
+                "text": "上げ",
+                "kana": "あげ",
+                "romaji": "age",
+                "meaning": "raise (stem)"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "きのう",
+              "kana": "きのう",
+              "romaji": "kinou",
+              "meaning": "yesterday"
+            },
+            {
+              "text": "、",
+              "punctuation": true
+            },
+            {
+              "text": "あの",
+              "kana": "あの",
+              "romaji": "ano",
+              "meaning": "that (over there)"
+            },
+            {
+              "text": "人",
+              "kana": "ひと",
+              "romaji": "hito",
+              "meaning": "person"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "ビル",
+              "kana": "びる",
+              "romaji": "biru",
+              "meaning": "building"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "destination marker (to, into)"
+            },
+            {
+              "text": "入り",
+              "kana": "はいり",
+              "romaji": "hairi",
+              "meaning": "enter (stem)"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:mashita-past-2",
@@ -521,8 +969,86 @@
               "reading": "ふたりは かわに はいりました。",
               "english": "The two people went into the river.",
               "breakdown": "Step 1: Subject/topic: 二人は (“the two people”). Step 2: Destination: 川に (“into the river”). Step 3: Polite past verb: 入りました (“entered / went into”)."
+            },
+            "words": [
+              {
+                "text": "二人",
+                "kana": "ふたり",
+                "romaji": "futari",
+                "meaning": "two people"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "川",
+                "kana": "かわ",
+                "romaji": "kawa",
+                "meaning": "river"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "destination marker (to, into)"
+              },
+              {
+                "text": "入りました",
+                "kana": "はいりました",
+                "romaji": "hairimashita",
+                "meaning": "entered (polite past)"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "女の人",
+              "kana": "おんなのひと",
+              "romaji": "onna no hito",
+              "meaning": "woman"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "大きい",
+              "kana": "おおきい",
+              "romaji": "ookii",
+              "meaning": "big, large"
+            },
+            {
+              "text": "箱",
+              "kana": "はこ",
+              "romaji": "hako",
+              "meaning": "box"
+            },
+            {
+              "text": "を",
+              "kana": "お",
+              "romaji": "o",
+              "meaning": "object marker"
+            },
+            {
+              "text": "下げませんでした",
+              "kana": "さげませんでした",
+              "romaji": "sagemasen deshita",
+              "meaning": "did not lower"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     }

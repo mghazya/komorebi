@@ -116,8 +116,88 @@
               "reading": "へやに おとなが さんにん います。",
               "english": "There are three adults in the room.",
               "breakdown": "Step 1: へやに marks the place (“in the room”). Step 2: 大人が三人 names the living people and count (“three adults”). Step 3: Use います (never あります) for living beings."
+            },
+            "words": [
+              {
+                "text": "へや",
+                "kana": "へや",
+                "romaji": "heya",
+                "meaning": "room"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "location marker (at, in)"
+              },
+              {
+                "text": "大人",
+                "kana": "おとな",
+                "romaji": "otona",
+                "meaning": "adult"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "subject marker"
+              },
+              {
+                "text": "三人",
+                "kana": "さんにん",
+                "romaji": "sannin",
+                "meaning": "three people"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "location marker (at, in)"
+            },
+            {
+              "text": "人",
+              "kana": "ひと",
+              "romaji": "hito",
+              "meaning": "person"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "subject marker"
+            },
+            {
+              "text": "二人",
+              "kana": "ふたり",
+              "romaji": "futari",
+              "meaning": "two people"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:ni-ga-imasu-2",
@@ -182,8 +262,116 @@
               "reading": "ビルの したに ひとが さんにん います。",
               "english": "There are three people below the building.",
               "breakdown": "Step 1: ビルの下に = “below the building” (location + に). Step 2: 人が三人 = “three people” (living noun + が + people counter 三人). Step 3: います = “there are” (for living beings)."
+            },
+            "words": [
+              {
+                "text": "ビル",
+                "kana": "びる",
+                "romaji": "biru",
+                "meaning": "building"
+              },
+              {
+                "text": "の",
+                "kana": "の",
+                "romaji": "no",
+                "meaning": "modifier / of ('s)"
+              },
+              {
+                "text": "下",
+                "kana": "した",
+                "romaji": "shita",
+                "meaning": "under, below"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "location marker (at, in)"
+              },
+              {
+                "text": "人",
+                "kana": "ひと",
+                "romaji": "hito",
+                "meaning": "person"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "subject marker"
+              },
+              {
+                "text": "三人",
+                "kana": "さんにん",
+                "romaji": "sannin",
+                "meaning": "three people"
+              },
+              {
+                "text": "います",
+                "kana": "います",
+                "romaji": "imasu",
+                "meaning": "there is, exists (animate)"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "の",
+              "kana": "の",
+              "romaji": "no",
+              "meaning": "modifier / of ('s)"
+            },
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "location marker (at, in)"
+            },
+            {
+              "text": "女の人",
+              "kana": "おんなのひと",
+              "romaji": "onna no hito",
+              "meaning": "woman"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "subject marker"
+            },
+            {
+              "text": "一人",
+              "kana": "ひとり",
+              "romaji": "hitori",
+              "meaning": "one person"
+            },
+            {
+              "text": "います",
+              "kana": "います",
+              "romaji": "imasu",
+              "meaning": "there is, exists (animate)"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -291,8 +479,112 @@
               "reading": "テーブルの うえに りんごと はこが あります。",
               "english": "There are an apple and a box on the table.",
               "breakdown": "Step 1: Place と between the two nouns りんご (“apple”) and 箱 (“box”) → りんごと箱 (“an apple and a box”). Step 2: Follow with があります (“there are”)."
+            },
+            "words": [
+              {
+                "text": "テーブル",
+                "kana": "てーぶる",
+                "romaji": "teeburu",
+                "meaning": "table"
+              },
+              {
+                "text": "の",
+                "kana": "の",
+                "romaji": "no",
+                "meaning": "modifier / of ('s)"
+              },
+              {
+                "text": "上",
+                "kana": "うえ",
+                "romaji": "ue",
+                "meaning": "on, above"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "location marker (at, in)"
+              },
+              {
+                "text": "りんご",
+                "kana": "りんご",
+                "romaji": "ringo",
+                "meaning": "apple"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "箱",
+                "kana": "はこ",
+                "romaji": "hako",
+                "meaning": "box"
+              },
+              {
+                "text": "が",
+                "kana": "が",
+                "romaji": "ga",
+                "meaning": "subject marker"
+              },
+              {
+                "text": "あります",
+                "kana": "あります",
+                "romaji": "arimasu",
+                "meaning": "there is, exists"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "あそこ",
+              "kana": "あそこ",
+              "romaji": "asoko",
+              "meaning": "over there"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "location marker (at, in)"
+            },
+            {
+              "text": "山",
+              "kana": "やま",
+              "romaji": "yama",
+              "meaning": "mountain"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "川",
+              "kana": "かわ",
+              "romaji": "kawa",
+              "meaning": "river"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "subject marker"
+            },
+            {
+              "text": "あります",
+              "kana": "あります",
+              "romaji": "arimasu",
+              "meaning": "there is, exists"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:to-and-2",
@@ -357,8 +649,98 @@
               "reading": "りんご ひとつと みずを ください。",
               "english": "Please give me one apple and water.",
               "breakdown": "Step 1: Join the two requested nouns with と: りんご一つとみず (“one apple and water”). Step 2: Add を下さい (“please give me”)."
+            },
+            "words": [
+              {
+                "text": "りんご",
+                "kana": "りんご",
+                "romaji": "ringo",
+                "meaning": "apple"
+              },
+              {
+                "text": "一つ",
+                "kana": "ひとつ",
+                "romaji": "hitotsu",
+                "meaning": "one (thing)"
+              },
+              {
+                "text": "と",
+                "kana": "と",
+                "romaji": "to",
+                "meaning": "and (connecting nouns)"
+              },
+              {
+                "text": "みず",
+                "kana": "みず",
+                "romaji": "mizu",
+                "meaning": "water"
+              },
+              {
+                "text": "を",
+                "kana": "お",
+                "romaji": "o",
+                "meaning": "object marker"
+              },
+              {
+                "text": "下さい",
+                "kana": "ください",
+                "romaji": "kudasai",
+                "meaning": "please give me"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "へや",
+              "kana": "へや",
+              "romaji": "heya",
+              "meaning": "room"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "location marker (at, in)"
+            },
+            {
+              "text": "机",
+              "kana": "つくえ",
+              "romaji": "tsukue",
+              "meaning": "desk"
+            },
+            {
+              "text": "と",
+              "kana": "と",
+              "romaji": "to",
+              "meaning": "and (connecting nouns)"
+            },
+            {
+              "text": "箱",
+              "kana": "はこ",
+              "romaji": "hako",
+              "meaning": "box"
+            },
+            {
+              "text": "が",
+              "kana": "が",
+              "romaji": "ga",
+              "meaning": "subject marker"
+            },
+            {
+              "text": "あります",
+              "kana": "あります",
+              "romaji": "arimasu",
+              "meaning": "there is, exists"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     },
@@ -464,8 +846,80 @@
               "reading": "あそこは ホテル でした。",
               "english": "That place over there was a hotel.",
               "breakdown": "Step 1: あそこは marks the topic (“that place over there”). Step 2: ホテルでした uses the polite past でした instead of です to mean “was a hotel.”"
+            },
+            "words": [
+              {
+                "text": "あそこ",
+                "kana": "あそこ",
+                "romaji": "asoko",
+                "meaning": "over there"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "ホテル",
+                "kana": "ほてる",
+                "romaji": "hoteru",
+                "meaning": "hotel"
+              },
+              {
+                "text": "でした",
+                "kana": "でした",
+                "romaji": "deshita",
+                "meaning": "was (past copula)"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "ここ",
+              "kana": "ここ",
+              "romaji": "koko",
+              "meaning": "here"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "の",
+              "kana": "の",
+              "romaji": "no",
+              "meaning": "modifier / of ('s)"
+            },
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "でした",
+              "kana": "でした",
+              "romaji": "deshita",
+              "meaning": "was (past copula)"
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         },
         {
           "id": "question:deshita-past-2",
@@ -532,8 +986,80 @@
               "reading": "きのう、ここは うけつけ でした。",
               "english": "Yesterday, here was the reception desk.",
               "breakdown": "Step 1: きのう (“yesterday”) tells us the sentence is about the past. Step 2: End the noun predicate うけつけ (“reception desk”) with でした (“was”)."
+            },
+            "words": [
+              {
+                "text": "きのう",
+                "kana": "きのう",
+                "romaji": "kinou",
+                "meaning": "yesterday"
+              },
+              {
+                "text": "、",
+                "punctuation": true
+              },
+              {
+                "text": "ここ",
+                "kana": "ここ",
+                "romaji": "koko",
+                "meaning": "here"
+              },
+              {
+                "text": "は",
+                "kana": "わ",
+                "romaji": "wa",
+                "meaning": "topic marker"
+              },
+              {
+                "text": "うけつけ",
+                "kana": "うけつけ",
+                "romaji": "uketsuke",
+                "meaning": "reception desk"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ]
+          },
+          "words": [
+            {
+              "text": "きのう",
+              "kana": "きのう",
+              "romaji": "kinou",
+              "meaning": "yesterday"
+            },
+            {
+              "text": "は",
+              "kana": "わ",
+              "romaji": "wa",
+              "meaning": "topic marker"
+            },
+            {
+              "text": "いい",
+              "kana": "いい",
+              "romaji": "ii",
+              "meaning": "good"
+            },
+            {
+              "text": "日",
+              "kana": "ひ",
+              "romaji": "hi",
+              "meaning": "day"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
             }
-          }
+          ]
         }
       ]
     }

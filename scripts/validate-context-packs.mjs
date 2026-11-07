@@ -139,6 +139,14 @@ export function runMechanicalChecks({ rootDir = ROOT } = {}) {
           throw new Error(`Follow-up ${fu.id} kind (${fu.kind}) must match ${q.id} kind (${q.kind})`);
         }
 
+        // Mechanical invariant: all primary and fresh follow-up questions must include tap-to-read word help
+        if (!Array.isArray(q.words) || !q.words.length) {
+          throw new Error(`Question ${q.id} in ${pack.id} is missing tap-to-read word help`);
+        }
+        if (!Array.isArray(fu.words) || !fu.words.length) {
+          throw new Error(`Follow-up ${fu.id} in ${pack.id} is missing tap-to-read word help`);
+        }
+
         // Guard against ambiguous particle pair (に vs. へ on destination questions)
         for (const itemQ of [q, fu]) {
           const texts = itemQ.choices.map((c) => c.text.trim());
