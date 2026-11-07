@@ -3,12 +3,12 @@ import { PUSH_PUBLIC_KEY } from './push-config.mjs?v=20261028-reading-prompts';
 import { installQuizViewport } from './viewport.mjs?v=20261028-reading-prompts';
 installQuizViewport();
 import { STAGE_NAMES, newProfile, availableLessons, dueReviews, startLearning, completeReview, statusFor, stats, toHiragana, checkAnswer, subjectKindLabel, meaningPrompt, meaningSubtext, answerInputLabel, readingPrompt, readingSubtext, readingTypeLabel, matchesSearch, practicePool, viewFromHash, intervalFor, learnerLevel, levelProgress, recordLevelUnlock, hasPassed, markAsGuru, markAsGuruMany, selectPlacementSample, scorePlacement, graduateLevelCandidates, GURU_STAGE, PLACEMENT_SAMPLE_SIZE, placementShouldFinish, lessonsStartedToday, daysStudiedOf, hasStudiedToday, recordStudyDay, localDateKey } from './engine.mjs?v=20261105-reading-categories';
-import { validateProfile as checkProfile, batchSizeOf, reviewBatchSizeOf, dailyLessonTargetOf, unknownProgressIds, serializeBackup } from './profile.mjs?v=20261105-context-pack-1';
+import { validateProfile as checkProfile, batchSizeOf, reviewBatchSizeOf, dailyLessonTargetOf, unknownProgressIds, serializeBackup } from './profile.mjs?v=20261106-packs-5-7';
 import { loadCurriculum, sanitizeSvg, svgDataUrl, isSafeImagePath } from './curriculum.mjs?v=20261028-reading-prompts';
 import { buildQuizQueue, feedbackSummary, hintBanners, ACTIVE_REVIEW_POOL_SIZE, questionsForItem, shuffle, toggleReviewWrapUp } from './quiz.mjs?v=20261105-reading-categories';
 import { createCloudSync } from './sync.mjs?v=20261028-reading-prompts';
 import { KANJI_READINGS } from './kanji-readings.mjs?v=20261105-reading-categories';
-import { CONTEXT_PACK_META, CONTEXT_PACKS, getContextPackMeta, loadContextPack, createContextSession, selectContextChoice, startContextFollowUp, scoreContextSession, recordContextCompletion } from './context.mjs?v=20261105-context-pack-1';
+import { CONTEXT_PACK_META, CONTEXT_PACKS, getContextPackMeta, loadContextPack, createContextSession, selectContextChoice, startContextFollowUp, scoreContextSession, recordContextCompletion } from './context.mjs?v=20261106-packs-5-7';
 
 import { createCloudClient, AUTH_STORAGE_KEY, validateNewPassword, validatePasswordChange, MIN_PASSWORD_LENGTH } from './cloud.mjs?v=20261028-reading-prompts';
 import { CLOUD_CONFIG } from './config.js?v=20261028-reading-prompts';
