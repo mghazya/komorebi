@@ -5,8 +5,11 @@
  * 1. Coverage checklist structure, statuses (`planned`, `draft`, `validated`, `reviewed`, `live`),
  *    prerequisite references, and the rule that a meaning is `taught: true` ONLY when it has
  *    exercises (`question:*` + `followup:*`) testing it.
- * 2. Resumable execution: inspects `checklist.packs` and skips regenerating packs already marked
- *    `validated`, `reviewed`, or `live`, while verifying all mechanical invariants.
+ * 2. Resumable execution: inspects `checklist.packs` and records packs already marked
+ *    `validated`, `reviewed`, or `live` as skipped from authoring/regeneration.
+ *    CRITICAL INVARIANT: All packs (including `live` and `reviewed` packs) are ALWAYS
+ *    structurally and mechanically validated. Editorial/approval status never bypasses
+ *    structural validation.
  * 3. Globally unique, stable IDs across all packs (`pack:*`, `grammar:*`, `example:*`,
  *    `question:*`, `followup:*`) with zero collision against SRS prefixes (`radical:`, `kanji:`, `vocabulary:`).
  * 4. Valid subject links (`subjectIds`) against Komorebi curriculum files (`data/level-*.json`).
@@ -66,6 +69,8 @@ export function runMechanicalChecks({ rootDir = ROOT } = {}) {
     if (!VALID_STATUSES.has(checklistPack.status)) {
       throw new Error(`Pack ${meta.id} has invalid checklist status: ${checklistPack.status}`);
     }
+    // Note: status determines authoring/regeneration skipping during batch creation;
+    // ALL packs without exception are loaded, parsed, and mechanically validated below.
     if (SKIP_REGEN_STATUSES.has(checklistPack.status)) {
       skippedApprovedPacks.push(meta.id);
     }
@@ -252,11 +257,15 @@ export function runMechanicalChecks({ rootDir = ROOT } = {}) {
     throw new Error('Startup in app.mjs must never fetch context packs eagerly');
   }
 
+  const structurallyValidatedPacks = packReports.map((p) => p.packId);
+
   return {
     ok: true,
     totalChecklistEntries: checklist.entries.length,
     taughtMeaningsCount: checklist.entries.filter((e) => e.taught).length,
     flaggedMeaningsCount: checklist.entries.filter((e) => e.flags?.length > 0).length,
+    structurallyValidatedPacks,
+    skippedFromRegeneration: skippedApprovedPacks,
     skippedApprovedPacks,
     packReports,
   };

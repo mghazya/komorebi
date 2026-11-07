@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
 import vm from 'node:vm';
 import {
   CONTEXT_PACK_1_PATH,
@@ -985,3 +987,168 @@ test('Release readiness: fresh asset version tags, 360px / 200% zoom styling, cl
   const afterScore = scoreContextSession(sScoring);
   assert.deepEqual(beforeScore, afterScore, 'Word help lookup must never alter session score');
 });
+
+test('Validator enforces all structural and mechanical checks on live/approved packs (approval status never skips structural validation)', () => {
+  // 1. All 7 packs are unconditionally reported as structurally validated
+  const result = runMechanicalChecks();
+  assert.equal(result.ok, true);
+  assert.deepEqual(result.structurallyValidatedPacks, [
+    'pack:beginner-1',
+    'pack:beginner-2',
+    'pack:beginner-3',
+    'pack:beginner-4',
+    'pack:beginner-5',
+    'pack:beginner-6',
+    'pack:beginner-7',
+  ]);
+  assert.deepEqual(result.skippedFromRegeneration, [
+    'pack:beginner-1',
+    'pack:beginner-2',
+    'pack:beginner-3',
+    'pack:beginner-4',
+    'pack:beginner-5',
+    'pack:beginner-6',
+    'pack:beginner-7',
+  ]);
+
+  // Helper to run checks in an isolated temporary root directory with a modified pack
+  const runWithModifiedPack = (packFileName, modifierFn) => {
+    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'validator-regression-'));
+    try {
+      fs.cpSync('data', path.join(tmpDir, 'data'), { recursive: true });
+      fs.copyFileSync('app.mjs', path.join(tmpDir, 'app.mjs'));
+
+      const packFilePath = path.join(tmpDir, 'data', packFileName);
+      const raw = JSON.parse(fs.readFileSync(packFilePath, 'utf8'));
+      modifierFn(raw);
+      fs.writeFileSync(packFilePath, JSON.stringify(raw, null, 2));
+
+      runMechanicalChecks({ rootDir: tmpDir });
+      assert.fail(`Expected runMechanicalChecks to throw on corrupted ${packFileName}`);
+    } catch (err) {
+      if (err.name === 'AssertionError') throw err;
+      return err.message;
+    } finally {
+      fs.rmSync(tmpDir, { recursive: true, force: true });
+    }
+  };
+
+  // 2. Regression Check A: Live pack:beginner-1 missing follow-up throws
+  const errA = runWithModifiedPack('context-pack-1.json', (pack) => {
+    delete pack.patterns[0].questions[0].followUp;
+  });
+  assert.match(errA, /missing a valid fresh follow-up question/, 'Live pack with missing follow-up must fail validation');
+
+  // 3. Regression Check B: Live pack:beginner-5 with broken choice explanation throws
+  const errB = runWithModifiedPack('context-pack-5.json', (pack) => {
+    const correctC = pack.patterns[0].questions[0].choices.find(
+      (c) => c.id === pack.patterns[0].questions[0].correctChoice
+    );
+    correctC.explanation = 'Random invalid feedback text without affirmation';
+  });
+  assert.match(errB, /must affirm why it works/, 'Live pack with non-affirming correct choice feedback must fail validation');
+
+  // 4. Regression Check C: Live pack:beginner-7 with broken key variety throws
+  const errC = runWithModifiedPack('context-pack-7.json', (pack) => {
+    // Replace any correctChoice C with B (and affirm B, distractor C) so position C is never used
+    for (const pat of pack.patterns) {
+      for (const q of pat.questions) {
+        for (const item of [q, q.followUp]) {
+          if (item && item.correctChoice === 'C') {
+            item.correctChoice = 'B';
+            const bChoice = item.choices.find((c) => c.id === 'B');
+            if (bChoice) bChoice.explanation = 'That’s right! Choice B is correct.';
+            const cChoice = item.choices.find((c) => c.id === 'C');
+            if (cChoice) cChoice.explanation = 'Not quite. Choice C is incorrect.';
+          }
+        }
+      }
+    }
+  });
+  assert.match(errC, /do not use choice position C/, 'Live pack with unvaried answer keys must fail validation');
+});
+
+test('SRS Progress Invariance: Populated Radicals, Kanji, and Vocabulary across stages 1-9 remain untouched during context practice', () => {
+  const NOW = 1762300000000;
+  const populatedProgress = {
+    'radical:barb': { stage: 1, availableAt: NOW - 3600000 * 3 },
+    'radical:big': { stage: 5, availableAt: NOW + 3600000 * 48, passedAt: NOW - 3600000 * 72 },
+    'radical:construction': { stage: 9, availableAt: 0, burnedAt: NOW - 86400000 * 90 },
+    'kanji:上': { stage: 2, availableAt: NOW + 3600000 * 8 },
+    'kanji:下': { stage: 4, availableAt: NOW - 60000 },
+    'kanji:大': { stage: 7, availableAt: NOW + 86400000 * 14, passedAt: NOW - 86400000 * 30 },
+    'vocabulary:上': { stage: 3, availableAt: NOW + 3600000 * 24 },
+    'vocabulary:大人': { stage: 6, availableAt: NOW + 86400000 * 7, passedAt: NOW - 86400000 * 21 },
+    'vocabulary:一人': { stage: 8, availableAt: NOW + 86400000 * 30, passedAt: NOW - 86400000 * 60 },
+  };
+
+  const initialSnapshot = JSON.stringify(populatedProgress);
+
+  const learner = {
+    ...newProfile('Populated Invariance Learner', 'learner-populated-test'),
+    progress: JSON.parse(initialSnapshot),
+    history: [
+      { type: 'review', id: 'radical:big', at: NOW - 3600000 * 72 },
+      { type: 'review', id: 'kanji:大', at: NOW - 86400000 * 30 },
+    ],
+  };
+
+  // Perform context practice on Pack 1 with incorrect answer, follow-up, and word lookups
+  const pack1Raw = JSON.parse(fs.readFileSync('data/context-pack-1.json', 'utf8'));
+  const pack1 = validateContextPack(pack1Raw);
+  let session = createContextSession(pack1);
+
+  // Word lookup
+  session = setContextWordHelp(session, 0);
+  session = setContextWordHelp(session, 1);
+  session = setContextWordHelp(session, null);
+
+  // Wrong choice on Q1
+  session = selectContextChoice(session, 'A'); // Choice A is distractor for Q1
+  assert.equal(session.feedback.correct, false);
+  assert.equal(session.awaitingFollowUp[session.questions[0].id], true);
+
+  // Word lookup while answer selected
+  session = setContextWordHelp(session, 2);
+  assert.equal(session.selectedChoice, 'A', 'Word lookup must preserve selected choice');
+
+  // Follow-up
+  session = startContextFollowUp(session);
+  assert.equal(session.inFollowUp, true);
+  session = setContextWordHelp(session, 0);
+  session = selectContextChoice(session, 'A'); // Choice A is correct for follow-up
+  assert.equal(session.feedback.correct, true);
+
+  // Answer remaining 5 questions
+  for (let i = 1; i < 6; i++) {
+    session.position = i;
+    session.inFollowUp = false;
+    const q = session.questions[i];
+    session = selectContextChoice(session, q.correctChoice);
+  }
+
+  const score = scoreContextSession(session);
+  assert.equal(score.complete, true);
+  assert.equal(score.correct, 5); // 5/6 first-try correct
+  assert.equal(score.followUp.attempted, 1);
+  assert.equal(score.followUp.correct, 1);
+
+  // Record completion into learner profile
+  const updatedLearner = recordContextCompletion(learner, session.pack, score);
+
+  // Assertions:
+  // 1. Context completion is recorded
+  assert.ok(updatedLearner.contextPractice['pack:beginner-1']);
+  assert.equal(updatedLearner.contextPractice['pack:beginner-1'].lastScore.correct, 5);
+  assert.equal(updatedLearner.contextPractice['pack:beginner-1'].lastScore.total, 6);
+  assert.equal(updatedLearner.contextPractice['pack:beginner-1'].followUp.correct, 1);
+
+  // 2. SRS progress is 100% invariant across all 9 populated items and review dates
+  assert.equal(
+    JSON.stringify(updatedLearner.progress),
+    initialSnapshot,
+    'Learner SRS progress must remain byte-for-byte identical after context practice completion'
+  );
+  assert.deepEqual(updatedLearner.progress, populatedProgress);
+});
+
