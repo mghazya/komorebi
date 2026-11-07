@@ -7,6 +7,9 @@ import {
   CONTEXT_PACK_2_PATH,
   CONTEXT_PACK_3_PATH,
   CONTEXT_PACK_4_PATH,
+  CONTEXT_PACK_5_PATH,
+  CONTEXT_PACK_6_PATH,
+  CONTEXT_PACK_7_PATH,
   CONTEXT_PACKS,
   CONTEXT_PACK_META,
   getContextPackMeta,
@@ -643,17 +646,23 @@ test('Automated mechanical checks: coverage checklist, resumable skip, Packs 2-4
     'pack:beginner-2',
     'pack:beginner-3',
     'pack:beginner-4',
+    'pack:beginner-5',
+    'pack:beginner-6',
+    'pack:beginner-7',
   ]);
   assert.equal(checkRun1.totalChecklistEntries, 147);
-  assert.equal(checkRun1.taughtMeaningsCount, 16);
+  assert.equal(checkRun1.taughtMeaningsCount, 25);
   assert.ok(checkRun1.flaggedMeaningsCount >= 8, 'Ambiguous/overlapping or deferred items must be flagged');
 
-  // 2. Verify each of the three new packs (Pack 2, Pack 3, Pack 4) loads on demand by packId
+  // 2. Verify each of the new packs (Packs 2-7) loads on demand by packId
   const packPathsById = {
     'pack:beginner-1': CONTEXT_PACK_1_PATH,
     'pack:beginner-2': CONTEXT_PACK_2_PATH,
     'pack:beginner-3': CONTEXT_PACK_3_PATH,
     'pack:beginner-4': CONTEXT_PACK_4_PATH,
+    'pack:beginner-5': CONTEXT_PACK_5_PATH,
+    'pack:beginner-6': CONTEXT_PACK_6_PATH,
+    'pack:beginner-7': CONTEXT_PACK_7_PATH,
   };
   let learner = {
     ...newProfile('Multi-Pack Learner', 'learner-multipack'),
@@ -700,9 +709,16 @@ test('Automated mechanical checks: coverage checklist, resumable skip, Packs 2-4
     learner = recordContextCompletion(learner, loadedPack, score, 1762340000000);
   }
 
-  // Verify all 3 new packs saved their separate first-attempt and follow-up scores without touching SRS
-  assert.equal(JSON.stringify(learner.progress), srsBefore, 'Completing Packs 2-4 must never alter kanji/vocab stages or review dates');
-  for (const pid of ['pack:beginner-2', 'pack:beginner-3', 'pack:beginner-4']) {
+  // Verify all new packs saved their separate first-attempt and follow-up scores without touching SRS
+  assert.equal(JSON.stringify(learner.progress), srsBefore, 'Completing Packs 2-7 must never alter kanji/vocab stages or review dates');
+  for (const pid of [
+    'pack:beginner-2',
+    'pack:beginner-3',
+    'pack:beginner-4',
+    'pack:beginner-5',
+    'pack:beginner-6',
+    'pack:beginner-7',
+  ]) {
     assert.deepEqual(learner.contextPractice[pid].lastScore, { correct: 5, total: 6 });
     assert.equal(learner.contextPractice[pid].followUp.attempted, 1);
     assert.equal(learner.contextPractice[pid].followUp.correct, 1);

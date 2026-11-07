@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "title": "Komorebi Practice in Context — Grammar Coverage Checklist",
-  "updatedAt": "2026-11-05T15:05:23.651Z",
+  "updatedAt": "2026-11-06T03:47:38.614Z",
   "policy": {
     "unitOfTracking": "Tracked by (renshuuGrammarId, meaningIndex) because a single Renshuu grammar ID can cover multiple distinct meanings/uses.",
     "taughtRule": "A grammar meaning is counted as taught (taught: true) ONLY when it is linked to at least one validated primary question and distinct follow-up exercise in a pack.",
@@ -95,19 +95,70 @@
       ],
       "questionsCount": 6,
       "followUpsCount": 6
+    },
+    {
+      "packId": "pack:beginner-5",
+      "title": "Beginner Pack 5",
+      "subtitle": "Actions, Accompaniment & Movement Origin",
+      "path": "./data/context-pack-5.json",
+      "status": "validated",
+      "patterns": [
+        "grammar:de-action",
+        "grammar:to-accompaniment",
+        "grammar:kara-origin"
+      ],
+      "renshuuMeaningsCovered": [
+        "renshuu:112#1",
+        "renshuu:110#3",
+        "renshuu:99#2"
+      ]
+    },
+    {
+      "packId": "pack:beginner-6",
+      "title": "Beginner Pack 6",
+      "subtitle": "Time Points, Movement Extent & Polite Past Actions",
+      "path": "./data/context-pack-6.json",
+      "status": "validated",
+      "patterns": [
+        "grammar:ni-time",
+        "grammar:kara-made",
+        "grammar:mashita-past"
+      ],
+      "renshuuMeaningsCovered": [
+        "renshuu:113#3",
+        "renshuu:467#1",
+        "renshuu:477#1"
+      ]
+    },
+    {
+      "packId": "pack:beginner-7",
+      "title": "Beginner Pack 7",
+      "subtitle": "Describing Things — Adjectives, Negative Forms & Clause Contrast",
+      "path": "./data/context-pack-7.json",
+      "status": "validated",
+      "patterns": [
+        "grammar:i-adjective",
+        "grammar:adjective-negative",
+        "grammar:ga-contrast"
+      ],
+      "renshuuMeaningsCovered": [
+        "renshuu:736#1",
+        "renshuu:738#1",
+        "renshuu:462#1"
+      ]
     }
   ],
   "summary": {
     "totalN5GrammarIds": 69,
     "totalN5Meanings": 147,
-    "taughtMeaningsCount": 16,
-    "distinctPatternsTaught": 12,
+    "taughtMeaningsCount": 25,
+    "distinctPatternsTaught": 21,
     "byStatus": {
       "live": 16,
       "reviewed": 0,
-      "validated": 0,
+      "validated": 9,
       "draft": 0,
-      "planned": 131
+      "planned": 122
     },
     "flaggedMeaningsCount": 8
   },
@@ -480,12 +531,22 @@
       "prerequisites": [
         "renshuu:735#1"
       ],
-      "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "linkedWords": [
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:入り口",
+        "vocabulary:上げる"
+      ],
+      "packId": "pack:beginner-5",
+      "patternId": "grammar:kara-origin",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:kara-origin-1",
+        "question:kara-origin-2",
+        "followup:kara-origin-1",
+        "followup:kara-origin-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -624,12 +685,21 @@
       "prerequisites": [
         "renshuu:735#1"
       ],
-      "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "linkedWords": [
+        "vocabulary:人",
+        "vocabulary:二人",
+        "vocabulary:女"
+      ],
+      "packId": "pack:beginner-5",
+      "patternId": "grammar:to-accompaniment",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:to-accompaniment-1",
+        "question:to-accompaniment-2",
+        "followup:to-accompaniment-1",
+        "followup:to-accompaniment-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -678,14 +748,25 @@
       "prerequisites": [
         "renshuu:735#1"
       ],
-      "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "linkedWords": [
+        "vocabulary:人",
+        "vocabulary:大人",
+        "vocabulary:入り口"
+      ],
+      "packId": "pack:beginner-5",
+      "patternId": "grammar:de-action",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:de-action-1",
+        "question:de-action-2",
+        "followup:de-action-1",
+        "followup:de-action-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
-      "flags": []
+      "flags": [
+        "LOCATION_CONTRAST_NOTE: で marks where an active conduct takes place, distinct from に which marks static presence (113#1) or destination (113#2)."
+      ]
     },
     {
       "meaningId": "renshuu:112#2",
@@ -858,12 +939,23 @@
       "prerequisites": [
         "renshuu:735#1"
       ],
-      "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "linkedWords": [
+        "vocabulary:一",
+        "vocabulary:二",
+        "vocabulary:三",
+        "vocabulary:七",
+        "vocabulary:八"
+      ],
+      "packId": "pack:beginner-6",
+      "patternId": "grammar:ni-time",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:ni-time-1",
+        "question:ni-time-2",
+        "followup:ni-time-1",
+        "followup:ni-time-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -2028,14 +2120,27 @@
       "prerequisites": [
         "renshuu:735#1"
       ],
-      "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "linkedWords": [
+        "vocabulary:ふじ山",
+        "vocabulary:山",
+        "vocabulary:人",
+        "vocabulary:大人",
+        "vocabulary:力"
+      ],
+      "packId": "pack:beginner-7",
+      "patternId": "grammar:ga-contrast",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:ga-contrast-1",
+        "question:ga-contrast-2",
+        "followup:ga-contrast-1",
+        "followup:ga-contrast-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
-      "flags": []
+      "flags": [
+        "DISAMBIGUATION_FROM_SUBJECT_GA: Conjunctive が joins clauses with \"but\", distinct from case particle が (462#2) which marks grammatical subject."
+      ]
     },
     {
       "meaningId": "renshuu:462#2",
@@ -2192,14 +2297,26 @@
       "prerequisites": [
         "renshuu:735#1"
       ],
-      "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "linkedWords": [
+        "vocabulary:一",
+        "vocabulary:三",
+        "vocabulary:入り口",
+        "vocabulary:川"
+      ],
+      "packId": "pack:beginner-6",
+      "patternId": "grammar:kara-made",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:kara-made-1",
+        "question:kara-made-2",
+        "followup:kara-made-1",
+        "followup:kara-made-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
-      "flags": []
+      "flags": [
+        "COMPOUND_PATTERN_NOTE: Bundles starting point から (99#2) and endpoint まで (115#1) into a single span expression across time or space."
+      ]
     },
     {
       "meaningId": "renshuu:468#1",
@@ -2446,12 +2563,22 @@
       "prerequisites": [
         "renshuu:735#1"
       ],
-      "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "linkedWords": [
+        "vocabulary:入る",
+        "vocabulary:上げる",
+        "vocabulary:下げる",
+        "vocabulary:川"
+      ],
+      "packId": "pack:beginner-6",
+      "patternId": "grammar:mashita-past",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:mashita-past-1",
+        "question:mashita-past-2",
+        "followup:mashita-past-1",
+        "followup:mashita-past-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -2698,12 +2825,22 @@
       "prerequisites": [
         "renshuu:735#1"
       ],
-      "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "linkedWords": [
+        "vocabulary:大きい",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:ふじ山"
+      ],
+      "packId": "pack:beginner-7",
+      "patternId": "grammar:i-adjective",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:i-adjective-1",
+        "question:i-adjective-2",
+        "followup:i-adjective-1",
+        "followup:i-adjective-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -2749,12 +2886,21 @@
       "prerequisites": [
         "renshuu:735#1"
       ],
-      "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "linkedWords": [
+        "vocabulary:大きい",
+        "vocabulary:山",
+        "vocabulary:入り口"
+      ],
+      "packId": "pack:beginner-7",
+      "patternId": "grammar:adjective-negative",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:adjective-negative-1",
+        "question:adjective-negative-2",
+        "followup:adjective-negative-1",
+        "followup:adjective-negative-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },

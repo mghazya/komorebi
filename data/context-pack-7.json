@@ -1,0 +1,535 @@
+{
+  "schemaVersion": 1,
+  "id": "pack:beginner-7",
+  "title": "Beginner Pack 7",
+  "subtitle": "Describing Things — Adjectives, Negative Forms & Clause Contrast",
+  "label": "3 patterns · 6 questions",
+  "level": 1,
+  "rationale": "Empowers learners to describe attributes and express nuanced contrasts using Level 1’s adjective 大きい (and companion vocabulary): (1) い-adjectives modify nouns directly (大きい山) or state properties as predicates (山は大きいです), (2) negative adjective ending 〜くないです allows stating that something is not big / not tall, and (3) conjunctive particle が joins two contrasting thoughts into a single compound sentence (Aですが、B = A, but B).",
+  "description": "Learn い-adjectives modifying nouns and predicates, negative adjective ending 〜くないです, and clause contrast particle が.",
+  "patterns": [
+    {
+      "id": "grammar:i-adjective",
+      "order": 1,
+      "renshuuGrammarId": "736",
+      "renshuuMeaningIndex": 1,
+      "renshuuRef": "736#1",
+      "pattern": "[Adjective] + Noun / Noun は [Adjective] です",
+      "gloss": "modifying nouns & predicate adjective (い-adjectives)",
+      "readingNote": "い-adjectives end in い and can sit right before a noun (大きい山) or before です at the end of a sentence (山は大きいです).",
+      "summary": "In Pack 1, nouns were connected with の (駅の入り口). Adjectives like 大きい directly describe a noun without needing の (大きい山 = big mountain). When used as the main predicate, add です for politeness (あの山は大きいです = that mountain is big).",
+      "subjectIds": [
+        "kanji:大",
+        "kanji:山",
+        "kanji:川",
+        "kanji:人",
+        "vocabulary:大きい",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:人",
+        "vocabulary:ふじ山"
+      ],
+      "examples": [
+        {
+          "id": "example:i-adjective-1",
+          "japanese": "ふじ山は大きい山です。",
+          "reading": "ふじさんは おおきい やまです。",
+          "gloss": "ふじ山 Mt. Fuji · 大きい big · 山 mountain · です is",
+          "english": "Mt. Fuji is a big mountain."
+        },
+        {
+          "id": "example:i-adjective-2",
+          "japanese": "あの川は大きいです。",
+          "reading": "あの かわは おおきいです。",
+          "gloss": "あの川 that river · 大きいです is big/large",
+          "english": "That river is big."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:i-adjective-1",
+          "patternId": "grammar:i-adjective",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the correct form of the adjective to modify 山 (mountain):",
+          "japanese": "ふじ山は（　）山です。",
+          "targetMeaning": "Mt. Fuji is a big mountain.",
+          "reading": "ふじさんは（　）やまです。",
+          "gloss": "ふじ山 Mt. Fuji · 山 mountain · です is",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "大きくに",
+              "lang": "ja",
+              "explanation": "Not quite. 大きくに is not a valid modifier before a noun; い-adjectives modify directly with their dictionary form ending in い (大きい山)."
+            },
+            {
+              "id": "B",
+              "text": "大きさ",
+              "lang": "ja",
+              "explanation": "Not quite. 大きさ is the noun “size,” which would require の to modify a noun (大きさの山); 大きい modifies directly."
+            },
+            {
+              "id": "C",
+              "text": "大きい",
+              "lang": "ja",
+              "explanation": "That’s right! An い-adjective directly precedes the noun it modifies (大きい山 = big mountain)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:i-adjective-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the correct adjective form to modify 木 (tree) in “There is a big tree near the river”:",
+            "japanese": "川の近くに（　）木があります。",
+            "targetMeaning": "There is a big tree near the river.",
+            "reading": "かわの ちかくに（　）きが あります。",
+            "gloss": "川の近く near the river · 木 tree · あります there is",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "大きさ",
+                "lang": "ja",
+                "explanation": "Not quite. 大きさ is the noun “size.” An adjective like 大きい modifies a noun directly."
+              },
+              {
+                "id": "B",
+                "text": "大きい",
+                "lang": "ja",
+                "explanation": "That’s right! 大きい directly modifies 木 (大きい木 = big tree)."
+              },
+              {
+                "id": "C",
+                "text": "大きく",
+                "lang": "ja",
+                "explanation": "Not quite. 大きく is the adverbial/conjunctive stem, used before verbs (大きく書きます), not directly before a noun."
+              }
+            ],
+            "workedExample": {
+              "japanese": "川の近くに大きい木があります。",
+              "reading": "かわの ちかくに おおきい きが あります。",
+              "english": "There is a big tree near the river.",
+              "breakdown": "Step 1: Identify the noun to describe: 木 (“tree”). Step 2: Use the plain い-adjective directly: 大きい木 (“big tree”). Step 3: Complete with existence frame: 川の近くに…があります (“There is… near the river”)."
+            }
+          }
+        },
+        {
+          "id": "question:i-adjective-2",
+          "patternId": "grammar:i-adjective",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "あの川は大きいです。",
+          "reading": "あの かわは おおきいです。",
+          "gloss": "あの川 that river · は topic · 大きいです is big",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "That river is big.",
+              "lang": "en",
+              "explanation": "That’s right! あの川は sets “that river” as the topic, and 大きいです states the predicate “is big.”"
+            },
+            {
+              "id": "B",
+              "text": "That river is small.",
+              "lang": "en",
+              "explanation": "Not quite. “Small” is 小さい (ちいさい); 大きい (おおきい) means “big / large.”"
+            },
+            {
+              "id": "C",
+              "text": "There are big fish in the river.",
+              "lang": "en",
+              "explanation": "Not quite. This sentence describes the size of the river itself (川は大きいです), not items inside it."
+            }
+          ],
+          "followUp": {
+            "id": "followup:i-adjective-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "ふじ山は高い山です。",
+            "reading": "ふじさんは たかい やまです。",
+            "gloss": "ふじ山 Mt. Fuji · 高い tall/high · 山 mountain · です is",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Mt. Fuji is a low mountain.",
+                "lang": "en",
+                "explanation": "Not quite. “Low” is 低い (ひくい); 高い (たかい) means “tall / high.”"
+              },
+              {
+                "id": "B",
+                "text": "There is a mountain near Mt. Fuji.",
+                "lang": "en",
+                "explanation": "Not quite. This is an adjective identification sentence (AはBです), not an existence sentence."
+              },
+              {
+                "id": "C",
+                "text": "Mt. Fuji is a tall mountain.",
+                "lang": "en",
+                "explanation": "That’s right! ふじ山は is “Mt. Fuji,” and 高い山です is “is a tall mountain.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "ふじ山は高い山です。",
+              "reading": "ふじさんは たかい やまです。",
+              "english": "Mt. Fuji is a tall mountain.",
+              "breakdown": "Step 1: Topic: ふじ山は (“Mt. Fuji”). Step 2: Modified noun: 高い山 (“tall mountain”). Step 3: Polite copula: です (“is”)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:adjective-negative",
+      "order": 2,
+      "renshuuGrammarId": "738",
+      "renshuuMeaningIndex": 1,
+      "renshuuRef": "738#1",
+      "pattern": "〜くないです",
+      "gloss": "is not (negative い-adjective)",
+      "readingNote": "Drop the final い of an い-adjective and add くないです to say “is not [adjective]”.",
+      "summary": "To make an い-adjective negative, drop the final い and add くないです (大きい → 大きくないです = is not big; 高い → 高くないです = is not tall/expensive).",
+      "subjectIds": [
+        "kanji:大",
+        "kanji:山",
+        "kanji:口",
+        "vocabulary:大きい",
+        "vocabulary:山",
+        "vocabulary:入り口"
+      ],
+      "examples": [
+        {
+          "id": "example:adjective-negative-1",
+          "japanese": "この駅の入り口は大きくないです。",
+          "reading": "この えきの いりぐちは おおきくないです。",
+          "gloss": "この駅 this station · の of · 入り口 entrance · 大きくないです is not big",
+          "english": "The entrance of this station is not big."
+        },
+        {
+          "id": "example:adjective-negative-2",
+          "japanese": "あの部屋は広くないです。",
+          "reading": "あの へやは ひろくないです。",
+          "gloss": "あの部屋 that room · 広くないです is not spacious/wide",
+          "english": "That room is not spacious."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:adjective-negative-1",
+          "patternId": "grammar:adjective-negative",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Choose the negative form that completes “The entrance of this station is NOT big”:",
+          "japanese": "この駅の入り口は（　）。",
+          "targetMeaning": "The entrance of this station is not big.",
+          "reading": "この えきの いりぐちは（　）。",
+          "gloss": "この駅 this station · 入り口 entrance",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "大きいです",
+              "lang": "ja",
+              "explanation": "Not quite. 大きいです is affirmative (“is big”), but we need the negative “is not big.”"
+            },
+            {
+              "id": "B",
+              "text": "大きくないです",
+              "lang": "ja",
+              "explanation": "That’s right! Drop the final い from 大きい and add くないです → 大きくないです (“is not big”)."
+            },
+            {
+              "id": "C",
+              "text": "大きいでした",
+              "lang": "ja",
+              "explanation": "Not quite. い-adjectives do not attach でした directly; the past form is 大きかったです, and neither is negative."
+            }
+          ],
+          "followUp": {
+            "id": "followup:adjective-negative-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the negative form that completes “That mountain is NOT tall”:",
+            "japanese": "あの山は（　）。",
+            "targetMeaning": "That mountain is not tall.",
+            "reading": "あの やまは（　）。",
+            "gloss": "あの山 that mountain",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "高くないです",
+                "lang": "ja",
+                "explanation": "That’s right! Drop い from 高い and add くないです → 高くないです (“is not tall”)."
+              },
+              {
+                "id": "B",
+                "text": "高いじゃないです",
+                "lang": "ja",
+                "explanation": "Not quite. じゃないです is used with nouns and な-adjectives, never with い-adjectives."
+              },
+              {
+                "id": "C",
+                "text": "高くないでした",
+                "lang": "ja",
+                "explanation": "Not quite. でした does not attach to くない; the past negative is 高くなかったです."
+              }
+            ],
+            "workedExample": {
+              "japanese": "あの山は高くないです。",
+              "reading": "あの やまは たかくないです。",
+              "english": "That mountain is not tall.",
+              "breakdown": "Step 1: Start with plain adjective: 高い (“tall”). Step 2: Drop final い → 高 (taka). Step 3: Add negative ending 〜くないです → 高くないです (“is not tall”)."
+            }
+          }
+        },
+        {
+          "id": "question:adjective-negative-2",
+          "patternId": "grammar:adjective-negative",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "この部屋は広くないです。",
+          "reading": "この へやは ひろくないです。",
+          "gloss": "この部屋 this room · 広くないです is not spacious",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "This room is very spacious.",
+              "lang": "en",
+              "explanation": "Not quite. 広い (ひろい) means spacious, but 〜くないです is negative (“is not spacious”)."
+            },
+            {
+              "id": "B",
+              "text": "This room has a wide door.",
+              "lang": "en",
+              "explanation": "Not quite. This describes the room itself, and the predicate is negative."
+            },
+            {
+              "id": "C",
+              "text": "This room is not spacious.",
+              "lang": "en",
+              "explanation": "That’s right! この部屋は is “this room,” and 広くないです is the negative adjective predicate “is not spacious.”"
+            }
+          ],
+          "followUp": {
+            "id": "followup:adjective-negative-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "あのビルは高くないです。",
+            "reading": "あの ビルは たかくないです。",
+            "gloss": "あのビル that building · 高くないです is not tall",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "That building is extremely tall.",
+                "lang": "en",
+                "explanation": "Not quite. 高いです is affirmative (“is tall”); 高くないです is negative (“is not tall”)."
+              },
+              {
+                "id": "B",
+                "text": "That building is not tall.",
+                "lang": "en",
+                "explanation": "That’s right! あのビルは is “that building,” and 高くないです is “is not tall.”"
+              },
+              {
+                "id": "C",
+                "text": "That building has many rooms.",
+                "lang": "en",
+                "explanation": "Not quite. The sentence describes height with 高い (negative: 高くないです), not room count."
+              }
+            ],
+            "workedExample": {
+              "japanese": "あのビルは高くないです。",
+              "reading": "あの ビルは たかくないです。",
+              "english": "That building is not tall.",
+              "breakdown": "Step 1: Topic: あのビルは (“that building”). Step 2: Negative adjective predicate: 高くないです (“is not tall”)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:ga-contrast",
+      "order": 3,
+      "renshuuGrammarId": "462",
+      "renshuuMeaningIndex": 1,
+      "renshuuRef": "462#1",
+      "pattern": "[Clause 1] が、[Clause 2]",
+      "gloss": "but / however (conjunctive が)",
+      "readingNote": "が connects two contrasting clauses, meaning “but” or “however.”",
+      "summary": "You have seen が marking existence subjects (水があります). When placed between two complete clauses with a comma (〜ですが、…), が acts as a conjunction meaning “but” or “however” (小さいですが、明るいです = It is small, but bright).",
+      "subjectIds": [
+        "kanji:大",
+        "kanji:山",
+        "kanji:人",
+        "vocabulary:大きい",
+        "vocabulary:山",
+        "vocabulary:人",
+        "vocabulary:ふじ山"
+      ],
+      "examples": [
+        {
+          "id": "example:ga-contrast-1",
+          "japanese": "この部屋は小さいですが、明るいです。",
+          "reading": "この へやは ちいさいですが、あかるいです。",
+          "gloss": "この部屋 this room · 小さい small · ですが but · 明るい bright · です is",
+          "english": "This room is small, but it is bright."
+        },
+        {
+          "id": "example:ga-contrast-2",
+          "japanese": "あのホテルは古いですが、きれいです。",
+          "reading": "あの ホテルは ふるいですが、きれいです。",
+          "gloss": "あのホテル that hotel · 古い old · ですが but · きれい clean/pretty · です is",
+          "english": "That hotel is old, but it is clean."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:ga-contrast-1",
+          "patternId": "grammar:ga-contrast",
+          "kind": "comprehension",
+          "isFreshSentence": false,
+          "prompt": "What does this sentence mean?",
+          "japanese": "この部屋は小さいですが、明るいです。",
+          "targetMeaning": "This room is small, but bright.",
+          "reading": "この へやは ちいさいですが、あかるいです。",
+          "gloss": "この部屋 this room · 小さい small · ですが but · 明るい bright · です is",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "This room is small, but bright.",
+              "lang": "en",
+              "explanation": "That’s right! この部屋は is “this room,” 小さいですが is “is small, but,” and 明るいです is “is bright.”"
+            },
+            {
+              "id": "B",
+              "text": "This room is small, but dark.",
+              "lang": "en",
+              "explanation": "Not quite. While 小さい (ちいさい) does mean “small,” the second adjective 明るい (あかるい) means “bright,” not “dark.”"
+            },
+            {
+              "id": "C",
+              "text": "This room is large, but bright.",
+              "lang": "en",
+              "explanation": "Not quite. While 明るい (あかるい) does mean “bright,” the first adjective 小さい (ちいさい) means “small,” not “large” (which would be 大きい)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:ga-contrast-1",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "あのホテルは古いですが、きれいです。",
+            "targetMeaning": "That hotel is old, but clean.",
+            "reading": "あの ホテルは ふるいですが、きれいです。",
+            "gloss": "あのホテル that hotel · 古い old · ですが but · きれい clean/pretty · です is",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "That hotel is old, but dirty.",
+                "lang": "en",
+                "explanation": "Not quite. While 古い (ふるい) does mean “old,” the second adjective きれい means “clean/pretty,” not “dirty.”"
+              },
+              {
+                "id": "B",
+                "text": "That hotel is new, but clean.",
+                "lang": "en",
+                "explanation": "Not quite. While きれい does mean “clean,” the first adjective 古い (ふるい) means “old,” not “new” (which would be 新しい)."
+              },
+              {
+                "id": "C",
+                "text": "That hotel is old, but clean.",
+                "lang": "en",
+                "explanation": "That’s right! あのホテルは is “that hotel,” 古いですが is “is old, but,” and きれいです is “is clean.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "あのホテルは古いですが、きれいです。",
+              "reading": "あの ホテルは ふるいですが、きれいです。",
+              "english": "That hotel is old, but it is clean.",
+              "breakdown": "Step 1: First clause: あのホテルは古い (“That hotel is old”). Step 2: Add contrast conjunction: ですが、 (“is old, but”). Step 3: Second clause: きれいです (“it is clean”). Notice how が balances the drawback (old) with the positive feature (clean)."
+            }
+          }
+        },
+        {
+          "id": "question:ga-contrast-2",
+          "patternId": "grammar:ga-contrast",
+          "kind": "comprehension",
+          "isFreshSentence": true,
+          "prompt": "What does this sentence mean?",
+          "japanese": "水はありますが、お茶はありません。",
+          "targetMeaning": "There is water, but there is no tea.",
+          "reading": "みずは ありますが、おちゃは ありません。",
+          "gloss": "水 water · あります there is · ですが but · お茶 tea · ありません there is not",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "There is both water and tea.",
+              "lang": "en",
+              "explanation": "Not quite. お茶はありません is negative (“there is no tea”), and ですが indicates contrast."
+            },
+            {
+              "id": "B",
+              "text": "There is water, but there is no tea.",
+              "lang": "en",
+              "explanation": "That’s right! 水はありますが means “there is water, but,” and お茶はありません means “there is no tea.”"
+            },
+            {
+              "id": "C",
+              "text": "There is tea, but there is no water.",
+              "lang": "en",
+              "explanation": "Not quite. 水 (water) is affirmative with あります, while お茶 (tea) is negative with ありません."
+            }
+          ],
+          "followUp": {
+            "id": "followup:ga-contrast-2",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does this sentence mean?",
+            "japanese": "あの人は大人ですが、力はありません。",
+            "reading": "あの ひとは おとなですが、ちからは ありません。",
+            "gloss": "あの人 that person · 大人 adult · ですが but · 力 strength · ありません has not",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "That person is an adult, but has no strength.",
+                "lang": "en",
+                "explanation": "That’s right! あの人は大人ですが is “that person is an adult, but,” and 力はありません is “has no strength.”"
+              },
+              {
+                "id": "B",
+                "text": "That adult has great physical power.",
+                "lang": "en",
+                "explanation": "Not quite. ありません is negative (“does not have strength”), and ですが indicates contrast."
+              },
+              {
+                "id": "C",
+                "text": "Two adults are waiting outside.",
+                "lang": "en",
+                "explanation": "Not quite. This describes one person’s attributes using 大人 and 力, not multiple people waiting."
+              }
+            ],
+            "workedExample": {
+              "japanese": "あの人は大人ですが、力はありません。",
+              "reading": "あの ひとは おとなですが、ちからは ありません。",
+              "english": "That person is an adult, but has no strength.",
+              "breakdown": "Step 1: First clause: あの人は大人ですが (“That person is an adult, but”). Step 2: Contrasting second clause: 力はありません (“has no strength / power”)."
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    "Komorebi Level 1 curriculum (data/level-1.json): kanji 大, 山, 川, 人, 口, 力 and vocabulary 大きい, 山, 川, 人, 大人, ふじ山, 力.",
+    "JLPT N5 grammar progression (local Renshuu reference IDs): noun-modifying / predicate い-adjectives (736#1), negative い-adjectives 〜くないです (738#1), and conjunctive clause contrast が (462#1).",
+    "All example sentences, fresh transfer prompts, follow-up questions, worked examples, brief glosses, and distractor explanations are original study material authored for Komorebi."
+  ]
+}
