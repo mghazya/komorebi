@@ -12,6 +12,9 @@ import {
   CONTEXT_PACK_5_PATH,
   CONTEXT_PACK_6_PATH,
   CONTEXT_PACK_7_PATH,
+  CONTEXT_PACK_8_PATH,
+  CONTEXT_PACK_9_PATH,
+  CONTEXT_PACK_10_PATH,
   CONTEXT_PACKS,
   CONTEXT_PACK_META,
   getContextPackMeta,
@@ -652,12 +655,15 @@ test('Automated mechanical checks: coverage checklist, resumable skip, Packs 2-4
     'pack:beginner-5',
     'pack:beginner-6',
     'pack:beginner-7',
+    'pack:beginner-8',
+    'pack:beginner-9',
+    'pack:beginner-10',
   ]);
   assert.equal(checkRun1.totalChecklistEntries, 147);
-  assert.equal(checkRun1.taughtMeaningsCount, 25);
+  assert.equal(checkRun1.taughtMeaningsCount, 35);
   assert.ok(checkRun1.flaggedMeaningsCount >= 8, 'Ambiguous/overlapping or deferred items must be flagged');
 
-  // 2. Verify each of the new packs (Packs 2-7) loads on demand by packId
+  // 2. Verify each of the new packs (Packs 2-10) loads on demand by packId
   const packPathsById = {
     'pack:beginner-1': CONTEXT_PACK_1_PATH,
     'pack:beginner-2': CONTEXT_PACK_2_PATH,
@@ -666,6 +672,9 @@ test('Automated mechanical checks: coverage checklist, resumable skip, Packs 2-4
     'pack:beginner-5': CONTEXT_PACK_5_PATH,
     'pack:beginner-6': CONTEXT_PACK_6_PATH,
     'pack:beginner-7': CONTEXT_PACK_7_PATH,
+    'pack:beginner-8': CONTEXT_PACK_8_PATH,
+    'pack:beginner-9': CONTEXT_PACK_9_PATH,
+    'pack:beginner-10': CONTEXT_PACK_10_PATH,
   };
   let learner = {
     ...newProfile('Multi-Pack Learner', 'learner-multipack'),
@@ -989,7 +998,7 @@ test('Release readiness: fresh asset version tags, 360px / 200% zoom styling, cl
 });
 
 test('Validator enforces all structural and mechanical checks on live/approved packs (approval status never skips structural validation)', () => {
-  // 1. All 7 packs are unconditionally reported as structurally validated
+  // 1. All 10 packs are unconditionally reported as structurally validated
   const result = runMechanicalChecks();
   assert.equal(result.ok, true);
   assert.deepEqual(result.structurallyValidatedPacks, [
@@ -1000,6 +1009,9 @@ test('Validator enforces all structural and mechanical checks on live/approved p
     'pack:beginner-5',
     'pack:beginner-6',
     'pack:beginner-7',
+    'pack:beginner-8',
+    'pack:beginner-9',
+    'pack:beginner-10',
   ]);
   assert.deepEqual(result.skippedFromRegeneration, [
     'pack:beginner-1',
@@ -1009,6 +1021,9 @@ test('Validator enforces all structural and mechanical checks on live/approved p
     'pack:beginner-5',
     'pack:beginner-6',
     'pack:beginner-7',
+    'pack:beginner-8',
+    'pack:beginner-9',
+    'pack:beginner-10',
   ]);
 
   // Helper to run checks in an isolated temporary root directory with a modified pack

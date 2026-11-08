@@ -15,6 +15,9 @@ export const CONTEXT_PACK_4_PATH = './data/context-pack-4.json';
 export const CONTEXT_PACK_5_PATH = './data/context-pack-5.json';
 export const CONTEXT_PACK_6_PATH = './data/context-pack-6.json';
 export const CONTEXT_PACK_7_PATH = './data/context-pack-7.json';
+export const CONTEXT_PACK_8_PATH = './data/context-pack-8.json';
+export const CONTEXT_PACK_9_PATH = './data/context-pack-9.json';
+export const CONTEXT_PACK_10_PATH = './data/context-pack-10.json';
 
 export const CONTEXT_PACKS = Object.freeze([
   Object.freeze({
@@ -93,6 +96,39 @@ export const CONTEXT_PACKS = Object.freeze([
     questionsCount: 6,
     path: CONTEXT_PACK_7_PATH,
     status: 'live',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-8',
+    title: 'Beginner Pack 8',
+    subtitle: 'Everyday Questions — Who, What & Where',
+    label: '3 patterns · 6 questions',
+    patternsSummary: '何 (なん), どこ, だれ',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_8_PATH,
+    status: 'validated',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-9',
+    title: 'Beginner Pack 9',
+    subtitle: 'Wants, Likes & Subject Markers',
+    label: '3 patterns · 6 questions',
+    patternsSummary: 'ほしいです, 好きです / 嫌いです, が (target)',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_9_PATH,
+    status: 'validated',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-10',
+    title: 'Beginner Pack 10',
+    subtitle: 'Means of Travel, Exemplary Lists & Conversational Nuance',
+    label: '3 patterns · 6 questions',
+    patternsSummary: 'で (means), や (listing), よ / ね (conversational)',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_10_PATH,
+    status: 'validated',
   }),
 ]);
 
