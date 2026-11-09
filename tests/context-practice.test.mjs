@@ -904,12 +904,12 @@ test('Tap-to-read word help: interactive words, cloze blank hiding, contextual r
 test('Release readiness: fresh asset version tags, 360px / 200% zoom styling, cloze secrecy, and scoring invariance', async () => {
   // 1. Fresh asset version tags
   const indexHtml = fs.readFileSync('index.html', 'utf8');
-  assert.match(indexHtml, /href="\.\/style\.css\?v=20261107-context-word-help"/, 'index.html must have fresh style.css version tag');
-  assert.match(indexHtml, /src="\.\/app\.mjs\?v=20261107-context-word-help"/, 'index.html must have fresh app.mjs version tag');
+  assert.match(indexHtml, /href="\.\/style\.css\?v=20261109-packs-8-10"/, 'index.html must have fresh style.css version tag');
+  assert.match(indexHtml, /src="\.\/app\.mjs\?v=20261109-packs-8-10"/, 'index.html must have fresh app.mjs version tag');
 
   const appCode = fs.readFileSync('app.mjs', 'utf8');
-  assert.match(appCode, /profile\.mjs\?v=20261107-context-word-help/, 'app.mjs must have fresh profile.mjs version tag');
-  assert.match(appCode, /context\.mjs\?v=20261107-context-word-help/, 'app.mjs must have fresh context.mjs version tag');
+  assert.match(appCode, /profile\.mjs\?v=20261109-packs-8-10/, 'app.mjs must have fresh profile.mjs version tag');
+  assert.match(appCode, /context\.mjs\?v=20261109-packs-8-10/, 'app.mjs must have fresh context.mjs version tag');
 
   // 2. CSS supports long word-help cards at 360px viewport and 200% text size
   const css = fs.readFileSync('style.css', 'utf8');
