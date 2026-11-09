@@ -49,9 +49,9 @@
           "id": "question:de-means-1",
           "kind": "comprehension",
           "prompt": "What does this conversational exchange mean?",
-          "japanese": "「駅まで何で行きますか。」「バスで行きます。」",
-          "reading": "「えきまで なんで いきますか。」「バスで いきます。」",
-          "gloss": "「駅まで to the station · 何で by what / how · 行きますか do you go?」「バスで by bus · 行きます go.」",
+          "japanese": "A: 駅まで何で行きますか。 B: バスで行きます。",
+          "reading": "A: えきまで なんで いきますか。 B: バスで いきます。",
+          "gloss": "駅まで to the station · 何で by what / how · 行きますか do you go? · バスで by bus · 行きます go.",
           "correctChoice": "B",
           "choices": [
             {
@@ -71,25 +71,64 @@
             }
           ],
           "words": [
-            { "text": "「", "punctuation": true },
-            { "text": "駅", "kana": "えき", "romaji": "eki", "meaning": "station" },
-            { "text": "まで", "kana": "まで", "romaji": "made", "meaning": "to / as far as" },
-            { "text": "何で", "kana": "なんで", "romaji": "nande", "meaning": "by what / how" },
-            { "text": "行きますか", "kana": "いきますか", "romaji": "ikimasu ka", "meaning": "do you go?" },
-            { "text": "。」", "punctuation": true },
-            { "text": "「", "punctuation": true },
-            { "text": "バス", "kana": "バス", "romaji": "basu", "meaning": "bus" },
-            { "text": "で", "kana": "で", "romaji": "de", "meaning": "by means of" },
-            { "text": "行きます", "kana": "いきます", "romaji": "ikimasu", "meaning": "go" },
-            { "text": "。」", "punctuation": true }
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "まで",
+              "kana": "まで",
+              "romaji": "made",
+              "meaning": "to / as far as"
+            },
+            {
+              "text": "何で",
+              "kana": "なんで",
+              "romaji": "nande",
+              "meaning": "by what / how"
+            },
+            {
+              "text": "行きますか",
+              "kana": "いきますか",
+              "romaji": "ikimasu ka",
+              "meaning": "do you go?"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            },
+            {
+              "text": "バス",
+              "kana": "バス",
+              "romaji": "basu",
+              "meaning": "bus"
+            },
+            {
+              "text": "で",
+              "kana": "で",
+              "romaji": "de",
+              "meaning": "by means of"
+            },
+            {
+              "text": "行きます",
+              "kana": "いきます",
+              "romaji": "ikimasu",
+              "meaning": "go"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
           ],
           "followUp": {
             "id": "followup:de-means-1",
             "kind": "comprehension",
             "prompt": "What does this conversational exchange mean?",
-            "japanese": "「ホテルまで何で行きますか。」「電車で行きます。」",
-            "reading": "「ホテルまで なんで いきますか。」「でんしゃで いきます。」",
-            "gloss": "「ホテルまで to the hotel · 何で by what / how · 行きますか do you go?」「電車で by train · 行きます go.」",
+            "japanese": "A: ホテルまで何で行きますか。 B: 電車で行きます。",
+            "reading": "A: ホテルまで なんで いきますか。 B: でんしゃで いきます。",
+            "gloss": "ホテルまで to the hotel · 何で by what / how · 行きますか do you go? · 電車で by train · 行きます go.",
             "correctChoice": "C",
             "choices": [
               {
@@ -109,24 +148,195 @@
               }
             ],
             "words": [
-              { "text": "「", "punctuation": true },
-              { "text": "ホテル", "kana": "ホテル", "romaji": "hoteru", "meaning": "hotel" },
-              { "text": "まで", "kana": "まで", "romaji": "made", "meaning": "to / as far as" },
-              { "text": "何で", "kana": "なんで", "romaji": "nande", "meaning": "by what / how" },
-              { "text": "行きますか", "kana": "いきますか", "romaji": "ikimasu ka", "meaning": "do you go?" },
-              { "text": "。」", "punctuation": true },
-              { "text": "「", "punctuation": true },
-              { "text": "電車", "kana": "でんしゃ", "romaji": "densha", "meaning": "train" },
-              { "text": "で", "kana": "で", "romaji": "de", "meaning": "by means of" },
-              { "text": "行きます", "kana": "いきます", "romaji": "ikimasu", "meaning": "go" },
-              { "text": "。」", "punctuation": true }
+              {
+                "text": "ホテル",
+                "kana": "ホテル",
+                "romaji": "hoteru",
+                "meaning": "hotel"
+              },
+              {
+                "text": "まで",
+                "kana": "まで",
+                "romaji": "made",
+                "meaning": "to / as far as"
+              },
+              {
+                "text": "何で",
+                "kana": "なんで",
+                "romaji": "nande",
+                "meaning": "by what / how"
+              },
+              {
+                "text": "行きますか",
+                "kana": "いきますか",
+                "romaji": "ikimasu ka",
+                "meaning": "do you go?"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              },
+              {
+                "text": "電車",
+                "kana": "でんしゃ",
+                "romaji": "densha",
+                "meaning": "train"
+              },
+              {
+                "text": "で",
+                "kana": "で",
+                "romaji": "de",
+                "meaning": "by means of"
+              },
+              {
+                "text": "行きます",
+                "kana": "いきます",
+                "romaji": "ikimasu",
+                "meaning": "go"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
             ],
             "workedExample": {
               "japanese": "「学校まで何で行きますか。」「自転車で行きます。」",
               "english": "“How do you go to school?” “I go by bicycle.”",
               "breakdown": "何で (nande) asks for the means or method of transportation. 自転車で (jitensha de) marks the vehicle with で to express \"by bicycle\"."
+            },
+            "dialogue": [
+              {
+                "speaker": "A",
+                "japanese": "ホテルまで何で行きますか。",
+                "reading": "ホテルまで なんで いきますか。",
+                "words": [
+                  {
+                    "text": "ホテル",
+                    "kana": "ホテル",
+                    "romaji": "hoteru",
+                    "meaning": "hotel"
+                  },
+                  {
+                    "text": "まで",
+                    "kana": "まで",
+                    "romaji": "made",
+                    "meaning": "to / as far as"
+                  },
+                  {
+                    "text": "何で",
+                    "kana": "なんで",
+                    "romaji": "nande",
+                    "meaning": "by what / how"
+                  },
+                  {
+                    "text": "行きますか",
+                    "kana": "いきますか",
+                    "romaji": "ikimasu ka",
+                    "meaning": "do you go?"
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              },
+              {
+                "speaker": "B",
+                "japanese": "電車で行きます。",
+                "reading": "でんしゃで いきます。",
+                "words": [
+                  {
+                    "text": "電車",
+                    "kana": "でんしゃ",
+                    "romaji": "densha",
+                    "meaning": "train"
+                  },
+                  {
+                    "text": "で",
+                    "kana": "で",
+                    "romaji": "de",
+                    "meaning": "by means of"
+                  },
+                  {
+                    "text": "行きます",
+                    "kana": "いきます",
+                    "romaji": "ikimasu",
+                    "meaning": "go"
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              }
+            ]
+          },
+          "dialogue": [
+            {
+              "speaker": "A",
+              "japanese": "駅まで何で行きますか。",
+              "reading": "えきまで なんで いきますか。",
+              "words": [
+                {
+                  "text": "駅",
+                  "kana": "えき",
+                  "romaji": "eki",
+                  "meaning": "station"
+                },
+                {
+                  "text": "まで",
+                  "kana": "まで",
+                  "romaji": "made",
+                  "meaning": "to / as far as"
+                },
+                {
+                  "text": "何で",
+                  "kana": "なんで",
+                  "romaji": "nande",
+                  "meaning": "by what / how"
+                },
+                {
+                  "text": "行きますか",
+                  "kana": "いきますか",
+                  "romaji": "ikimasu ka",
+                  "meaning": "do you go?"
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
+            },
+            {
+              "speaker": "B",
+              "japanese": "バスで行きます。",
+              "reading": "バスで いきます。",
+              "words": [
+                {
+                  "text": "バス",
+                  "kana": "バス",
+                  "romaji": "basu",
+                  "meaning": "bus"
+                },
+                {
+                  "text": "で",
+                  "kana": "で",
+                  "romaji": "de",
+                  "meaning": "by means of"
+                },
+                {
+                  "text": "行きます",
+                  "kana": "いきます",
+                  "romaji": "ikimasu",
+                  "meaning": "go"
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
             }
-          }
+          ]
         },
         {
           "id": "question:de-means-2",
@@ -155,14 +365,50 @@
             }
           ],
           "words": [
-            { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I / me" },
-            { "text": "は", "kana": "wa", "romaji": "wa", "meaning": "topic particle" },
-            { "text": "駅", "kana": "えき", "romaji": "eki", "meaning": "station" },
-            { "text": "に", "kana": "に", "romaji": "ni", "meaning": "to / destination particle" },
-            { "text": "電車", "kana": "でんしゃ", "romaji": "densha", "meaning": "train" },
-            { "text": "（　）", "blank": true },
-            { "text": "行きます", "kana": "いきます", "romaji": "ikimasu", "meaning": "go" },
-            { "text": "。", "punctuation": true }
+            {
+              "text": "私",
+              "kana": "わたし",
+              "romaji": "watashi",
+              "meaning": "I / me"
+            },
+            {
+              "text": "は",
+              "kana": "wa",
+              "romaji": "wa",
+              "meaning": "topic particle"
+            },
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "to / destination particle"
+            },
+            {
+              "text": "電車",
+              "kana": "でんしゃ",
+              "romaji": "densha",
+              "meaning": "train"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "行きます",
+              "kana": "いきます",
+              "romaji": "ikimasu",
+              "meaning": "go"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
           ],
           "followUp": {
             "id": "followup:de-means-2",
@@ -190,14 +436,50 @@
               }
             ],
             "words": [
-              { "text": "友だち", "kana": "ともだち", "romaji": "tomodachi", "meaning": "friend" },
-              { "text": "は", "kana": "wa", "romaji": "wa", "meaning": "topic particle" },
-              { "text": "ホテル", "kana": "ホテル", "romaji": "hoteru", "meaning": "hotel" },
-              { "text": "に", "kana": "に", "romaji": "ni", "meaning": "to / destination particle" },
-              { "text": "車", "kana": "くるま", "romaji": "kuruma", "meaning": "car" },
-              { "text": "（　）", "blank": true },
-              { "text": "行きます", "kana": "いきます", "romaji": "ikimasu", "meaning": "go" },
-              { "text": "。", "punctuation": true }
+              {
+                "text": "友だち",
+                "kana": "ともだち",
+                "romaji": "tomodachi",
+                "meaning": "friend"
+              },
+              {
+                "text": "は",
+                "kana": "wa",
+                "romaji": "wa",
+                "meaning": "topic particle"
+              },
+              {
+                "text": "ホテル",
+                "kana": "ホテル",
+                "romaji": "hoteru",
+                "meaning": "hotel"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "to / destination particle"
+              },
+              {
+                "text": "車",
+                "kana": "くるま",
+                "romaji": "kuruma",
+                "meaning": "car"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "行きます",
+                "kana": "いきます",
+                "romaji": "ikimasu",
+                "meaning": "go"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
             ],
             "workedExample": {
               "japanese": "田中さんは山にバスで行きます。",
@@ -270,16 +552,64 @@
             }
           ],
           "words": [
-            { "text": "机", "kana": "つくえ", "romaji": "tsukue", "meaning": "desk" },
-            { "text": "の", "kana": "no", "romaji": "no", "meaning": "possessive / location connector" },
-            { "text": "上", "kana": "うえ", "romaji": "ue", "meaning": "on / above" },
-            { "text": "に", "kana": "に", "romaji": "ni", "meaning": "at / in (location)" },
-            { "text": "本", "kana": "ほん", "romaji": "hon", "meaning": "book" },
-            { "text": "や", "kana": "ya", "romaji": "ya", "meaning": "and (non-exhaustive listing)" },
-            { "text": "ペン", "kana": "ペン", "romaji": "pen", "meaning": "pen" },
-            { "text": "が", "kana": "ga", "romaji": "ga", "meaning": "subject particle" },
-            { "text": "あります", "kana": "あります", "romaji": "arimasu", "meaning": "there is / are" },
-            { "text": "。", "punctuation": true }
+            {
+              "text": "机",
+              "kana": "つくえ",
+              "romaji": "tsukue",
+              "meaning": "desk"
+            },
+            {
+              "text": "の",
+              "kana": "no",
+              "romaji": "no",
+              "meaning": "possessive / location connector"
+            },
+            {
+              "text": "上",
+              "kana": "うえ",
+              "romaji": "ue",
+              "meaning": "on / above"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "at / in (location)"
+            },
+            {
+              "text": "本",
+              "kana": "ほん",
+              "romaji": "hon",
+              "meaning": "book"
+            },
+            {
+              "text": "や",
+              "kana": "ya",
+              "romaji": "ya",
+              "meaning": "and (non-exhaustive listing)"
+            },
+            {
+              "text": "ペン",
+              "kana": "ペン",
+              "romaji": "pen",
+              "meaning": "pen"
+            },
+            {
+              "text": "が",
+              "kana": "ga",
+              "romaji": "ga",
+              "meaning": "subject particle"
+            },
+            {
+              "text": "あります",
+              "kana": "あります",
+              "romaji": "arimasu",
+              "meaning": "there is / are"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
           ],
           "followUp": {
             "id": "followup:ya-listing-1",
@@ -307,14 +637,52 @@
               }
             ],
             "words": [
-              { "text": "部屋", "kana": "へや", "romaji": "heya", "meaning": "room" },
-              { "text": "に", "kana": "に", "romaji": "ni", "meaning": "in / location particle" },
-              { "text": "水", "kana": "みず", "romaji": "mizu", "meaning": "water" },
-              { "text": "や", "kana": "ya", "romaji": "ya", "meaning": "and (non-exhaustive listing)" },
-              { "text": "果物", "kana": "くだもの", "romaji": "kudamono", "meaning": "fruit" },
-              { "text": "が", "kana": "ga", "romaji": "ga", "meaning": "subject particle" },
-              { "text": "あります", "kana": "あります", "romaji": "arimasu", "meaning": "there is / are" },
-              { "text": "。", "punctuation": true }
+              {
+                "text": "部屋",
+                "kana": "へや",
+                "romaji": "heya",
+                "meaning": "room"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "in / location particle"
+              },
+              {
+                "text": "水",
+                "kana": "みず",
+                "romaji": "mizu",
+                "meaning": "water"
+              },
+              {
+                "text": "や",
+                "kana": "ya",
+                "romaji": "ya",
+                "meaning": "and (non-exhaustive listing)"
+              },
+              {
+                "text": "果物",
+                "kana": "くだもの",
+                "romaji": "kudamono",
+                "meaning": "fruit"
+              },
+              {
+                "text": "が",
+                "kana": "ga",
+                "romaji": "ga",
+                "meaning": "subject particle"
+              },
+              {
+                "text": "あります",
+                "kana": "あります",
+                "romaji": "arimasu",
+                "meaning": "there is / are"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
             ],
             "workedExample": {
               "japanese": "かばんの中に財布や鍵があります。",
@@ -350,14 +718,50 @@
             }
           ],
           "words": [
-            { "text": "店", "kana": "みせ", "romaji": "mise", "meaning": "store / shop" },
-            { "text": "で", "kana": "de", "romaji": "de", "meaning": "at (action location)" },
-            { "text": "パン", "kana": "パン", "romaji": "pan", "meaning": "bread" },
-            { "text": "（　）", "blank": true },
-            { "text": "水", "kana": "みず", "romaji": "mizu", "meaning": "water" },
-            { "text": "を", "kana": "o", "romaji": "o", "meaning": "object particle" },
-            { "text": "買います", "kana": "かいます", "romaji": "kaimasu", "meaning": "buy" },
-            { "text": "。", "punctuation": true }
+            {
+              "text": "店",
+              "kana": "みせ",
+              "romaji": "mise",
+              "meaning": "store / shop"
+            },
+            {
+              "text": "で",
+              "kana": "de",
+              "romaji": "de",
+              "meaning": "at (action location)"
+            },
+            {
+              "text": "パン",
+              "kana": "パン",
+              "romaji": "pan",
+              "meaning": "bread"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "水",
+              "kana": "みず",
+              "romaji": "mizu",
+              "meaning": "water"
+            },
+            {
+              "text": "を",
+              "kana": "o",
+              "romaji": "o",
+              "meaning": "object particle"
+            },
+            {
+              "text": "買います",
+              "kana": "かいます",
+              "romaji": "kaimasu",
+              "meaning": "buy"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
           ],
           "followUp": {
             "id": "followup:ya-listing-2",
@@ -385,16 +789,62 @@
               }
             ],
             "words": [
-              { "text": "箱", "kana": "はこ", "romaji": "hako", "meaning": "box" },
-              { "text": "の", "kana": "no", "romaji": "no", "meaning": "possessive / position connector" },
-              { "text": "中", "kana": "なか", "romaji": "naka", "meaning": "inside" },
-              { "text": "に", "kana": "に", "romaji": "ni", "meaning": "in / location particle" },
-              { "text": "本", "kana": "ほん", "romaji": "hon", "meaning": "book" },
-              { "text": "（　）", "blank": true },
-              { "text": "紙", "kana": "かみ", "romaji": "kami", "meaning": "paper" },
-              { "text": "が", "kana": "ga", "romaji": "ga", "meaning": "subject particle" },
-              { "text": "あります", "kana": "あります", "romaji": "arimasu", "meaning": "there is / are" },
-              { "text": "。", "punctuation": true }
+              {
+                "text": "箱",
+                "kana": "はこ",
+                "romaji": "hako",
+                "meaning": "box"
+              },
+              {
+                "text": "の",
+                "kana": "no",
+                "romaji": "no",
+                "meaning": "possessive / position connector"
+              },
+              {
+                "text": "中",
+                "kana": "なか",
+                "romaji": "naka",
+                "meaning": "inside"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "in / location particle"
+              },
+              {
+                "text": "本",
+                "kana": "ほん",
+                "romaji": "hon",
+                "meaning": "book"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "紙",
+                "kana": "かみ",
+                "romaji": "kami",
+                "meaning": "paper"
+              },
+              {
+                "text": "が",
+                "kana": "ga",
+                "romaji": "ga",
+                "meaning": "subject particle"
+              },
+              {
+                "text": "あります",
+                "kana": "あります",
+                "romaji": "arimasu",
+                "meaning": "there is / are"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
             ],
             "workedExample": {
               "japanese": "庭に木や花があります。",
@@ -445,9 +895,9 @@
           "id": "question:particle-yo-ne-1",
           "kind": "cloze",
           "prompt": "In this dialogue, Person A is asking for directions. Person B informs them where the entrance is. Which ending best fits Person B's intent to inform?",
-          "japanese": "「駅の入り口はどこですか。」「あそこです（　）。」",
-          "reading": "「えきの いりぐちは どこですか。」「あそこです（　）。」",
-          "gloss": "「駅の入り口 station entrance · は topic · どこですか where is it?」「あそこです it is over there · （　）」",
+          "japanese": "A: 駅の入り口はどこですか。 B: あそこです（　）。",
+          "reading": "A: えきの いりぐちは どこですか。 B: あそこです（　）。",
+          "gloss": "駅の入り口 station entrance · は topic · どこですか where is it? · あそこです it is over there · （　）",
           "correctChoice": "A",
           "choices": [
             {
@@ -467,27 +917,74 @@
             }
           ],
           "words": [
-            { "text": "「", "punctuation": true },
-            { "text": "駅", "kana": "えき", "romaji": "eki", "meaning": "station" },
-            { "text": "の", "kana": "no", "romaji": "no", "meaning": "modifier particle" },
-            { "text": "入り口", "kana": "いりぐち", "romaji": "iriguchi", "meaning": "entrance" },
-            { "text": "は", "kana": "wa", "romaji": "wa", "meaning": "topic particle" },
-            { "text": "どこ", "kana": "どこ", "romaji": "doko", "meaning": "where" },
-            { "text": "ですか", "kana": "desu ka", "romaji": "desu ka", "meaning": "is it?" },
-            { "text": "。」", "punctuation": true },
-            { "text": "「", "punctuation": true },
-            { "text": "あそこ", "kana": "あそこ", "romaji": "asoko", "meaning": "over there" },
-            { "text": "です", "kana": "desu", "romaji": "desu", "meaning": "is" },
-            { "text": "（　）", "blank": true },
-            { "text": "。」", "punctuation": true }
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "の",
+              "kana": "no",
+              "romaji": "no",
+              "meaning": "modifier particle"
+            },
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "は",
+              "kana": "wa",
+              "romaji": "wa",
+              "meaning": "topic particle"
+            },
+            {
+              "text": "どこ",
+              "kana": "どこ",
+              "romaji": "doko",
+              "meaning": "where"
+            },
+            {
+              "text": "ですか",
+              "kana": "desu ka",
+              "romaji": "desu ka",
+              "meaning": "is it?"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            },
+            {
+              "text": "あそこ",
+              "kana": "あそこ",
+              "romaji": "asoko",
+              "meaning": "over there"
+            },
+            {
+              "text": "です",
+              "kana": "desu",
+              "romaji": "desu",
+              "meaning": "is"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
           ],
           "followUp": {
             "id": "followup:particle-yo-ne-1",
             "kind": "cloze",
             "prompt": "In this dialogue, Person A asks if the book is interesting. Person B shares their recommendation to inform Person A. Which ending best expresses Person B's intent to inform?",
-            "japanese": "「この本はおもしろいですか。」「とてもおもしろい（　）。」",
-            "reading": "「この ほんは おもしろいですか。」「とても おもしろい（　）。」",
-            "gloss": "「この本 this book · は topic · おもしろいですか is it interesting?」「とても very · おもしろい interesting · （　）」",
+            "japanese": "A: この本はおもしろいですか。 B: とてもおもしろい（　）。",
+            "reading": "A: この ほんは おもしろいですか。 B: とても おもしろい（　）。",
+            "gloss": "この本 this book · は topic · おもしろいですか is it interesting? · とても very · おもしろい interesting · （　）",
             "correctChoice": "B",
             "choices": [
               {
@@ -507,34 +1004,222 @@
               }
             ],
             "words": [
-              { "text": "「", "punctuation": true },
-              { "text": "この", "kana": "この", "romaji": "kono", "meaning": "this" },
-              { "text": "本", "kana": "ほん", "romaji": "hon", "meaning": "book" },
-              { "text": "は", "kana": "wa", "romaji": "wa", "meaning": "topic particle" },
-              { "text": "おもしろい", "kana": "おもしろい", "romaji": "omoshiroi", "meaning": "interesting / enjoyable" },
-              { "text": "ですか", "kana": "desu ka", "romaji": "desu ka", "meaning": "is it?" },
-              { "text": "。」", "punctuation": true },
-              { "text": "「", "punctuation": true },
-              { "text": "とても", "kana": "とても", "romaji": "totemo", "meaning": "very" },
-              { "text": "おもしろい", "kana": "おもしろい", "romaji": "omoshiroi", "meaning": "interesting / enjoyable" },
-              { "text": "（　）", "blank": true },
-              { "text": "。」", "punctuation": true }
+              {
+                "text": "この",
+                "kana": "この",
+                "romaji": "kono",
+                "meaning": "this"
+              },
+              {
+                "text": "本",
+                "kana": "ほん",
+                "romaji": "hon",
+                "meaning": "book"
+              },
+              {
+                "text": "は",
+                "kana": "wa",
+                "romaji": "wa",
+                "meaning": "topic particle"
+              },
+              {
+                "text": "おもしろい",
+                "kana": "おもしろい",
+                "romaji": "omoshiroi",
+                "meaning": "interesting / enjoyable"
+              },
+              {
+                "text": "ですか",
+                "kana": "desu ka",
+                "romaji": "desu ka",
+                "meaning": "is it?"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              },
+              {
+                "text": "とても",
+                "kana": "とても",
+                "romaji": "totemo",
+                "meaning": "very"
+              },
+              {
+                "text": "おもしろい",
+                "kana": "おもしろい",
+                "romaji": "omoshiroi",
+                "meaning": "interesting / enjoyable"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
             ],
             "workedExample": {
               "japanese": "「あの店はおいしいですか。」「おいしいですよ。」",
               "english": "“Is that restaurant good?” “It’s delicious, let me tell you!”",
               "breakdown": "The second speaker provides their personal recommendation using よ (yo) to inform the curious listener."
+            },
+            "dialogue": [
+              {
+                "speaker": "A",
+                "japanese": "この本はおもしろいですか。",
+                "reading": "この ほんは おもしろいですか。",
+                "words": [
+                  {
+                    "text": "この",
+                    "kana": "この",
+                    "romaji": "kono",
+                    "meaning": "this"
+                  },
+                  {
+                    "text": "本",
+                    "kana": "ほん",
+                    "romaji": "hon",
+                    "meaning": "book"
+                  },
+                  {
+                    "text": "は",
+                    "kana": "wa",
+                    "romaji": "wa",
+                    "meaning": "topic particle"
+                  },
+                  {
+                    "text": "おもしろい",
+                    "kana": "おもしろい",
+                    "romaji": "omoshiroi",
+                    "meaning": "interesting / enjoyable"
+                  },
+                  {
+                    "text": "ですか",
+                    "kana": "desu ka",
+                    "romaji": "desu ka",
+                    "meaning": "is it?"
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              },
+              {
+                "speaker": "B",
+                "japanese": "とてもおもしろい（　）。",
+                "reading": "とても おもしろい（　）。",
+                "words": [
+                  {
+                    "text": "とても",
+                    "kana": "とても",
+                    "romaji": "totemo",
+                    "meaning": "very"
+                  },
+                  {
+                    "text": "おもしろい",
+                    "kana": "おもしろい",
+                    "romaji": "omoshiroi",
+                    "meaning": "interesting / enjoyable"
+                  },
+                  {
+                    "text": "（　）",
+                    "blank": true
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              }
+            ]
+          },
+          "dialogue": [
+            {
+              "speaker": "A",
+              "japanese": "駅の入り口はどこですか。",
+              "reading": "えきの いりぐちは どこですか。",
+              "words": [
+                {
+                  "text": "駅",
+                  "kana": "えき",
+                  "romaji": "eki",
+                  "meaning": "station"
+                },
+                {
+                  "text": "の",
+                  "kana": "no",
+                  "romaji": "no",
+                  "meaning": "modifier particle"
+                },
+                {
+                  "text": "入り口",
+                  "kana": "いりぐち",
+                  "romaji": "iriguchi",
+                  "meaning": "entrance"
+                },
+                {
+                  "text": "は",
+                  "kana": "wa",
+                  "romaji": "wa",
+                  "meaning": "topic particle"
+                },
+                {
+                  "text": "どこ",
+                  "kana": "どこ",
+                  "romaji": "doko",
+                  "meaning": "where"
+                },
+                {
+                  "text": "ですか",
+                  "kana": "desu ka",
+                  "romaji": "desu ka",
+                  "meaning": "is it?"
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
+            },
+            {
+              "speaker": "B",
+              "japanese": "あそこです（　）。",
+              "reading": "あそこです（　）。",
+              "words": [
+                {
+                  "text": "あそこ",
+                  "kana": "あそこ",
+                  "romaji": "asoko",
+                  "meaning": "over there"
+                },
+                {
+                  "text": "です",
+                  "kana": "desu",
+                  "romaji": "desu",
+                  "meaning": "is"
+                },
+                {
+                  "text": "（　）",
+                  "blank": true
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
             }
-          }
+          ]
         },
         {
           "id": "question:particle-yo-ne-2",
           "kind": "cloze",
           "isFreshSentence": true,
           "prompt": "Two friends are looking up at Mount Fuji together on a clear day. Speaker A invites shared agreement on its immense size, and Speaker B immediately agrees. Which sentence ending does Speaker A use to invite shared agreement?",
-          "japanese": "「ふじ山は本当に大きい（　）。」「そうですね。」",
-          "reading": "「ふじさんは ほんとうに おおきい（　）。」「そうですね。」",
-          "gloss": "「ふじ山 Mt. Fuji · は topic · 本当に really · 大きい big · （　）」「そうですね that is so, isn't it」",
+          "japanese": "A: ふじ山は本当に大きい（　）。 B: そうですね。",
+          "reading": "A: ふじさんは ほんとうに おおきい（　）。 B: そうですね。",
+          "gloss": "ふじ山 Mt. Fuji · は topic · 本当に really · 大きい big · （　） · そうですね that is so, isn't it",
           "correctChoice": "C",
           "choices": [
             {
@@ -554,24 +1239,56 @@
             }
           ],
           "words": [
-            { "text": "「", "punctuation": true },
-            { "text": "ふじ山", "kana": "ふじさん", "romaji": "Fujisan", "meaning": "Mt. Fuji" },
-            { "text": "は", "kana": "wa", "romaji": "wa", "meaning": "topic particle" },
-            { "text": "本当に", "kana": "ほんとうに", "romaji": "hontou ni", "meaning": "really / truly" },
-            { "text": "大きい", "kana": "おおきい", "romaji": "ookii", "meaning": "big / large" },
-            { "text": "（　）", "blank": true },
-            { "text": "。」", "punctuation": true },
-            { "text": "「", "punctuation": true },
-            { "text": "そうですね", "kana": "そうですね", "romaji": "sou desu ne", "meaning": "that's true / I agree" },
-            { "text": "。」", "punctuation": true }
+            {
+              "text": "ふじ山",
+              "kana": "ふじさん",
+              "romaji": "Fujisan",
+              "meaning": "Mt. Fuji"
+            },
+            {
+              "text": "は",
+              "kana": "wa",
+              "romaji": "wa",
+              "meaning": "topic particle"
+            },
+            {
+              "text": "本当に",
+              "kana": "ほんとうに",
+              "romaji": "hontou ni",
+              "meaning": "really / truly"
+            },
+            {
+              "text": "大きい",
+              "kana": "おおきい",
+              "romaji": "ookii",
+              "meaning": "big / large"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            },
+            {
+              "text": "そうですね",
+              "kana": "そうですね",
+              "romaji": "sou desu ne",
+              "meaning": "that's true / I agree"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
           ],
           "followUp": {
             "id": "followup:particle-yo-ne-2",
             "kind": "cloze",
             "prompt": "Two visitors step into a quiet room. Speaker A remarks on the peaceful atmosphere to invite agreement, and Speaker B immediately agrees. Which sentence ending does Speaker A use to invite mutual agreement?",
-            "japanese": "「この部屋は静か（　）。」「ええ、静かですね。」",
-            "reading": "「この へやは しずか（　）。」「ええ、しずかですね。」",
-            "gloss": "「この部屋 this room · は topic · 静か quiet · （　）」「ええ yes · 静かですね it really is quiet」",
+            "japanese": "A: この部屋は静か（　）。 B: ええ、静かですね。",
+            "reading": "A: この へやは しずか（　）。 B: ええ、しずかですね。",
+            "gloss": "この部屋 this room · は topic · 静か quiet · （　） · ええ yes · 静かですね it really is quiet",
             "correctChoice": "A",
             "choices": [
               {
@@ -591,26 +1308,203 @@
               }
             ],
             "words": [
-              { "text": "「", "punctuation": true },
-              { "text": "この", "kana": "この", "romaji": "kono", "meaning": "this" },
-              { "text": "部屋", "kana": "へや", "romaji": "heya", "meaning": "room" },
-              { "text": "は", "kana": "wa", "romaji": "wa", "meaning": "topic particle" },
-              { "text": "静か", "kana": "しずか", "romaji": "shizuka", "meaning": "quiet / peaceful" },
-              { "text": "（　）", "blank": true },
-              { "text": "。」", "punctuation": true },
-              { "text": "「", "punctuation": true },
-              { "text": "ええ", "kana": "ええ", "romaji": "ee", "meaning": "yes (conversational)" },
-              { "text": "、", "punctuation": true },
-              { "text": "静か", "kana": "しずか", "romaji": "shizuka", "meaning": "quiet / peaceful" },
-              { "text": "ですね", "kana": "desu ne", "romaji": "desu ne", "meaning": "is, isn't it? (agreeing)" },
-              { "text": "。」", "punctuation": true }
+              {
+                "text": "この",
+                "kana": "この",
+                "romaji": "kono",
+                "meaning": "this"
+              },
+              {
+                "text": "部屋",
+                "kana": "へや",
+                "romaji": "heya",
+                "meaning": "room"
+              },
+              {
+                "text": "は",
+                "kana": "wa",
+                "romaji": "wa",
+                "meaning": "topic particle"
+              },
+              {
+                "text": "静か",
+                "kana": "しずか",
+                "romaji": "shizuka",
+                "meaning": "quiet / peaceful"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              },
+              {
+                "text": "ええ",
+                "kana": "ええ",
+                "romaji": "ee",
+                "meaning": "yes (conversational)"
+              },
+              {
+                "text": "、",
+                "punctuation": true
+              },
+              {
+                "text": "静か",
+                "kana": "しずか",
+                "romaji": "shizuka",
+                "meaning": "quiet / peaceful"
+              },
+              {
+                "text": "ですね",
+                "kana": "desu ne",
+                "romaji": "desu ne",
+                "meaning": "is, isn't it? (agreeing)"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
             ],
             "workedExample": {
               "japanese": "「今日はいい天気ですね。」「そうですね。」",
               "english": "“The weather is nice today, isn't it?” “It sure is.”",
               "breakdown": "ね (ne) is used when both people are experiencing the same situation (the pleasant weather) to share a friendly moment of agreement."
+            },
+            "dialogue": [
+              {
+                "speaker": "A",
+                "japanese": "この部屋は静か（　）。",
+                "reading": "この へやは しずか（　）。",
+                "words": [
+                  {
+                    "text": "この",
+                    "kana": "この",
+                    "romaji": "kono",
+                    "meaning": "this"
+                  },
+                  {
+                    "text": "部屋",
+                    "kana": "へや",
+                    "romaji": "heya",
+                    "meaning": "room"
+                  },
+                  {
+                    "text": "は",
+                    "kana": "wa",
+                    "romaji": "wa",
+                    "meaning": "topic particle"
+                  },
+                  {
+                    "text": "静か",
+                    "kana": "しずか",
+                    "romaji": "shizuka",
+                    "meaning": "quiet / peaceful"
+                  },
+                  {
+                    "text": "（　）",
+                    "blank": true
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              },
+              {
+                "speaker": "B",
+                "japanese": "ええ、静かですね。",
+                "reading": "ええ、しずかですね。",
+                "words": [
+                  {
+                    "text": "ええ",
+                    "kana": "ええ",
+                    "romaji": "ee",
+                    "meaning": "yes (conversational)"
+                  },
+                  {
+                    "text": "、",
+                    "punctuation": true
+                  },
+                  {
+                    "text": "静か",
+                    "kana": "しずか",
+                    "romaji": "shizuka",
+                    "meaning": "quiet / peaceful"
+                  },
+                  {
+                    "text": "ですね",
+                    "kana": "desu ne",
+                    "romaji": "desu ne",
+                    "meaning": "is, isn't it? (agreeing)"
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              }
+            ]
+          },
+          "dialogue": [
+            {
+              "speaker": "A",
+              "japanese": "ふじ山は本当に大きい（　）。",
+              "reading": "ふじさんは ほんとうに おおきい（　）。",
+              "words": [
+                {
+                  "text": "ふじ山",
+                  "kana": "ふじさん",
+                  "romaji": "Fujisan",
+                  "meaning": "Mt. Fuji"
+                },
+                {
+                  "text": "は",
+                  "kana": "wa",
+                  "romaji": "wa",
+                  "meaning": "topic particle"
+                },
+                {
+                  "text": "本当に",
+                  "kana": "ほんとうに",
+                  "romaji": "hontou ni",
+                  "meaning": "really / truly"
+                },
+                {
+                  "text": "大きい",
+                  "kana": "おおきい",
+                  "romaji": "ookii",
+                  "meaning": "big / large"
+                },
+                {
+                  "text": "（　）",
+                  "blank": true
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
+            },
+            {
+              "speaker": "B",
+              "japanese": "そうですね。",
+              "reading": "そうですね。",
+              "words": [
+                {
+                  "text": "そうですね",
+                  "kana": "そうですね",
+                  "romaji": "sou desu ne",
+                  "meaning": "that's true / I agree"
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
             }
-          }
+          ]
         }
       ]
     }

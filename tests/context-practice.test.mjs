@@ -875,18 +875,23 @@ test('Tap-to-read word help: interactive words, cloze blank hiding, contextual r
     /does not match sentence/
   );
 
-  // 8. Verify across all 7 packs that every primary and follow-up question includes validated word help
-  for (let packNum = 1; packNum <= 7; packNum++) {
+  // 8. Verify across all 10 packs that every primary and follow-up question includes validated word help
+  for (let packNum = 1; packNum <= 10; packNum++) {
     const raw = JSON.parse(fs.readFileSync(`data/context-pack-${packNum}.json`, 'utf8'));
     const validated = validateContextPack(raw);
     for (const pat of validated.patterns) {
       for (const q of pat.questions) {
-        assert.ok(Array.isArray(q.words) && q.words.length > 0, `Missing words in ${q.id}`);
-        assert.equal(q.words.map((w) => w.text).join(''), q.japanese, `Mismatch in ${q.id}`);
-        assert.ok(Array.isArray(q.followUp.words) && q.followUp.words.length > 0, `Missing words in ${q.followUp.id}`);
-        assert.equal(q.followUp.words.map((w) => w.text).join(''), q.followUp.japanese, `Mismatch in ${q.followUp.id}`);
-
         for (const item of [q, q.followUp]) {
+          assert.ok(Array.isArray(item.words) && item.words.length > 0, `Missing words in ${item.id}`);
+          if (Array.isArray(item.dialogue)) {
+            assert.equal(
+              item.words.map((w) => w.text).join(''),
+              item.dialogue.map((t) => t.japanese).join(''),
+              `Dialogue word mismatch in ${item.id}`
+            );
+          } else {
+            assert.equal(item.words.map((w) => w.text).join(''), item.japanese, `Mismatch in ${item.id}`);
+          }
           for (const w of item.words) {
             if (w.blank) {
               assert.equal(w.kana, undefined, `Blank in ${item.id} must not leak kana`);
@@ -964,7 +969,7 @@ test('Release readiness: fresh asset version tags, 360px / 200% zoom styling, cl
   assert.match(htmlLongCard, /data-action="close-context-word-help"/);
 
   // 4. Hidden cloze answers across all fill-in-the-blank questions
-  for (let pNum = 1; pNum <= 7; pNum++) {
+  for (let pNum = 1; pNum <= 10; pNum++) {
     const raw = JSON.parse(fs.readFileSync(`data/context-pack-${pNum}.json`, 'utf8'));
     for (const pat of raw.patterns) {
       for (const q of pat.questions) {
@@ -1165,5 +1170,147 @@ test('SRS Progress Invariance: Populated Radicals, Kanji, and Vocabulary across 
     'Learner SRS progress must remain byte-for-byte identical after context practice completion'
   );
   assert.deepEqual(updatedLearner.progress, populatedProgress);
+});
+
+test('Explicit dialogue formatting in Packs 8-10: separate A/B speaker turns, word-help indexing across turns, cloze secrecy, and ordinary sentences unchanged', () => {
+  const pack8Raw = JSON.parse(fs.readFileSync('data/context-pack-8.json', 'utf8'));
+  const pack9Raw = JSON.parse(fs.readFileSync('data/context-pack-9.json', 'utf8'));
+  const pack10Raw = JSON.parse(fs.readFileSync('data/context-pack-10.json', 'utf8'));
+
+  const pack8 = validateContextPack(pack8Raw);
+  const pack9 = validateContextPack(pack9Raw);
+  const pack10 = validateContextPack(pack10Raw);
+
+  // 1. Pack 8: all 6 questions and all 6 follow-ups are explicit 2-turn A/B dialogues
+  for (const pat of pack8.patterns) {
+    for (const q of pat.questions) {
+      for (const item of [q, q.followUp]) {
+        assert.ok(Array.isArray(item.dialogue), `${item.id} in Pack 8 must have explicit dialogue array`);
+        assert.equal(item.dialogue.length, 2, `${item.id} must have 2 speaker turns`);
+        assert.equal(item.dialogue[0].speaker, 'A');
+        assert.equal(item.dialogue[1].speaker, 'B');
+        assert.doesNotMatch(item.dialogue[0].japanese, /[「」]/);
+        assert.doesNotMatch(item.dialogue[1].japanese, /[「」]/);
+        assert.equal(item.japanese, `A: ${item.dialogue[0].japanese} B: ${item.dialogue[1].japanese}`);
+      }
+    }
+  }
+
+  // 2. Pack 9: all 6 questions and all 6 follow-ups are ordinary single-speaker sentences (no dialogue array)
+  for (const pat of pack9.patterns) {
+    for (const q of pat.questions) {
+      for (const item of [q, q.followUp]) {
+        assert.equal(item.dialogue, undefined, `Ordinary sentence ${item.id} in Pack 9 must not have dialogue turns`);
+      }
+    }
+  }
+
+  // 3. Pack 10: conversational exercises use explicit dialogue turns; single-speaker exercises remain ordinary sentences
+  const pack10Session = createContextSession(pack10);
+  const expectedDialogueIds = new Set([
+    'question:de-means-1',
+    'followup:de-means-1',
+    'question:particle-yo-ne-1',
+    'followup:particle-yo-ne-1',
+    'question:particle-yo-ne-2',
+    'followup:particle-yo-ne-2',
+  ]);
+  for (const q of pack10Session.questions) {
+    for (const item of [q, q.followUp]) {
+      if (expectedDialogueIds.has(item.id)) {
+        assert.ok(Array.isArray(item.dialogue) && item.dialogue.length === 2, `${item.id} must have 2 explicit dialogue turns`);
+        assert.equal(item.dialogue[0].speaker, 'A');
+        assert.equal(item.dialogue[1].speaker, 'B');
+      } else {
+        assert.equal(item.dialogue, undefined, `Ordinary sentence ${item.id} in Pack 10 must remain unchanged`);
+      }
+    }
+  }
+
+  // 4. Render checks in app.mjs for dialogue vs ordinary sentences, word help across turns, reading toggle, and cloze secrecy
+  const appCode = fs.readFileSync('app.mjs', 'utf8');
+  const c = vm.createContext({
+    session: createContextSession(pack8),
+    profile: () => ({ id: 'learner-1', name: 'Learner', progress: {}, contextPractice: {} }),
+    getItem: () => null,
+    glyph: () => '',
+    scoreContextSession,
+  });
+  const renderSnippet = `
+    const esc = value => String(value ?? '').replace(/[&<>\"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[ch]));
+    const icon = () => '';
+    ${appCode.slice(appCode.indexOf('function renderContextSession('), appCode.indexOf('function leaveSession('))}
+  `;
+  vm.runInContext(renderSnippet, c);
+
+  // Q1 in Pack 8 (comprehension dialogue):
+  // A: これは何ですか。
+  // B: 日本語の本です。
+  const htmlPack8Q1 = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlPack8Q1, /class="context-dialogue"/);
+  assert.match(htmlPack8Q1, /<div class="context-dialogue-turn" data-speaker="A"><span class="context-speaker-label" aria-label="Speaker A">A:<\/span>/);
+  assert.match(htmlPack8Q1, /<div class="context-dialogue-turn" data-speaker="B"><span class="context-speaker-label" aria-label="Speaker B">B:<\/span>/);
+  assert.doesNotMatch(htmlPack8Q1, /context-dialogue-reading/, 'Readings hidden by default');
+
+  // Toggle reading on -> each speaker turn shows its reading inside its turn
+  c.session = { ...c.session, showReading: true };
+  const htmlPack8Q1Reading = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlPack8Q1Reading, /これは なんですか。/);
+  assert.match(htmlPack8Q1Reading, /にほんごの ほんです。/);
+
+  // Tap a word in Speaker B's turn (index 6 is 日本語)
+  const bWordIdx = c.session.questions[0].words.findIndex((w) => w.text === '日本語');
+  assert.equal(bWordIdx, 6);
+  c.session = setContextWordHelp(c.session, bWordIdx);
+  const htmlPack8WordB = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlPack8WordB, /class="context-word-btn is-active"[^>]*data-word-index="6"[^>]*>日本語<\/button>/);
+  assert.match(htmlPack8WordB, /class="context-word-help-text" lang="ja">日本語<\/strong>/);
+  assert.match(htmlPack8WordB, /class="context-word-help-kana" lang="ja">にほんご<\/span>/);
+  assert.match(htmlPack8WordB, /class="context-word-help-meaning">Japanese language<\/span>/);
+
+  // Q2 in Pack 8 (cloze dialogue):
+  // A: その箱の中は（　）ですか。
+  // B: お茶です。
+  c.session = { ...createContextSession(pack8), position: 1 };
+  const htmlPack8Q2 = vm.runInContext('renderContextSession(session)', c);
+  assert.match(htmlPack8Q2, /<span class="context-word-blank" aria-label="blank">（　）<\/span>/);
+  assert.doesNotMatch(htmlPack8Q2, /<button[^>]*>（　）<\/button>/, 'Cloze blank must never be an interactive word button');
+
+  // Ordinary sentence in Pack 9 Q1 renders <p class="context-sentence-jp"> without .context-dialogue
+  c.session = createContextSession(pack9);
+  const htmlPack9Q1 = vm.runInContext('renderContextSession(session)', c);
+  assert.doesNotMatch(htmlPack9Q1, /class="context-dialogue"/);
+  assert.match(htmlPack9Q1, /<p class="context-sentence-jp" lang="ja" aria-label="私は今、冷たい水がほしいです。">/);
+
+  // 5. Validation rejects malformed dialogue structures
+  assert.throws(
+    () => validateContextPack({
+      ...pack8Raw,
+      patterns: [{
+        ...pack8Raw.patterns[0],
+        questions: [{
+          ...pack8Raw.patterns[0].questions[0],
+          dialogue: [{ speaker: 'A', japanese: 'これは何ですか。', words: pack8Raw.patterns[0].questions[0].dialogue[0].words }],
+        }],
+      }],
+    }),
+    /at least two speaker turns/
+  );
+  assert.throws(
+    () => validateContextPack({
+      ...pack8Raw,
+      patterns: [{
+        ...pack8Raw.patterns[0],
+        questions: [{
+          ...pack8Raw.patterns[0].questions[0],
+          dialogue: [
+            pack8Raw.patterns[0].questions[0].dialogue[0],
+            { ...pack8Raw.patterns[0].questions[0].dialogue[1], speaker: 'C' },
+          ],
+        }],
+      }],
+    }),
+    /must specify speaker "B"/
+  );
 });
 

@@ -728,23 +728,53 @@ function renderContextSession(s) {
     ? `FOLLOW-UP FOR QUESTION ${s.position + 1} · SAME GRAMMAR POINT`
     : `QUESTION ${s.position + 1} OF ${s.questions.length} · ${q.isFreshSentence ? 'FRESH UNSEEN SENTENCE' : 'EXAMPLE CHECK'}`;
   const workedExample = s.feedback?.workedExample;
+  const workedExampleEn = workedExample
+    ? (/^[“"]/.test(workedExample.english.trim()) ? workedExample.english.trim() : `“${workedExample.english.trim()}”`)
+    : '';
   const workedExampleHtml = workedExample
-    ? `<div class="context-worked-example" role="region" aria-label="Worked example"><span class="info-eyebrow">WORKED EXAMPLE · <span lang="ja">${esc(pattern.pattern)}</span></span><p class="context-worked-jp" lang="ja">${esc(workedExample.japanese)}</p>${workedExample.reading ? `<p class="context-reading" lang="ja">${esc(workedExample.reading)}</p>` : ''}<p class="context-worked-en">“${esc(workedExample.english)}”</p><p class="context-worked-breakdown">${esc(workedExample.breakdown)}</p></div>`
+    ? `<div class="context-worked-example" role="region" aria-label="Worked example"><span class="info-eyebrow">WORKED EXAMPLE · <span lang="ja">${esc(pattern.pattern)}</span></span><p class="context-worked-jp" lang="ja">${esc(workedExample.japanese)}</p>${workedExample.reading ? `<p class="context-reading" lang="ja">${esc(workedExample.reading)}</p>` : ''}<p class="context-worked-en">${esc(workedExampleEn)}</p><p class="context-worked-breakdown">${esc(workedExample.breakdown)}</p></div>`
     : '';
 
-  const words = Array.isArray(activeQ.words) && activeQ.words.length ? activeQ.words : null;
-  const sentenceHtml = words
-    ? words.map((w, idx) => {
-        if (w.blank) {
-          return `<span class="context-word-blank" aria-label="blank">（　）</span>`;
-        }
-        if (w.punctuation) {
-          return `<span class="context-word-punct">${esc(w.text)}</span>`;
-        }
-        const isActive = s.activeWordHelp === idx;
-        return `<button type="button" class="context-word-btn ${isActive ? 'is-active' : ''}" data-action="context-word-help" data-word-index="${idx}" aria-expanded="${isActive}" aria-controls="context-word-help-tray" title="Tap or click for reading and meaning">${esc(w.text)}</button>`;
-      }).join('')
-    : esc(activeQ.japanese);
+  const dialogueTurns = Array.isArray(activeQ.dialogue) && activeQ.dialogue.length >= 2 ? activeQ.dialogue : null;
+  const words = Array.isArray(activeQ.words) && activeQ.words.length
+    ? activeQ.words
+    : (dialogueTurns ? dialogueTurns.flatMap((t) => Array.isArray(t.words) ? t.words : []) : null);
+  const renderWordTokens = (tokenList, startIdx = 0) => tokenList.map((w, localIdx) => {
+    const idx = startIdx + localIdx;
+    if (w.punctuation) {
+      if (localIdx > 0 && (tokenList[localIdx - 1]?.blank || !tokenList[localIdx - 1]?.punctuation) && /^[。、！？.,!?]$/.test(w.text)) {
+        return '';
+      }
+      return `<span class="context-word-punct">${esc(w.text)}</span>`;
+    }
+    const nextToken = tokenList[localIdx + 1];
+    const trailingPunct = Boolean(nextToken && nextToken.punctuation && /^[。、！？.,!?]$/.test(nextToken.text));
+    if (w.blank) {
+      const blankHtml = `<span class="context-word-blank" aria-label="blank">（　）</span>`;
+      return trailingPunct
+        ? `<span class="context-word-cluster">${blankHtml}<span class="context-word-punct">${esc(nextToken.text)}</span></span>`
+        : blankHtml;
+    }
+    const isActive = s.activeWordHelp === idx;
+    const btnHtml = `<button type="button" class="context-word-btn ${isActive ? 'is-active' : ''}" data-action="context-word-help" data-word-index="${idx}" aria-expanded="${isActive}" aria-controls="context-word-help-tray" title="Tap or click for reading and meaning">${esc(w.text)}</button>`;
+    return trailingPunct
+      ? `<span class="context-word-cluster">${btnHtml}<span class="context-word-punct">${esc(nextToken.text)}</span></span>`
+      : btnHtml;
+  }).join('');
+
+  let wordOffset = 0;
+  const promptBodyHtml = dialogueTurns
+    ? `<div class="context-dialogue" lang="ja" role="group" aria-label="${esc(activeQ.japanese)}">${dialogueTurns.map((turn) => {
+        const turnWords = Array.isArray(turn.words) && turn.words.length ? turn.words : [];
+        const tokensHtml = turnWords.length ? renderWordTokens(turnWords, wordOffset) : esc(turn.japanese);
+        wordOffset += turnWords.length;
+        const turnReadingHtml = s.showReading && turn.reading
+          ? `<p class="context-reading context-dialogue-reading" lang="ja">${esc(turn.reading)}</p>`
+          : '';
+        return `<div class="context-dialogue-turn" data-speaker="${esc(turn.speaker)}"><span class="context-speaker-label" aria-label="Speaker ${esc(turn.speaker)}">${esc(turn.speaker)}:</span><div class="context-dialogue-content"><div class="context-sentence-jp context-dialogue-jp">${tokensHtml}</div>${turnReadingHtml}</div></div>`;
+      }).join('')}</div>`
+    : `<p class="context-sentence-jp" lang="ja" aria-label="${esc(activeQ.japanese)}">${words ? renderWordTokens(words, 0) : esc(activeQ.japanese)}</p>`;
+  const showTopLevelReading = s.showReading && activeQ.reading && !(dialogueTurns && dialogueTurns.some((t) => t.reading));
 
   const activeWord = words && typeof s.activeWordHelp === 'number' ? words[s.activeWordHelp] : null;
   const wordHelpTrayHtml = words
@@ -766,7 +796,11 @@ function renderContextSession(s) {
       `</div>`
     : '';
 
-  return `<section class="session-header"><div class="session-header-left"><button class="text-button" type="button" data-action="exit-session">${icon('back')} Dashboard</button></div><span>Practice in context <b>·</b> ${esc(s.pack.label)} <b>·</b> Question ${s.position + 1} of ${s.questions.length}${s.inFollowUp ? ' (Follow-up)' : ''}</span></section><div class="session-progress" role="progressbar" aria-label="Practice progress" aria-valuenow="${resolvedCount}" aria-valuemin="0" aria-valuemax="${s.questions.length}"><span style="width:${pct}%"></span></div><div class="context-card"><section class="context-pattern-box" aria-labelledby="context-pattern-heading"><div class="context-pattern-head"><span class="eyebrow">PATTERN ${q.patternIndex + 1} OF ${s.pack.patterns.length} · ${esc(s.pack.title.toUpperCase())}</span><span class="context-pack-badge">${esc(s.pack.label)}</span></div><h2 id="context-pattern-heading" class="context-pattern-title"><span lang="ja">${esc(pattern.pattern)}</span> <small>— ${esc(pattern.gloss)}</small></h2><p class="context-pattern-summary">${esc(pattern.summary)}${pattern.readingNote ? ` <span class="context-reading-note">${esc(pattern.readingNote)}</span>` : ''}</p><div class="context-examples" aria-label="Pattern examples">${pattern.examples.map((ex, idx) => `<div class="context-example-item"><span class="context-example-num">Ex ${idx + 1}</span><div class="context-example-body"><p class="context-example-jp" lang="ja">${esc(ex.japanese)}</p>${s.showReading && ex.reading ? `<p class="context-reading" lang="ja">${esc(ex.reading)}</p>` : ''}<p class="context-example-en">${esc(ex.english)}</p>${ex.gloss ? `<small class="context-gloss">Glosses: ${esc(ex.gloss)}</small>` : ''}</div></div>`).join('')}</div>${linkedSubjects.length ? `<div class="context-subjects-row"><span class="info-eyebrow">FAMILIAR LEVEL 1 SUBJECTS</span><div class="component-list">${linkedSubjects.map((subj) => `<button type="button" class="component-chip ${subj.type}" data-action="view-subject" data-item="${esc(subj.id)}" title="${esc(subj.meaning)} (${subj.type})"><b>${glyph(subj, '')}</b><span class="component-name"><strong>${esc(subj.meaning)}</strong><small>${subj.type}</small></span></button>`).join('')}</div></div>` : ''}</section><section class="context-question-box ${s.inFollowUp ? 'is-followup' : ''}" aria-labelledby="context-question-heading"><div class="context-question-top"><span class="eyebrow">${questionEyebrow}</span><button type="button" class="button secondary context-reading-btn" data-action="toggle-context-reading" aria-pressed="${Boolean(s.showReading)}">${icon(s.showReading ? 'eyeOff' : 'eye')} <span>${s.showReading ? 'Hide reading' : 'Show reading'}</span></button></div><h1 id="context-question-heading">${esc(activeQ.prompt)}</h1><div class="context-prompt-sentence"><p class="context-sentence-jp" lang="ja" aria-label="${esc(activeQ.japanese)}">${sentenceHtml}</p>${wordHelpTrayHtml}${activeQ.targetMeaning ? `<p class="context-target-meaning">“${esc(activeQ.targetMeaning)}”</p>` : ''}${s.showReading && activeQ.reading ? `<p class="context-reading" lang="ja">${esc(activeQ.reading)}</p>` : ''}${activeQ.gloss ? `<p class="context-gloss">Glosses: ${esc(activeQ.gloss)}</p>` : ''}</div><div class="context-choices" role="group" aria-labelledby="context-question-heading">${activeQ.choices.map((c) => {
+  const targetMeaningText = activeQ.targetMeaning
+    ? (/^(?:[“"]|A:\s)/.test(activeQ.targetMeaning.trim()) ? activeQ.targetMeaning.trim() : `“${activeQ.targetMeaning.trim()}”`)
+    : '';
+
+  return `<section class="session-header"><div class="session-header-left"><button class="text-button" type="button" data-action="exit-session">${icon('back')} Dashboard</button></div><span>Practice in context <b>·</b> ${esc(s.pack.label)} <b>·</b> Question ${s.position + 1} of ${s.questions.length}${s.inFollowUp ? ' (Follow-up)' : ''}</span></section><div class="session-progress" role="progressbar" aria-label="Practice progress" aria-valuenow="${resolvedCount}" aria-valuemin="0" aria-valuemax="${s.questions.length}"><span style="width:${pct}%"></span></div><div class="context-card"><section class="context-pattern-box" aria-labelledby="context-pattern-heading"><div class="context-pattern-head"><span class="eyebrow">PATTERN ${q.patternIndex + 1} OF ${s.pack.patterns.length} · ${esc(s.pack.title.toUpperCase())}</span><span class="context-pack-badge">${esc(s.pack.label)}</span></div><h2 id="context-pattern-heading" class="context-pattern-title"><span lang="ja">${esc(pattern.pattern)}</span> <small>— ${esc(pattern.gloss)}</small></h2><p class="context-pattern-summary">${esc(pattern.summary)}${pattern.readingNote ? ` <span class="context-reading-note">${esc(pattern.readingNote)}</span>` : ''}</p><div class="context-examples" aria-label="Pattern examples">${pattern.examples.map((ex, idx) => `<div class="context-example-item"><span class="context-example-num">Ex ${idx + 1}</span><div class="context-example-body"><p class="context-example-jp" lang="ja">${esc(ex.japanese)}</p>${s.showReading && ex.reading ? `<p class="context-reading" lang="ja">${esc(ex.reading)}</p>` : ''}<p class="context-example-en">${esc(ex.english)}</p>${ex.gloss ? `<small class="context-gloss">Glosses: ${esc(ex.gloss)}</small>` : ''}</div></div>`).join('')}</div>${linkedSubjects.length ? `<div class="context-subjects-row"><span class="info-eyebrow">FAMILIAR LEVEL 1 SUBJECTS</span><div class="component-list">${linkedSubjects.map((subj) => `<button type="button" class="component-chip ${subj.type}" data-action="view-subject" data-item="${esc(subj.id)}" title="${esc(subj.meaning)} (${subj.type})"><b>${glyph(subj, '')}</b><span class="component-name"><strong>${esc(subj.meaning)}</strong><small>${subj.type}</small></span></button>`).join('')}</div></div>` : ''}</section><section class="context-question-box ${s.inFollowUp ? 'is-followup' : ''}" aria-labelledby="context-question-heading"><div class="context-question-top"><span class="eyebrow">${questionEyebrow}</span><button type="button" class="button secondary context-reading-btn" data-action="toggle-context-reading" aria-pressed="${Boolean(s.showReading)}">${icon(s.showReading ? 'eyeOff' : 'eye')} <span>${s.showReading ? 'Hide reading' : 'Show reading'}</span></button></div><h1 id="context-question-heading">${esc(activeQ.prompt)}</h1><div class="context-prompt-sentence">${promptBodyHtml}${wordHelpTrayHtml}${targetMeaningText ? `<p class="context-target-meaning">${esc(targetMeaningText)}</p>` : ''}${showTopLevelReading ? `<p class="context-reading" lang="ja">${esc(activeQ.reading)}</p>` : ''}${activeQ.gloss ? `<p class="context-gloss">Glosses: ${esc(activeQ.gloss)}</p>` : ''}</div><div class="context-choices" role="group" aria-labelledby="context-question-heading">${activeQ.choices.map((c) => {
     const isSelected = s.selectedChoice === c.id;
     const wasTried = tried.includes(c.id);
     const stateClass = isSelected
