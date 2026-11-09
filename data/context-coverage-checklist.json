@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "title": "Komorebi Practice in Context — Grammar Coverage Checklist",
-  "updatedAt": "2026-11-08T19:24:04.657383+00:00",
+  "updatedAt": "2026-11-09T06:26:00.000Z",
   "policy": {
     "unitOfTracking": "Tracked by (renshuuGrammarId, meaningIndex) because a single Renshuu grammar ID can cover multiple distinct meanings/uses.",
     "taughtRule": "A grammar meaning is counted as taught (taught: true) ONLY when it is linked to at least one validated primary question and distinct follow-up exercise in a pack.",
@@ -111,7 +111,9 @@
         "renshuu:112#1",
         "renshuu:110#3",
         "renshuu:99#2"
-      ]
+      ],
+      "questionsCount": 6,
+      "followUpsCount": 6
     },
     {
       "packId": "pack:beginner-6",
@@ -128,7 +130,9 @@
         "renshuu:113#3",
         "renshuu:467#1",
         "renshuu:477#1"
-      ]
+      ],
+      "questionsCount": 6,
+      "followUpsCount": 6
     },
     {
       "packId": "pack:beginner-7",
@@ -145,14 +149,16 @@
         "renshuu:736#1",
         "renshuu:738#1",
         "renshuu:462#1"
-      ]
+      ],
+      "questionsCount": 6,
+      "followUpsCount": 6
     },
     {
       "packId": "pack:beginner-8",
       "title": "Beginner Pack 8",
       "subtitle": "Everyday Questions — Who, What & Where",
       "path": "./data/context-pack-8.json",
-      "status": "validated",
+      "status": "live",
       "patterns": [
         "grammar:interrogative-nani",
         "grammar:interrogative-doko",
@@ -171,7 +177,7 @@
       "title": "Beginner Pack 9",
       "subtitle": "Wants, Likes & Subject Markers",
       "path": "./data/context-pack-9.json",
-      "status": "validated",
+      "status": "live",
       "patterns": [
         "grammar:hoshii",
         "grammar:suki-kirai",
@@ -190,7 +196,7 @@
       "title": "Beginner Pack 10",
       "subtitle": "Means of Travel, Exemplary Lists & Conversational Nuance",
       "path": "./data/context-pack-10.json",
-      "status": "validated",
+      "status": "live",
       "patterns": [
         "grammar:de-means",
         "grammar:ya-listing",
@@ -212,13 +218,13 @@
     "taughtMeaningsCount": 35,
     "distinctPatternsTaught": 30,
     "byStatus": {
-      "live": 25,
+      "live": 35,
       "reviewed": 0,
-      "validated": 10,
+      "validated": 0,
       "draft": 0,
       "planned": 112
     },
-    "flaggedMeaningsCount": 8
+    "flaggedMeaningsCount": 11
   },
   "entries": [
     {
@@ -856,7 +862,7 @@
       "linkedWords": [],
       "packId": "pack:beginner-10",
       "patternId": "grammar:de-means",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:de-means-1",
@@ -1722,7 +1728,7 @@
       "linkedWords": [],
       "packId": "pack:beginner-9",
       "patternId": "grammar:hoshii",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:hoshii-1",
@@ -2222,7 +2228,7 @@
       "linkedWords": [],
       "packId": "pack:beginner-9",
       "patternId": "grammar:ga-target",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:ga-target-1",
@@ -2423,7 +2429,7 @@
       "linkedWords": [],
       "packId": "pack:beginner-10",
       "patternId": "grammar:ya-listing",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:ya-listing-1",
@@ -2484,7 +2490,7 @@
       "linkedWords": [],
       "packId": "pack:beginner-10",
       "patternId": "grammar:particle-yo-ne",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:particle-yo-ne-1",
@@ -2505,7 +2511,7 @@
       "linkedWords": [],
       "packId": "pack:beginner-10",
       "patternId": "grammar:particle-yo-ne",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:particle-yo-ne-2",
@@ -3018,7 +3024,7 @@
       "linkedWords": [],
       "packId": "pack:beginner-9",
       "patternId": "grammar:suki-kirai",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:suki-kirai-1",
@@ -3077,7 +3083,7 @@
       "linkedWords": [],
       "packId": "pack:beginner-8",
       "patternId": "grammar:interrogative-nani",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:interrogative-nani-1",
@@ -3100,7 +3106,7 @@
       "linkedWords": [],
       "packId": "pack:beginner-8",
       "patternId": "grammar:interrogative-doko",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:interrogative-doko-1",
@@ -3123,7 +3129,7 @@
       "linkedWords": [],
       "packId": "pack:beginner-8",
       "patternId": "grammar:interrogative-dare",
-      "status": "validated",
+      "status": "live",
       "taught": true,
       "exerciseIds": [
         "question:interrogative-dare-1",

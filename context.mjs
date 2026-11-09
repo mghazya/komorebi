@@ -106,7 +106,7 @@ export const CONTEXT_PACKS = Object.freeze([
     patternsCount: 3,
     questionsCount: 6,
     path: CONTEXT_PACK_8_PATH,
-    status: 'validated',
+    status: 'live',
   }),
   Object.freeze({
     id: 'pack:beginner-9',
@@ -117,7 +117,7 @@ export const CONTEXT_PACKS = Object.freeze([
     patternsCount: 3,
     questionsCount: 6,
     path: CONTEXT_PACK_9_PATH,
-    status: 'validated',
+    status: 'live',
   }),
   Object.freeze({
     id: 'pack:beginner-10',
@@ -128,7 +128,7 @@ export const CONTEXT_PACKS = Object.freeze([
     patternsCount: 3,
     questionsCount: 6,
     path: CONTEXT_PACK_10_PATH,
-    status: 'validated',
+    status: 'live',
   }),
 ]);
 

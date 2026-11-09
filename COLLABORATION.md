@@ -1,12 +1,12 @@
 # Komorebi — Collaboration & Release Log
 
-## Practice in Context: Beginner Packs 1–7 & Tap-to-Read Word Help
+## Practice in Context: Beginner Packs 1–10, Explicit Dialogue Formatting & Tap-to-Read Word Help
 
 ### Release Status
 - **Overall Status**: **LIVE** (Verified on production GitHub Pages)
 - **Live Production URL**: [https://mghazya.github.io/komorebi/](https://mghazya.github.io/komorebi/)
-- **Live Asset Version Tag**: `?v=20261107-context-word-help`
-- **Release Date**: 2026-11-07
+- **Live Asset Version Tag**: `?v=20261109-packs-8-10-dialogue`
+- **Release Date**: 2026-11-09
 
 ---
 
@@ -38,6 +38,27 @@
      - Hidden cloze blanks: `（　）` rendered as non-interactive spans with zero answer leaking.
      - Responsive mobile layout verified at 360px viewport width and 200% font zoom (WCAG 1.4.4).
      - Full test suite passing (35 tests) and automated mechanical validation passing.
+
+3. **Pull Request #14: Structural Validator Invariants & Populated SRS Regression Guard**
+   - **PR**: [#14](https://github.com/mghazya/komorebi/pull/14)
+   - **Branch**: `fix/validator-structural-invariants`
+   - **Merge Commit**: [`84f6de3`](https://github.com/mghazya/komorebi/commit/84f6de3)
+   - **Features & Fixes Included**:
+     - Clarified `structurallyValidatedPacks` vs `skippedFromRegeneration` in `scripts/validate-context-packs.mjs` so approval status never bypasses structural checks.
+     - Added regression tests for missing follow-ups, non-affirming choice feedback, unvaried answer keys, and populated 9-stage SRS progress invariance.
+
+4. **Pull Request #15: Beginner Packs 8–10 & Explicit `A:` / `B:` Dialogue Formatting**
+   - **PR**: [#15](https://github.com/mghazya/komorebi/pull/15)
+   - **Branch**: `feat/practice-in-context-packs-8-10`
+   - **Merge Commit**: [`2cb74f279ca29a804eb84589f256b520e77d9ccf`](https://github.com/mghazya/komorebi/commit/2cb74f279ca29a804eb84589f256b520e77d9ccf)
+   - **Deployment Run**: [GitHub Actions run `42572515816`](https://github.com/mghazya/komorebi/actions/runs/42572515816) (completed / success)
+   - **Content & Features Included**:
+     - Beginner Pack 8: Everyday Questions — `何 (なん) ですか`, `どこですか`, `だれですか`
+     - Beginner Pack 9: Wants, Likes & Subject Markers — `ほしいです / ほしくないです`, `好きです / 嫌いです`, Target `が` vs. Action `を`
+     - Beginner Pack 10: Means of Travel (`で`), Non-Exhaustive Listing (`や`), Conversational Particles (`よ` informing vs. `ね` seeking agreement)
+     - Explicit speaker-turn structure (`dialogue: [{ speaker: "A", ... }, { speaker: "B", ... }]`) across all conversational exercises and follow-ups in Packs 8 and 10, validated mechanically in `context.mjs` and `scripts/validate-context-packs.mjs` without render-time punctuation guessing.
+     - Responsive two-column speaker layout (`A:` and `B:` on separate lines, visually distinct from boxed `A` / `B` / `C` choice badges, with `.context-word-cluster` keeping trailing punctuation attached on narrow screens).
+     - Full test suite passing (38 tests) and all 10 packs mechanically validated.
 
 ---
 
@@ -103,8 +124,8 @@ All checks executed against `https://mghazya.github.io/komorebi/` using automate
 
 - **Total JLPT N5 Grammar IDs**: 69
 - **Total JLPT N5 Distinct Meanings Tracked**: 147
-- **Distinct Patterns Taught Across Packs 1–7**: 21 patterns (42 primary + 42 fresh follow-up questions)
-- **Renshuu N5 Meanings Taught & Live**: 25 meanings (100% live in production)
+- **Distinct Patterns Taught Across Packs 1–10**: 30 patterns (60 primary + 60 fresh follow-up questions)
+- **Renshuu N5 Meanings Taught & Live**: 35 meanings (100% live in production across Packs 1–10)
 - **Flagged Items & Uncertainty Notes**: 11 items preserved in `data/context-coverage-checklist.json`
 
 ---
@@ -112,9 +133,9 @@ All checks executed against `https://mghazya.github.io/komorebi/` using automate
 ### Remaining Limitations & Next Steps
 
 1. **Uncovered N5 Grammar Meanings**:
-   - 122 of 147 tracked N5 meanings remain in `planned` status.
-   - Per project guidelines, no new packs were drafted or published during this release window.
+   - 112 of 147 tracked N5 meanings remain in `planned` status.
+   - Proposed next batch (Packs 11–13) prepared in prerequisite order for review before authoring.
 2. **Flagged Items Awaiting Future Design**:
    - Overlapping direction particles (`へ` vs `に`): requires dedicated contrast notes before introducing `へ`.
    - Register-sensitive items (`わ`, abusive `が` 462#3): requires native language review or omission from beginner family content.
-   - Polite past negative (`ではありませんでした` 743#2): planned for introduction in a subsequent pack paired with negative adjectives.
+   - Polite past negative (`ではありませんでした` 743#2): ready to pair with negative noun/な-adjective state review in Pack 11.
