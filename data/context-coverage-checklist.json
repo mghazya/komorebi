@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "title": "Komorebi Practice in Context — Grammar Coverage Checklist",
-  "updatedAt": "2026-11-07T05:42:51.977Z",
+  "updatedAt": "2026-11-08T19:24:04.657383+00:00",
   "policy": {
     "unitOfTracking": "Tracked by (renshuuGrammarId, meaningIndex) because a single Renshuu grammar ID can cover multiple distinct meanings/uses.",
     "taughtRule": "A grammar meaning is counted as taught (taught: true) ONLY when it is linked to at least one validated primary question and distinct follow-up exercise in a pack.",
@@ -146,19 +146,77 @@
         "renshuu:738#1",
         "renshuu:462#1"
       ]
+    },
+    {
+      "packId": "pack:beginner-8",
+      "title": "Beginner Pack 8",
+      "subtitle": "Everyday Questions — Who, What & Where",
+      "path": "./data/context-pack-8.json",
+      "status": "validated",
+      "patterns": [
+        "grammar:interrogative-nani",
+        "grammar:interrogative-doko",
+        "grammar:interrogative-dare"
+      ],
+      "renshuuMeaningsCovered": [
+        "renshuu:741#2",
+        "renshuu:741#3",
+        "renshuu:741#4"
+      ],
+      "questionsCount": 6,
+      "followUpsCount": 6
+    },
+    {
+      "packId": "pack:beginner-9",
+      "title": "Beginner Pack 9",
+      "subtitle": "Wants, Likes & Subject Markers",
+      "path": "./data/context-pack-9.json",
+      "status": "validated",
+      "patterns": [
+        "grammar:hoshii",
+        "grammar:suki-kirai",
+        "grammar:ga-target"
+      ],
+      "renshuuMeaningsCovered": [
+        "renshuu:331#1",
+        "renshuu:740#1",
+        "renshuu:462#2"
+      ],
+      "questionsCount": 6,
+      "followUpsCount": 6
+    },
+    {
+      "packId": "pack:beginner-10",
+      "title": "Beginner Pack 10",
+      "subtitle": "Means of Travel, Exemplary Lists & Conversational Nuance",
+      "path": "./data/context-pack-10.json",
+      "status": "validated",
+      "patterns": [
+        "grammar:de-means",
+        "grammar:ya-listing",
+        "grammar:particle-yo-ne"
+      ],
+      "renshuuMeaningsCovered": [
+        "renshuu:112#3",
+        "renshuu:469#1",
+        "renshuu:471#1",
+        "renshuu:472#1"
+      ],
+      "questionsCount": 6,
+      "followUpsCount": 6
     }
   ],
   "summary": {
     "totalN5GrammarIds": 69,
     "totalN5Meanings": 147,
-    "taughtMeaningsCount": 25,
-    "distinctPatternsTaught": 21,
+    "taughtMeaningsCount": 35,
+    "distinctPatternsTaught": 30,
     "byStatus": {
       "live": 25,
       "reviewed": 0,
-      "validated": 0,
+      "validated": 10,
       "draft": 0,
-      "planned": 122
+      "planned": 112
     },
     "flaggedMeaningsCount": 8
   },
@@ -796,11 +854,16 @@
         "renshuu:735#1"
       ],
       "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "packId": "pack:beginner-10",
+      "patternId": "grammar:de-means",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:de-means-1",
+        "question:de-means-2",
+        "followup:de-means-1",
+        "followup:de-means-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -1657,11 +1720,16 @@
         "renshuu:735#1"
       ],
       "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "packId": "pack:beginner-9",
+      "patternId": "grammar:hoshii",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:hoshii-1",
+        "question:hoshii-2",
+        "followup:hoshii-1",
+        "followup:hoshii-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -2152,11 +2220,16 @@
         "renshuu:735#1"
       ],
       "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "packId": "pack:beginner-9",
+      "patternId": "grammar:ga-target",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:ga-target-1",
+        "question:ga-target-2",
+        "followup:ga-target-1",
+        "followup:ga-target-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -2348,11 +2421,16 @@
         "renshuu:735#1"
       ],
       "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "packId": "pack:beginner-10",
+      "patternId": "grammar:ya-listing",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:ya-listing-1",
+        "question:ya-listing-2",
+        "followup:ya-listing-1",
+        "followup:ya-listing-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -2404,11 +2482,14 @@
         "renshuu:735#1"
       ],
       "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "packId": "pack:beginner-10",
+      "patternId": "grammar:particle-yo-ne",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:particle-yo-ne-1",
+        "followup:particle-yo-ne-1"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -2422,11 +2503,14 @@
         "renshuu:735#1"
       ],
       "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "packId": "pack:beginner-10",
+      "patternId": "grammar:particle-yo-ne",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:particle-yo-ne-2",
+        "followup:particle-yo-ne-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -2932,11 +3016,16 @@
         "renshuu:735#1"
       ],
       "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "packId": "pack:beginner-9",
+      "patternId": "grammar:suki-kirai",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:suki-kirai-1",
+        "question:suki-kirai-2",
+        "followup:suki-kirai-1",
+        "followup:suki-kirai-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -2986,11 +3075,16 @@
         "renshuu:735#1"
       ],
       "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "packId": "pack:beginner-8",
+      "patternId": "grammar:interrogative-nani",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:interrogative-nani-1",
+        "question:interrogative-nani-2",
+        "followup:interrogative-nani-1",
+        "followup:interrogative-nani-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -3004,11 +3098,16 @@
         "renshuu:735#1"
       ],
       "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "packId": "pack:beginner-8",
+      "patternId": "grammar:interrogative-doko",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:interrogative-doko-1",
+        "question:interrogative-doko-2",
+        "followup:interrogative-doko-1",
+        "followup:interrogative-doko-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },
@@ -3022,11 +3121,16 @@
         "renshuu:735#1"
       ],
       "linkedWords": [],
-      "packId": null,
-      "patternId": null,
-      "status": "planned",
-      "taught": false,
-      "exerciseIds": [],
+      "packId": "pack:beginner-8",
+      "patternId": "grammar:interrogative-dare",
+      "status": "validated",
+      "taught": true,
+      "exerciseIds": [
+        "question:interrogative-dare-1",
+        "question:interrogative-dare-2",
+        "followup:interrogative-dare-1",
+        "followup:interrogative-dare-2"
+      ],
       "sourcePolicy": "original-komorebi-content (local Renshuu export used only as structural ID/meaning planning reference; raw exports never uploaded)",
       "flags": []
     },

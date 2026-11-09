@@ -1,0 +1,651 @@
+{
+  "schemaVersion": 1,
+  "id": "pack:beginner-9",
+  "title": "Beginner Pack 9",
+  "subtitle": "Wants & Preferences — ほしい, 好き・嫌い & Target が",
+  "label": "3 patterns · 6 questions",
+  "level": 1,
+  "description": "Express personal desires with ほしい, personal preferences with 好き and 嫌い, and apply the crucial distinction between desire/preference marker が and action direct-object を.",
+  "sources": [
+    "Komorebi original situational practice for beginner Japanese learners",
+    "JLPT N5 Predicate Reference: ほしい (331#1), 好き・嫌い (740#1), Target が (462#2)"
+  ],
+  "patterns": [
+    {
+      "id": "grammar:hoshii",
+      "order": 1,
+      "pattern": "[Noun] が ほしいです",
+      "gloss": "I want [Noun]",
+      "readingNote": "ほしい ends with い and inflects like an い-adjective: negative is ほしくないです (do not want).",
+      "summary": "In Japanese, expressing a personal desire for an object uses the adjective ほしい (hoshii), not an action verb. Because it describes your internal state, use it in clear first-person situations ('I want...'). Like the い-adjectives introduced earlier (such as 大きい), ほしい drops its final い to form the negative: ほしくないです ('I do not want'). The desired item is marked with が.",
+      "subjectIds": [
+        "kanji:大",
+        "kanji:山",
+        "kanji:川",
+        "vocabulary:大きい",
+        "vocabulary:山",
+        "vocabulary:川"
+      ],
+      "examples": [
+        {
+          "id": "example:hoshii-1",
+          "japanese": "私は今、冷たい水がほしいです。",
+          "reading": "わたしは いま、つめたい みずが ほしいです。",
+          "gloss": "私 I · 今 now · 冷たい水 cold water · ほしい want",
+          "english": "“I want cold water right now.”"
+        },
+        {
+          "id": "example:hoshii-2",
+          "japanese": "私は大きい車はほしくないです。",
+          "reading": "わたしは おおきい くるまは ほしくないです。",
+          "gloss": "私 I · 大きい車 big car · ほしくない do not want",
+          "english": "“I do not want a big car.”"
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:hoshii-1",
+          "patternId": "grammar:hoshii",
+          "kind": "comprehension",
+          "isFreshSentence": false,
+          "prompt": "Walking under the hot afternoon sun, the speaker says this. What is their situation?",
+          "japanese": "私は今、冷たい水がほしいです。",
+          "words": [
+            { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+            { "text": "今", "kana": "いま", "romaji": "ima", "meaning": "now" },
+            { "text": "、", "punctuation": true },
+            { "text": "冷たい", "kana": "つめたい", "romaji": "tsumetai", "meaning": "cold (to touch/drink)" },
+            { "text": "水", "kana": "みず", "romaji": "mizu", "meaning": "water" },
+            { "text": "が", "kana": "が", "romaji": "ga", "meaning": "target marker" },
+            { "text": "ほしい", "kana": "ほしい", "romaji": "hoshii", "meaning": "want (desirable)" },
+            { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+            { "text": "。", "punctuation": true }
+          ],
+          "reading": "わたしは いま、つめたい みずが ほしいです。",
+          "gloss": "私 I · 今 now · 冷たい水 cold water · が target · ほしいです want",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The speaker is currently selling cold water at a station stall.",
+              "lang": "en",
+              "explanation": "Not quite. ほしいです expresses a personal desire (“I want”), not an occupation or selling action."
+            },
+            {
+              "id": "B",
+              "text": "The speaker is thirsty and expresses a personal desire for cold water right now.",
+              "lang": "en",
+              "explanation": "That’s right! 私は…水がほしいです clearly states the speaker’s first-person desire: “I want cold water right now.”"
+            },
+            {
+              "id": "C",
+              "text": "The speaker already drank cold water and is no longer thirsty.",
+              "lang": "en",
+              "explanation": "Not quite. ほしいです expresses an active present desire, not a completed past action."
+            }
+          ],
+          "followUp": {
+            "id": "followup:hoshii-1",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What does the speaker express in this new situation?",
+            "japanese": "私は今、新しい本がほしいです。",
+            "words": [
+              { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+              { "text": "今", "kana": "いま", "romaji": "ima", "meaning": "now" },
+              { "text": "、", "punctuation": true },
+              { "text": "新しい", "kana": "あたらしい", "romaji": "atarashii", "meaning": "new" },
+              { "text": "本", "kana": "ほん", "romaji": "hon", "meaning": "book" },
+              { "text": "が", "kana": "が", "romaji": "ga", "meaning": "target marker" },
+              { "text": "ほしい", "kana": "ほしい", "romaji": "hoshii", "meaning": "want (desirable)" },
+              { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+              { "text": "。", "punctuation": true }
+            ],
+            "reading": "わたしは いま、あたらしい ほんが ほしいです。",
+            "gloss": "私 I · 今 now · 新しい本 new book · ほしいです want",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "The speaker gave away their new book to a friend.",
+                "lang": "en",
+                "explanation": "Not quite. ほしいです indicates wanting something, not giving it away."
+              },
+              {
+                "id": "B",
+                "text": "The speaker is writing a new book right now.",
+                "lang": "en",
+                "explanation": "Not quite. ほしいです expresses desire for an object, not writing."
+              },
+              {
+                "id": "C",
+                "text": "The speaker wants a new book right now.",
+                "lang": "en",
+                "explanation": "That’s right! 新しい本がほしいです states the speaker’s desire: “I want a new book right now.”"
+              }
+            ],
+            "workedExample": {
+              "japanese": "私は今、新しい本がほしいです。",
+              "reading": "わたしは いま、あたらしい ほんが ほしいです。",
+              "english": "“I want a new book right now.”",
+              "breakdown": "Step 1: 私は establishes the first-person speaker. Step 2: Mark the desired object with が: 新しい本が (“a new book”). Step 3: Add the desire predicate: ほしいです (“want”). Together: “I want a new book right now.”"
+            }
+          }
+        },
+        {
+          "id": "question:hoshii-2",
+          "patternId": "grammar:hoshii",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Complete the sentence to state “I do not want a big box” (negative desire):",
+          "japanese": "私は大きい箱は（　）。",
+          "targetMeaning": "I do not want a big box.",
+          "words": [
+            { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+            { "text": "大きい", "kana": "おおきい", "romaji": "ookii", "meaning": "big" },
+            { "text": "箱", "kana": "はこ", "romaji": "hako", "meaning": "box" },
+            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic/contrast marker" },
+            { "text": "（　）", "blank": true },
+            { "text": "。", "punctuation": true }
+          ],
+          "reading": "わたしは おおきい はこは（　）。",
+          "gloss": "私 I · 大きい箱 big box · は contrast marker",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "ほしいでした",
+              "lang": "ja",
+              "explanation": "Not quite. ほしい is an い-adjective and does not pair directly with でした; furthermore, this is affirmative past, not present negative."
+            },
+            {
+              "id": "B",
+              "text": "ほしくあります",
+              "lang": "ja",
+              "explanation": "Not quite. ほしくあります is ungrammatical; the negative of ほしい is ほしくないです."
+            },
+            {
+              "id": "C",
+              "text": "ほしくないです",
+              "lang": "ja",
+              "explanation": "That’s right! Just like other い-adjectives, drop final い and add くないです to express the negative: ほしくないです (“do not want”)."
+            }
+          ],
+          "followUp": {
+            "id": "followup:hoshii-2",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Complete the sentence to state “I do not want hot tea right now”:",
+            "japanese": "私は今、熱いお茶は（　）。",
+            "targetMeaning": "I do not want hot tea right now.",
+            "words": [
+              { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+              { "text": "今", "kana": "いま", "romaji": "ima", "meaning": "now" },
+              { "text": "、", "punctuation": true },
+              { "text": "熱い", "kana": "あつい", "romaji": "atsui", "meaning": "hot (liquid/food)" },
+              { "text": "お茶", "kana": "おちゃ", "romaji": "ocha", "meaning": "tea" },
+              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic/contrast marker" },
+              { "text": "（　）", "blank": true },
+              { "text": "。", "punctuation": true }
+            ],
+            "reading": "わたしは いま、あつい おちゃは（　）。",
+            "gloss": "今 now · 熱いお茶 hot tea",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "ほしくないです",
+                "lang": "ja",
+                "explanation": "That’s right! ほしい inflects as an い-adjective: drop い and attach くないです to state “do not want.”"
+              },
+              {
+                "id": "B",
+                "text": "ほしいくないです",
+                "lang": "ja",
+                "explanation": "Not quite. Remember to drop the final い before adding くないです (ほしくないです, not ほしいくないです)."
+              },
+              {
+                "id": "C",
+                "text": "ほしかったです",
+                "lang": "ja",
+                "explanation": "Not quite. ほしかったです is affirmative past (“wanted”), whereas we want the present negative (“do not want”)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "私は今、熱いお茶はほしくないです。",
+              "reading": "わたしは いま、あつい おちゃは ほしくないです。",
+              "english": "“I do not want hot tea right now.”",
+              "breakdown": "Step 1: Start with the adjective ほしい (“want”). Step 2: Drop the final い: ほし-. Step 3: Add the negative ending くないです: ほしくないです (“do not want”)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:suki-kirai",
+      "order": 2,
+      "pattern": "[Noun] が 好きです / 嫌いです",
+      "gloss": "Like / dislike [Noun]",
+      "readingNote": "好き (すき, suki) and 嫌い (きらい, kirai) are な-adjectives in Japanese, paired with です.",
+      "summary": "In Japanese, liking and disliking are described with the な-adjectives 好き (suki) and 嫌い (kirai). In polite speech, use 好きです (affirmative: like) and 好きではありません (negative: do not like). The thing you like or dislike is marked with が, representing the target of your feeling.",
+      "subjectIds": [
+        "kanji:山",
+        "kanji:川",
+        "kanji:人",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:人",
+        "vocabulary:ふじ山"
+      ],
+      "examples": [
+        {
+          "id": "example:suki-kirai-1",
+          "japanese": "私は静かな山が好きです。",
+          "reading": "わたしは しずかな やまが すきです。",
+          "gloss": "私 I · 静かな山 quiet mountain · 好きです like",
+          "english": "“I like quiet mountains.”"
+        },
+        {
+          "id": "example:suki-kirai-2",
+          "japanese": "田中さんは狭い部屋は好きではありません。",
+          "reading": "たなかさんは せまい へやは すきでは ありません。",
+          "gloss": "田中さん Tanaka-san · 狭い部屋 cramped room · 好きではありません does not like",
+          "english": "“Tanaka-san does not like cramped rooms.”"
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:suki-kirai-1",
+          "patternId": "grammar:suki-kirai",
+          "kind": "comprehension",
+          "isFreshSentence": false,
+          "prompt": "What personal preference does the speaker describe here?",
+          "japanese": "私は静かな山が好きです。",
+          "words": [
+            { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+            { "text": "静かな", "kana": "しずかな", "romaji": "shizukana", "meaning": "quiet" },
+            { "text": "山", "kana": "やま", "romaji": "yama", "meaning": "mountain" },
+            { "text": "が", "kana": "が", "romaji": "ga", "meaning": "target marker" },
+            { "text": "好き", "kana": "すき", "romaji": "suki", "meaning": "liked, fond of" },
+            { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+            { "text": "。", "punctuation": true }
+          ],
+          "reading": "わたしは しずかな やまが すきです。",
+          "gloss": "私 I · 静かな山 quiet mountain · 好きです like",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "The speaker likes quiet mountains.",
+              "lang": "en",
+              "explanation": "That’s right! 静かな山が好きです states that the speaker is fond of quiet mountains."
+            },
+            {
+              "id": "B",
+              "text": "The speaker climbed a loud mountain yesterday.",
+              "lang": "en",
+              "explanation": "Not quite. 好きです expresses a preference (“like”), not past mountain climbing."
+            },
+            {
+              "id": "C",
+              "text": "The speaker does not like quiet places.",
+              "lang": "en",
+              "explanation": "Not quite. 好きです is affirmative (“likes”), not negative."
+            }
+          ],
+          "followUp": {
+            "id": "followup:suki-kirai-1",
+            "kind": "comprehension",
+            "prompt": "Follow-up check — What preference is expressed in this new sentence?",
+            "japanese": "私は古い本が好きです。",
+            "words": [
+              { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+              { "text": "古い", "kana": "ふるい", "romaji": "furui", "meaning": "old" },
+              { "text": "本", "kana": "ほん", "romaji": "hon", "meaning": "book" },
+              { "text": "が", "kana": "が", "romaji": "ga", "meaning": "target marker" },
+              { "text": "好き", "kana": "すき", "romaji": "suki", "meaning": "liked, fond of" },
+              { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+              { "text": "。", "punctuation": true }
+            ],
+            "reading": "わたしは ふるい ほんが すきです。",
+            "gloss": "古い本 old books · 好きです like",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "The speaker wants to buy a new book.",
+                "lang": "en",
+                "explanation": "Not quite. The sentence uses 古い本 (old books) and 好きです (likes), not new books."
+              },
+              {
+                "id": "B",
+                "text": "The speaker likes old books.",
+                "lang": "en",
+                "explanation": "That’s right! 古い本が好きです clearly states: “I like old books.”"
+              },
+              {
+                "id": "C",
+                "text": "The speaker wrote an old book.",
+                "lang": "en",
+                "explanation": "Not quite. 好きです expresses personal preference, not authorship."
+              }
+            ],
+            "workedExample": {
+              "japanese": "私は古い本が好きです。",
+              "reading": "わたしは ふるい ほんが すきです。",
+              "english": "“I like old books.”",
+              "breakdown": "Step 1: 私は identifies the speaker. Step 2: Mark the object of affection with が: 古い本が (“old books”). Step 3: Add the preference predicate 好きです: “I like old books.”"
+            }
+          }
+        },
+        {
+          "id": "question:suki-kirai-2",
+          "patternId": "grammar:suki-kirai",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Complete the sentence to state “Tanaka-san does not like noisy places”:",
+          "japanese": "田中さんはうるさい場所は（　）。",
+          "targetMeaning": "Tanaka-san does not like noisy places.",
+          "words": [
+            { "text": "田中", "kana": "たなか", "romaji": "Tanaka", "meaning": "Tanaka (surname)" },
+            { "text": "さん", "kana": "さん", "romaji": "san", "meaning": "Mr./Ms." },
+            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+            { "text": "うるさい", "kana": "うるさい", "romaji": "urusai", "meaning": "noisy" },
+            { "text": "場所", "kana": "ばしょ", "romaji": "basho", "meaning": "place" },
+            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "contrast marker" },
+            { "text": "（　）", "blank": true },
+            { "text": "。", "punctuation": true }
+          ],
+          "reading": "たなかさんは うるさい ばしょは（　）。",
+          "gloss": "田中さん Tanaka-san · うるさい場所 noisy place",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "好きくないです",
+              "lang": "ja",
+              "explanation": "Not quite. 好き is a な-adjective and does not conjugate with くない (which is reserved for い-adjectives)."
+            },
+            {
+              "id": "B",
+              "text": "好きではありません",
+              "lang": "ja",
+              "explanation": "That’s right! As a な-adjective predicate, the polite negative of 好きです is 好きではありません (“does not like”)."
+            },
+            {
+              "id": "C",
+              "text": "好きでした",
+              "lang": "ja",
+              "explanation": "Not quite. 好きでした is affirmative past (“liked”), not negative."
+            }
+          ],
+          "followUp": {
+            "id": "followup:suki-kirai-2",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Complete the sentence to state “I do not dislike hot tea”:",
+            "japanese": "私は熱いお茶は（　）。",
+            "targetMeaning": "I do not dislike hot tea.",
+            "words": [
+              { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+              { "text": "熱い", "kana": "あつい", "romaji": "atsui", "meaning": "hot (liquid)" },
+              { "text": "お茶", "kana": "おちゃ", "romaji": "ocha", "meaning": "tea" },
+              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "contrast marker" },
+              { "text": "（　）", "blank": true },
+              { "text": "。", "punctuation": true }
+            ],
+            "reading": "わたしは あつい おちゃは（　）。",
+            "gloss": "熱いお茶 hot tea",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "嫌いではありません",
+                "lang": "ja",
+                "explanation": "That’s right! 嫌い is a な-adjective; its polite negative is 嫌いではありません (“do not dislike”)."
+              },
+              {
+                "id": "B",
+                "text": "嫌いくないです",
+                "lang": "ja",
+                "explanation": "Not quite. Despite ending in the sound 'i', 嫌い (kirai) is a な-adjective, so it does not conjugate with くない."
+              },
+              {
+                "id": "C",
+                "text": "嫌いでした",
+                "lang": "ja",
+                "explanation": "Not quite. 嫌いでした is affirmative past (“disliked”)."
+              }
+            ],
+            "workedExample": {
+              "japanese": "私は熱いお茶は嫌いではありません。",
+              "reading": "わたしは あつい おちゃは きらいでは ありません。",
+              "english": "“I do not dislike hot tea.”",
+              "breakdown": "Step 1: 嫌い (kirai) is a な-adjective meaning “disliked.” Step 2: To make it negative, pair it with ではありません. Step 3: Result: 嫌いではありません (“do not dislike”)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:ga-target",
+      "order": 3,
+      "pattern": "Target が vs Action を",
+      "gloss": "Target が vs Action を",
+      "readingNote": "State, desire, and preference predicates take が; active transitive verbs take を.",
+      "summary": "A core grammatical distinction in Japanese is choosing between が and を. When expressing a desire or feeling with a predicate like ほしい (want) or 好き (like), the item is the target of a mental state and is marked with が. In contrast, when performing an intentional physical action upon an item (such as 買います 'buy' or 飲みます 'drink'), the direct object takes を. Apply this distinction deliberately based on whether the predicate is an action or a desire.",
+      "subjectIds": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:人",
+        "vocabulary:入る",
+        "vocabulary:入り口",
+        "vocabulary:人"
+      ],
+      "examples": [
+        {
+          "id": "example:ga-target-1",
+          "japanese": "私は冷たい水がほしいです。",
+          "reading": "わたしは つめたい みずが ほしいです。",
+          "gloss": "水が ほしい desire target が",
+          "english": "“I want cold water. (Desire takes が)”"
+        },
+        {
+          "id": "example:ga-target-2",
+          "japanese": "私は駅で冷たい水を買います。",
+          "reading": "わたしは えきで つめたい みずを かいます。",
+          "gloss": "水を 買います action direct object を",
+          "english": "“I buy cold water at the station. (Action takes を)”"
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:ga-target-1",
+          "patternId": "grammar:ga-target",
+          "kind": "cloze",
+          "isFreshSentence": false,
+          "prompt": "Apply the rule: Choose the particle for the desire predicate ほしいです (“want”):",
+          "japanese": "私は今、冷たい水（　）ほしいです。",
+          "targetMeaning": "I want cold water right now.",
+          "words": [
+            { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+            { "text": "今", "kana": "いま", "romaji": "ima", "meaning": "now" },
+            { "text": "、", "punctuation": true },
+            { "text": "冷たい", "kana": "つめたい", "romaji": "tsumetai", "meaning": "cold" },
+            { "text": "水", "kana": "みず", "romaji": "mizu", "meaning": "water" },
+            { "text": "（　）", "blank": true },
+            { "text": "ほしい", "kana": "ほしい", "romaji": "hoshii", "meaning": "want" },
+            { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+            { "text": "。", "punctuation": true }
+          ],
+          "reading": "わたしは いま、つめたい みず（　）ほしいです。",
+          "gloss": "冷たい水 cold water · ほしいです want",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "が",
+              "lang": "ja",
+              "explanation": "That’s right! Desires and feelings with ほしい take が to mark the desired object."
+            },
+            {
+              "id": "B",
+              "text": "を",
+              "lang": "ja",
+              "explanation": "Not quite. Action verbs take を, but state/desire predicates like ほしい take が."
+            },
+            {
+              "id": "C",
+              "text": "で",
+              "lang": "ja",
+              "explanation": "Not quite. で marks the location or tool of an action, not the target of desire."
+            }
+          ],
+          "followUp": {
+            "id": "followup:ga-target-1",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle for the desire predicate in this new sentence:",
+            "japanese": "私は新しい本（　）ほしいです。",
+            "targetMeaning": "I want a new book.",
+            "words": [
+              { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+              { "text": "新しい", "kana": "あたらしい", "romaji": "atarashii", "meaning": "new" },
+              { "text": "本", "kana": "ほん", "romaji": "hon", "meaning": "book" },
+              { "text": "（　）", "blank": true },
+              { "text": "ほしい", "kana": "ほしい", "romaji": "hoshii", "meaning": "want" },
+              { "text": "です", "kana": "です", "romaji": "desu", "meaning": "is, to be" },
+              { "text": "。", "punctuation": true }
+            ],
+            "reading": "わたしは あたらしい ほん（　）ほしいです。",
+            "gloss": "新しい本 new book · ほしいです want",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "Not quite. Although in English we say “want a book,” Japanese treats ほしい as a state adjective requiring target particle が."
+              },
+              {
+                "id": "B",
+                "text": "が",
+                "lang": "ja",
+                "explanation": "That’s right! Predicates expressing desire (ほしい) mark their object with が."
+              },
+              {
+                "id": "C",
+                "text": "に",
+                "lang": "ja",
+                "explanation": "Not quite. に marks destinations, presence, or specific times."
+              }
+            ],
+            "workedExample": {
+              "japanese": "私は新しい本がほしいです。",
+              "reading": "わたしは あたらしい ほんが ほしいです。",
+              "english": "“I want a new book.”",
+              "breakdown": "Step 1: Check the main predicate: ほしいです is a desire adjective. Step 2: Recall that desire targets take が, not を. Step 3: Result: 新しい本がほしいです."
+            }
+          }
+        },
+        {
+          "id": "question:ga-target-2",
+          "patternId": "grammar:ga-target",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Apply the rule: Choose the particle for the active transitive verb 買います (“buy”):",
+          "japanese": "私は今、駅で冷たい水（　）買います。",
+          "targetMeaning": "I will buy cold water at the station right now.",
+          "words": [
+            { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+            { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+            { "text": "今", "kana": "いま", "romaji": "ima", "meaning": "now" },
+            { "text": "、", "punctuation": true },
+            { "text": "駅", "kana": "えき", "romaji": "eki", "meaning": "station" },
+            { "text": "で", "kana": "で", "romaji": "de", "meaning": "location of action" },
+            { "text": "冷たい", "kana": "つめたい", "romaji": "tsumetai", "meaning": "cold" },
+            { "text": "水", "kana": "みず", "romaji": "mizu", "meaning": "water" },
+            { "text": "（　）", "blank": true },
+            { "text": "買います", "kana": "かいます", "romaji": "kaimasu", "meaning": "buy" },
+            { "text": "。", "punctuation": true }
+          ],
+          "reading": "わたしは いま、えきで つめたい みず（　）かいます。",
+          "gloss": "駅で at the station · 冷たい水 cold water · 買います buy",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "に",
+              "lang": "ja",
+              "explanation": "Not quite. に marks destinations or times, not the object of buying."
+            },
+            {
+              "id": "B",
+              "text": "が",
+              "lang": "ja",
+              "explanation": "Not quite. While desire (ほしい) takes が, physical transitive actions like 買います take direct object を."
+            },
+            {
+              "id": "C",
+              "text": "を",
+              "lang": "ja",
+              "explanation": "That’s right! 買います is a transitive action verb, so its direct object (水) takes particle を."
+            }
+          ],
+          "followUp": {
+            "id": "followup:ga-target-2",
+            "kind": "cloze",
+            "prompt": "Follow-up check — Choose the particle for the action verb 読みます (“read”):",
+            "japanese": "私は部屋で新しい本（　）読みます。",
+            "targetMeaning": "I will read a new book in the room.",
+            "words": [
+              { "text": "私", "kana": "わたし", "romaji": "watashi", "meaning": "I, me" },
+              { "text": "は", "kana": "わ", "romaji": "wa", "meaning": "topic marker" },
+              { "text": "部屋", "kana": "へや", "romaji": "heya", "meaning": "room" },
+              { "text": "で", "kana": "で", "romaji": "de", "meaning": "location of action" },
+              { "text": "新しい", "kana": "あたらしい", "romaji": "atarashii", "meaning": "new" },
+              { "text": "本", "kana": "ほん", "romaji": "hon", "meaning": "book" },
+              { "text": "（　）", "blank": true },
+              { "text": "読みます", "kana": "よみます", "romaji": "yomimasu", "meaning": "read" },
+              { "text": "。", "punctuation": true }
+            ],
+            "reading": "わたしは へやで あたらしい ほん（　）よみます。",
+            "gloss": "部屋で in the room · 新しい本 new book · 読みます read",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "が",
+                "lang": "ja",
+                "explanation": "Not quite. 読みます is an action verb taking を, not a desire/state predicate taking が."
+              },
+              {
+                "id": "B",
+                "text": "に",
+                "lang": "ja",
+                "explanation": "Not quite. に does not mark the direct object being read."
+              },
+              {
+                "id": "C",
+                "text": "を",
+                "lang": "ja",
+                "explanation": "That’s right! The book is the direct object of the physical action 読みます, so it takes を."
+              }
+            ],
+            "workedExample": {
+              "japanese": "私は部屋で新しい本を読みます。",
+              "reading": "わたしは へやで あたらしい ほんを よみます。",
+              "english": "“I will read a new book in the room.”",
+              "breakdown": "Step 1: Check the verb: 読みます (“read”) is an active physical action. Step 2: Active transitive actions take direct object を. Step 3: Result: 本を読みます (“read a book”)."
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -151,6 +151,14 @@ export function runMechanicalChecks({ rootDir = ROOT } = {}) {
         if (!Array.isArray(fu.words) || !fu.words.length) {
           throw new Error(`Follow-up ${fu.id} in ${pack.id} is missing tap-to-read word help`);
         }
+        for (const itemQ of [q, fu]) {
+          if (/[「」]/.test(itemQ.japanese) && (!Array.isArray(itemQ.dialogue) || itemQ.dialogue.length < 2)) {
+            throw new Error(`Conversational exercise ${itemQ.id} in ${pack.id} must use explicit dialogue turns rather than inline quotation marks`);
+          }
+          if (Array.isArray(itemQ.dialogue) && /[「」]/.test(itemQ.japanese)) {
+            throw new Error(`Dialogue exercise ${itemQ.id} in ${pack.id} must not include inline quotation marks in japanese`);
+          }
+        }
 
         // Guard against ambiguous particle pair (に vs. へ on destination questions)
         for (const itemQ of [q, fu]) {

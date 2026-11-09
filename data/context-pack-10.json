@@ -1,0 +1,1512 @@
+{
+  "schemaVersion": 1,
+  "id": "pack:beginner-10",
+  "title": "Beginner Pack 10",
+  "subtitle": "Means of Travel, Exemplary Lists & Conversational Nuance",
+  "label": "3 patterns · 6 questions",
+  "level": 1,
+  "description": "Express means and transport with で (paired with destination に), cite representative examples with non-exhaustive や, and navigate conversational intent with sentence-ending particles よ (informing) and ね (seeking agreement).",
+  "sources": [
+    "Komorebi original conversational exchanges for everyday beginner Japanese",
+    "JLPT N5 Particles Reference: で means (112#3), や listing (469#1), よ certainty (471#1), ね confirmation (472#1)"
+  ],
+  "patterns": [
+    {
+      "id": "grammar:de-means",
+      "order": 1,
+      "pattern": "[Vehicle/Tool] で [Destination] に [Action]",
+      "gloss": "by means of / by [Vehicle]",
+      "readingNote": "で marks the method or vehicle used to travel (e.g. バスで行く = go by bus). Destination continues to use reviewed particle に (駅に行きます), never confusing means with destination.",
+      "summary": "In Pack 5, you learned で for the place where an action occurs (店で買います). Here, で marks the means, vehicle, or instrument used to accomplish an action (電車で行きます = go by train). Destinations continue using reviewed に (駅に行きます). We avoid introducing the deferred particle へ here, maintaining clear consistency with destination に.",
+      "subjectIds": [
+        "kanji:入",
+        "kanji:口",
+        "kanji:人",
+        "kanji:大",
+        "vocabulary:入り口",
+        "vocabulary:入る",
+        "vocabulary:人",
+        "vocabulary:大人"
+      ],
+      "examples": [
+        {
+          "id": "example:de-means-1",
+          "japanese": "バスで駅に行きます。",
+          "reading": "バスで えきに いきます。",
+          "gloss": "バスで by bus · 駅に to the station · 行きます go",
+          "english": "I go to the station by bus."
+        },
+        {
+          "id": "example:de-means-2",
+          "japanese": "電車でホテルに行きます。",
+          "reading": "でんしゃで ホテルに いきます。",
+          "gloss": "電車で by train · ホテルに to the hotel · 行きます go",
+          "english": "I go to the hotel by train."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:de-means-1",
+          "kind": "comprehension",
+          "prompt": "What does this conversational exchange mean?",
+          "japanese": "A: 駅まで何で行きますか。 B: バスで行きます。",
+          "reading": "A: えきまで なんで いきますか。 B: バスで いきます。",
+          "gloss": "駅まで to the station · 何で by what / how · 行きますか do you go? · バスで by bus · 行きます go.",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "“Are you walking to the station?” “I am taking the bus.”",
+              "explanation": "Not quite. 何で asks \"by what means / how\", not whether the speaker is walking."
+            },
+            {
+              "id": "B",
+              "text": "“How do you go to the station?” “I go by bus.”",
+              "explanation": "That’s right! 何で asks for the means of transport, and バスで answers that the person travels by bus."
+            },
+            {
+              "id": "C",
+              "text": "“Where does the bus go?” “It goes to the station.”",
+              "explanation": "Not quite. The first speaker asks how to get to the station (何で行きますか), not where the bus is traveling."
+            }
+          ],
+          "words": [
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "まで",
+              "kana": "まで",
+              "romaji": "made",
+              "meaning": "to / as far as"
+            },
+            {
+              "text": "何で",
+              "kana": "なんで",
+              "romaji": "nande",
+              "meaning": "by what / how"
+            },
+            {
+              "text": "行きますか",
+              "kana": "いきますか",
+              "romaji": "ikimasu ka",
+              "meaning": "do you go?"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            },
+            {
+              "text": "バス",
+              "kana": "バス",
+              "romaji": "basu",
+              "meaning": "bus"
+            },
+            {
+              "text": "で",
+              "kana": "で",
+              "romaji": "de",
+              "meaning": "by means of"
+            },
+            {
+              "text": "行きます",
+              "kana": "いきます",
+              "romaji": "ikimasu",
+              "meaning": "go"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
+          ],
+          "followUp": {
+            "id": "followup:de-means-1",
+            "kind": "comprehension",
+            "prompt": "What does this conversational exchange mean?",
+            "japanese": "A: ホテルまで何で行きますか。 B: 電車で行きます。",
+            "reading": "A: ホテルまで なんで いきますか。 B: でんしゃで いきます。",
+            "gloss": "ホテルまで to the hotel · 何で by what / how · 行きますか do you go? · 電車で by train · 行きます go.",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "“When do you go to the hotel?” “I go by train.”",
+                "explanation": "Not quite. 何で asks \"by what means / how\", not \"when\" (いつ)."
+              },
+              {
+                "id": "B",
+                "text": "“Who is going to the hotel?” “The train is going.”",
+                "explanation": "Not quite. 何で asks about means of travel, not who is going (だれ)."
+              },
+              {
+                "id": "C",
+                "text": "“How do you go to the hotel?” “I go by train.”",
+                "explanation": "That’s right! 何で asks for the means of transport, and 電車で specifies going by train."
+              }
+            ],
+            "words": [
+              {
+                "text": "ホテル",
+                "kana": "ホテル",
+                "romaji": "hoteru",
+                "meaning": "hotel"
+              },
+              {
+                "text": "まで",
+                "kana": "まで",
+                "romaji": "made",
+                "meaning": "to / as far as"
+              },
+              {
+                "text": "何で",
+                "kana": "なんで",
+                "romaji": "nande",
+                "meaning": "by what / how"
+              },
+              {
+                "text": "行きますか",
+                "kana": "いきますか",
+                "romaji": "ikimasu ka",
+                "meaning": "do you go?"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              },
+              {
+                "text": "電車",
+                "kana": "でんしゃ",
+                "romaji": "densha",
+                "meaning": "train"
+              },
+              {
+                "text": "で",
+                "kana": "で",
+                "romaji": "de",
+                "meaning": "by means of"
+              },
+              {
+                "text": "行きます",
+                "kana": "いきます",
+                "romaji": "ikimasu",
+                "meaning": "go"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ],
+            "workedExample": {
+              "japanese": "「学校まで何で行きますか。」「自転車で行きます。」",
+              "english": "“How do you go to school?” “I go by bicycle.”",
+              "breakdown": "何で (nande) asks for the means or method of transportation. 自転車で (jitensha de) marks the vehicle with で to express \"by bicycle\"."
+            },
+            "dialogue": [
+              {
+                "speaker": "A",
+                "japanese": "ホテルまで何で行きますか。",
+                "reading": "ホテルまで なんで いきますか。",
+                "words": [
+                  {
+                    "text": "ホテル",
+                    "kana": "ホテル",
+                    "romaji": "hoteru",
+                    "meaning": "hotel"
+                  },
+                  {
+                    "text": "まで",
+                    "kana": "まで",
+                    "romaji": "made",
+                    "meaning": "to / as far as"
+                  },
+                  {
+                    "text": "何で",
+                    "kana": "なんで",
+                    "romaji": "nande",
+                    "meaning": "by what / how"
+                  },
+                  {
+                    "text": "行きますか",
+                    "kana": "いきますか",
+                    "romaji": "ikimasu ka",
+                    "meaning": "do you go?"
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              },
+              {
+                "speaker": "B",
+                "japanese": "電車で行きます。",
+                "reading": "でんしゃで いきます。",
+                "words": [
+                  {
+                    "text": "電車",
+                    "kana": "でんしゃ",
+                    "romaji": "densha",
+                    "meaning": "train"
+                  },
+                  {
+                    "text": "で",
+                    "kana": "で",
+                    "romaji": "de",
+                    "meaning": "by means of"
+                  },
+                  {
+                    "text": "行きます",
+                    "kana": "いきます",
+                    "romaji": "ikimasu",
+                    "meaning": "go"
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              }
+            ]
+          },
+          "dialogue": [
+            {
+              "speaker": "A",
+              "japanese": "駅まで何で行きますか。",
+              "reading": "えきまで なんで いきますか。",
+              "words": [
+                {
+                  "text": "駅",
+                  "kana": "えき",
+                  "romaji": "eki",
+                  "meaning": "station"
+                },
+                {
+                  "text": "まで",
+                  "kana": "まで",
+                  "romaji": "made",
+                  "meaning": "to / as far as"
+                },
+                {
+                  "text": "何で",
+                  "kana": "なんで",
+                  "romaji": "nande",
+                  "meaning": "by what / how"
+                },
+                {
+                  "text": "行きますか",
+                  "kana": "いきますか",
+                  "romaji": "ikimasu ka",
+                  "meaning": "do you go?"
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
+            },
+            {
+              "speaker": "B",
+              "japanese": "バスで行きます。",
+              "reading": "バスで いきます。",
+              "words": [
+                {
+                  "text": "バス",
+                  "kana": "バス",
+                  "romaji": "basu",
+                  "meaning": "bus"
+                },
+                {
+                  "text": "で",
+                  "kana": "で",
+                  "romaji": "de",
+                  "meaning": "by means of"
+                },
+                {
+                  "text": "行きます",
+                  "kana": "いきます",
+                  "romaji": "ikimasu",
+                  "meaning": "go"
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "question:de-means-2",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Which particle correctly marks the means of transport to the station?",
+          "japanese": "私は駅に電車（　）行きます。",
+          "reading": "わたしは えきに でんしゃ（　）いきます。",
+          "gloss": "私は I · 駅に to the station · 電車 by train · 行きます go",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "で",
+              "explanation": "That’s right! で marks the vehicle or means of travel (電車で = by train), while に marks the destination (駅に)."
+            },
+            {
+              "id": "B",
+              "text": "に",
+              "explanation": "Not quite. に marks the target or destination (already present in 駅に); for the vehicle or means of transport, use で."
+            },
+            {
+              "id": "C",
+              "text": "を",
+              "explanation": "Not quite. を marks a direct grammatical object (like 水を飲みます); transportation methods take で."
+            }
+          ],
+          "words": [
+            {
+              "text": "私",
+              "kana": "わたし",
+              "romaji": "watashi",
+              "meaning": "I / me"
+            },
+            {
+              "text": "は",
+              "kana": "wa",
+              "romaji": "wa",
+              "meaning": "topic particle"
+            },
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "to / destination particle"
+            },
+            {
+              "text": "電車",
+              "kana": "でんしゃ",
+              "romaji": "densha",
+              "meaning": "train"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "行きます",
+              "kana": "いきます",
+              "romaji": "ikimasu",
+              "meaning": "go"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
+          ],
+          "followUp": {
+            "id": "followup:de-means-2",
+            "kind": "cloze",
+            "prompt": "Which particle correctly marks the vehicle used to travel to the hotel?",
+            "japanese": "友だちはホテルに車（　）行きます。",
+            "reading": "ともだちは ホテルに くるま（　）いきます。",
+            "gloss": "友だちは my friend · ホテルに to the hotel · 車 by car · 行きます goes",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "に",
+                "explanation": "Not quite. に marks destinations or points in time; 車 is the vehicle used, which requires で."
+              },
+              {
+                "id": "B",
+                "text": "で",
+                "explanation": "That’s right! で indicates the means or vehicle used for travel (車で = by car), while に marks the destination (ホテルに)."
+              },
+              {
+                "id": "C",
+                "text": "を",
+                "explanation": "Not quite. を indicates the direct object of a transitive action; traveling by a vehicle takes で."
+              }
+            ],
+            "words": [
+              {
+                "text": "友だち",
+                "kana": "ともだち",
+                "romaji": "tomodachi",
+                "meaning": "friend"
+              },
+              {
+                "text": "は",
+                "kana": "wa",
+                "romaji": "wa",
+                "meaning": "topic particle"
+              },
+              {
+                "text": "ホテル",
+                "kana": "ホテル",
+                "romaji": "hoteru",
+                "meaning": "hotel"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "to / destination particle"
+              },
+              {
+                "text": "車",
+                "kana": "くるま",
+                "romaji": "kuruma",
+                "meaning": "car"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "行きます",
+                "kana": "いきます",
+                "romaji": "ikimasu",
+                "meaning": "go"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ],
+            "workedExample": {
+              "japanese": "田中さんは山にバスで行きます。",
+              "english": "Tanaka-san goes to the mountain by bus.",
+              "breakdown": "山に (yama ni) specifies the destination with に, and バスで (basu de) marks the vehicle with で."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:ya-listing",
+      "order": 2,
+      "pattern": "[Noun A] や [Noun B]",
+      "gloss": "A and B (among other things / representative examples)",
+      "readingNote": "や connects nouns to cite examples from a larger or non-exhaustive group (e.g. 本やペン = books, pens, and the like).",
+      "summary": "In Pack 3, you learned particle と to connect nouns (山と川 = mountain and river). と presents the nouns together as a specific, defined group. In contrast, や introduces non-exhaustive, representative examples from a larger set (本やペン = things like books and pens). It leaves open that other unmentioned items also exist in the scene.",
+      "subjectIds": [
+        "kanji:山",
+        "kanji:川",
+        "kanji:人",
+        "kanji:上",
+        "kanji:下",
+        "vocabulary:山",
+        "vocabulary:川",
+        "vocabulary:人",
+        "vocabulary:上",
+        "vocabulary:下"
+      ],
+      "examples": [
+        {
+          "id": "example:ya-listing-1",
+          "japanese": "机の上に本やペンがあります。",
+          "reading": "つくえの うえに ほんや ペンが あります。",
+          "gloss": "机の上に on the desk · 本や books, pens, etc. · ペン pen · が subject · あります there are",
+          "english": "There are things like books and pens on the desk."
+        },
+        {
+          "id": "example:ya-listing-2",
+          "japanese": "部屋に水や果物があります。",
+          "reading": "へやに みずや くだものが あります。",
+          "gloss": "部屋に in the room · 水や water, fruit, etc. · 果物 fruit · が subject · あります there are",
+          "english": "There are things like water and fruit in the room."
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:ya-listing-1",
+          "kind": "comprehension",
+          "prompt": "What does this sentence express about the items on the desk?",
+          "japanese": "机の上に本やペンがあります。",
+          "reading": "つくえの うえに ほんや ペンが あります。",
+          "gloss": "机の上に on top of the desk · 本や books, pens, etc. · ペン pen · が subject · あります there are",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "There are only two items on the desk: exactly one book and one pen.",
+              "explanation": "Not quite. Particle や gives examples among others; it does not limit the contents to only those two items."
+            },
+            {
+              "id": "B",
+              "text": "There is a book on top of a pen on the desk.",
+              "explanation": "Not quite. や connects nouns as listed items (\"books and pens\"), not one resting on top of the other."
+            },
+            {
+              "id": "C",
+              "text": "There are things like books and pens on the desk (giving representative examples).",
+              "explanation": "That’s right! Particle や lists representative examples from the desk without claiming those are the only items present."
+            }
+          ],
+          "words": [
+            {
+              "text": "机",
+              "kana": "つくえ",
+              "romaji": "tsukue",
+              "meaning": "desk"
+            },
+            {
+              "text": "の",
+              "kana": "no",
+              "romaji": "no",
+              "meaning": "possessive / location connector"
+            },
+            {
+              "text": "上",
+              "kana": "うえ",
+              "romaji": "ue",
+              "meaning": "on / above"
+            },
+            {
+              "text": "に",
+              "kana": "に",
+              "romaji": "ni",
+              "meaning": "at / in (location)"
+            },
+            {
+              "text": "本",
+              "kana": "ほん",
+              "romaji": "hon",
+              "meaning": "book"
+            },
+            {
+              "text": "や",
+              "kana": "ya",
+              "romaji": "ya",
+              "meaning": "and (non-exhaustive listing)"
+            },
+            {
+              "text": "ペン",
+              "kana": "ペン",
+              "romaji": "pen",
+              "meaning": "pen"
+            },
+            {
+              "text": "が",
+              "kana": "ga",
+              "romaji": "ga",
+              "meaning": "subject particle"
+            },
+            {
+              "text": "あります",
+              "kana": "あります",
+              "romaji": "arimasu",
+              "meaning": "there is / are"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
+          ],
+          "followUp": {
+            "id": "followup:ya-listing-1",
+            "kind": "comprehension",
+            "prompt": "What does this sentence convey about the items in the room?",
+            "japanese": "部屋に水や果物があります。",
+            "reading": "へやに みずや くだものが あります。",
+            "gloss": "部屋に in the room · 水や water, fruit, etc. · 果物 fruit · が subject · あります there are",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "There are things such as water and fruit in the room (as representative examples).",
+                "explanation": "That’s right! Particle や highlights representative items present in the room without restricting the scene to only those items."
+              },
+              {
+                "id": "B",
+                "text": "There is water instead of fruit in the room.",
+                "explanation": "Not quite. や lists items together as examples, not as mutually exclusive alternatives (\"instead of\")."
+              },
+              {
+                "id": "C",
+                "text": "There is absolutely nothing in the room except water and one fruit.",
+                "explanation": "Not quite. Particle や is non-exhaustive; it mentions water and fruit as examples, leaving room for other items."
+              }
+            ],
+            "words": [
+              {
+                "text": "部屋",
+                "kana": "へや",
+                "romaji": "heya",
+                "meaning": "room"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "in / location particle"
+              },
+              {
+                "text": "水",
+                "kana": "みず",
+                "romaji": "mizu",
+                "meaning": "water"
+              },
+              {
+                "text": "や",
+                "kana": "ya",
+                "romaji": "ya",
+                "meaning": "and (non-exhaustive listing)"
+              },
+              {
+                "text": "果物",
+                "kana": "くだもの",
+                "romaji": "kudamono",
+                "meaning": "fruit"
+              },
+              {
+                "text": "が",
+                "kana": "ga",
+                "romaji": "ga",
+                "meaning": "subject particle"
+              },
+              {
+                "text": "あります",
+                "kana": "あります",
+                "romaji": "arimasu",
+                "meaning": "there is / are"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ],
+            "workedExample": {
+              "japanese": "かばんの中に財布や鍵があります。",
+              "english": "There are things like a wallet and keys in the bag.",
+              "breakdown": "や (ya) connects 財布 (wallet) and 鍵 (keys) as illustrative items present, implying other items may also be inside."
+            }
+          }
+        },
+        {
+          "id": "question:ya-listing-2",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Which particle best completes the sentence to list bread and water as representative items bought at the store?",
+          "japanese": "店でパン（　）水を買います。",
+          "reading": "みせで パン（　）みずを かいます。",
+          "gloss": "店で at the store · パン bread · 水 water · を object · 買います buy",
+          "correctChoice": "B",
+          "choices": [
+            {
+              "id": "A",
+              "text": "で",
+              "explanation": "Not quite. で marks location of action (店で) or means; it does not connect two nouns in a list."
+            },
+            {
+              "id": "B",
+              "text": "や",
+              "explanation": "That’s right! Particle や connects nouns to list representative examples (パンや水 = things like bread and water)."
+            },
+            {
+              "id": "C",
+              "text": "に",
+              "explanation": "Not quite. に marks destinations, time, or indirect objects; it does not connect two nouns into a list."
+            }
+          ],
+          "words": [
+            {
+              "text": "店",
+              "kana": "みせ",
+              "romaji": "mise",
+              "meaning": "store / shop"
+            },
+            {
+              "text": "で",
+              "kana": "de",
+              "romaji": "de",
+              "meaning": "at (action location)"
+            },
+            {
+              "text": "パン",
+              "kana": "パン",
+              "romaji": "pan",
+              "meaning": "bread"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "水",
+              "kana": "みず",
+              "romaji": "mizu",
+              "meaning": "water"
+            },
+            {
+              "text": "を",
+              "kana": "o",
+              "romaji": "o",
+              "meaning": "object particle"
+            },
+            {
+              "text": "買います",
+              "kana": "かいます",
+              "romaji": "kaimasu",
+              "meaning": "buy"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
+          ],
+          "followUp": {
+            "id": "followup:ya-listing-2",
+            "kind": "cloze",
+            "prompt": "Which particle best connects books and paper as representative examples inside the box?",
+            "japanese": "箱の中に本（　）紙があります。",
+            "reading": "はこの なかに ほん（　）かみが あります。",
+            "gloss": "箱の中に inside the box · 本 books · 紙 paper · が subject · あります there are",
+            "correctChoice": "C",
+            "choices": [
+              {
+                "id": "A",
+                "text": "で",
+                "explanation": "Not quite. で indicates an action site or tool; it cannot join two nouns to cite them as items in a box."
+              },
+              {
+                "id": "B",
+                "text": "に",
+                "explanation": "Not quite. に marks the location (箱の中に); connecting the two listed nouns requires particle や."
+              },
+              {
+                "id": "C",
+                "text": "や",
+                "explanation": "That’s right! Particle や connects 本 and 紙 as representative examples of items inside the box."
+              }
+            ],
+            "words": [
+              {
+                "text": "箱",
+                "kana": "はこ",
+                "romaji": "hako",
+                "meaning": "box"
+              },
+              {
+                "text": "の",
+                "kana": "no",
+                "romaji": "no",
+                "meaning": "possessive / position connector"
+              },
+              {
+                "text": "中",
+                "kana": "なか",
+                "romaji": "naka",
+                "meaning": "inside"
+              },
+              {
+                "text": "に",
+                "kana": "に",
+                "romaji": "ni",
+                "meaning": "in / location particle"
+              },
+              {
+                "text": "本",
+                "kana": "ほん",
+                "romaji": "hon",
+                "meaning": "book"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "紙",
+                "kana": "かみ",
+                "romaji": "kami",
+                "meaning": "paper"
+              },
+              {
+                "text": "が",
+                "kana": "ga",
+                "romaji": "ga",
+                "meaning": "subject particle"
+              },
+              {
+                "text": "あります",
+                "kana": "あります",
+                "romaji": "arimasu",
+                "meaning": "there is / are"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ],
+            "workedExample": {
+              "japanese": "庭に木や花があります。",
+              "english": "There are things like trees and flowers in the garden.",
+              "breakdown": "や (ya) links 木 (trees) and 花 (flowers) as representative examples of plants in the garden."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "grammar:particle-yo-ne",
+      "order": 3,
+      "pattern": "〜よ (informing) / 〜ね (seeking agreement)",
+      "gloss": "sentence-ending conversational particles",
+      "readingNote": "よ informs the listener of something they may not know with friendly certainty. ね seeks mutual agreement or confirms shared experience ('isn't it?').",
+      "summary": "Sentence-ending particles enrich natural spoken Japanese: (1) よ shares new information, advice, or polite notice with the listener (駅の入り口はあそこですよ = The station entrance is over there, you know). (2) ね invites agreement or confirms a shared observation (ふじ山は本当に大きいですね = Mt. Fuji really is big, isn't it?). To avoid ambiguity, look closely at the conversational context and speaker intent: is the speaker sharing new information, or asking for shared agreement?",
+      "subjectIds": [
+        "kanji:大",
+        "kanji:山",
+        "kanji:人",
+        "kanji:入",
+        "kanji:口",
+        "vocabulary:大きい",
+        "vocabulary:山",
+        "vocabulary:ふじ山",
+        "vocabulary:人",
+        "vocabulary:入り口"
+      ],
+      "examples": [
+        {
+          "id": "example:particle-yo-ne-1",
+          "japanese": "「駅の入り口はどこですか。」「あそこですよ。」",
+          "reading": "「えきの いりぐちは どこですか。」「あそこですよ。」",
+          "gloss": "「駅の入り口 station entrance · は topic · どこですか where is it?」「あそこですよ it is over there (informing)」",
+          "english": "“Where is the station entrance?” “It is right over there (let me tell you).”"
+        },
+        {
+          "id": "example:particle-yo-ne-2",
+          "japanese": "「ふじ山は本当に大きいですね。」「そうですね。」",
+          "reading": "「ふじさんは ほんとうに おおきいですね。」「そうですね。」",
+          "gloss": "「ふじ山 Mt. Fuji · は topic · 本当に really · 大きいですね big, isn't it?」「そうですね that's true」",
+          "english": "“Mt. Fuji is really big, isn't it?” “It really is.”"
+        }
+      ],
+      "questions": [
+        {
+          "id": "question:particle-yo-ne-1",
+          "kind": "cloze",
+          "prompt": "In this dialogue, Person A is asking for directions. Person B informs them where the entrance is. Which ending best fits Person B's intent to inform?",
+          "japanese": "A: 駅の入り口はどこですか。 B: あそこです（　）。",
+          "reading": "A: えきの いりぐちは どこですか。 B: あそこです（　）。",
+          "gloss": "駅の入り口 station entrance · は topic · どこですか where is it? · あそこです it is over there · （　）",
+          "correctChoice": "A",
+          "choices": [
+            {
+              "id": "A",
+              "text": "よ",
+              "explanation": "That’s right! Person A asked for information they did not know; Person B uses よ to inform them with helpful certainty."
+            },
+            {
+              "id": "B",
+              "text": "ね",
+              "explanation": "Not quite. Particle ね seeks mutual agreement on something both already know; here Person B is providing new information to someone who asked."
+            },
+            {
+              "id": "C",
+              "text": "か",
+              "explanation": "Not quite. Particle か would turn Person B's answer into a question (\"Is it over there?\"), rather than answering Person A's question."
+            }
+          ],
+          "words": [
+            {
+              "text": "駅",
+              "kana": "えき",
+              "romaji": "eki",
+              "meaning": "station"
+            },
+            {
+              "text": "の",
+              "kana": "no",
+              "romaji": "no",
+              "meaning": "modifier particle"
+            },
+            {
+              "text": "入り口",
+              "kana": "いりぐち",
+              "romaji": "iriguchi",
+              "meaning": "entrance"
+            },
+            {
+              "text": "は",
+              "kana": "wa",
+              "romaji": "wa",
+              "meaning": "topic particle"
+            },
+            {
+              "text": "どこ",
+              "kana": "どこ",
+              "romaji": "doko",
+              "meaning": "where"
+            },
+            {
+              "text": "ですか",
+              "kana": "desu ka",
+              "romaji": "desu ka",
+              "meaning": "is it?"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            },
+            {
+              "text": "あそこ",
+              "kana": "あそこ",
+              "romaji": "asoko",
+              "meaning": "over there"
+            },
+            {
+              "text": "です",
+              "kana": "desu",
+              "romaji": "desu",
+              "meaning": "is"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
+          ],
+          "followUp": {
+            "id": "followup:particle-yo-ne-1",
+            "kind": "cloze",
+            "prompt": "In this dialogue, Person A asks if the book is interesting. Person B shares their recommendation to inform Person A. Which ending best expresses Person B's intent to inform?",
+            "japanese": "A: この本はおもしろいですか。 B: とてもおもしろい（　）。",
+            "reading": "A: この ほんは おもしろいですか。 B: とても おもしろい（　）。",
+            "gloss": "この本 this book · は topic · おもしろいですか is it interesting? · とても very · おもしろい interesting · （　）",
+            "correctChoice": "B",
+            "choices": [
+              {
+                "id": "A",
+                "text": "ね",
+                "explanation": "Not quite. Particle ね seeks mutual agreement on something both already know; here Person B is informing Person A of their experience."
+              },
+              {
+                "id": "B",
+                "text": "ですよ",
+                "explanation": "That’s right! Person B uses ですよ to inform Person A of their experience with friendly certainty."
+              },
+              {
+                "id": "C",
+                "text": "ですか",
+                "explanation": "Not quite. ですか would make Person B's answer into a question rather than answering Person A's question."
+              }
+            ],
+            "words": [
+              {
+                "text": "この",
+                "kana": "この",
+                "romaji": "kono",
+                "meaning": "this"
+              },
+              {
+                "text": "本",
+                "kana": "ほん",
+                "romaji": "hon",
+                "meaning": "book"
+              },
+              {
+                "text": "は",
+                "kana": "wa",
+                "romaji": "wa",
+                "meaning": "topic particle"
+              },
+              {
+                "text": "おもしろい",
+                "kana": "おもしろい",
+                "romaji": "omoshiroi",
+                "meaning": "interesting / enjoyable"
+              },
+              {
+                "text": "ですか",
+                "kana": "desu ka",
+                "romaji": "desu ka",
+                "meaning": "is it?"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              },
+              {
+                "text": "とても",
+                "kana": "とても",
+                "romaji": "totemo",
+                "meaning": "very"
+              },
+              {
+                "text": "おもしろい",
+                "kana": "おもしろい",
+                "romaji": "omoshiroi",
+                "meaning": "interesting / enjoyable"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ],
+            "workedExample": {
+              "japanese": "「あの店はおいしいですか。」「おいしいですよ。」",
+              "english": "“Is that restaurant good?” “It’s delicious, let me tell you!”",
+              "breakdown": "The second speaker provides their personal recommendation using よ (yo) to inform the curious listener."
+            },
+            "dialogue": [
+              {
+                "speaker": "A",
+                "japanese": "この本はおもしろいですか。",
+                "reading": "この ほんは おもしろいですか。",
+                "words": [
+                  {
+                    "text": "この",
+                    "kana": "この",
+                    "romaji": "kono",
+                    "meaning": "this"
+                  },
+                  {
+                    "text": "本",
+                    "kana": "ほん",
+                    "romaji": "hon",
+                    "meaning": "book"
+                  },
+                  {
+                    "text": "は",
+                    "kana": "wa",
+                    "romaji": "wa",
+                    "meaning": "topic particle"
+                  },
+                  {
+                    "text": "おもしろい",
+                    "kana": "おもしろい",
+                    "romaji": "omoshiroi",
+                    "meaning": "interesting / enjoyable"
+                  },
+                  {
+                    "text": "ですか",
+                    "kana": "desu ka",
+                    "romaji": "desu ka",
+                    "meaning": "is it?"
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              },
+              {
+                "speaker": "B",
+                "japanese": "とてもおもしろい（　）。",
+                "reading": "とても おもしろい（　）。",
+                "words": [
+                  {
+                    "text": "とても",
+                    "kana": "とても",
+                    "romaji": "totemo",
+                    "meaning": "very"
+                  },
+                  {
+                    "text": "おもしろい",
+                    "kana": "おもしろい",
+                    "romaji": "omoshiroi",
+                    "meaning": "interesting / enjoyable"
+                  },
+                  {
+                    "text": "（　）",
+                    "blank": true
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              }
+            ]
+          },
+          "dialogue": [
+            {
+              "speaker": "A",
+              "japanese": "駅の入り口はどこですか。",
+              "reading": "えきの いりぐちは どこですか。",
+              "words": [
+                {
+                  "text": "駅",
+                  "kana": "えき",
+                  "romaji": "eki",
+                  "meaning": "station"
+                },
+                {
+                  "text": "の",
+                  "kana": "no",
+                  "romaji": "no",
+                  "meaning": "modifier particle"
+                },
+                {
+                  "text": "入り口",
+                  "kana": "いりぐち",
+                  "romaji": "iriguchi",
+                  "meaning": "entrance"
+                },
+                {
+                  "text": "は",
+                  "kana": "wa",
+                  "romaji": "wa",
+                  "meaning": "topic particle"
+                },
+                {
+                  "text": "どこ",
+                  "kana": "どこ",
+                  "romaji": "doko",
+                  "meaning": "where"
+                },
+                {
+                  "text": "ですか",
+                  "kana": "desu ka",
+                  "romaji": "desu ka",
+                  "meaning": "is it?"
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
+            },
+            {
+              "speaker": "B",
+              "japanese": "あそこです（　）。",
+              "reading": "あそこです（　）。",
+              "words": [
+                {
+                  "text": "あそこ",
+                  "kana": "あそこ",
+                  "romaji": "asoko",
+                  "meaning": "over there"
+                },
+                {
+                  "text": "です",
+                  "kana": "desu",
+                  "romaji": "desu",
+                  "meaning": "is"
+                },
+                {
+                  "text": "（　）",
+                  "blank": true
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "question:particle-yo-ne-2",
+          "kind": "cloze",
+          "isFreshSentence": true,
+          "prompt": "Two friends are looking up at Mount Fuji together on a clear day. Speaker A invites shared agreement on its immense size, and Speaker B immediately agrees. Which sentence ending does Speaker A use to invite shared agreement?",
+          "japanese": "A: ふじ山は本当に大きい（　）。 B: そうですね。",
+          "reading": "A: ふじさんは ほんとうに おおきい（　）。 B: そうですね。",
+          "gloss": "ふじ山 Mt. Fuji · は topic · 本当に really · 大きい big · （　） · そうですね that is so, isn't it",
+          "correctChoice": "C",
+          "choices": [
+            {
+              "id": "A",
+              "text": "ですよ",
+              "explanation": "Not quite. Particle よ informs someone of a fact they do not yet know; here both speakers are gazing at Mount Fuji together, so Speaker A invites agreement with ね."
+            },
+            {
+              "id": "B",
+              "text": "ですか",
+              "explanation": "Not quite. ですか turns the statement into an open question; Speaker A is making an observation and inviting their friend to agree."
+            },
+            {
+              "id": "C",
+              "text": "ですね",
+              "explanation": "That’s right! Both speakers are viewing Mount Fuji together; Speaker A uses ですね to invite mutual agreement, and Speaker B responds with そうですね."
+            }
+          ],
+          "words": [
+            {
+              "text": "ふじ山",
+              "kana": "ふじさん",
+              "romaji": "Fujisan",
+              "meaning": "Mt. Fuji"
+            },
+            {
+              "text": "は",
+              "kana": "wa",
+              "romaji": "wa",
+              "meaning": "topic particle"
+            },
+            {
+              "text": "本当に",
+              "kana": "ほんとうに",
+              "romaji": "hontou ni",
+              "meaning": "really / truly"
+            },
+            {
+              "text": "大きい",
+              "kana": "おおきい",
+              "romaji": "ookii",
+              "meaning": "big / large"
+            },
+            {
+              "text": "（　）",
+              "blank": true
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            },
+            {
+              "text": "そうですね",
+              "kana": "そうですね",
+              "romaji": "sou desu ne",
+              "meaning": "that's true / I agree"
+            },
+            {
+              "text": "。",
+              "punctuation": true
+            }
+          ],
+          "followUp": {
+            "id": "followup:particle-yo-ne-2",
+            "kind": "cloze",
+            "prompt": "Two visitors step into a quiet room. Speaker A remarks on the peaceful atmosphere to invite agreement, and Speaker B immediately agrees. Which sentence ending does Speaker A use to invite mutual agreement?",
+            "japanese": "A: この部屋は静か（　）。 B: ええ、静かですね。",
+            "reading": "A: この へやは しずか（　）。 B: ええ、しずかですね。",
+            "gloss": "この部屋 this room · は topic · 静か quiet · （　） · ええ yes · 静かですね it really is quiet",
+            "correctChoice": "A",
+            "choices": [
+              {
+                "id": "A",
+                "text": "ですね",
+                "explanation": "That’s right! Both speakers are in the quiet room together; Speaker A uses ですね to invite mutual agreement."
+              },
+              {
+                "id": "B",
+                "text": "ですよ",
+                "explanation": "Not quite. Particle よ informs someone of a fact they do not yet know; here both speakers are in the quiet room together, so Speaker A invites agreement with ね."
+              },
+              {
+                "id": "C",
+                "text": "ですか",
+                "explanation": "Not quite. ですか turns the statement into an open question; Speaker A is making an observation and inviting their friend to agree."
+              }
+            ],
+            "words": [
+              {
+                "text": "この",
+                "kana": "この",
+                "romaji": "kono",
+                "meaning": "this"
+              },
+              {
+                "text": "部屋",
+                "kana": "へや",
+                "romaji": "heya",
+                "meaning": "room"
+              },
+              {
+                "text": "は",
+                "kana": "wa",
+                "romaji": "wa",
+                "meaning": "topic particle"
+              },
+              {
+                "text": "静か",
+                "kana": "しずか",
+                "romaji": "shizuka",
+                "meaning": "quiet / peaceful"
+              },
+              {
+                "text": "（　）",
+                "blank": true
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              },
+              {
+                "text": "ええ",
+                "kana": "ええ",
+                "romaji": "ee",
+                "meaning": "yes (conversational)"
+              },
+              {
+                "text": "、",
+                "punctuation": true
+              },
+              {
+                "text": "静か",
+                "kana": "しずか",
+                "romaji": "shizuka",
+                "meaning": "quiet / peaceful"
+              },
+              {
+                "text": "ですね",
+                "kana": "desu ne",
+                "romaji": "desu ne",
+                "meaning": "is, isn't it? (agreeing)"
+              },
+              {
+                "text": "。",
+                "punctuation": true
+              }
+            ],
+            "workedExample": {
+              "japanese": "「今日はいい天気ですね。」「そうですね。」",
+              "english": "“The weather is nice today, isn't it?” “It sure is.”",
+              "breakdown": "ね (ne) is used when both people are experiencing the same situation (the pleasant weather) to share a friendly moment of agreement."
+            },
+            "dialogue": [
+              {
+                "speaker": "A",
+                "japanese": "この部屋は静か（　）。",
+                "reading": "この へやは しずか（　）。",
+                "words": [
+                  {
+                    "text": "この",
+                    "kana": "この",
+                    "romaji": "kono",
+                    "meaning": "this"
+                  },
+                  {
+                    "text": "部屋",
+                    "kana": "へや",
+                    "romaji": "heya",
+                    "meaning": "room"
+                  },
+                  {
+                    "text": "は",
+                    "kana": "wa",
+                    "romaji": "wa",
+                    "meaning": "topic particle"
+                  },
+                  {
+                    "text": "静か",
+                    "kana": "しずか",
+                    "romaji": "shizuka",
+                    "meaning": "quiet / peaceful"
+                  },
+                  {
+                    "text": "（　）",
+                    "blank": true
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              },
+              {
+                "speaker": "B",
+                "japanese": "ええ、静かですね。",
+                "reading": "ええ、しずかですね。",
+                "words": [
+                  {
+                    "text": "ええ",
+                    "kana": "ええ",
+                    "romaji": "ee",
+                    "meaning": "yes (conversational)"
+                  },
+                  {
+                    "text": "、",
+                    "punctuation": true
+                  },
+                  {
+                    "text": "静か",
+                    "kana": "しずか",
+                    "romaji": "shizuka",
+                    "meaning": "quiet / peaceful"
+                  },
+                  {
+                    "text": "ですね",
+                    "kana": "desu ne",
+                    "romaji": "desu ne",
+                    "meaning": "is, isn't it? (agreeing)"
+                  },
+                  {
+                    "text": "。",
+                    "punctuation": true
+                  }
+                ]
+              }
+            ]
+          },
+          "dialogue": [
+            {
+              "speaker": "A",
+              "japanese": "ふじ山は本当に大きい（　）。",
+              "reading": "ふじさんは ほんとうに おおきい（　）。",
+              "words": [
+                {
+                  "text": "ふじ山",
+                  "kana": "ふじさん",
+                  "romaji": "Fujisan",
+                  "meaning": "Mt. Fuji"
+                },
+                {
+                  "text": "は",
+                  "kana": "wa",
+                  "romaji": "wa",
+                  "meaning": "topic particle"
+                },
+                {
+                  "text": "本当に",
+                  "kana": "ほんとうに",
+                  "romaji": "hontou ni",
+                  "meaning": "really / truly"
+                },
+                {
+                  "text": "大きい",
+                  "kana": "おおきい",
+                  "romaji": "ookii",
+                  "meaning": "big / large"
+                },
+                {
+                  "text": "（　）",
+                  "blank": true
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
+            },
+            {
+              "speaker": "B",
+              "japanese": "そうですね。",
+              "reading": "そうですね。",
+              "words": [
+                {
+                  "text": "そうですね",
+                  "kana": "そうですね",
+                  "romaji": "sou desu ne",
+                  "meaning": "that's true / I agree"
+                },
+                {
+                  "text": "。",
+                  "punctuation": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

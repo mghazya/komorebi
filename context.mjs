@@ -15,6 +15,9 @@ export const CONTEXT_PACK_4_PATH = './data/context-pack-4.json';
 export const CONTEXT_PACK_5_PATH = './data/context-pack-5.json';
 export const CONTEXT_PACK_6_PATH = './data/context-pack-6.json';
 export const CONTEXT_PACK_7_PATH = './data/context-pack-7.json';
+export const CONTEXT_PACK_8_PATH = './data/context-pack-8.json';
+export const CONTEXT_PACK_9_PATH = './data/context-pack-9.json';
+export const CONTEXT_PACK_10_PATH = './data/context-pack-10.json';
 
 export const CONTEXT_PACKS = Object.freeze([
   Object.freeze({
@@ -94,6 +97,39 @@ export const CONTEXT_PACKS = Object.freeze([
     path: CONTEXT_PACK_7_PATH,
     status: 'live',
   }),
+  Object.freeze({
+    id: 'pack:beginner-8',
+    title: 'Beginner Pack 8',
+    subtitle: 'Everyday Questions — Who, What & Where',
+    label: '3 patterns · 6 questions',
+    patternsSummary: '何 (なん), どこ, だれ',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_8_PATH,
+    status: 'validated',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-9',
+    title: 'Beginner Pack 9',
+    subtitle: 'Wants, Likes & Subject Markers',
+    label: '3 patterns · 6 questions',
+    patternsSummary: 'ほしいです, 好きです / 嫌いです, が (target)',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_9_PATH,
+    status: 'validated',
+  }),
+  Object.freeze({
+    id: 'pack:beginner-10',
+    title: 'Beginner Pack 10',
+    subtitle: 'Means of Travel, Exemplary Lists & Conversational Nuance',
+    label: '3 patterns · 6 questions',
+    patternsSummary: 'で (means), や (listing), よ / ね (conversational)',
+    patternsCount: 3,
+    questionsCount: 6,
+    path: CONTEXT_PACK_10_PATH,
+    status: 'validated',
+  }),
 ]);
 
 export const CONTEXT_PACK_META = CONTEXT_PACKS[0];
@@ -152,6 +188,9 @@ function validateWordsList(words, sentenceText, ownerId) {
       if (w.text !== '（　）' && w.text !== '(  )' && w.text !== '（ ）') {
         throw new ContextPackError(`Blank word item in ${ownerId} must represent the sentence blank.`, 'BAD_PACK');
       }
+      if (w.kana !== undefined || w.romaji !== undefined || w.meaning !== undefined) {
+        throw new ContextPackError(`Blank word item in ${ownerId} must not reveal kana, romaji, or meaning.`, 'BAD_PACK');
+      }
     } else if (w.punctuation) {
       // Punctuation like '。' or '、' without word help
     } else {
@@ -170,16 +209,62 @@ function validateWordsList(words, sentenceText, ownerId) {
   }
 }
 
+function validateDialogueTurns(dialogue, words, ownerId) {
+  if (!Array.isArray(dialogue) || dialogue.length < 2) {
+    throw new ContextPackError(`Dialogue in ${ownerId} must have at least two speaker turns.`, 'BAD_PACK');
+  }
+  const EXPECTED_SPEAKERS = ['A', 'B'];
+  const flattenedTurnWords = [];
+  for (let i = 0; i < dialogue.length; i++) {
+    const turn = dialogue[i];
+    const expectedSpeaker = EXPECTED_SPEAKERS[i % 2];
+    if (!isPlainObject(turn) || turn.speaker !== expectedSpeaker ||
+      typeof turn.japanese !== 'string' || !turn.japanese.trim()) {
+      throw new ContextPackError(
+        `Dialogue turn ${i + 1} in ${ownerId} must specify speaker "${expectedSpeaker}" and non-empty japanese text.`,
+        'BAD_PACK'
+      );
+    }
+    if (/[「」]/.test(turn.japanese)) {
+      throw new ContextPackError(
+        `Dialogue turn ${i + 1} in ${ownerId} must use explicit speaker turns rather than quotation marks.`,
+        'BAD_PACK'
+      );
+    }
+    if (turn.reading !== undefined && (typeof turn.reading !== 'string' || !turn.reading.trim())) {
+      throw new ContextPackError(`Dialogue turn ${i + 1} in ${ownerId} has an invalid reading.`, 'BAD_PACK');
+    }
+    validateWordsList(turn.words, turn.japanese, `${ownerId} (Speaker ${turn.speaker})`);
+    flattenedTurnWords.push(...turn.words);
+  }
+  if (words !== undefined) {
+    if (!Array.isArray(words) || words.length !== flattenedTurnWords.length) {
+      throw new ContextPackError(`Top-level words in dialogue ${ownerId} must match the flattened dialogue turn words.`, 'BAD_PACK');
+    }
+    for (let idx = 0; idx < flattenedTurnWords.length; idx++) {
+      const tw = flattenedTurnWords[idx];
+      const fw = words[idx];
+      if (!isPlainObject(fw) || fw.text !== tw.text || Boolean(fw.blank) !== Boolean(tw.blank) ||
+        Boolean(fw.punctuation) !== Boolean(tw.punctuation) || fw.kana !== tw.kana ||
+        fw.romaji !== tw.romaji || fw.meaning !== tw.meaning) {
+        throw new ContextPackError(`Word at index ${idx} in dialogue ${ownerId} does not match its speaker turn word.`, 'BAD_PACK');
+      }
+    }
+  }
+  return flattenedTurnWords;
+}
+
 export function validateContextPack(data) {
   if (!isPlainObject(data) || data.schemaVersion !== 1 || typeof data.id !== 'string' || !data.id.startsWith('pack:') ||
     typeof data.title !== 'string' || !data.title.trim() || !Array.isArray(data.patterns) || !data.patterns.length) {
     throw new ContextPackError('This practice pack is not in a supported format.', 'BAD_PACK');
   }
+  const normalized = deepCopy(data);
   const patternIds = new Set();
   const questionIds = new Set();
   const followUpIds = new Set();
 
-  for (const pattern of data.patterns) {
+  for (const pattern of normalized.patterns) {
     if (!isPlainObject(pattern) || typeof pattern.id !== 'string' || !pattern.id.startsWith('grammar:') ||
       SRS_PREFIX.test(pattern.id) || patternIds.has(pattern.id) ||
       typeof pattern.pattern !== 'string' || !pattern.pattern.trim() ||
@@ -208,7 +293,16 @@ export function validateContextPack(data) {
       }
       questionIds.add(q.id);
       validateChoicesList(q.choices, q.correctChoice, q.id);
-      if (q.words !== undefined) {
+      if (q.dialogue !== undefined) {
+        q.words = validateDialogueTurns(q.dialogue, q.words, q.id);
+        const expectedDialogueJp = q.dialogue.map((t) => `${t.speaker}: ${t.japanese}`).join(' ');
+        if (q.japanese !== expectedDialogueJp) {
+          throw new ContextPackError(
+            `Dialogue question ${q.id} japanese "${q.japanese}" must match "${expectedDialogueJp}".`,
+            'BAD_PACK'
+          );
+        }
+      } else if (q.words !== undefined) {
         validateWordsList(q.words, q.japanese, q.id);
       }
 
@@ -222,7 +316,16 @@ export function validateContextPack(data) {
       }
       followUpIds.add(fu.id);
       validateChoicesList(fu.choices, fu.correctChoice, fu.id);
-      if (fu.words !== undefined) {
+      if (fu.dialogue !== undefined) {
+        fu.words = validateDialogueTurns(fu.dialogue, fu.words, fu.id);
+        const expectedFollowUpJp = fu.dialogue.map((t) => `${t.speaker}: ${t.japanese}`).join(' ');
+        if (fu.japanese !== expectedFollowUpJp) {
+          throw new ContextPackError(
+            `Dialogue follow-up ${fu.id} japanese "${fu.japanese}" must match "${expectedFollowUpJp}".`,
+            'BAD_PACK'
+          );
+        }
+      } else if (fu.words !== undefined) {
         validateWordsList(fu.words, fu.japanese, fu.id);
       }
 
@@ -235,7 +338,7 @@ export function validateContextPack(data) {
     }
   }
 
-  return deepCopy(data);
+  return normalized;
 }
 
 export async function loadContextPack({

@@ -19,7 +19,9 @@ lines.push('## Summary');
 lines.push('');
 lines.push(`- **Total JLPT N5 Grammar IDs**: ${data.summary.totalN5GrammarIds}`);
 lines.push(`- **Total JLPT N5 Distinct Meanings Tracked**: ${data.summary.totalN5Meanings}`);
-lines.push(`- **Distinct Patterns Taught Across Packs 1–7**: ${data.summary.distinctPatternsTaught} patterns (42 primary questions + 42 fresh follow-up questions)`);
+const totalPrimary = data.packs.reduce((acc, p) => acc + (p.questionsCount || 0), 0);
+const totalFollowUp = data.packs.reduce((acc, p) => acc + (p.followUpsCount || 0), 0);
+lines.push(`- **Distinct Patterns Taught Across Packs 1–${data.packs.length}**: ${data.summary.distinctPatternsTaught} patterns (${totalPrimary} primary questions + ${totalFollowUp} fresh follow-up questions)`);
 lines.push(`- **Renshuu N5 Meanings Taught (` + '`taught: true`' + `)**: ${data.summary.taughtMeaningsCount} (` +
   `\`live\`: ${data.summary.byStatus.live || 0}, ` +
   `\`reviewed\`: ${data.summary.byStatus.reviewed || 0}, ` +
@@ -27,7 +29,7 @@ lines.push(`- **Renshuu N5 Meanings Taught (` + '`taught: true`' + `)**: ${data.
   `\`planned\`: ${data.summary.byStatus.planned || 0})`);
 lines.push(`- **Flagged Items Requiring Review / Disambiguation**: ${data.entries.filter((e) => e.flags?.length).length}`);
 lines.push('');
-lines.push('## Active & Validated Beginner Packs (Packs 1–7)');
+lines.push(`## Active & Validated Beginner Packs (Packs 1–${data.packs.length})`);
 lines.push('');
 lines.push('| Pack ID | Title | Subtitle | Status | Patterns (`grammar:*`) | Renshuu Meanings Taught | Questions |');
 lines.push('| :--- | :--- | :--- | :--- | :--- | :--- | :--- |');
